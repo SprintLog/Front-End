@@ -27,6 +27,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+     "dev-server": "webpack-dev-server --hot --inline",
     "eject": "react-scripts eject"
   }
 }
