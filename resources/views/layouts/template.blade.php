@@ -4,15 +4,11 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="{{elixir('css/app.css')}}">
     <script src="js/app.js"></script>
-    <link rel="stylesheet" href="{{elixir('css/style.css')}}">
-
+    <link rel="stylesheet" href="{{elixir('css/fixfonts.css')}}">
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Itim" rel="stylesheet">
 
-    {{-- SELECTER BOOTSTAP --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
-
-
+    @yield('style')
+    @yield('script')
     <title>﻿Ｓ Ｌ</title>
   </head>
   <body>
