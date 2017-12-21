@@ -6,7 +6,7 @@
     <script src="js/app.js"></script>
     <link rel="stylesheet" href="{{elixir('css/style.css')}}">
 
-    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Itim" rel="stylesheet">
     <title>﻿Ｓ Ｌ</title>
   </head>
   <body>
