@@ -37,9 +37,9 @@
       </label>
       <div class="col-sm-9">
         <select class="selectpicker" data-live-search="true">
-          <option data-tokens="ketchup mustard">โครงงาน</option>
-          <option data-tokens="mustard">Burger, Shake and a Smile</option>
-          <option data-tokens="frosting">Sugar, Spice and all things nice</option>
+          <option data-tokens="ketchup mustard">โครงงานวิศวกรรม</option>
+          <option data-tokens="mustard">โครงงานวิจัย</option>
+          <option data-tokens="frosting">โครงงานไร้</option>
         </select>
       </div>
     </div>
