@@ -3,6 +3,7 @@
 @section('style')
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
   <link rel="stylesheet" href="{{elixir('css/bootstrap-tagsinput.css')}}">
+  <link rel="stylesheet" href="{{elixir('css/fix-general.css')}}">
 
 @endsection
 
@@ -16,11 +17,11 @@
 @endsection
 
 @section('content')
-<div class="jumbotron">
+<div class="jumbotron far">
 
   <form class="" action="" method="">
 
-    <div class="form-group row">
+    <div class="form-group row far">
       <label  class="col-sm-3 col-form-label">
           Thai Project Name
       </label>
@@ -29,7 +30,7 @@
       </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group row far">
       <label  class="col-sm-3 col-form-label">
           Eng Project Name
       </label>
@@ -38,7 +39,7 @@
       </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group row far">
       <label  class="col-sm-3 col-form-label">
           Type Project
       </label>
@@ -51,7 +52,7 @@
       </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group row far">
       <label  class="col-sm-3 col-form-label">
           Advisors
       </label>
@@ -64,7 +65,7 @@
       </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group row far">
       <label  class="col-sm-3 col-form-label">
           Developer
       </label>
@@ -73,7 +74,7 @@
       </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group row far">
       <label  class="col-sm-3 col-form-label">
         Abstract
       </label>
@@ -82,7 +83,7 @@
       </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group row far">
       <label  class="col-sm-3 col-form-label">
         Keyword
       </label>
@@ -91,7 +92,7 @@
       </div>
     </div>
     <div class="form group row">
-      <div class="col-sm-offset-4 col-sm-4">
+      <div class="col-sm-offset-2 col-sm-4">
         <button type="button" class="btn btn-dark btn-lg">Cancle</button> &nbsp;
         <button type="button" class="btn btn-info btn-lg">Save Change</button>
       </div>
