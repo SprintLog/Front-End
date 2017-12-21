@@ -26,12 +26,12 @@
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#">Project Info</a></li>
-              <li><a href="#">Planing</a></li>
-              <li><a href="#">Estimage</a></li>
-              <li><a href="#">Kanban Board</a></li>
-              <li><a href="#">Upload</a></li>
+              <li class="active"><a href="{{url('home')}}">Home</a></li>
+              <li><a href="{{url('projectinfo')}}">Project Info</a></li>
+              <li><a href="{{url('')}}">Planing</a></li>
+              <li><a href="{{url('')}}">Estimage</a></li>
+              <li><a href="{{url('')}}">Kanban Board</a></li>
+              <li><a href="{{url('')}}">Upload</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">User</a></li>
