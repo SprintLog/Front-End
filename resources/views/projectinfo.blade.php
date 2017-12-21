@@ -27,6 +27,8 @@
        $('#tags').tagsInput({width:'auto'});
       });
   </script> --}}
+
+  {{-- This is Comment When use Code can use  --}}
 @endsection
 
 @section('content')
