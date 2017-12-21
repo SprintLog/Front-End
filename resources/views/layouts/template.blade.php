@@ -3,6 +3,9 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="{{elixir('css/app.css')}}">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+
     <title>﻿Ｓ Ｌ</title>
   </head>
   <body>
