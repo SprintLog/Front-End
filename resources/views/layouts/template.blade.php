@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+
     <link rel="stylesheet" href="{{elixir('css/app.css')}}">
     <script src="js/app.js"></script>
     <link rel="stylesheet" href="{{elixir('css/fixfonts.css')}}">

@@ -2,13 +2,31 @@
 
 @section('style')
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
-  <link rel="stylesheet" href="{{elixir('css/jquery.tagsinput.css')}}">
+  {{-- <link rel="stylesheet" href="{{elixir('css/jquery.tagsinput.css')}}"> --}}
 
 @endsection
 
 @section('script')
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
-  <script src="{{elixir('js/jquery.tagsinput.js')}}"></script>
+  {{-- <script src="{{elixir('js/jquery.tagsinput.js')}}"></script>
+  <script type="text/javascript">
+
+      function onAddTag(tag) {
+       alert("Added a tag: " + tag);
+     }
+
+     function onRemoveTag(tag) {
+       alert("Removed a tag: " + tag);
+     }
+
+     function onChangeTag(input,tag) {
+       alert("Changed a tag: " + tag);
+     }
+
+     $(function() {
+       $('#tags').tagsInput({width:'auto'});
+      });
+  </script> --}}
 @endsection
 
 @section('content')
@@ -42,7 +60,7 @@
         <select class="selectpicker" data-live-search="true">
           <option data-tokens="ketchup mustard">โครงงานวิศวกรรม</option>
           <option data-tokens="mustard">โครงงานวิจัย</option>
-          <option data-tokens="frosting">โครงงานไร้</option>
+          <option data-tokens="frosting">โครงงานไร้สาระ</option>
         </select>
       </div>
     </div>
@@ -51,8 +69,8 @@
       <label  class="col-sm-3 col-form-label">
           Advisors
       </label>
-      <div class="col-sm-9">
-          <input type="text" class="form-control" placeholder="example Kitsiri ... then enter ">
+      <div class="col-sm-5">
+          <input type="text" id="tags"  class="form-control" placeholder="example Kitsiri ... then enter " >
       </div>
     </div>
 
