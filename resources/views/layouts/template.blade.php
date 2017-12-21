@@ -5,7 +5,7 @@
 
     <link rel="stylesheet" href="{{elixir('css/app.css')}}">
     <script src="js/app.js"></script>
-    <link rel="stylesheet" href="{{elixir('css/fixfonts.css')}}">
+    <link rel="stylesheet" href="{{elixir('css/fix-fonts.css')}}">
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Itim" rel="stylesheet">
 
     @yield('style')

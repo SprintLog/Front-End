@@ -24,7 +24,7 @@
       <label  class="col-sm-3 col-form-label">
           Thai Project Name
       </label>
-      <div class="col-sm-9">
+      <div class="col-sm-7">
         <input type="text" class="form-control" placeholder="example  เครื่องมือจัดการซอฟต์แวร์ . . . ">
       </div>
     </div>
@@ -33,7 +33,7 @@
       <label  class="col-sm-3 col-form-label">
           Eng Project Name
       </label>
-      <div class="col-sm-9">
+      <div class="col-sm-7">
         <input type="text" class="form-control" placeholder="example SpintLog . . . ">
       </div>
     </div>
@@ -69,19 +69,33 @@
           Developer
       </label>
       <div class="col-sm-9">
-          <input type="text" class="form-control" placeholder="" data-role="tagsinput">
+          <input type="text" class="form-control" placeholder="enter. . ." data-role="tagsinput">
       </div>
     </div>
 
     <div class="form-group row">
       <label  class="col-sm-3 col-form-label">
-          Ab
+        Abstract
       </label>
-      <div class="col-sm-9">
-          <input type="text" class="form-control" placeholder="example Kitsiri ... then enter ">
+      <div class="col-sm-7">
+          <textarea class="form-control" rows="3"></textarea>
       </div>
     </div>
 
+    <div class="form-group row">
+      <label  class="col-sm-3 col-form-label">
+        Keyword
+      </label>
+      <div class="col-sm-7">
+        <input type="text" class="form-control" placeholder="example algorithm ..." data-role="tagsinput">
+      </div>
+    </div>
+    <div class="form group row">
+      <div class="col-sm-offset-4 col-sm-4">
+        <button type="button" class="btn btn-dark btn-lg">Cancle</button> &nbsp;
+        <button type="button" class="btn btn-info btn-lg">Save Change</button>
+      </div>
+    </div>
   </form>
 </div>
 
