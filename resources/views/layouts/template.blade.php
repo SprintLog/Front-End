@@ -31,7 +31,7 @@
             <ul class="nav navbar-nav">
               <li class="active"><a href="{{url('home')}}">Home</a></li>
               <li><a href="{{url('projectinfo')}}">Project Info</a></li>
-              <li><a href="{{url('')}}">Planing</a></li>
+              <li><a href="{{url('planing')}}">Planing</a></li>
               <li><a href="{{url('')}}">Estimage</a></li>
               <li><a href="{{url('')}}">Kanban Board</a></li>
               <li><a href="{{url('')}}">Upload</a></li>

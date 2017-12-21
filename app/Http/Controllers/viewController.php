@@ -12,4 +12,7 @@ class viewController extends Controller
     public function pageprojectInfo(){
       return view('projectinfo');
     }
+    public function pagePlaning(){
+      return view('planing');
+    }
 }
