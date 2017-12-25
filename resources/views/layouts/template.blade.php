@@ -5,9 +5,11 @@
 
     <link rel="stylesheet" href="{{elixir('css/app.css')}}">
     <script src="js/app.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="  crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{elixir('css/fix-fonts.css')}}">
-    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Itim" rel="stylesheet">
-
+    <link  rel="stylesheet"href="https://fonts.googleapis.com/css?family=Indie+Flower|Itim">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     @yield('style')
     @yield('script')
     <title>﻿Ｓ Ｌ</title>
@@ -31,7 +33,7 @@
             <ul class="nav navbar-nav">
               <li class="active"><a href="{{url('home')}}">Home</a></li>
               <li><a href="{{url('projectinfo')}}">Project Info</a></li>
-              <li><a href="{{url('')}}">Planing</a></li>
+              <li><a href="{{url('planing')}}">Planing</a></li>
               <li><a href="{{url('')}}">Estimage</a></li>
               <li><a href="{{url('')}}">Kanban Board</a></li>
               <li><a href="{{url('')}}">Upload</a></li>
