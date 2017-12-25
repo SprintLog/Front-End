@@ -4,12 +4,11 @@
 
 
 @endsection
+@section('script')
 
+@endsection
 
 @section('content')
   <div id="myKanban"></div>
-
-@endsection
-@section('script')
 
 @endsection

@@ -50,7 +50,10 @@
         </div>
       </div>
     </div> <!-- /container -->
-    <script src="js/jkanban.js"></script>
-    <script src="js/kanbanBoardDemo.js"></script>
+
+    {{-------------------------Wait Load--------------------------}}
+    {{------}}<script src="js/jkanban.js"></script>{{------------}}
+    {{------}}<script src="js/kanbanBoardDemo.js"></script>{{----}}
+    {{-------------------------KANBANBOARD------------------------}}
   </body>
 </html>
