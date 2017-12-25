@@ -34,8 +34,8 @@
               <li class="active"><a href="{{url('home')}}">Home</a></li>
               <li><a href="{{url('projectinfo')}}">Project Info</a></li>
               <li><a href="{{url('planing')}}">Planing</a></li>
-              <li><a href="{{url('kanbanBoard')}}">Estimage</a></li>
-              <li><a href="{{url('')}}">Kanban Board</a></li>
+              <li><a href="{{url('')}}">Estimage</a></li>
+              <li><a href="{{url('kanbanBoard')}}">Kanban Board</a></li>
               <li><a href="{{url('')}}">Upload</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -50,6 +50,7 @@
         </div>
       </div>
     </div> <!-- /container -->
-
+    <script src="js/jkanban.js"></script>
+    <script src="js/kanbanBoardDemo.js"></script>
   </body>
 </html>
