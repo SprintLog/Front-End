@@ -1,23 +1,34 @@
-@extends('layouts.template')
-@section('style')
-  <link rel="stylesheet" href="css/jkanban.min.css">
-  <style media="screen">
-     .success{background: #00B961;}
-     .info{background: #2A92BF;}
-     .warning{background: #F4CE46;}
-     .error{background: #FB7D44;}
-  </style>
-@endsection
-@section('script')
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <link rel="stylesheet" href="css/EJ-kanban.css">
+</head>
+<body>
+  <div class="app-wrapper">
+  <header class="header">
+    <h1 class="logo">Kanban
+      <small>by Elton Jain</small>
+    </h1>
+    <p class="total-card-counter" id="totalCards"></p>
+  </header>
+  <form id="frmAddTodo" class="form-add-todo">
+    Add Project:
+    <input type="text" autocomplete="off" name="todo_text" id="" value="" placeholder="Write and press enter" />
+  </form>
+  <div class="board" id="board"></div>
+  <form id="frmAddList" class="form-add-list">
+    Add List:
+    <input type="text" autocomplete="off" name="list_name" id="" value="" placeholder="List name" />
+  </form>
+  </div>
 
-@endsection
+<script src="https://cdn.jsdelivr.net/lodash/4/lodash.min.js"></script>
+<script src="js/EJ-kanban"></script>
 
-@section('content')
-  <div id="myKanban"></div>
 
-  <button id="addDefault">Add "Default" board</button><br>
-   <button id="addToDo">Add element in "To Do" Board</button><br>
-   <button id="removeBoard">Remove "Done" Board</button><br>
-   <button id="removeElement">Remove "My Task Test"</button>
 
-@endsection
+</body>
+</html>
