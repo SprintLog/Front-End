@@ -73,8 +73,7 @@
 }
 
 
-.form-add-todo,
-.form-add-list {
+.form-add-todo,.form-add-list {
   padding: 10px 20px;
 
 
@@ -83,12 +82,7 @@
 .form-add-list input {
   margin-left: 10px;
 }
-.form-add-list {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  left: 0;
-}
+
 input[type=text] {
   padding: 5px 10px;
   border-radius: 4px;
