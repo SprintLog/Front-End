@@ -10,7 +10,7 @@
 (function() {
 // Cache common DOM
 var UI = {
-    elBoard: document.getElementById('board'),
+    elBoard: document.getElementById('boards'),
     elTotalCardCount: document.getElementById('totalCards'),
     elCardPlaceholder: null,
   },

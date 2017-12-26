@@ -51,9 +51,9 @@
       </div>
     </div> <!-- /container -->
 
-    {{-------------------------Wait Load--------------------------}}
-    {{------}}<script src="js/jkanban.js"></script>{{------------}}
-    {{------}}<script src="js/kanbanBoardDemo.js"></script>{{----}}
-    {{-------------------------KANBANBOARD------------------------}}
+
+    <script src="https://cdn.jsdelivr.net/lodash/4/lodash.min.js"></script>
+    <script src="js/EJ-kanban.js"></script>
+
   </body>
 </html>
