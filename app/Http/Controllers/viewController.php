@@ -15,6 +15,9 @@ class viewController extends Controller
     public function pagePlaning(){
       return view('planing');
     }
+    public function pageEstimage(){
+      return view('estimage');
+    }
     public function pageKanbanBoard(){
       return view('kanbanboard');
     }
