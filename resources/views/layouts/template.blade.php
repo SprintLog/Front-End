@@ -35,7 +35,7 @@
               <li><a href="{{url('projectinfo')}}">Project Info</a></li>
               <li><a href="{{url('planing')}}">Planing</a></li>
               <li><a href="{{url('')}}">Estimage</a></li>
-              <li><a href="{{url('')}}">Kanban Board</a></li>
+              <li><a href="{{url('kanbanBoard')}}">Kanban Board</a></li>
               <li><a href="{{url('')}}">Upload</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -50,6 +50,10 @@
         </div>
       </div>
     </div> <!-- /container -->
+
+
+    <script src="https://cdn.jsdelivr.net/lodash/4/lodash.min.js"></script>
+    <script src="js/EJ-kanban.js"></script>
 
   </body>
 </html>

@@ -12,5 +12,5 @@ Route::get('/projectinfo', 'viewController@pageprojectInfo');
 Route::get('/planing', 'viewController@pagePlaning');
 
 Route::get('/estimage', 'viewController@pageEstimage');
-Route::get('/KanbanBoard', 'viewController@pageKanbanBoard');
+Route::get('/kanbanBoard', 'viewController@pageKanbanBoard');
 Route::get('/upload', 'viewController@pageUpload');
