@@ -16,12 +16,12 @@
         </form>
     </div>
     <div class="form-group row far">
-  
+
       <div class="boards" id="boards">
         <div draggable="true" data-id="1" data-list-id="1" id="todo_1" class="card">
           <div class="row">
             <div class="col-sm-8">
-              Authentication
+              <i class="fa fa-file-code-o"></i> Authentication
             </div>
             <div class="col-sm-3 pull-right">
               <i class="fa fa-user"></i> Memberasd
