@@ -21,4 +21,7 @@ class viewController extends Controller
     public function pageKanbanBoard(){
       return view('kanbanboard');
     }
+    public function pageDashboardd(){
+      return view('dashboard');
+    }
 }

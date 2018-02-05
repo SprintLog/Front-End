@@ -37,6 +37,7 @@
               <li><a href="{{url('estimage')}}">Estimage</a></li>
               <li><a href="{{url('kanbanBoard')}}">Kanban Board</a></li>
               <li><a href="{{url('')}}">Upload</a></li>
+              <li><a href="{{url('dashboard')}}">Dashboard</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">User</a></li>
