@@ -34,9 +34,10 @@
               <li class="active"><a href="{{url('home')}}">Home</a></li>
               <li><a href="{{url('projectinfo')}}">Project Info</a></li>
               <li><a href="{{url('planing')}}">Planing</a></li>
-              <li><a href="{{url('')}}">Estimage</a></li>
+              <li><a href="{{url('estimage')}}">Estimage</a></li>
               <li><a href="{{url('kanbanBoard')}}">Kanban Board</a></li>
-              <li><a href="{{url('')}}">Upload</a></li>
+              <li><a href="{{url('upload')}}">Upload</a></li>
+              <li><a href="{{url('dashboard')}}">Dashboard</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">User</a></li>

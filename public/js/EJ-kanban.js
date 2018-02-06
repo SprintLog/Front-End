@@ -204,14 +204,15 @@ function init () {
   addList('Todo');
   addList('In Progress');
   addList('Done');
-  addTodo('Card 1', 1, null, false);
-  addTodo('Card 2', 1, null, false);
-  addTodo('Card 3', 1, 2, false);
-  addTodo('Card 4', 1, null, false);
+
+  addTodo('API', 1, 4, false);
+  addTodo('LOGIN', 1, 3, false);
+  addTodo('SERVICE', 1, 2, false);
+  addTodo('FRONT-END', 1, 1, false);
 
   updateCardCounts();
 
-  moveCard(2, 1, 3);
+  moveCard(1, 1, 3);
 }
 
 document.addEventListener("DOMContentLoaded", function() {
