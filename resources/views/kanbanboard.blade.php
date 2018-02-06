@@ -18,18 +18,19 @@
     <div class="form-group row far">
 
       <div class="boards" id="boards">
+        {{-- FORTEST --}}
         <div draggable="true" data-id="1" data-list-id="1" id="todo_1" class="card">
           <div class="row">
             <div class="col-sm-8">
               <i class="fa fa-file-code-o"></i> Authentication
             </div>
             <div class="col-sm-3 pull-right">
-              <i class="fa fa-user"></i> Memberasd
+              <i class="fa fa-user"></i> Army
             </div>
           </div>
             <div class="row">
               <div class="col-sm-8">
-                sdlkfmsdkfsdkjfldsjkolfjsdlkfsdfskdfjghghgj
+                  login user มี type 2 แบบ
               </div>
             </div>
             <div class="row">
@@ -38,7 +39,7 @@
               </div>
             </div>
         </div>
-
+        {{-- FORTEST --}}
       </div>
     </div>
   </div>
