@@ -27,17 +27,25 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">﻿Ｓ Ｌ</a>
+            <a class="navbar-brand" href="#">﻿
+              <img id="brand-image"  style="height:120%;display:inline-block;" src="https://avatars1.githubusercontent.com/u/34474167?s=200&v=4"></a>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="{{url('home')}}">Home</a></li>
-              <li><a href="{{url('projectinfo')}}">Project Info</a></li>
-              <li><a href="{{url('planing')}}">Planing</a></li>
-              <li><a href="{{url('estimage')}}">Estimage</a></li>
-              <li><a href="{{url('kanbanBoard')}}">Kanban Board</a></li>
-              <li><a href="{{url('')}}">Upload</a></li>
-              <li><a href="{{url('dashboard')}}">Dashboard</a></li>
+              <li class="{{ Request::segment(1) === 'home' ? 'active' : null }}">
+                <a href="{{url('home')}}">Home</a></li>
+              <li  class="{{ Request::segment(1) === 'projectinfo' ? 'active' : null }}">
+                <a href="{{url('projectinfo')}}">Project Info</a></li>
+              <li class="{{ Request::segment(1) === 'planing' ? 'active' : null }}">
+                <a href="{{url('planing')}}">Planing</a></li>
+              <li class="{{ Request::segment(1) === 'estimage' ? 'active' : null }}">
+                <a href="{{url('estimage')}}">Estimage</a></li>
+              <li class="{{ Request::segment(1) === 'kanbanBoard' ? 'active' : null }}">
+                <a href="{{url('kanbanBoard')}}">Kanban Board</a></li>
+              <li>
+                <a href="{{url('')}}">Upload</a></li>
+              <li  class="{{ Request::segment(1) === 'dashboard' ? 'active' : null }}">
+                <a href="{{url('dashboard')}}">Dashboard</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">User</a></li>
@@ -51,7 +59,6 @@
         </div>
       </div>
     </div> <!-- /container -->
-
 
     <script src="https://cdn.jsdelivr.net/lodash/4/lodash.min.js"></script>
     <script src="js/EJ-kanban.js"></script>
