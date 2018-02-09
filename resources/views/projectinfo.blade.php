@@ -18,7 +18,6 @@
 
 @section('content')
 <div class="jumbotron far">
-
   <form class="" action="" method="">
 
     <div class="form-group row far">

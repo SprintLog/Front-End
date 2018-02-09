@@ -32,6 +32,7 @@
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
+
               <li class="{{ Request::segment(1) === 'home' ? 'active' : null }}">
                 <a href="{{url('home')}}">Home</a></li>
               <li  class="{{ Request::segment(1) === 'projectinfo' ? 'active' : null }}">
@@ -43,7 +44,7 @@
               <li class="{{ Request::segment(1) === 'kanbanBoard' ? 'active' : null }}">
                 <a href="{{url('kanbanBoard')}}">Kanban Board</a></li>
               <li>
-                <a href="{{url('')}}">Upload</a></li>
+                <a href="{{url('upload')}}">Upload</a></li>
               <li  class="{{ Request::segment(1) === 'dashboard' ? 'active' : null }}">
                 <a href="{{url('dashboard')}}">Dashboard</a></li>
             </ul>

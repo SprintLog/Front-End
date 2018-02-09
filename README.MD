@@ -1,12 +1,15 @@
-#### Note Problem
-- KanbanBoard  fix send value
-- dynamic filed tag input
-- Card Modal
+## ต้องเสร็จก่อนวันจันทร์
+  - Login
+  - Task CRUD
 
-#### Todo 26/12/2017
--  List Estimage
--  Fix KanbanBoard
--  Upload
 
-#### Todo 26/12/2017
-- fix Card Modal
+## ขั้นตอน
+  1. migrations
+  2. ทำ FK
+  3. faker Data
+  4. test UI with data
+
+
+## TODO
+  - ทำ FK
+https://laravel.com/docs/5.5/migrations#foreign-key-constraints
