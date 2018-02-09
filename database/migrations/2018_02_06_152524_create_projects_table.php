@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-
 class CreateProjectsTable extends Migration
 {
     /**
@@ -15,6 +14,14 @@ class CreateProjectsTable extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->increments('id');
+            $table->text('thai_name');
+            $table->text('eng_name');
+            $table->integer('typeProjectId');
+            $table->integer('advisorsId');
+            $table->integer('developerId');
+            $table->integer('abstack');
+            $table->integer('keywords');
+            $table->integer('userId');
             $table->timestamps();
         });
     }
