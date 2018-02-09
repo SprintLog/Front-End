@@ -8,7 +8,7 @@
 @endsection
 
 @section('content')
-  <div class="jumbotron">
+  <div class="jumbotron far">
     <h1>WelCome Sprint Log</h1>
 
       <p>
