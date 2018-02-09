@@ -32,15 +32,7 @@
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-<<<<<<< HEAD
-              <li class="active"><a href="{{url('home')}}">Home</a></li>
-              <li><a href="{{url('projectinfo')}}">Project Info</a></li>
-              <li><a href="{{url('planing')}}">Planing</a></li>
-              <li><a href="{{url('estimage')}}">Estimage</a></li>
-              <li><a href="{{url('kanbanBoard')}}">Kanban Board</a></li>
-              <li><a href="{{url('upload')}}">Document</a></li>
-              <li><a href="{{url('dashboard')}}">Dashboard</a></li>
-=======
+
               <li class="{{ Request::segment(1) === 'home' ? 'active' : null }}">
                 <a href="{{url('home')}}">Home</a></li>
               <li  class="{{ Request::segment(1) === 'projectinfo' ? 'active' : null }}">
@@ -52,10 +44,9 @@
               <li class="{{ Request::segment(1) === 'kanbanBoard' ? 'active' : null }}">
                 <a href="{{url('kanbanBoard')}}">Kanban Board</a></li>
               <li>
-                <a href="{{url('')}}">Upload</a></li>
+                <a href="{{url('upload')}}">Upload</a></li>
               <li  class="{{ Request::segment(1) === 'dashboard' ? 'active' : null }}">
                 <a href="{{url('dashboard')}}">Dashboard</a></li>
->>>>>>> Mark
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">User</a></li>
