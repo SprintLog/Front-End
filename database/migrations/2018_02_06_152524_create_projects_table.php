@@ -13,20 +13,20 @@ class CreateProjectsTable extends Migration
     public function up()
     {
         Schema::create('projects', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();;
             $table->string('thai_name');
             $table->string('eng_name');
             $table->integer('typeProjectId');
-            $table->integer('advisorsId');
-            $table->integer('developerId');
+            $table->integer('advisorsId')->unsigned();;
+            $table->integer('developerId')->unsigned();;
             $table->integer('abstack');
             $table->integer('keywords');
-            $table->integer('userId');
+            $table->integer('userId')->unsigned();;
             $table->timestamps();
 
-            $table->foreign('typeProjectId')->references('id')->on('projects');
-            $table->foreign('advisorsId')->references('id')->on('projects');
-            $table->integer('developerId')->references('id')->on('projects');
+
+            $table->foreign('advisorsId')->references('id')->on('users');
+            $table->foreign('developerId')->references('id')->on('users');
             $table->foreign('userId')->references('id')->on('users');
 
         });
