@@ -26,7 +26,7 @@ class CreateProjectsTable extends Migration
 
             $table->foreign('typeProjectId')->references('id')->on('projects');
             $table->foreign('advisorsId')->references('id')->on('projects');
-            $table->integer('developerId');->references('id')->on('projects');
+            $table->integer('developerId')->references('id')->on('projects');
             $table->foreign('userId')->references('id')->on('users');
 
         });

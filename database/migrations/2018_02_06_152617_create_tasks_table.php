@@ -20,7 +20,7 @@ class CreateTasksTable extends Migration
             $table->integer('projectId');
             $table->timestamps();
 
-            table->foreign('typeProjectId')->references('id')->on('projects');
+            $table->foreign('typeProjectId')->references('id')->on('projects');
         });
     }
 
