@@ -27,5 +27,8 @@ class viewController extends Controller
     public function pageUpload(){
       return view('upload');
     }
+    public function pageListProject(){
+      return view('listproject');
+    }
 
 }
