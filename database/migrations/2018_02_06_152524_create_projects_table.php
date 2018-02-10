@@ -23,6 +23,12 @@ class CreateProjectsTable extends Migration
             $table->integer('keywords');
             $table->integer('userId');
             $table->timestamps();
+
+            $table->foreign('typeProjectId')->references('id')->on('projects');
+            $table->foreign('advisorsId')->references('id')->on('projects');
+            $table->integer('developerId');->references('id')->on('projects');
+            $table->foreign('userId')->references('id')->on('users');
+
         });
     }
 
