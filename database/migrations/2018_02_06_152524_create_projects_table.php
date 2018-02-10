@@ -13,6 +13,7 @@ class CreateProjectsTable extends Migration
     public function up()
     {
         Schema::create('projects', function (Blueprint $table) {
+<<<<<<< HEAD
             $table->increments('id')->unsigned();;
             $table->string('thai_name');
             $table->string('eng_name');
@@ -22,6 +23,19 @@ class CreateProjectsTable extends Migration
             $table->integer('abstack');
             $table->integer('keywords');
             $table->integer('userId')->unsigned();;
+=======
+          $table->engine = 'InnoDB';
+
+            $table->increments('id');
+            $table->string('thai_name')->nullable();
+            $table->string('eng_name')->nullable();
+            $table->integer('typeProjectId')->unsigned();
+            $table->integer('advisorsId');
+            $table->integer('developerId');
+            $table->integer('abstack');
+            $table->integer('keywords');
+            $table->integer('userId')->unsigned();
+>>>>>>> Mark
             $table->timestamps();
 
 
@@ -30,6 +44,7 @@ class CreateProjectsTable extends Migration
             $table->foreign('userId')->references('id')->on('users');
 
         });
+
     }
 
     /**
@@ -40,5 +55,6 @@ class CreateProjectsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('projects');
+        //$table->dropForeign('projects_typeProjectId_foreign');
     }
 }
