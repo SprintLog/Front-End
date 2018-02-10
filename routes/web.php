@@ -2,7 +2,7 @@
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
 
 
 /* --------------- Front End -------------------- */
@@ -17,3 +17,8 @@ Route::get('/estimage', 'viewController@pageEstimage');
 Route::get('/kanbanBoard', 'viewController@pageKanbanBoard');
 Route::get('/upload', 'viewController@pageUpload');
 Route::get('/dashboard', 'viewController@pageDashboard');
+Route::get('/pageListProject', 'viewController@pageListProject');
+
+Auth::routes();
+
+Route::get('/homeforlogin', 'HomeController@index')->name('home');
