@@ -7,6 +7,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 /* --------------- Front End -------------------- */
 
+Route::get('/listproject', 'viewController@pageListProject');
+
 Route::get('/home', 'viewController@pageHome');
 Route::get('/projectinfo', 'viewController@pageprojectInfo');
 Route::get('/planing', 'viewController@pagePlaning');
