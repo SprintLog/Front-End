@@ -21,8 +21,8 @@ class CreateProjectsTable extends Migration
             $table->integer('typeProjectId')->unsigned();
             $table->integer('advisorsId');
             $table->integer('developerId');
-            $table->integer('abstack');
-            $table->integer('keywords');
+            $table->string('abstack');
+            $table->string('keywords');
             $table->integer('userId')->unsigned();
             $table->timestamps();
 

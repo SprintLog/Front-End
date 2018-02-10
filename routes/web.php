@@ -22,3 +22,4 @@ Route::get('/pageListProject', 'viewController@pageListProject');
 Auth::routes();
 
 Route::get('/homeforlogin', 'HomeController@index')->name('home');
+Route::resource('task', 'ProjectController');

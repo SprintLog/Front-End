@@ -36,6 +36,41 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         //
+        /*
+            $validator = Validator::make($request->all(), [
+                'tproject_name' => 'required|max:255',
+                'eproject_name' => 'required|max:255',
+                'type_project' => 'required|max:255',
+                'advisors' => 'required|max:255',
+                'developer' => 'required|max:255',
+                'abstract' => 'required|max:255',
+                'keyword' => 'required|max:255',
+            ]);
+
+            if ($validator->fails()) {
+                return redirect('/')
+                    ->withInput()
+                    ->withErrors($validator);
+            }
+*/
+            if ($request['abstack'] == "on") {
+                        $request['abstack'] = true;
+            } else {
+                        $request['abstack'] = false;
+                      }
+            $project = new Project;
+            $project->thai_name = $request->tproject_name;
+            $project->eng_name = $request->eproject_name;
+            $project->typeProjectId = $request->type_project;
+            $project->advisorsId = $request->advisors;
+            $project->developerId = 1;
+            $project->abstack = $request->abstract;
+            $project->keywords = $request->keyword;
+            $project->userId = 1;
+
+
+            $project->save();
+            return redirect('/projectinfo');
     }
 
     /**
