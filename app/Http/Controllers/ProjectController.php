@@ -53,11 +53,7 @@ class ProjectController extends Controller
                     ->withErrors($validator);
             }
 */
-            if ($request['abstack'] == "on") {
-                        $request['abstack'] = true;
-            } else {
-                        $request['abstack'] = false;
-                      }
+            //dd($request);
             $project = new Project;
             $project->thai_name = $request->tproject_name;
             $project->eng_name = $request->eproject_name;
