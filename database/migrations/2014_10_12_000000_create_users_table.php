@@ -18,8 +18,8 @@ class CreateUsersTable extends Migration
          $table->string('name');
          $table->string('email')->unique();
          $table->string('password');
-         $table->integer('projectId')->unsigned();
-         $table->string('typeUser');
+         $table->integer('projectId');
+         $table->interger('typeUser');
          $table->rememberToken();
          $table->timestamps();
         });
