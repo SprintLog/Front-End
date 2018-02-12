@@ -3,6 +3,8 @@
 Auth::routes();
 
 
+/* --------------- Login -------------------- */
+Route::get('/login', 'viewController@pageLogin');
 
 
 /* --------------- Front End -------------------- */
