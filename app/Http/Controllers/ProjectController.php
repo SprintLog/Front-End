@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
@@ -33,7 +34,7 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function insert(Request $request)
     {
         //
         /*
@@ -62,7 +63,7 @@ class ProjectController extends Controller
             $project->developerId = 1;
             $project->abstack = $request->abstract;
             $project->keywords = $request->keyword;
-            $project->userId = 1;
+            $project->userId = $request->userId;
 
 
             $project->save();

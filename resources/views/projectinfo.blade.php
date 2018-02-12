@@ -18,7 +18,7 @@
 
 @section('content')
 <div class="jumbotron far">
-  <form class=""  action="{{ url('task') }}" method="post" enctype="multipart/form-data">
+  <form class=""  action="{{ url('projectinfo_insert') }}" method="post" enctype="multipart/form-data">
 {{ csrf_field() }}
     <div class="form-group row far">
       <label  class="col-sm-3 col-form-label">
@@ -96,6 +96,7 @@
         <button type="submit" class="btn btn-info btn-lg">Save Change</button>
       </div>
     </div>
+    <input type="hidden" name="userId" value="{{ Auth::user()->id}}">
   </form>
 </div>
 

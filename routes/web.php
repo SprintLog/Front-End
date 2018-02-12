@@ -22,4 +22,4 @@ Route::get('/pageListProject', 'viewController@pageListProject');
 Auth::routes();
 
 Route::get('/homeforlogin', 'HomeController@index')->name('home');
-Route::post('/task', 'ProjectController@store');
+Route::post('/projectinfo_insert', 'ProjectController@insert');
