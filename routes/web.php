@@ -5,7 +5,7 @@ Auth::routes();
 
 /* --------------- Login -------------------- */
 Route::get('/login', 'viewController@pageLogin');
-Route::resource('', 'PhotoController');
+Route::resource('auth', 'AuthController');
 
 /* --------------- Front End -------------------- */
 

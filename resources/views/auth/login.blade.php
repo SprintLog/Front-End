@@ -1,4 +1,4 @@
-@extends('layouts.template')
+@extends('layouts.templateAuth')
 @section('style')
 
 @endsection
@@ -12,7 +12,7 @@
     <div class="form-group row far">
       <div class="row">
         <div class="col-md-offset-3 col-md-6">
-          <form class="" action="index.html" method="post">
+          <form class="" action="" method="post">
             <div class="form-group">
               <label for="exampleInputEmail1">Email address</label>
                 <input type="email" class="form-control" name="email"  aria-describedby="emailHelp" placeholder="Enter email">
@@ -22,7 +22,8 @@
                 <input type="password" class="form-control" name="password" placeholder="Password">
               </div>
 
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" class="btn btn-primary btn-lg btn-block">Sign In</button>
+              {{-- <button type="button" class="btn btn-primary btn-lg">Sign Up</button> --}}
           </form>
         </div>
       </div>
