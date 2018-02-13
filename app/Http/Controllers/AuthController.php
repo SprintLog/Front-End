@@ -34,7 +34,13 @@ class AuthController extends Controller
      */
     public function store(Request $request)
     {
-
+      dd($request);
+      $user = new User;
+      $user->name     = $request->name;
+      $user->lastname = $request->lastname;
+      $user->email    = $request->email;
+      $user->password = $request->password;
+      $user->typeuser = $request->typeuser;
     }
 
     /**
