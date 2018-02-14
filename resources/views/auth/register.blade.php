@@ -35,11 +35,11 @@
 
             <div class="form-group col-md-offset-2">
               <label class="radio-inline">
-                <input type="radio" name="typeuser" value="professor">Professor
+                <input type="radio" name="typeuser" value=0>Professor
               </label>
               &nbsp; &nbsp; &nbsp;
               <label class="radio-inline">
-                <input type="radio" name="typeuser" value="Student">Student
+                <input type="radio" name="typeuser" value=1>Student
               </label>
             </div>
               <button type="submit" class="btn btn-primary btn-block">REGISTER</button>
