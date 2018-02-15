@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Validator;
 class AuthController extends Controller
 {
     /**
@@ -35,6 +36,21 @@ class AuthController extends Controller
     public function store(Request $request)
     {
       // dd($request);
+
+      $validator = Validator::make($request->all(),[
+           'name'        => 'required|nullable|string|max:25',
+           'lastname'    => 'required|nullable|string|max:25',
+           'email'       => 'required|nullable|unique:users|max:150',
+           'password'    => 'required|nullable|max:25',
+           'typeuser'    => 'required|numeric'
+       ]);
+
+
+
+       if ($validator->fails()) {
+           return back()->withErrors($validator)->withInput();
+       }
+
       $user = new User;
       $user->projectid  = 0; // zero ก่อนเพราะยังไม่ได้ใส่ค่าตอนสร้างโปรเจค
       $user->name       = $request->name;
@@ -44,7 +60,7 @@ class AuthController extends Controller
       $user->typeuser   = $request->typeuser;
 
       $user->save();
-      return back();
+      return back()->with('success', 'Register Success');
     }
 
     /**

@@ -8,6 +8,21 @@
 @endsection
 
 @section('content')
+  @if ($errors->any())
+    <div class="alert alert-danger">
+      <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+      </ul>
+    </div>
+  @endif
+
+  @if (session('success'))
+    <div class="alert alert-success">
+      <p><h4>{{session('success')}}</h4></p>
+    </div>
+  @endif
   <div class="jumbotron far">
     <div class="form-group row far">
       <div class="row">
