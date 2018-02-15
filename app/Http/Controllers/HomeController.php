@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+<<<<<<< HEAD
     /**
      * Create a new controller instance.
      *
@@ -25,4 +26,7 @@ class HomeController extends Controller
     {
         return view('homeforlogin');
     }
+=======
+    
+>>>>>>> dev-Army
 }

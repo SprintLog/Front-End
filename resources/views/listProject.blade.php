@@ -14,7 +14,7 @@
         <div class="col-md-6">
           <div class="thumbnail">
             <div class="caption">
-              <p> ENGINEER PROJECT</p>
+              <p> <a href="#"> ENGINEER PROJECT</a></p>
               abstack projec
               {{-- <i class="fa fa-user"></i> --}}
             </div>
