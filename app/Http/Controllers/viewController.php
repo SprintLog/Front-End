@@ -30,6 +30,9 @@ class viewController extends Controller
     public function pageListProject(){
       return view('listproject');
     }
+    public function projectlist(){
+      return view('projectlist');
+    }
     public function pageLogin(){
       return view('auth.login');
     }
