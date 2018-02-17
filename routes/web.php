@@ -4,9 +4,9 @@ Auth::routes();
 
 
 /* --------------- Login -------------------- */
-Route::get('/login', 'viewController@pageLogin');
-Route::resource('auth', 'AuthController');
 
+Route::resource('auth', 'AuthController');
+Route::post('auth/login', 'AuthController@login');
 /* --------------- Front End -------------------- */
 
 Route::get('/listproject', 'viewController@pageListProject');

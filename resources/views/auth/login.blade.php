@@ -12,7 +12,8 @@
     <div class="form-group row far">
       <div class="row">
         <div class="col-md-offset-3 col-md-6">
-          <form class="" action="" method="post">
+          <form  action="{{ url('auth/login') }}" method="post">
+            {{ csrf_field() }}
             <div class="form-group">
               <label for="exampleInputEmail1">Email address</label>
                 <input type="email" class="form-control" name="email"  aria-describedby="emailHelp" placeholder="Enter email">
