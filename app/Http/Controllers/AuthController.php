@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Validator;
+use Auth;
 class AuthController extends Controller
 {
     /**
@@ -16,6 +17,22 @@ class AuthController extends Controller
     {
       return view('auth.login');
     }
+
+    public function login(Request $request)
+    {
+      // dd($request);
+      $user = new User;
+      // echo $request->email;
+      // echo bcrypt($request->password);
+
+      if (! Auth::attempt(['email' => $request->email, 'password' => bcrypt($request->password)])){
+        dd("correct");
+      }
+      else{
+        dd("login data incorrect!");
+      }
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -51,15 +68,25 @@ class AuthController extends Controller
            return back()->withErrors($validator)->withInput();
        }
 
-      $user = new User;
-      $user->projectid  = 0; // zero ก่อนเพราะยังไม่ได้ใส่ค่าตอนสร้างโปรเจค
-      $user->name       = $request->name;
-      $user->lastname   = $request->lastname;
-      $user->email      = $request->email;
-      $user->password   = bcrypt($request->password);
-      $user->typeuser   = $request->typeuser;
+      // $user = new User;
+      // $user->projectid  = 0; // zero ก่อนเพราะยังไม่ได้ใส่ค่าตอนสร้างโปรเจค
+      // $user->name       = $request->name;
+      // $user->lastname   = $request->lastname;
+      // $user->email      = $request->email;
+      // $user->password   = bcrypt($request->password);
+      // $user->typeuser   = $request->typeuser;
+      // dd($request['name']);
+      $user = User::create([
+            'name' => $request['name'],
+            'lastname' => $request['lastname'],
+            'email' => $request['email'],
+            'password' => bcrypt($request['password']),
+            'typeuser' => $request['typeuser']
+        ]);
 
-      $user->save();
+      // $user->save();
+      // auth()->login($user);
+
       return back()->with('success', 'Register Success');
     }
 
