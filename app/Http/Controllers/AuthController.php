@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Validator;
+use Auth;
 class AuthController extends Controller
 {
     /**
@@ -19,18 +20,17 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-       dd($request);
-      $user = new User;
-      
 
-      if (! Auth::attempt(['email' => $request->email, 'password' => bcrypt($request->password)])){
-        dd("correct");
+      $email = User::where('email','=',$request->email)->value('email');
+      var_dump($email);
+      $password = User::where('password','=',bcrypt($request->password));
+      if (is_null($email) &&  is_null($password)){
+
       }
-      else{
-        dd("login data incorrect!");
-      }
+          // if (Auth::attempt(['email' => $request->email, 'password' => bcrypt($request->password)])){
+          //
+          // }
     }
-
 
     /**
      * Show the form for creating a new resource.
