@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProjectController extends Controller
 {
@@ -16,6 +17,9 @@ class ProjectController extends Controller
     public function index()
     {
         //
+        $project = DB::table('projects')->get();
+        //dd($project);
+         return view('projectlist', ['project' => $project]);
     }
 
     /**
