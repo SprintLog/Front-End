@@ -6,7 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
+use Illuminate\Support\Facades\Auth;
 class RegisterController extends Controller
 {
     /*
@@ -39,6 +39,10 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    protected function guard()
+    {
+        return Auth::guard('guard-name');
+    }
     /**
      * Get a validator for an incoming registration request.
      *
@@ -62,8 +66,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // dd($data);
         return User::create([
             'name' => $data['name'],
+            'lastname' => $data['lastname'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'projectId' => $data['projectId'],
