@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use Illuminate\Http\Request;
+use DB;
 
 class ProjectController extends Controller
 {
@@ -81,5 +82,20 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         //
+    }
+
+
+    public function showProject()
+    {
+
+    //  $showprojects = project::all(); //project=app>project.php
+      $showprojects = project::where('advisorsId','1','$eng_name')->get();
+      //$showprojects = DB::table('projects')->where('advisorsId','1')->pluck('eng_name');
+      return view('homet',['showprojects' => $showprojects]);
+    }
+
+    public function showInfo()
+    {
+      return view('showInfo');
     }
 }
