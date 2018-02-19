@@ -11,11 +11,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+      DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
       $this->call([
       UsersSeeder::class,
       TypeProjectSeeder::class,
-      //ProjectsSeeder::class,
+      ProjectsSeeder::class,
+      TasksSeeder::class,
+      EcfsSeeder::class,
+      EffortEstimationsSeeder::class,
+      TcfsSeeder::class,
+      ProgressesSeeder::class,
+      UUCPsSeeder::class,
 
   ]);
+      DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }
