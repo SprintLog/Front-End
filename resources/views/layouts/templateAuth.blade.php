@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="{{elixir('css/fix-fonts.css')}}">
     <link rel="stylesheet"href="https://fonts.googleapis.com/css?family=Indie+Flower|Itim">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     @yield('style')
     @yield('script')
     <title>﻿Ｓ Ｌ</title>
@@ -32,16 +34,43 @@
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-
-              <li class="{{ Request::segment(1) === 'login' ? 'active' : null }}">
-                <a href="{{url('auth')}}">Login</a>
-              </li>
-              <li  class="{{ Request::segment(1) === 'register' ? 'active' : null }}">
-                <a href="{{url('auth/create')}}">Register</a>
-              </li>
-
+  
             </ul>
+            <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                <!-- Left Side Of Navbar -->
+                <ul class="nav navbar-nav">
+                    &nbsp;
+                </ul>
 
+                <!-- Right Side Of Navbar -->
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- Authentication Links -->
+                    @guest
+                        <li><a href="{{ route('login') }}">Login</a></li>
+                        <li><a href="{{ route('register') }}">Register</a></li>
+                    @else
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                        Logout
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    @endguest
+                </ul>
+            </div>
 
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
