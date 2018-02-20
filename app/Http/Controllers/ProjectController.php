@@ -6,6 +6,7 @@ use App\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class ProjectController extends Controller
 {
@@ -41,23 +42,24 @@ class ProjectController extends Controller
     public function insert(Request $request)
     {
         //
-        /*
+
             $validator = Validator::make($request->all(), [
                 'tproject_name' => 'required|max:255',
                 'eproject_name' => 'required|max:255',
                 'type_project' => 'required|max:255',
                 'advisors' => 'required|max:255',
-                'developer' => 'required|max:255',
+                //'developer' => 'required|max:255',
                 'abstract' => 'required|max:255',
                 'keyword' => 'required|max:255',
             ]);
 
             if ($validator->fails()) {
-                return redirect('/')
+                return redirect('/projectinfo')
                     ->withInput()
-                    ->withErrors($validator);
+                    ->withErrors($validator)
+                    ->with('warning', 'plz check input');
             }
-*/
+
             //dd($request);
             $project = new Project;
             $project->thai_name = $request->tproject_name;
@@ -71,7 +73,7 @@ class ProjectController extends Controller
 
 
             $project->save();
-            return redirect('/projectinfo');
+            return redirect('/projectinfo')->with('success', 'Addproject Success');
     }
 
     /**

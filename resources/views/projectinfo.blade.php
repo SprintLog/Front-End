@@ -17,6 +17,26 @@
 @endsection
 
 @section('content')
+  @if ($errors->any())
+    <div class="alert alert-danger">
+      <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+      </ul>
+    </div>
+  @endif
+
+  @if (session('success'))
+    <div class="alert alert-success">
+      <p><h4>{{session('success')}}</h4></p>
+    </div>
+  @endif
+  @if (session('warning'))
+    <div class="alert alert-warning">
+      <p><h4>{{session('warning')}}</h4></p>
+    </div>
+  @endif
 <div class="jumbotron far">
   <form class=""  action="{{ url('projectinfo_insert') }}" method="post" enctype="multipart/form-data">
 {{ csrf_field() }}
@@ -96,7 +116,7 @@
         <button type="submit" class="btn btn-info btn-lg">Save Change</button>
       </div>
     </div>
-    <input type="hidden" name="userId" value="{{ Auth::user()->id}}">
+      <input type="hidden" name="userId" value="1">
   </form>
 </div>
 
