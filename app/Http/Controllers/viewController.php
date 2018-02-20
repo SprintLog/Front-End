@@ -36,5 +36,8 @@ class viewController extends Controller
     public function pageRegister(){
       return view('auth.register');
     }
+    public function pageRegister(){
+      return view('auth.');
+    }
 
 }

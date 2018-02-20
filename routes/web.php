@@ -11,7 +11,7 @@ Route::post('auth/login', 'AuthController@login');
 
 Route::get('/listproject', 'viewController@pageListProject');
 
-// Route::get('/home', 'viewController@pageHome');
+Route::get('/homet', 'viewController@pageHome');
 Route::get('/projectinfo', 'viewController@pageprojectInfo');
 Route::get('/planing', 'viewController@pagePlaning');
 
