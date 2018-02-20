@@ -53,29 +53,30 @@
 
 @section('content')
 <div class="jumbotron far">
-  <form class="" action="index.html" method="post">
-
+  <form  action="/insert" method="post">
+    {{ csrf_field() }}
       <div data-role="dynamic-fields">
         <div class="form-group row far">
 
             <div class="col-sm-5">
-              <input type="text" class="form-control" id="field-name" placeholder="Field Name">
+              <input type="text" class="form-control" name='nametask' id="field-name" placeholder="Field Name">
             </div>
 
             <div class="col-sm-4">
-              <select class="form-control" >
-                <option data-tokens="ketchup mustard">Simple</option>
-                <option data-tokens="mustard">Medium</option>
-                <option data-tokens="frosting">Complex</option>
+              <select class="form-control" name='complexity'>
+                <option data-tokens="" value=1>Simple</option>
+                <option data-tokens="" value=2>Medium</option>
+                <option data-tokens="" value=3>Complex</option>
               </select>
             </div>
 
+            <button type="submit" name="button">summit</button>
             <div class="col-sm-3">
               <button class="btn btn-danger" data-role="remove">
                 <i class="fa fa-minus-square" aria-hidden="true"></i>
                 Remove Task
               </button>
-              <button class="btn btn-primary" data-role="add">
+              <button class="btn btn-primary" type=""data-role="add">
                 <i class="fa fa-plus-square" aria-hidden="true"></i>
                 Add Task
               </button>

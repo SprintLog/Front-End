@@ -31,26 +31,79 @@
               <img id="brand-image"  style="height:120%;display:inline-block;" src="https://avatars1.githubusercontent.com/u/34474167?s=200&v=4"></a>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
+            @if (Auth::check())
+              <ul class="nav navbar-nav">
 
-              <li class="{{ Request::segment(1) === 'home' ? 'active' : null }}">
-                <a href="{{url('home')}}">Home</a></li>
-              <li  class="{{ Request::segment(1) === 'projectinfo' ? 'active' : null }}">
-                <a href="{{url('projectinfo')}}">Project Info</a></li>
-              <li class="{{ Request::segment(1) === 'planing' ? 'active' : null }}">
-                <a href="{{url('planing')}}">Planing</a></li>
-              <li class="{{ Request::segment(1) === 'estimage' ? 'active' : null }}">
-                <a href="{{url('estimage')}}">Estimage</a></li>
-              <li class="{{ Request::segment(1) === 'kanbanBoard' ? 'active' : null }}">
-                <a href="{{url('kanbanBoard')}}">Kanban Board</a></li>
-              <li>
-                <a href="{{url('upload')}}">Upload</a></li>
-              <li  class="{{ Request::segment(1) === 'dashboard' ? 'active' : null }}">
-                <a href="{{url('dashboard')}}">Dashboard</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">User</a></li>
-            </ul>
+                <li class="{{ Request::segment(1) === 'home' ? 'active' : null }}">
+                  <a href="{{url('home')}}">Home</a></li>
+                <li  class="{{ Request::segment(1) === 'projectinfo' ? 'active' : null }}">
+                  <a href="{{url('projectinfo')}}">Project Info</a></li>
+                <li class="{{ Request::segment(1) === 'planing' ? 'active' : null }}">
+                  <a href="{{url('planing')}}">Planing</a></li>
+                <li class="{{ Request::segment(1) === 'estimage' ? 'active' : null }}">
+                  <a href="{{url('estimage')}}">Estimage</a></li>
+                <li class="{{ Request::segment(1) === 'kanbanBoard' ? 'active' : null }}">
+                  <a href="{{url('kanbanBoard')}}">Kanban Board</a></li>
+                <li>
+                  <a href="{{url('upload')}}">Upload</a></li>
+                <li  class="{{ Request::segment(1) === 'dashboard' ? 'active' : null }}">
+                  <a href="{{url('dashboard')}}">Dashboard</a></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                  <!-- Authentication Links -->
+                  @guest
+                    
+                  @else
+                      <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                              {{ Auth::user()->name }} <span class="caret"></span>
+                          </a>
+
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a href="{{ route('logout') }}"
+                                      onclick="event.preventDefault();
+                                               document.getElementById('logout-form').submit();">
+                                      Logout
+                                  </a>
+
+                                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                      {{ csrf_field() }}
+                                  </form>
+                              </li>
+                          </ul>
+                      </li>
+                  @endguest
+              </ul>
+            @else
+              <ul class="nav navbar-nav navbar-right">
+                  <!-- Authentication Links -->
+                  @guest
+                      <li><a href="{{ route('login') }}">Login</a></li>
+                      <li><a href="{{ route('register') }}">Register</a></li>
+                  @else
+                      <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                              {{ Auth::user()->name }} <span class="caret"></span>
+                          </a>
+
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a href="{{ route('logout') }}"
+                                      onclick="event.preventDefault();
+                                               document.getElementById('logout-form').submit();">
+                                      Logout
+                                  </a>
+
+                                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                      {{ csrf_field() }}
+                                  </form>
+                              </li>
+                          </ul>
+                      </li>
+                  @endguest
+              </ul>
+            @endif
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
       </nav>
