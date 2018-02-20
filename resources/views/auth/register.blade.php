@@ -1,4 +1,4 @@
-@extends('layouts.templateAuth')
+@extends('layouts.template')
 
 @section('content')
   <div class="jumbotron far">
