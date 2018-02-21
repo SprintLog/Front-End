@@ -25,8 +25,5 @@ class HomeController extends Controller
     {
         return view('projectinfo');
     }
-    public function regiterAfter()
-    {
-      return view('Auth.login');
-    }
+  
 }

@@ -4,7 +4,10 @@
 
 
 /* --------------- Login -------------------- */
+Auth::routes();
 
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/regiterAfter', 'HomeController@regiterAfter');
 /* --------------- Front End -------------------- */
 
 Route::get('/listproject', 'viewController@pageListProject');
@@ -21,8 +24,3 @@ Route::get('/dashboard', 'viewController@pageDashboard');
 
 /* --------------- Back End -------------------- */
 Route::post('/insert', 'TaskController@insert');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/regiterAfter', 'HomeController@regiterAfter');
