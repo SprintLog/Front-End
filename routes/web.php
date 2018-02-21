@@ -5,8 +5,6 @@
 
 /* --------------- Login -------------------- */
 
-Route::resource('auth', 'AuthController');
-Route::post('auth/login', 'AuthController@login');
 /* --------------- Front End -------------------- */
 
 Route::get('/listproject', 'viewController@pageListProject');
@@ -27,3 +25,4 @@ Route::post('/insert', 'TaskController@insert');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/regiterAfter', 'HomeController@regiterAfter');
