@@ -24,8 +24,5 @@ Route::get('/pageListProject', 'viewController@pageListProject');
 Route::get('/projectlist', 'viewController@projectlist');
 
 
-//Route::get('/login', 'HomeController@index')->name('home');
-Route::post('/projectinfo_insert', 'ProjectController@insert');
 
-// query database
-Route::get('/projectlist', 'projectController@index')->name('project');
+Route::resource('/projectinfo', 'ProjectController');

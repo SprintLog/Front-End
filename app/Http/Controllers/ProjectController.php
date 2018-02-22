@@ -17,10 +17,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
-        $project = DB::table('projects')->get();
-        //dd($project);
-         return view('projectlist', ['project' => $project]);
+        return view('projectinfo');
     }
 
     /**
@@ -39,7 +36,7 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function insert(Request $request)
+    public function store(Request $request)
     {
         //
 
