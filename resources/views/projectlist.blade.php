@@ -51,7 +51,7 @@
         </div>
       </div>
     </div>
-      <a href="{{}}" class="btn btn-success">
+      <a href="{{url('projectinfo')}}" class="btn btn-success">
         <span class="glyphicon glyphicon-plus"></span> Create New Project
       </a>
     </div>
