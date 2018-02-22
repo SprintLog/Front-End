@@ -3,10 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
-class User extends Model
+use Illuminate\Foundation\Auth\User as Authenticatable;
+class User extends Authenticatable
 {
-    public function project(){
-      
-    }
+
+    protected $fillable = ['name', 'lastname', 'email','password','projectid','typeuser'];
+  
+
 }

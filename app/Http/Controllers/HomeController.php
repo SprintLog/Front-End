@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Project;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
 {
-<<<<<<< HEAD
     /**
      * Create a new controller instance.
      *
@@ -24,9 +24,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('homeforlogin');
+       $project = DB::table('projects')->get();
+
+       return view('projectlist', ['project' => $project]);
     }
-=======
-    
->>>>>>> dev-Army
+
 }

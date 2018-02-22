@@ -1,4 +1,4 @@
-@extends('layouts.template')
+@extends('layouts.templateList')
 @section('style')
   <link rel="stylesheet" href="/css/EJ-kanban.css">
 @endsection
@@ -11,40 +11,34 @@
   <div class="jumbotron far">
     <div class="form-group row far">
       User Project List
-
-<!-- listProject Exam data -->
-<br><hr style="width: 100%; color: black; height: 1px; background-color:black;" />
+      <!-- listProject Exam data -->
+      <br><hr style="width: 100%; color: black; height: 1px; background-color:black;" />
       <div class="row">
-        <div class="col-sm-6">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Project SE</h5>
-              <p class="card-text">Fuckking Markkie</p>
-              <i class="fa fa-user"></i><br><br>
-              <a href="#" class="btn btn-primary">View</a>
-            </div>
+        <div class="col-sm-6 col-md-6">
+          <div class="thumbnail">
+              <div class="caption">
+                <h3>ชื่อโปรเจคไทย &nbsp; Name Project</h3>
+                  <p>คำอธิบาย</p>
+                  <p>
+                    <a href="#" class="btn btn-primary  " role="button">View</a> &nbsp;
+                    <a href="#" class="btn btn-danger block" role="button">DEL</a>
+                  </p>
+              </div>
           </div>
         </div>
-        <div class="col-sm-6">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Project SE2</h5>
-              <p class="card-text">Sleep With me Free Wifi</p>
-              <i class="fa fa-user"></i><br><br>
-              <a href="#" class="btn btn-primary">View</a>
-            </div>
+        <div class="col-sm-6 col-md-6">
+          <div class="thumbnail">
+              <div class="caption">
+                <h3>Name Project</h3>
+                  <p>abstack</p>
+                  <p>
+                    <a href="#" class="btn btn-primary  " role="button">View</a> &nbsp;
+                    <a href="#" class="btn btn-danger block" role="button">DEL</a>
+                  </p>
+              </div>
           </div>
         </div>
-        <div class="col-sm-6">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Kuyyy</h5>
-              <p class="card-text">www.javdie.net</p>
-              <i class="fa fa-user"></i><br><br>
-              <a href="#" class="btn btn-primary">View</a>
-            </div>
-          </div>
-        </div>
+<<<<<<< HEAD
         <!-- listProject from DB-->
         @foreach ($project as $project )
           <div class="col-sm-6">
@@ -62,9 +56,20 @@
                 <p class="card-text">{{ $project -> thai_name}}</p>
                 <i class="fa fa-user"></i><br><br>
                 <a href="#" class="btn btn-primary">View</a>
+=======
+        <div class="col-sm-6 col-md-6">
+          <div class="thumbnail">
+              <div class="caption">
+                <h3>Name Project</h3>
+                  <p>abstack</p>
+                  <p>
+                    <a href="#" class="btn btn-primary  " role="button">View</a> &nbsp;
+                    <a href="#" class="btn btn-danger block" role="button">DEL</a>
+                  </p>
+>>>>>>> dev-Army
               </div>
-            </div>
           </div>
+<<<<<<< HEAD
         @endforeach
         <script>
             $(".delete").on("submit", function(){
@@ -73,9 +78,29 @@
         </script>
       </div><br>
       <a href="#" class="btn btn-primary">
+=======
+        </div>
+      </div>
+    </div>
+      <a href="{{url('projectinfo')}}" class="btn btn-success">
+>>>>>>> dev-Army
         <span class="glyphicon glyphicon-plus"></span> Create New Project
-    </a>
-
+      </a>
     </div>
   </div>
 @endsection
+      <!-- listProject from DB-->
+      @foreach ($project as $project )
+        <div class="col-sm-6 col-md-6">
+          <div class="thumbnail">
+              <div class="caption">
+                <h3>Name Project &nbsp; ชื่อไทย</h3>
+                  <p>abstack</p>
+                  <p>
+                    <a href="#" class="btn btn-primary  " role="button">View</a> &nbsp;
+                    <a href="#" class="btn btn-danger block" role="button">DEL</a>
+                  </p>
+              </div>
+          </div>
+        </div>
+      @endforeach

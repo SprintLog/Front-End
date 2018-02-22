@@ -37,7 +37,7 @@ class viewController extends Controller
       return view('auth.login');
     }
     public function pageRegister(){
-      return view('auth.register');
+      return view('auth.');
     }
 
 }
