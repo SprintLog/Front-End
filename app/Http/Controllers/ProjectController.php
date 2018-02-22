@@ -119,5 +119,14 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         //
+
+    }
+    public function delete(Request $request)
+    {
+        //
+        $id = $request->id;
+        DB::table('projects')->where('id' , $id)->delete();
+
+        return back();
     }
 }

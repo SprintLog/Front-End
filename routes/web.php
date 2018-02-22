@@ -23,6 +23,6 @@ Route::get('/projectlist', 'viewController@projectlist');
 
 //Route::get('/login', 'HomeController@index')->name('home');
 Route::post('/projectinfo_insert', 'ProjectController@insert');
-
+Route::post('/projectlist_delete', 'ProjectController@delete');
 // query database
 Route::get('/projectlist', 'projectController@index')->name('project');
