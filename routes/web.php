@@ -24,5 +24,6 @@ Route::get('/pageListProject', 'viewController@pageListProject');
 Route::get('/projectlist', 'viewController@projectlist');
 
 
-
+/* --------------- BACK END -------------------- */
 Route::resource('/projectinfo', 'ProjectController');
+Route::get('/projectInfoRegis', 'viewController@pageProjectInfoRegis');
