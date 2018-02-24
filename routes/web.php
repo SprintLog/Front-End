@@ -1,18 +1,29 @@
 <?php
 
 
-//Route::get('/home', 'HomeController@index')->name('home');
+
 
 
 /* --------------- Login -------------------- */
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/regiterAfter', 'HomeController@regiterAfter');
+Route::get('/home', 'HomeController@index');
+
 /* --------------- Front End -------------------- */
 
-Route::get('/listproject', 'viewController@pageListProject');
+/* --------------- BACK End -------------------- */
 
+
+
+
+Route::resource('/project', 'ProjectController');
+Route::resource('/projectlist', 'ProjectListController');
+
+
+
+/* --------------- VIEW ONLY -------------------- */
+
+Route::get('/listproject', 'viewController@pageListProject');
 Route::get('/homet', 'viewController@pageHome');
 Route::get('/projectinfo', 'viewController@pageprojectInfo');
 Route::get('/planing', 'viewController@pagePlaning');
@@ -20,17 +31,3 @@ Route::get('/estimage', 'viewController@pageEstimage');
 Route::get('/kanbanBoard', 'viewController@pageKanbanBoard');
 Route::get('/upload', 'viewController@pageUpload');
 Route::get('/dashboard', 'viewController@pageDashboard');
-Route::get('/pageListProject', 'viewController@pageListProject');
-Route::get('/projectlist', 'viewController@projectlist');
-
-
-<<<<<<< HEAD
-//Route::get('/login', 'HomeController@index')->name('home');
-Route::post('/projectinfo_insert', 'ProjectController@insert');
-Route::post('/projectlist_delete', 'ProjectController@delete');
-// query database
-Route::get('/projectlist', 'projectController@index')->name('project');
-=======
-
-Route::resource('/projectinfo', 'ProjectController');
->>>>>>> dev-Army
