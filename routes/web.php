@@ -24,6 +24,13 @@ Route::get('/pageListProject', 'viewController@pageListProject');
 Route::get('/projectlist', 'viewController@projectlist');
 
 
-/* --------------- BACK END -------------------- */
+<<<<<<< HEAD
+//Route::get('/login', 'HomeController@index')->name('home');
+Route::post('/projectinfo_insert', 'ProjectController@insert');
+Route::post('/projectlist_delete', 'ProjectController@delete');
+// query database
+Route::get('/projectlist', 'projectController@index')->name('project');
+=======
+
 Route::resource('/projectinfo', 'ProjectController');
-Route::get('/projectList', 'ProjectListController');
+>>>>>>> dev-Army
