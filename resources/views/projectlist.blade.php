@@ -10,43 +10,13 @@
 @section('content')
   <div class="jumbotron far">
     <div class="form-group row far">
-        <div class="col-sm-6 col-md-6">
-          <div class="thumbnail">
-              <div class="caption">
-                <h3>Name Project</h3>
-                  <p>abstack</p>
-                  <p>
-                    <a href="#" class="btn btn-primary  " role="button">View</a> &nbsp;
-                    <a href="#" class="btn btn-danger block" role="button">DEL</a>
-                  </p>
-              </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-6">
-          <div class="thumbnail">
-              <div class="caption">
-                <h3>Name Project</h3>
-                  <p>abstack</p>
-                  <p>
-                    <a href="#" class="btn btn-primary  " role="button">View</a> &nbsp;
-                    <a href="#" class="btn btn-danger block" role="button">DEL</a>
-                  </p>
-              </div>
-          </div>
-        </div>
-        <a href="{{url('projectlist')}}" class="btn btn-success">
-          <span class="glyphicon glyphicon-plus"></span> Create New Project
-        </a>
-      </div>
-    </div>
-@endsection
-      {{-- <!-- listProject from DB-->
+
       @foreach ($project as $project )
         <div class="col-sm-6 col-md-6">
           <div class="thumbnail">
               <div class="caption">
-                <h3>Name Project &nbsp; ชื่อไทย</h3>
-                  <p>abstack</p>
+                <h3>{{$project->eng_name}} &nbsp; {{$project->thai_name}}</h3>
+                  <p>{{$project->abstack}}</p>
                   <p>
                     <a href="#" class="btn btn-primary  " role="button">View</a> &nbsp;
                     <a href="#" class="btn btn-danger block" role="button">DEL</a>
@@ -54,7 +24,18 @@
               </div>
           </div>
         </div>
-      @endforeach --}}
+      @endforeach
+
+        <div class="row">
+          <div class="col-sm-6 col-md-12">
+            <a href="{{url('projectlist')}}" class="btn btn-success">
+              <span class="glyphicon glyphicon-plus"></span> Create New Project
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+@endsection
 
 
 
