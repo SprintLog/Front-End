@@ -23,14 +23,10 @@ Route::get('/dashboard', 'viewController@pageDashboard');
 Route::get('/pageListProject', 'viewController@pageListProject');
 Route::get('/projectlist', 'viewController@projectlist');
 
-
-<<<<<<< HEAD
-//Route::get('/login', 'HomeController@index')->name('home');
-Route::post('/projectinfo_insert', 'ProjectController@insert');
-Route::post('/projectlist_delete', 'ProjectController@delete');
-// query database
-Route::get('/projectlist', 'projectController@index')->name('project');
-=======
-
 Route::resource('/projectinfo', 'ProjectController');
->>>>>>> dev-Army
+Route::get('/projectlist', 'projectController@show')->name('project');
+Route::post('/projectlist_delete', 'ProjectController@delete');
+
+//estmage
+Route::get('/estimage', 'TcfController@show')->name('tcf','ecf');
+Route::post('/estimage_update', 'TcfController@update');
