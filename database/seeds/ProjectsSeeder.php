@@ -22,7 +22,7 @@ class ProjectsSeeder extends Seeder
               'typeProjectId' => 1,
               'advisorsId'=> array_random($arrayTypeUser) ,
               'developerId' => array_random($arrayTypeUser),
-              'abstack' => array_random($arrayTypeUser),
+              'abstack' => str_random(10),
               'keywords'=> array_random($arrayTypeUser),
               'userId'=>  array_random($arrayTypeUser),
               'created_at'=> Carbon::now()->format('Y-m-d H:i:s'),
