@@ -17,7 +17,8 @@ Route::get('/home', 'HomeController@index');
 
 
 Route::resource('/project', 'ProjectController');
-Route::resource('/projectlist', 'ProjectListController');
+
+Route::resource('/projectcreate', 'ProjectListController');
 
 
 

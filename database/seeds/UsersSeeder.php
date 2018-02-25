@@ -16,12 +16,12 @@ class UsersSeeder extends Seeder
         $arrayTypeUser = [0,1];
 
         DB::table('users')->insert([
-            'name' => str_random(10),
-            'lastname' => str_random(10),
-            'email' => str_random(10).'@gmail.com',
-            'projectid'=> 0 ,
-            'typeUser' => array_random($arrayTypeUser),
-            'password' => bcrypt('secret'),
+            'name'      => str_random(10),
+            'lastname'  => str_random(10),
+            'email'     => str_random(10).'@gmail.com',
+            'projectid' => 0 ,
+            'typeUser'  => array_random($arrayTypeUser),
+            'password'  => bcrypt('secret'),
             'created_at'=> Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at'=> Carbon::now()->format('Y-m-d H:i:s'),
         ]);
