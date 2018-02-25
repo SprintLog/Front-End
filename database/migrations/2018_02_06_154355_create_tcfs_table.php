@@ -15,6 +15,12 @@ class CreateTcfsTable extends Migration
     {
         Schema::create('tcfs', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('topic');
+            $table->string('des');
+            $table->integer('weight');
+            $table->integer('rate');
+            $table->integer('result');
+            $table->integer('projectId');
             $table->timestamps();
         });
     }

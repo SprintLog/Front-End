@@ -30,8 +30,12 @@ class viewController extends Controller
     public function pageListProject(){
       return view('listproject');
     }
-    public function pageRegister(){
-      return view('auth.');
+    public function projectlist(){
+      return view('projectlist');
     }
+    public function pageProjectInfoRegis(){
+      return view('projectInfoRegis');
+    }
+
 
 }

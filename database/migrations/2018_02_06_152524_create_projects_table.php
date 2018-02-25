@@ -19,10 +19,12 @@ class CreateProjectsTable extends Migration
             $table->string('thai_name')->nullable();
             $table->string('eng_name')->nullable();
             $table->integer('typeProjectId')->unsigned();
-            $table->integer('advisorsId')->nullable();
-            $table->integer('developerId')->nullable();
-            $table->integer('abstack');
-            $table->integer('keywords');
+
+            $table->integer('advisorsId');
+            $table->integer('developerId');
+            $table->string('abstack');
+            $table->string('keywords');
+
             $table->integer('userId')->unsigned();
             $table->timestamps();
 

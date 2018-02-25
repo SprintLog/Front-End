@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class ProjectController extends Controller
 {
@@ -14,7 +17,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+      $projects = DB::table('projects')->get();
+      return view('projectlist', ['projects' => $projects]);
     }
 
     /**
@@ -36,6 +40,38 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         //
+
+            $validator = Validator::make($request->all(), [
+                'tproject_name' => 'required|max:255',
+                'eproject_name' => 'required|max:255',
+                'type_project' => 'required|max:255',
+                'advisors' => 'required|max:255',
+                //'developer' => 'required|max:255',
+                'abstract' => 'required|max:255',
+                'keyword' => 'required|max:255',
+            ]);
+
+            if ($validator->fails()) {
+                return redirect('/projectinfo')
+                    ->withInput()
+                    ->withErrors($validator)
+                    ->with('warning', 'plz check input');
+            }
+
+            //dd($request);
+            $project = new Project;
+            $project->thai_name = $request->tproject_name;
+            $project->eng_name = $request->eproject_name;
+            $project->typeProjectId = $request->type_project;
+            $project->advisorsId = $request->advisors;
+            $project->developerId = 1;
+            $project->abstack = $request->abstract;
+            $project->keywords = $request->keyword;
+            $project->userId = $request->userId;
+
+
+            $project->save();
+            return redirect('/projectinfo')->with('success', 'Addproject Success');
     }
 
     /**
@@ -81,5 +117,14 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         //
+
+    }
+    public function delete(Request $request)
+    {
+        //
+        $id = $request->id;
+        DB::table('projects')->where('id' , $id)->delete();
+
+        return back();
     }
 }

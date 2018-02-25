@@ -1,4 +1,4 @@
-@extends('layouts.template')
+@extends('layouts.templateList')
 
 @section('style')
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
@@ -38,7 +38,7 @@
     </div>
   @endif
 <div class="jumbotron far">
-  <form class=""  action="{{ url('projectinfo') }}" method="post" enctype="multipart/form-data">
+  <form class=""  action="{{ url('projectinfo/create') }}" method="post" enctype="multipart/form-data">
   {{ csrf_field() }}
     <div class="form-group row far">
       <label  class="col-sm-3 col-form-label">
@@ -113,11 +113,12 @@
     <div class="form group row">
       <div class="col-sm-offset-2 col-sm-4">
         <button type="button" class="btn btn-dark btn-lg">Cancle</button> &nbsp;
-        <button type="submit" class="btn btn-info btn-lg">Save Change</button>
+        <button type="submit" class="btn btn-info btn-lg">Confirm </button>
       </div>
     </div>
       <input type="hidden" name="userId" value="1">
   </form>
+
 </div>
 
 @endsection
