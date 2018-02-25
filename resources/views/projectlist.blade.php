@@ -39,14 +39,14 @@
                   <h3>{{$project->eng_name}} &nbsp; {{$project->thai_name}}</h3>
                     <p>{{$project->abstack}}</p>
                     <p>
-                      <a href="#" class="btn btn-primary  " role="button">View</a> &nbsp;
+                      <a href="#" class="btn btn-primary btn-lg " role="button">View</a> &nbsp;
 
                       <a href="#!delete"
                       onclick=
                         "confirmDelete('Are you sure to delete ?',
                         '{{ url('/project', $project->id) }}',
                         'delete');"
-                        class="btn btn-danger">
+                        class="btn btn-danger btn-lg">
                       Delete</a>
 
                     </p>
