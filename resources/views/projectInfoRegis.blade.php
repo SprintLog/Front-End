@@ -38,14 +38,14 @@
     </div>
   @endif
 <div class="jumbotron far">
-  <form class=""  action="{{ url('projectinfo/create') }}" method="post" enctype="multipart/form-data">
+  <form class=""  action="{{ url('project') }}" method="post" enctype="multipart/form-data">
   {{ csrf_field() }}
     <div class="form-group row far">
       <label  class="col-sm-3 col-form-label">
           Thai Project Name
       </label>
       <div class="col-sm-7">
-        <input type="text" name="tproject_name" class="form-control" placeholder="example  เครื่องมือจัดการซอฟต์แวร์ . . . ">
+        <input type="text" name="t_project_name" class="form-control" placeholder="example  เครื่องมือจัดการซอฟต์แวร์ . . . ">
       </div>
     </div>
 
@@ -54,7 +54,7 @@
           Eng Project Name
       </label>
       <div class="col-sm-7">
-        <input type="text" name="eproject_name"  class="form-control" placeholder="example SpintLog . . . ">
+        <input type="text" name="e_project_name"  class="form-control" placeholder="example SpintLog . . . ">
       </div>
     </div>
 
