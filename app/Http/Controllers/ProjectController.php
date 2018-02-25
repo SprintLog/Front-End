@@ -39,7 +39,7 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
+         dd($request);
 
             $validator = Validator::make($request->all(), [
                 'tproject_name' => 'required|max:255',
@@ -60,8 +60,8 @@ class ProjectController extends Controller
 
             //dd($request);
             $project = new Project;
-            $project->thai_name = $request->tproject_name;
-            $project->eng_name = $request->eproject_name;
+            $project->thai_name = $request->t_project_name;
+            $project->eng_name = $request->e_project_name;
             $project->typeProjectId = $request->type_project;
             $project->advisorsId = $request->advisors;
             $project->developerId = 1;
