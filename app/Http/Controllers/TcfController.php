@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Tcf;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 class TcfController extends Controller
 {
     /**
@@ -47,6 +48,9 @@ class TcfController extends Controller
     public function show(Tcf $tcf)
     {
         //
+        $tcf = DB::table('tcfs')->get();
+        $ecf = DB::table('ecfs')->get();
+        return view('estimage', ['tcf' => $tcf , 'ecf' => $ecf]);
     }
 
     /**
@@ -58,6 +62,7 @@ class TcfController extends Controller
     public function edit(Tcf $tcf)
     {
         //
+
     }
 
     /**
@@ -69,7 +74,37 @@ class TcfController extends Controller
      */
     public function update(Request $request, Tcf $tcf)
     {
-        //
+      //data Tcf
+       $rateTcf = $request->rateTcf;
+       $topicTcf = $request->topicTcf;
+       $projectId = $request->projectId;
+       $weightTcf = $request->weightTcf;
+
+      //data Ecf
+       $rateEcf = $request->rateEcf;
+       $topicEcf = $request->topicEcf;
+       $weightEcf = $request->weightEcf;
+
+       //update Table TCf
+       for ($i=0; $i < sizeof($rateTcf); $i++){
+            $result = $weightTcf[$i] * $rateTcf[$i] ;
+
+           DB::table('tcfs')
+           ->where('topic', $topicTcf[$i])
+           ->Where('projectId',$projectId)
+           ->update(['rate' => $rateTcf[$i] ,'result' => $result] );
+         }
+      //update Table Ecf
+       for ($i=0; $i < sizeof($rateEcf); $i++){
+            $result = $weightEcf[$i] * $rateEcf[$i] ;
+
+             DB::table('ecfs')
+             ->where('topic', $topicEcf[$i])
+             ->Where('projectId',$projectId)
+             ->update(['rate' => $rateEcf[$i] ,'result' => $result] );
+           }
+           
+         return back()->with('success', 'Update Success');;
     }
 
     /**
