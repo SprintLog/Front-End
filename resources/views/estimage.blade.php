@@ -120,10 +120,4 @@
         </div>
       </div>
     </div>
-
-
-
-
-
-
 @endsection
