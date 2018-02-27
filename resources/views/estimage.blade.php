@@ -7,7 +7,7 @@
 @section('script')
 @endsection
 @section('content')
-<form  action="{{ url('estimage_update') }}" method="post" enctype="multipart/form-data">
+<form  action="{{ url('estimage_updateall') }}" method="post" enctype="multipart/form-data">
   {{ csrf_field() }}
   @if (session('success'))
     <div class="alert alert-success">
@@ -64,22 +64,7 @@
             </tr>
           </thead>
           <tbody>
-            @php
-              $TC = array("Distributed system",
-                      "Performance objectives",
-                      "End-user efficiency",
-                      "Complex processing",
-                      "Reusable code",
-                      "Easy to install",
-                      "Easy to use",
-                      "Portable",
-                      "Easy to change",
-                      "Concurrent use",
-                      "Security",
-                      "Access for third parties",
-                      "Training needs");
-              $rate = array();
-            @endphp
+
             @foreach ($tcf as $tcf)
               <tr>
                 <th scope="row">{{ $tcf -> topic}}</th>
@@ -106,16 +91,7 @@
             </tr>
           </thead>
           <tbody>
-            @php
-              $EF = array("Familiar with the development process",
-                      "Application experience",
-                      "Object-oriented experience",
-                      "Lead analyst capability",
-                      "Motivation",
-                      "Stable requirements",
-                      "Part-time staff",
-                      "Difficult programming language");
-            @endphp
+
             @foreach ($ecf as $ecf)
               <tr>
                 <th scope="row">{{ $ecf -> topic}}</th>
@@ -140,3 +116,30 @@
     </div>
 </form>
 @endsection
+{{-- @php  FOR TEST ONLY
+  $TC = array("Distributed system",
+          "Performance objectives",
+          "End-user efficiency",
+          "Complex processing",
+          "Reusable code",
+          "Easy to install",
+          "Easy to use",
+          "Portable",
+          "Easy to change",
+          "Concurrent use",
+          "Security",
+          "Access for third parties",
+          "Training needs");
+  $rate = array();
+@endphp --}}
+
+{{-- @php
+  $EF = array("Familiar with the development process",
+          "Application experience",
+          "Object-oriented experience",
+          "Lead analyst capability",
+          "Motivation",
+          "Stable requirements",
+          "Part-time staff",
+          "Difficult programming language");
+@endphp --}}

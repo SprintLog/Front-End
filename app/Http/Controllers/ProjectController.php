@@ -17,7 +17,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return view('projectinfo');
+      $projects = DB::table('projects')->get();
+      return view('projectlist', ['projects' => $projects]);
     }
 
     /**
@@ -38,7 +39,7 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         dd($request);
 
             $validator = Validator::make($request->all(), [
                 'tproject_name' => 'required|max:255',
@@ -59,14 +60,14 @@ class ProjectController extends Controller
 
             //dd($request);
             $project = new Project;
-            $project->thai_name = $request->tproject_name;
-            $project->eng_name = $request->eproject_name;
+            $project->thai_name     = $request->t_project_name;
+            $project->eng_name      = $request->e_project_name;
             $project->typeProjectId = $request->type_project;
-            $project->advisorsId = $request->advisors;
-            $project->developerId = 1;
-            $project->abstack = $request->abstract;
-            $project->keywords = $request->keyword;
-            $project->userId = $request->userId;
+            $project->advisorsId    = $request->advisors;
+            $project->developerId   = 1;
+            $project->abstack       = $request->abstract;
+            $project->keywords      = $request->keyword;
+            $project->userId        = $request->userId;
 
 
             $project->save();
@@ -79,9 +80,12 @@ class ProjectController extends Controller
      * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function show(Project $project)
+    public function show($id)
     {
-        //
+
+        $project = Project::find($id);
+        dd($project);
+        // return view('show', compact('project'));
     }
 
     /**
@@ -113,17 +117,9 @@ class ProjectController extends Controller
      * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Project $project)
+    public function destroy($id)
     {
-        //
-
-    }
-    public function delete(Request $request)
-    {
-        //
-        $id = $request->id;
-        DB::table('projects')->where('id' , $id)->delete();
-
-        return back();
+      $project = Project::find($id)->delete();
+      return back();
     }
 }
