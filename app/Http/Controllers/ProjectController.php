@@ -80,9 +80,12 @@ class ProjectController extends Controller
      * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function show(Project $project)
+    public function show($id)
     {
-        //
+
+        $project = Project::find($id);
+        dd($project);
+        // return view('show', compact('project'));
     }
 
     /**

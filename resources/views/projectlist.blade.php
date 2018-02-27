@@ -39,7 +39,7 @@
                   <h3>{{$project->eng_name}} &nbsp; {{$project->thai_name}}</h3>
                     <p>{{$project->abstack}}</p>
                     <p>
-                      <a href="#" class="btn btn-primary btn-lg " role="button">View</a> &nbsp;
+                      <a href="{{ url('/project', $project->id) }}" class="btn btn-primary btn-lg " role="button">View</a> &nbsp;
 
                       <a href="#!delete"
                       onclick=
