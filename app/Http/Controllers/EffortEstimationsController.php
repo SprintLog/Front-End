@@ -120,4 +120,33 @@ class EffortEstimationsController extends Controller
     {
         //
     }
+
+    public function calculateUCP(Request $request) 
+        {
+            //Maybe get request value projectId
+
+            //Get sum result of rate TCF
+            $tcf = DB::table('tcfs')->select(DB::raw('SUM(result) as total_result'))->where('projectId', 1)->get();
+            $total_resultTcf ;
+
+
+            foreach ($tcf as $tcf) {
+               $total_resultTcf = $tcf->total_result;
+            }
+
+            //Get sum result of rate ECF
+            $ecf = DB::table('ecfs')->select(DB::raw('SUM(result) as total_result'))->where('projectId', 1)->get();
+            $total_resultEcf ;
+            //echo $tcf;
+            foreach ($ecf as $ecf) {
+               $total_resultEcf = $ecf->total_result;
+            }
+
+            //Calculate UUCP
+            $TCF = 0.6 + ($total_resultTcf / 100 ) ;
+            $ECF = 1.4 + (-0.03 * $total_resultEcf) ;
+
+            echo "UCP = UUCP * TCF * ECF". "<br>";
+            echo "UCP = UUCP * " . $TCF . " * " . $ECF ;
+        }
 }

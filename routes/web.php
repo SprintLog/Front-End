@@ -24,6 +24,9 @@ Route::resource('/estimage', 'EffortEstimationsController')->name('tcf','ecf');
 // Upadete All Only
 Route::post('/estimage_updateall', 'EffortEstimationsController@updateAll');
 
+//testcalculate
+Route::get('/testcalculate', 'EffortEstimationsController@calculateUCP'); 
+
 /* --------------- VIEW ONLY -------------------- */
 
 
