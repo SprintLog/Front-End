@@ -8,6 +8,9 @@ class User extends Authenticatable
 {
 
     protected $fillable = ['name', 'lastname', 'email','password','projectid','typeuser'];
-  
+
+    public function macth(){
+      return $this->hasMany('App\macth');
+    }
 
 }

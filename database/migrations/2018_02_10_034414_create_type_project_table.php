@@ -30,14 +30,14 @@ class CreateTypeProjectTable extends Migration
                 ->references('id')->on('projects')
                 ->onDelete('cascade');
 
-        })
+        });
 
         Schema::table('projects', function(Blueprint $table){
             $table->foreign('typeProjectId')
                 ->references('id')->on('type_project')
                 ->onDelete('cascade');
         });
-        
+
         Schema::table('tasks', function(Blueprint $table){
             $table->foreign('projectId')
                 ->references('id')->on('projects')
