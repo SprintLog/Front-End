@@ -18,34 +18,6 @@ class CreateTypeProjectTable extends Migration
             $table->string('type');
             $table->timestamps();
         });
-
-
-
-        Schema::table('macths', function(Blueprint $table){
-            $table->foreign('userId')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
-
-            $table->foreign('projectId')
-                ->references('id')->on('projects')
-                ->onDelete('cascade');
-
-        });
-
-        Schema::table('projects', function(Blueprint $table){
-            $table->foreign('typeProjectId')
-                ->references('id')->on('type_project')
-                ->onDelete('cascade');
-        });
-
-        Schema::table('tasks', function(Blueprint $table){
-            $table->foreign('projectId')
-                ->references('id')->on('projects')
-                ->onDelete('cascade');
-
-        });
-
-
     }
 
     /**
