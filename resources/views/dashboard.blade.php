@@ -1,6 +1,17 @@
 @extends('layouts.template')
 @section('style')
+  <style>
+  h1 {
+      text-align: center;
+  }
+  h2 {
+      text-align: center;
+  }
+  p {
+      text-align: center;
+  }
 
+  </style>
 @endsection
 
 @section('script')
@@ -9,6 +20,43 @@
 
 @section('content')
   <div class="jumbotron far">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="card-title">You Have</h2>
+              <h1 class="card-title">{{$UCP}}</h1>
+              <p class="card-text">UCP</p>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="card-title">You Need</h2>
+              <h1 class="card-title">{{$HUCP}}</h1>
+              <p class="card-text">Hours / UCP  </p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- pass variabel php to javascript-->
+          @php
+          $nametask = [] ;
+          @endphp
+          @foreach ($tasks as $tasks)
+            @php
+              array_push($nametask,$tasks->nametask);
+            @endphp
+          @endforeach
+          @php
+            echo '<script>';
+            echo 'var nametask = ' . json_encode($nametask) . ';';
+            echo '</script>';
+          @endphp
     <div class="form-group row far">
     <label  class="col-sm-4 col-form-label label label-default">
          Overview
@@ -25,13 +73,15 @@
   </label>
   <br><br><br>
   <canvas id="myChart" width="80px" height="80px"></canvas>
-  <script>
 
+  <!-- make grarph-->
+  <script>
   var ctx = document.getElementById("myChart").getContext('2d');
   var myChart = new Chart(ctx, {
       type: 'bar',
       data: {
-          labels: ["Task1", "Task2", "Task3", "Task4", "Task5", "Task6"],
+          //labels: ["Task1", "Task2", "Task3", "Task4", "Task5", "Task6"],
+          labels: nametask,
           datasets: [{
               label: 'Progress Transaction (%)',
               data: [12, 19, 3, 5, 2, 3],

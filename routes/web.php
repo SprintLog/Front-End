@@ -32,7 +32,8 @@ Route::get('/addTask', 'TaskController@index')->name('tasks');
 Route::post('/task', 'TaskController@insert');
 Route::delete('/task/{task}' , 'TaskController@destroy');
 
-//Route::resource('/project', 'ProjectController');
+//showdashboard
+Route::resource('/dashboard', 'DashboardController')->name('UCP','HUCP','tasks');
 /* --------------- VIEW ONLY -------------------- */
 
 
@@ -44,4 +45,4 @@ Route::get('/planing', 'viewController@pagePlaning');
 
 Route::get('/kanbanBoard', 'viewController@pageKanbanBoard');
 Route::get('/upload', 'viewController@pageUpload');
-Route::get('/dashboard', 'viewController@pageDashboard');
+//Route::get('/dashboard', 'viewController@pageDashboard');
