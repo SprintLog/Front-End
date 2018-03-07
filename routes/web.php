@@ -12,10 +12,6 @@ Route::get('/home', 'HomeController@index');
 /* --------------- Front End -------------------- */
 
 /* --------------- BACK End -------------------- */
-
-
-
-
 Route::resource('/project', 'ProjectController');
 
 Route::resource('/projectcreate', 'ProjectListController');
@@ -25,8 +21,6 @@ Route::resource('/estimage', 'EffortEstimationsController')->name('tcf','ecf');
 Route::post('/estimage_updateall', 'EffortEstimationsController@updateAll');
 
 /* --------------- VIEW ONLY -------------------- */
-
-
 
 Route::get('/listproject', 'viewController@pageListProject');
 Route::get('/homet', 'viewController@pageHome');
