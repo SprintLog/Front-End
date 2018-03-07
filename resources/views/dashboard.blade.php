@@ -10,6 +10,10 @@
   p {
       text-align: center;
   }
+  img{
+    display: block;
+    margin: 0 auto;
+  }
 
   </style>
 @endsection
@@ -20,6 +24,7 @@
 
 @section('content')
   <div class="jumbotron far">
+      <!-- show status UCP-->
       <div class="row">
         <div class="col-sm-6">
           <div class="card">
@@ -42,7 +47,24 @@
           </div>
         </div>
       </div>
-
+      <!-- $UCP ไม่ใช่ค่าที่ต้องการ ค่าที่ต้องการคือ ค่า UCP ทีี่ทำได้ ซึ่งตอนนี้ยังทำไม่ได้-->
+      @if ($UCP < 1)
+        <!-- show image status-->
+        <div class="card" style="width: 80rem;">
+          <img class="card-img-top"  height="100px" width"100px" display= "block"  src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Smile3_no-blur.svg/2000px-Smile3_no-blur.svg.png" alt="Card image cap">
+          <div class="card-body">
+            <p class="card-text">You can develop the project  within the time limit</p>
+          </div>
+        </div>
+      @else
+        <!-- show image status-->
+        <div class="card" style="width: 80rem;">
+          <img class="card-img-top"  height="100px" width"100px" display= "block"  src="http://www.pngmart.com/files/1/Sad-Emoji-PNG-Clipart.png" alt="Card image cap">
+          <div class="card-body">
+            <p class="card-text">You can not  develop the project  within the time limit</p>
+          </div>
+        </div>
+      @endif
       <!-- pass variabel php to javascript-->
           @php
           $nametask = [] ;
