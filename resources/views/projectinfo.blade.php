@@ -2,15 +2,13 @@
 
 @section('style')
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
-  <link rel="stylesheet" href="{{elixir('css/bootstrap-tagsinput.css')}}">
+
   <link rel="stylesheet" href="{{elixir('css/fix-general.css')}}">
 
 @endsection
 
 @section('script')
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
-  <script src="{{elixir('js/bootstrap-tagsinput.js')}}"></script>
-
   <script type="text/javascript">
   $("input").val()
   </script>
@@ -45,7 +43,7 @@
           Thai Project Name
       </label>
       <div class="col-sm-7">
-        <input type="text" name="tproject_name" class="form-control" placeholder="example  เครื่องมือจัดการซอฟต์แวร์ . . . ">
+        <input type="text" name="tproject_name" class="form-control"  value="{{$project->thai_name}}">
       </div>
     </div>
 
@@ -54,7 +52,7 @@
           Eng Project Name
       </label>
       <div class="col-sm-7">
-        <input type="text" name="eproject_name"  class="form-control" placeholder="example SpintLog . . . ">
+        <input type="text" name="eproject_name"  class="form-control" value="{{$project->eng_name}}">
       </div>
     </div>
 
@@ -62,12 +60,13 @@
       <label  class="col-sm-3 col-form-label">
           Type Project
       </label>
-      <div class="col-sm-9">
-        <select class="selectpicker" data-live-search="true" name="type_project">
-          <option data-tokens="ketchup mustard" value="1">โครงงานวิศวกรรม</option>
-          <option data-tokens="mustard" value="2">โครงงานวิจัย</option>
-          <option data-tokens="frosting" value="3">โครงงานไร้สาระ</option>
-        </select>
+      <div class="col-sm-5">
+          <select class="form-control">
+            <option selected="selected">{{$project->typeProjectId}}</option>
+            <option value="1">โครงงานวิศวกรรม</option>
+            <option value="2">โครงงานวิจัย</option>
+            <option value="3">โครงงานไร้สาระ</option>
+          </select>
       </div>
     </div>
 
@@ -75,12 +74,12 @@
       <label  class="col-sm-3 col-form-label">
           Advisors
       </label>
-      <div class="col-sm-9">
-        <select class="selectpicker" data-live-search="true" name="advisors">
-          <option data-tokens="ketchup mustard" value="0">ศ.ดร. อาร์มมี้</option>
-          <option data-tokens="mustard" value="1">นพ.มาคกี้</option>
-          <option data-tokens="frosting" value="2" >อ.กิตศิริ</option>
-        </select>
+      <div class="col-sm-5">
+          <select class="form-control">
+            <option value="1">ศ.ดร. อาร์มมี</option>
+            <option value="2">นพ.มาคก</option>
+            <option value="3">อ.กิตศิริ</option>
+          </select>
       </div>
     </div>
 

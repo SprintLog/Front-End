@@ -84,8 +84,8 @@ class ProjectController extends Controller
     {
 
         $project = Project::find($id);
-        dd($project);
-        // return view('show', compact('project'));
+        // dd($project);
+         return view('projectinfo', compact('project'));
     }
 
     /**
@@ -123,3 +123,10 @@ class ProjectController extends Controller
       return back();
     }
 }
+// GET     /forums              ->  index    หน้า list
+// GET     /forums/new          ->  new      show form html ให้กรอกข้อมูล
+// POST    /forums              ->  create   รับจาก form แบบ post
+// GET     /forums/:forum       ->  show     แสดงข้อมูลที่ ละ 1
+// GET     /forums/:forum/edit  ->  edit     show form edit
+// PUT     /forums/:forum       ->  update   update data
+// DELETE  /forums/:forum       ->  destroy
