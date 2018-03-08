@@ -62,7 +62,7 @@
       </label>
       <div class="col-sm-5">
           <select class="form-control">
-            <option selected="selected">{{$project->typeProjectId}}</option>
+            <option selected="selected">{{$project->typeProject}}</option>
             <option value="1">โครงงานวิศวกรรม</option>
             <option value="2">โครงงานวิจัย</option>
             <option value="3">โครงงานไร้สาระ</option>
@@ -76,6 +76,7 @@
       </label>
       <div class="col-sm-5">
           <select class="form-control">
+            <option selected="selected">{{$userInfo->name}}</option>
             <option value="1">ศ.ดร. อาร์มมี</option>
             <option value="2">นพ.มาคก</option>
             <option value="3">อ.กิตศิริ</option>
