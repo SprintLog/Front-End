@@ -62,10 +62,10 @@
       </label>
       <div class="col-sm-5">
           <select class="form-control">
-            <option selected="selected">{{$project->typeProject}}</option>
-            <option value="1">โครงงานวิศวกรรม</option>
-            <option value="2">โครงงานวิจัย</option>
-            <option value="3">โครงงานไร้สาระ</option>
+            <option selected="selected">{{$TypeProjectIsNow->type}}</option>
+            @foreach ($TypeProject as $t)
+              <option value="{{$t->id}}">{{$t->type}}</option>
+            @endforeach
           </select>
       </div>
     </div>

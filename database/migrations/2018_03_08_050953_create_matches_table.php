@@ -20,11 +20,11 @@ class CreateMatchesTable extends Migration
           $table->timestamps();
         });
 
-        // Schema::table('projects', function(Blueprint $table){
-        //     $table->foreign('typeProjectId')
-        //         ->references('id')->on('type_project')
-        //         ->onDelete('cascade');
-        // });
+        Schema::table('projects', function(Blueprint $table){
+            $table->foreign('typeProjectId')
+                ->references('id')->on('type_project')
+                ->onDelete('cascade');
+        });
 
         Schema::table('tasks', function(Blueprint $table){
             $table->foreign('projectId')

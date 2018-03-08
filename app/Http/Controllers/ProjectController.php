@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Project;
 use App\Match;
 
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -88,6 +89,12 @@ class ProjectController extends Controller
 
       $project = Project::find($id);
 
+      $TypeProjectIsNow = DB::table('type_project')->select('type')
+        ->where('id',function($query) use ($id){
+           $query->select('typeProjectId')->from('projects')->where('id',$id);
+        })
+        ->first();
+      // dd($TypeProjectIsNow);
       $userLeture = DB::table("users")->select('*')
             ->whereIn('id',function($query) use ($id){
                $query->select('userId')->from('matches')->where('ProjectId',$id);
@@ -100,10 +107,13 @@ class ProjectController extends Controller
             })->where('typeUser','=',0)
       ->get();
 
-
-
+      $TypeProject = DB::table('type_project')->get();
        // dd($userInfo);
-      return view('projectinfo', compact('project','userLeture','userStd'));
+      return view('projectinfo', compact('project',
+                                        'userLeture',
+                                        'userStd',
+                                        'TypeProject',
+                                        'TypeProjectIsNow'));
     }
 
     /**

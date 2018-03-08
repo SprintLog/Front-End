@@ -13,13 +13,13 @@ class ProjectsSeeder extends Seeder
     public function run()
     {
         //
-        $arrayTypeProject = ["โครงงานวิศวกรรม","โครงงานวิจัย","โครงงาน Start Up"];
+        $arrayTypeProject = [1,2,3];
 
         for ($i=0; $i < 5; $i++) {
           DB::table('projects')->insert([
               'thai_name'     => str_random(10),
               'eng_name'      => str_random(10),
-              'typeProject'   => array_random($arrayTypeProject),
+              'typeProjectId' => array_random($arrayTypeProject),
               'abstack'       => str_random(10),
               'keywords'      => str_random(10),
               'created_at'    => Carbon::now()->format('Y-m-d H:i:s'),
