@@ -17,7 +17,7 @@ class CreateProjectsTable extends Migration
             $table->increments('id');
             $table->string('thai_name')->nullable();
             $table->string('eng_name')->nullable();
-            $table->integer('typeProjectId')->unsigned();
+            $table->string('typeProject');
             $table->string('abstack');
             $table->string('keywords');
             $table->timestamps();

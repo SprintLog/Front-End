@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
-class MacthSeeder extends Seeder
+class MatchSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -20,12 +20,13 @@ class MacthSeeder extends Seeder
       // $randomIndexPJ = rand(0, count($ProjectIDs));
 
         for ($i=0; $i < 5; $i++) {
-          DB::table('macths')->insert([
+          DB::table('matches')->insert([
             "userId"    => $UserIDs[$i],
             "projectId" => $ProjectIDs[$i],
             'created_at'=> Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at'=> Carbon::now()->format('Y-m-d H:i:s'),
           ]);
         }
+
     }
 }
