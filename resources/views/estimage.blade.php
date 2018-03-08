@@ -20,37 +20,49 @@
     </div>
   @endif
   <div class="jumbotron far">
+
+    @if (count($tasks) > 0)
     <div class="row far">
       <div class="col-sm-offset-2 col-sm-8">
         <label  class="col-sm-4 col-form-label label label-default">
-            Calculate UUCPs
+            Summary Tasks
         </label>
-
-        <table class="table table-striped ">
-          <thead>
-            <tr>
-              <th scope="col">Complexity</th>
-              <th scope="col">Number of Features</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">Simeple</th>
-              <td>2</td>
-            </tr>
-            <tr>
-              <th scope="row">Medium</th>
-              <td>3</td>
-            </tr>
-            <tr>
-              <th scope="row">Complex</th>
-              <td>4</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
+                <div class="panel-body">
+                    <table class="table table-striped task-table">
+                        <thead>
+                            <th>Complexity</th>
+                            <th>Number of Features</th>
+                            <th>&nbsp;</th>
+                        </thead>
+                        <tbody>
+                          @php
+                          $simple = 0 ;
+                          $middle = 0 ;
+                          $complex = 0 ;
+                          @endphp
+                            @foreach ($tasks as $tasks)
+                                    @if($tasks->complexity == 1) @php $simple++ @endphp
+                                    @elseif ($tasks->complexity == 2) @php $middle++ @endphp
+                                    @else  @php $complex++ @endphp
+                                    @endif
+                            @endforeach
+                            <tr>
+                                <td class="table-text"><div>Simple</div></td>
+                                <td class="table-text"><div>{{$simple}}</div></td>
+                            </tr>
+                            <tr>
+                                <td class="table-text"><div>Middle</div></td>
+                                <td class="table-text"><div>{{$middle}}</div></td>
+                            </tr>
+                                <td class="table-text"><div>Complex</div></td>
+                                <td class="table-text"><div>{{$complex}}</div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+          </div>
+        @endif
     <div class="row far">
       <div class="col-sm-offset-2 col-sm-8">
         <label  class="col-sm-6 col-form-label label label-default">
