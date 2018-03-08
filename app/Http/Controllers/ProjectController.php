@@ -88,14 +88,22 @@ class ProjectController extends Controller
 
       $project = Project::find($id);
 
-      $userInfo  = DB::table("users")->select('*')
+      $userLeture = DB::table("users")->select('*')
             ->whereIn('id',function($query) use ($id){
                $query->select('userId')->from('matches')->where('ProjectId',$id);
             })->where('typeUser','=',1)
       ->first();
 
+      $userStd  = DB::table("users")->select('*')
+            ->whereIn('id',function($query) use ($id){
+               $query->select('userId')->from('matches')->where('ProjectId',$id);
+            })->where('typeUser','=',0)
+      ->get();
+
+
+
        // dd($userInfo);
-      return view('projectinfo', compact('project','userInfo'));
+      return view('projectinfo', compact('project','userLeture','userStd'));
     }
 
     /**

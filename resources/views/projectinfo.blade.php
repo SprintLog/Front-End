@@ -76,7 +76,7 @@
       </label>
       <div class="col-sm-5">
           <select class="form-control">
-            <option selected="selected">{{$userInfo->name}}</option>
+            <option selected="selected">{{$userLeture->name}}</option>
             <option value="1">ศ.ดร. อาร์มมี</option>
             <option value="2">นพ.มาคก</option>
             <option value="3">อ.กิตศิริ</option>
@@ -88,8 +88,10 @@
       <label  class="col-sm-3 col-form-label">
           Developer
       </label>
-      <div class="col-sm-9">
-          <input type="text" class="form-control" name="developer" placeholder="enter. . ." data-role="tagsinput">
+      <div class="col-sm-5">
+          @foreach ($userStd as $dev)
+            <input type="text" class="form-control" name="developer" value='{{$dev->name}}'> <br>
+          @endforeach
       </div>
     </div>
 
@@ -98,7 +100,7 @@
         Abstract
       </label>
       <div class="col-sm-7">
-          <textarea class="form-control" rows="3" name="abstract" ></textarea>
+          <textarea class="form-control" rows="3" name="abstract" >{{$project->abstack}}</textarea>
       </div>
     </div>
 
@@ -107,7 +109,7 @@
         Keyword
       </label>
       <div class="col-sm-7">
-        <input type="text" class="form-control" name="keyword" placeholder="example algorithm ..." data-role="tagsinput">
+        <input type="text" class="form-control" name="keyword" value="{{$project->keywords}}">
       </div>
     </div>
     <div class="form group row">
