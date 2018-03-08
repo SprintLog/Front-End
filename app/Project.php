@@ -13,6 +13,7 @@ class Project extends Model
     }
 
     public function match(){
-      return $this->hasMany('App\macth');
+      return $this->hasMany('App\Match');
     }
+
 }
