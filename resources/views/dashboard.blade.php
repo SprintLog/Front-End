@@ -42,13 +42,54 @@
               <h2 class="card-title">You Need</h2>
               <h1 class="card-title">{{$HUCP}}</h1>
               <p class="card-text">Hours / UCP  </p>
-
             </div>
           </div>
         </div>
       </div>
+      <!-- pass variabel php to javascript-->
+          @php
+          $nametask = [] ;
+          $complexity = [] ;
+          @endphp
+          @foreach ($tasks as $tasks)
+            @php
+              array_push($nametask,$tasks->nametask);
+              array_push($complexity,$tasks->complexity);
+            @endphp
+          @endforeach
+          @php
+            echo '<script>';
+            echo 'var nametask = ' . json_encode($nametask) . ';';
+            echo '</script>';
+          @endphp
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Task</th>
+            <th scope="col">Time Limit</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for ($i=1; $i <= sizeof($nametask); $i++)
+            <tr>
+              <th scope="row">{{$i}}</th>
+              <td>{{$nametask[$i-1]}}</td>
+              <td>@if($complexity[$i-1] == 1)
+                  {{number_format(5*$TCF*$ECF * $HUCP ,2, '.', ' ')}} Hours
+                @elseif($complexity[$i-1] == 2)
+                  {{number_format(10*$TCF*$ECF * $HUCP  ,2, '.', ' ') }} Hours
+                @else
+                  {{number_format(15*$TCF*$ECF * $HUCP  ,2, '.', ' ')}} Hours
+              @endif
+              </td>
+            </tr>
+          @endfor
+        </tbody>
+      </table>
       <!-- $UCP ไม่ใช่ค่าที่ต้องการ ค่าที่ต้องการคือ ค่า UCP ทีี่ทำได้ ซึ่งตอนนี้ยังทำไม่ได้-->
-      @if ($UCP < 1)
+      @if ($UCP > 1)
         <!-- show image status-->
         <div class="card" style="width: 80rem;">
           <img class="card-img-top"  height="100px" width"100px" display= "block"  src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Smile3_no-blur.svg/2000px-Smile3_no-blur.svg.png" alt="Card image cap">
@@ -65,20 +106,6 @@
           </div>
         </div>
       @endif
-      <!-- pass variabel php to javascript-->
-          @php
-          $nametask = [] ;
-          @endphp
-          @foreach ($tasks as $tasks)
-            @php
-              array_push($nametask,$tasks->nametask);
-            @endphp
-          @endforeach
-          @php
-            echo '<script>';
-            echo 'var nametask = ' . json_encode($nametask) . ';';
-            echo '</script>';
-          @endphp
     <div class="form-group row far">
     <label  class="col-sm-4 col-form-label label label-default">
          Overview

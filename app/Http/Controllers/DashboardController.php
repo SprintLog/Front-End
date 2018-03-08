@@ -62,9 +62,10 @@ class DashboardController extends Controller
         echo "Hours/UCP = " . 405/$UCP . " UUCP" ;
         */
 
-        $tasks = DB::table('tasks')->select('nametask')->get();
+        $tasks = DB::table('tasks')->get();
 
-        return view('dashboard', ['UCP' => $UCP , 'HUCP' => $HUCP ,'tasks' =>$tasks]);
+
+        return view('dashboard', ['TCF' => $TCF , 'ECF'=> $ECF , 'UCP' => $UCP , 'HUCP' => $HUCP ,'tasks' =>$tasks]);
     }
 
     /**
