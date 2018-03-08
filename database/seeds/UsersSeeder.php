@@ -24,7 +24,7 @@ class UsersSeeder extends Seeder
             'created_at'=> Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at'=> Carbon::now()->format('Y-m-d H:i:s'),
         ]);
-        for ($i=0; $i < 4; $i++) {
+        for ($i=0; $i < 6; $i++) {
           DB::table('users')->insert([
             'name'      => str_random(10),
             'lastname'  => str_random(10),
