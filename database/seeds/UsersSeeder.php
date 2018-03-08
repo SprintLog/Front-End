@@ -18,21 +18,22 @@ class UsersSeeder extends Seeder
         DB::table('users')->insert([
             'name'      => str_random(10),
             'lastname'  => str_random(10),
-            'email'     => str_random(10).'@gmail.com',
-            'typeUser'  => array_random($arrayTypeUser),
-            'password'  => bcrypt('secret'),
-            'created_at'=> Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at'=> Carbon::now()->format('Y-m-d H:i:s'),
-        ]);
-
-        DB::table('users')->insert([
-            'name'      => str_random(10),
-            'lastname'  => str_random(10),
             'email'     => 'arm@gmail.com',
             'typeUser'  => array_random($arrayTypeUser),
             'password'  => bcrypt('arm@gmail.com'),
             'created_at'=> Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at'=> Carbon::now()->format('Y-m-d H:i:s'),
         ]);
+        for ($i=0; $i < 4; $i++) {
+          DB::table('users')->insert([
+            'name'      => str_random(10),
+            'lastname'  => str_random(10),
+            'email'     => str_random(10).'@gmail.com',
+            'typeUser'  => array_random($arrayTypeUser),
+            'password'  => bcrypt('secret'),
+            'created_at'=> Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at'=> Carbon::now()->format('Y-m-d H:i:s'),
+          ]);
+       }
     }
 }
