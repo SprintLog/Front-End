@@ -12,16 +12,17 @@ class ProjectsSeeder extends Seeder
      */
     public function run()
     {
-        //
+
+        $faker = Faker\Factory::create();
         $arrayTypeProject = [1,2,3];
 
         for ($i=0; $i < 5; $i++) {
           DB::table('projects')->insert([
-              'thai_name'     => str_random(10),
-              'eng_name'      => str_random(10),
+              'thai_name'     => "ชื่อไทย",
+              'eng_name'      => $faker->domainWord,
               'typeProjectId' => array_random($arrayTypeProject),
-              'abstack'       => str_random(10),
-              'keywords'      => str_random(10),
+              'abstack'       => $faker->text($maxNbChars = 200),
+              'keywords'      => $faker->word,
               'created_at'    => Carbon::now()->format('Y-m-d H:i:s'),
               'updated_at'    => Carbon::now()->format('Y-m-d H:i:s'),
           ]);

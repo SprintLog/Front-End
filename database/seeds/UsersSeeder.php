@@ -12,7 +12,8 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $faker = Faker\Factory::create();
+
         $arrayTypeUser = [0,1];
 
         DB::table('users')->insert([
@@ -26,8 +27,8 @@ class UsersSeeder extends Seeder
         ]);
         for ($i=0; $i < 6; $i++) {
           DB::table('users')->insert([
-            'name'      => str_random(10),
-            'lastname'  => str_random(10),
+            'name'      => $faker->name,
+            'lastname'  => $faker->lastName,
             'email'     => str_random(10).'@gmail.com',
             'typeUser'  => array_random($arrayTypeUser),
             'password'  => bcrypt('secret'),
