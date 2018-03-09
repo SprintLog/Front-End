@@ -32,7 +32,6 @@ Route::post('/estimage_updateall', 'EffortEstimationsController@updateAll');
 // Route::delete('/task/{task}' , 'TaskController@destroy');
 Route::resource('/task', 'TaskController');
 
-
 //showdashboard
 Route::resource('/dashboard', 'DashboardController')->name('UCP','HUCP','tasks');
 /* --------------- VIEW ONLY -------------------- */
