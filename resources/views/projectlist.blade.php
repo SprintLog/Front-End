@@ -31,7 +31,6 @@
 @section('content')
   <div class="jumbotron far">
     <div class="form-group row far">
-
       @foreach ($project as $project )
         <div class="col-sm-6 col-md-6">
             <div class="thumbnail">

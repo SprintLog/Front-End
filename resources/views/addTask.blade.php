@@ -17,7 +17,7 @@
 
 
                       <!-- New Task Form -->
-                      <form action="{{ url('/task/1')}}" method="POST" class="form-horizontal">
+                      <form action="{{ url('task')}}" method="POST" class="form-horizontal">
                           {{ csrf_field() }}
 
                           <!-- Task Name -->
@@ -37,7 +37,8 @@
                               </div>
                             </div>
 
-                              {{-- <input type="hidden" name="projectId" value="{{ }}"> --}}
+                              <input type="hidden" name="projectId"
+                              value="{{(App\Match::find(Auth::user()->id))->projectId}}">
                           </div>
                           <!-- Add Task Button -->
                           <div class="form-group">
