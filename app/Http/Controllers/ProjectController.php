@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Project;
+use App\Match;
+
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -83,9 +87,52 @@ class ProjectController extends Controller
     public function show($id)
     {
 
-        $project = Project::find($id);
-        dd($project);
-        // return view('show', compact('project'));
+      $project = Project::find($id);
+
+      $TypeProjectIsNow = DB::table('type_project')->select('type')
+        ->where('id',function($query) use ($id){
+           $query->select('typeProjectId')
+           ->from('projects')
+           ->where('id',$id);
+        })
+        ->first();
+      // dd($TypeProjectIsNow);
+      $userLeture = DB::table("users")->select('*')
+            ->whereIn('id',function($query) use ($id){
+               $query->select('userId')
+               ->from('matches')
+               ->where('ProjectId',$id);
+            })->where('typeUser','=',1)
+      ->first();
+
+      $userStd  = DB::table("users")->select('*')
+            ->whereIn('id',function($query) use ($id){
+               $query->select('userId')
+               ->from('matches')
+               ->where('ProjectId',$id);
+            })->where('typeUser','=',0)
+      ->get();
+
+      $TypeProject = DB::table('type_project')->get();
+
+      $userStdShow  = DB::table("users")
+      ->select('id','name','lastname')
+      ->where('typeUser','=',0)
+      ->get();
+
+      $userLetureShow = DB::table("users")
+      ->select('id','name','lastname')
+      ->where('typeUser','=',1)
+      ->get();
+
+       // dd($userInfo);
+      return view('projectinfo', compact('project',
+                                        'userLeture',
+                                        'userStd',
+                                        'TypeProject',
+                                        'TypeProjectIsNow',
+                                        'userStdShow',
+                                        'userLetureShow'));
     }
 
     /**
@@ -123,3 +170,10 @@ class ProjectController extends Controller
       return back();
     }
 }
+// GET     /forums              ->  index    หน้า list
+// GET     /forums/new          ->  new      show form html ให้กรอกข้อมูล
+// POST    /forums              ->  create   รับจาก form แบบ post
+// GET     /forums/:forum       ->  show     แสดงข้อมูลที่ ละ 1
+// GET     /forums/:forum/edit  ->  edit     show form edit
+// PUT     /forums/:forum       ->  update   update data
+// DELETE  /forums/:forum       ->  destroy

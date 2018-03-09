@@ -17,7 +17,7 @@
 
 
                       <!-- New Task Form -->
-                      <form action="{{ url('task')}}" method="POST" class="form-horizontal">
+                      <form action="{{ url('/task/1')}}" method="POST" class="form-horizontal">
                           {{ csrf_field() }}
 
                           <!-- Task Name -->
@@ -36,8 +36,8 @@
                                 </select>
                               </div>
                             </div>
-                    
-                              <input type="hidden" name="projectId" value="3">
+
+                              {{-- <input type="hidden" name="projectId" value="{{ }}"> --}}
                           </div>
                           <!-- Add Task Button -->
                           <div class="form-group">

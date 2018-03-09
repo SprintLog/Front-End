@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
       TcfsSeeder::class,
       ProgressesSeeder::class,
       UUCPsSeeder::class,
+      MatchSeeder::class,
 
   ]);
       DB::statement('SET FOREIGN_KEY_CHECKS=1;');

@@ -12,18 +12,29 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $faker = Faker\Factory::create();
+
         $arrayTypeUser = [0,1];
 
         DB::table('users')->insert([
             'name'      => str_random(10),
             'lastname'  => str_random(10),
+            'email'     => 'arm@gmail.com',
+            'typeUser'  => array_random($arrayTypeUser),
+            'password'  => bcrypt('arm@gmail.com'),
+            'created_at'=> Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at'=> Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        for ($i=0; $i < 6; $i++) {
+          DB::table('users')->insert([
+            'name'      => $faker->name,
+            'lastname'  => $faker->lastName,
             'email'     => str_random(10).'@gmail.com',
-            'projectid' => 0 ,
             'typeUser'  => array_random($arrayTypeUser),
             'password'  => bcrypt('secret'),
             'created_at'=> Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at'=> Carbon::now()->format('Y-m-d H:i:s'),
-        ]);
+          ]);
+       }
     }
 }

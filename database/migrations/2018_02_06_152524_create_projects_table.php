@@ -14,22 +14,13 @@ class CreateProjectsTable extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-
             $table->increments('id');
             $table->string('thai_name')->nullable();
             $table->string('eng_name')->nullable();
-            $table->integer('typeProjectId')->unsigned();
-
-            $table->integer('advisorsId');
-            $table->integer('developerId');
+            $table->integer('typeProjectId')->unsigned();;
             $table->string('abstack');
             $table->string('keywords');
-
-            $table->integer('userId')->unsigned();
             $table->timestamps();
-
-
-
         });
 
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Project;
+use App\Match;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -27,7 +28,26 @@ class ProjectListController extends Controller
      */
     public function create()
     {
-          return view('projectInfoRegis');
+
+        $TypeProject = DB::table('type_project')->get();
+
+        $userStd  = DB::table("users")
+        ->select('id','name','lastname')
+        ->where('typeUser','=',0)
+        ->get();
+
+        $userLetureShow = DB::table("users")
+        ->select('id','name','lastname')
+        ->where('typeUser','=',1)
+        ->get();
+
+
+
+        $TypeProjectShow = DB::table('type_project')->get();
+
+        return view('projectInfoRegis',compact('userLetureShow',
+                                                'userStd',
+                                                'TypeProject'));
     }
 
     /**
@@ -38,7 +58,7 @@ class ProjectListController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
+         // dd($request);
 
         $validator = Validator::make($request->all(), [
             't_project_name' => 'required|max:255',
@@ -62,14 +82,21 @@ class ProjectListController extends Controller
         $project->thai_name     = $request->t_project_name;
         $project->eng_name      = $request->e_project_name;
         $project->typeProjectId = $request->type_project;
-        $project->advisorsId    = $request->advisors;
-        $project->developerId   = 1;
         $project->abstack       = $request->abstract;
         $project->keywords      = $request->keyword;
-        $project->userId        = $request->userId;
-
 
         $project->save();
+        $arrayUser = array( $request->usermakePJ,
+                            $request->developer_1,
+                            $request->developer_2);
+
+        for ($i=0; $i < 3 ; $i++) {
+          $m = new Match;
+          $m->userId              = $request->usermakePJ;
+          $m->ProjectId           = $project->id;
+          $m->save();
+        }
+
         return redirect('/home');
     }
 
