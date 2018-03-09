@@ -15,10 +15,7 @@ class EffortEstimationsController extends Controller
      */
     public function index()
     {
-      $tcf = DB::table('tcfs')->get();
-      $ecf = DB::table('ecfs')->get();
-      $tasks = DB::table('tasks')->get();
-      return view('estimage', ['tcf' => $tcf , 'ecf' => $ecf , 'tasks' => $tasks]);
+
     }
 
     /**
@@ -50,8 +47,10 @@ class EffortEstimationsController extends Controller
      */
     public function show($id)
     {
-
-
+      $tcf = DB::table('tcfs')->where('projectId','=',$id)->get();
+      $ecf = DB::table('ecfs')->where('projectId','=',$id)->get();
+      $tasks = DB::table('tasks')->where('projectId','=',$id)->get();
+      return view('estimage', ['tcf' => $tcf , 'ecf' => $ecf , 'tasks' => $tasks]);
     }
 
     /**
