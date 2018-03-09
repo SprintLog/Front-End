@@ -12,7 +12,6 @@ class ProjectsSeeder extends Seeder
      */
     public function run()
     {
-<<<<<<< HEAD
 
         $faker = Faker\Factory::create();
         $arrayTypeProject = [1,2,3];
@@ -24,21 +23,6 @@ class ProjectsSeeder extends Seeder
               'typeProjectId' => array_random($arrayTypeProject),
               'abstack'       => $faker->text($maxNbChars = 10),
               'keywords'      => $faker->word,
-=======
-        //
-        $arrayTypeProject = [0,1,2,3];
-        $arrayTypeUser = [0,1];
-        for ($i=0; $i < 10; $i++) {
-          DB::table('projects')->insert([
-              'thai_name'     => str_random(10),
-              'eng_name'      => str_random(10),
-              'typeProjectId' => 1,
-              'advisorsId'    => array_random($arrayTypeUser) ,
-              'developerId'   => array_random($arrayTypeUser),
-              'abstack'       => str_random(10),
-              'keywords'      => array_random($arrayTypeUser),
-              'userId'        =>  array_random($arrayTypeUser),
->>>>>>> Mark
               'created_at'    => Carbon::now()->format('Y-m-d H:i:s'),
               'updated_at'    => Carbon::now()->format('Y-m-d H:i:s'),
           ]);
