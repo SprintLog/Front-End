@@ -77,9 +77,9 @@
       <div class="col-sm-5">
           <select class="form-control">
             <option selected="selected">{{$userLeture->name}}</option>
-            <option value="1">ศ.ดร. อาร์มมี</option>
-            <option value="2">นพ.มาคก</option>
-            <option value="3">อ.กิตศิริ</option>
+            @foreach ($userLetureShow as $u)
+              <option value="{{$u->id}}">{{$u->name}}</option>
+            @endforeach
           </select>
       </div>
     </div>

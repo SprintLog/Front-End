@@ -91,29 +91,48 @@ class ProjectController extends Controller
 
       $TypeProjectIsNow = DB::table('type_project')->select('type')
         ->where('id',function($query) use ($id){
-           $query->select('typeProjectId')->from('projects')->where('id',$id);
+           $query->select('typeProjectId')
+           ->from('projects')
+           ->where('id',$id);
         })
         ->first();
       // dd($TypeProjectIsNow);
       $userLeture = DB::table("users")->select('*')
             ->whereIn('id',function($query) use ($id){
-               $query->select('userId')->from('matches')->where('ProjectId',$id);
+               $query->select('userId')
+               ->from('matches')
+               ->where('ProjectId',$id);
             })->where('typeUser','=',1)
       ->first();
 
       $userStd  = DB::table("users")->select('*')
             ->whereIn('id',function($query) use ($id){
-               $query->select('userId')->from('matches')->where('ProjectId',$id);
+               $query->select('userId')
+               ->from('matches')
+               ->where('ProjectId',$id);
             })->where('typeUser','=',0)
       ->get();
 
       $TypeProject = DB::table('type_project')->get();
+
+      $userStdShow  = DB::table("users")
+      ->select('id','name','lastname')
+      ->where('typeUser','=',0)
+      ->get();
+
+      $userLetureShow = DB::table("users")
+      ->select('id','name','lastname')
+      ->where('typeUser','=',1)
+      ->get();
+
        // dd($userInfo);
       return view('projectinfo', compact('project',
                                         'userLeture',
                                         'userStd',
                                         'TypeProject',
-                                        'TypeProjectIsNow'));
+                                        'TypeProjectIsNow',
+                                        'userStdShow',
+                                        'userLetureShow'));
     }
 
     /**
