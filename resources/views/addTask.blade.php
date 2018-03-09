@@ -17,7 +17,7 @@
 
 
                       <!-- New Task Form -->
-                      <form action="{{ url('task')}}" method="POST" class="form-horizontal">
+                      <form action="{{ url('/task/1')}}" method="POST" class="form-horizontal">
                           {{ csrf_field() }}
 
                           <!-- Task Name -->
@@ -36,8 +36,8 @@
                                 </select>
                               </div>
                             </div>
-                    
-                              <input type="hidden" name="projectId" value="3">
+
+                              {{-- <input type="hidden" name="projectId" value="{{ }}"> --}}
                           </div>
                           <!-- Add Task Button -->
                           <div class="form-group">
@@ -62,13 +62,18 @@
                           <table class="table table-striped task-table">
                               <thead>
                                   <th>Task</th>
+                                  <th>Complexity</th>
                                   <th>&nbsp;</th>
                               </thead>
                               <tbody>
                                   @foreach ($tasks as $tasks)
                                       <tr>
                                           <td class="table-text"><div>{{ $tasks->nametask }}</div></td>
-
+                                          <td class="table-text"><div>@if($tasks->complexity == 1) Simple
+                                          @elseif ($tasks->complexity == 2) Middle
+                                          @else Complex
+                                          @endif
+                                          </div></td>
                                           <!-- Task Delete Button -->
                                           <td>
                                               <form action="{{ url('task/'.$tasks->id) }}" method="POST">
