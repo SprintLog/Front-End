@@ -33,7 +33,7 @@ Route::post('/estimage_updateall', 'EffortEstimationsController@updateAll');
 Route::resource('/task', 'TaskController');
 
 //showdashboard
-Route::resource('/dashboard', 'DashboardController')->name('UCP','HUCP','tasks');
+Route::resource('/dashboard', 'DashboardController');
 /* --------------- VIEW ONLY -------------------- */
 
 
