@@ -61,7 +61,7 @@
           Type Project
       </label>
       <div class="col-sm-5">
-          <select class="form-control">
+          <select class="form-control" name='typeProjectId'>
             <option selected="selected">{{$TypeProjectIsNow->type}}</option>
             @foreach ($TypeProject as $t)
               <option value="{{$t->id}}">{{$t->type}}</option>
@@ -75,7 +75,7 @@
           Advisors
       </label>
       <div class="col-sm-5">
-          <select class="form-control">
+          <select class="form-control" name='advisorsId'>
             <option selected="selected">{{$userLeture->name}}</option>
             @foreach ($userLetureShow as $u)
               <option value="{{$u->id}}">{{$u->name}}</option>

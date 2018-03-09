@@ -62,11 +62,11 @@
       <label  class="col-sm-3 col-form-label">
           Type Project
       </label>
-      <div class="col-sm-9">
-        <select class="selectpicker" data-live-search="true" name="type_project">
-          <option data-tokens="ketchup mustard" value="1">โครงงานวิศวกรรม</option>
-          <option data-tokens="mustard" value="2">โครงงานวิจัย</option>
-          <option data-tokens="frosting" value="3">โครงงานไร้สาระ</option>
+      <div class="col-sm-5">
+          <select class="form-control" name='typeProjectId'>
+          @foreach ($TypeProject as $t)
+            <option value="{{$t->id}}">{{$t->type}}</option>
+          @endforeach
         </select>
       </div>
     </div>
@@ -75,11 +75,11 @@
       <label  class="col-sm-3 col-form-label">
           Advisors
       </label>
-      <div class="col-sm-9">
-        <select class="selectpicker" data-live-search="true" name="advisors">
-          <option data-tokens="ketchup mustard" value="0">ศ.ดร. อาร์มมี้</option>
-          <option data-tokens="mustard" value="1">นพ.มาคกี้</option>
-          <option data-tokens="frosting" value="2" >อ.กิตศิริ</option>
+      <div class="col-sm-5">
+        <select class="form-control" name='advisorsId'>
+          @foreach ($userLetureShow as $u)
+            <option value="{{$u->id}}">{{$u->name}}</option>
+          @endforeach
         </select>
       </div>
     </div>
