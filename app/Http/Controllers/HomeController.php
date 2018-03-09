@@ -25,13 +25,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-       $userLeture = DB::table("projects")->select('*')
+
+       $project = DB::table("projects")->select('*')
              ->whereIn('id',function($query) {
                 $query->select('ProjectId')
                 ->from('matches')
-                ->where('UserId',Auth::user()->id)
+                ->where('UserId',Auth::user()->id);
              })
        ->get();
+
        return view('projectlist', ['project' => $project]);
     }
 
