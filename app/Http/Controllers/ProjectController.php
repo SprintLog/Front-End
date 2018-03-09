@@ -43,7 +43,7 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-         dd($request);
+
 
             $validator = Validator::make($request->all(), [
                 'tproject_name' => 'required|max:255',
@@ -104,7 +104,7 @@ class ProjectController extends Controller
                ->where('ProjectId',$id);
             })->where('typeUser','=',1)
       ->first();
-
+      
       $userStd  = DB::table("users")->select('*')
             ->whereIn('id',function($query) use ($id){
                $query->select('userId')

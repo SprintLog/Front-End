@@ -58,7 +58,7 @@ class ProjectListController extends Controller
      */
     public function store(Request $request)
     {
-         // dd($request);
+
 
         $validator = Validator::make($request->all(), [
             't_project_name' => 'required|max:255',
@@ -88,11 +88,12 @@ class ProjectListController extends Controller
         $project->save();
         $arrayUser = array( $request->usermakePJ,
                             $request->developer_1,
-                            $request->developer_2);
-
-        for ($i=0; $i < 3 ; $i++) {
+                            $request->developer_2,
+                            $request->advisors);
+    
+        for ($i=0; $i < 4 ; $i++) {
           $m = new Match;
-          $m->userId              = $request->usermakePJ;
+          $m->userId              = $arrayUser[$i];
           $m->ProjectId           = $project->id;
           $m->save();
         }
