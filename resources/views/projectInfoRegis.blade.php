@@ -89,10 +89,19 @@
           Developer
       </label>
       <div class="col-sm-3">
-          <input type="text" class="form-control" name="developer_1" placeholder="คนที่ 1" >
+        <select class="form-control" name='developer_1'>
+          @foreach ($userStd as $ustd)
+            <option value="{{$ustd->id}}">{{$ustd->name}}</option>
+          @endforeach
+        </select>
+          {{-- <input type="text" class="form-control" name="developer_1" placeholder="คนที่ 1" > --}}
       </div>
       <div class="col-sm-3">
-          <input type="text" class="form-control" name="developer_2" placeholder="คนที่ 2" >
+        <select class="form-control" name='developer_2'>
+          @foreach ($userStd as $ustd)
+            <option value="{{$ustd->id}}">{{$ustd->name}}</option>
+          @endforeach
+        </select>
       </div>
     </div>
 

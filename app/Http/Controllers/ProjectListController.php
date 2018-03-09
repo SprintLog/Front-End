@@ -31,14 +31,22 @@ class ProjectListController extends Controller
 
         $TypeProject = DB::table('type_project')->get();
 
-        $userStd  = DB::table("users")->select('id','name','lastname')->where('typeUser','=',0)->get();
+        $userStd  = DB::table("users")
+        ->select('id','name','lastname')
+        ->where('typeUser','=',0)
+        ->get();
 
-        $userLetureShow = DB::table("users")->select('id','name','lastname')->where('typeUser','=',1)->get();
+        $userLetureShow = DB::table("users")
+        ->select('id','name','lastname')
+        ->where('typeUser','=',1)
+        ->get();
+
+
 
         $TypeProjectShow = DB::table('type_project')->get();
 
         return view('projectInfoRegis',compact('userLetureShow',
-                                                'userStdShow',
+                                                'userStd',
                                                 'TypeProject'));
     }
 
