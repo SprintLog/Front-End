@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Project;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
@@ -24,7 +25,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-       $project = DB::table('projects')->get();
+
+       $project = DB::table("projects")->select('*')
+             ->whereIn('id',function($query) {
+                $query->select('ProjectId')
+                ->from('matches')
+                ->where('UserId',Auth::user()->id);
+             })
+       ->get();
 
        return view('projectlist', ['project' => $project]);
     }
