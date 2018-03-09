@@ -21,7 +21,7 @@ class ProjectsSeeder extends Seeder
               'thai_name'     => "ชื่อไทย",
               'eng_name'      => $faker->domainWord,
               'typeProjectId' => array_random($arrayTypeProject),
-              'abstack'       => $faker->text($maxNbChars = 50),
+              'abstack'       => $faker->text($maxNbChars = 10),
               'keywords'      => $faker->word,
               'created_at'    => Carbon::now()->format('Y-m-d H:i:s'),
               'updated_at'    => Carbon::now()->format('Y-m-d H:i:s'),
