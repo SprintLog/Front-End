@@ -11,14 +11,18 @@ class TasksSeeder extends Seeder
      */
     public function run()
     {
+      $faker = Faker\Factory::create();
 
       $arrayComplexity = [1,2,3];
-      DB::table('tasks')->insert([
-          'nametask'   => str_random(10),
-          'complexity' => array_random($arrayComplexity),
-          'projectId'  => 0,
-          'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-          'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-      ]);
+      $arrayprojectId = [1,2,3,4,5];
+      for ($i=0; $i < 50; $i++) {
+        DB::table('tasks')->insert([
+            'nametask'   => $faker->numerify('Task ###'),
+            'complexity' => array_random($arrayComplexity),
+            'projectId'  => array_random($arrayComplexity),
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+      }
     }
 }

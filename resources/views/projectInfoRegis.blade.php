@@ -62,11 +62,11 @@
       <label  class="col-sm-3 col-form-label">
           Type Project
       </label>
-      <div class="col-sm-9">
-        <select class="selectpicker" data-live-search="true" name="type_project">
-          <option data-tokens="ketchup mustard" value="1">โครงงานวิศวกรรม</option>
-          <option data-tokens="mustard" value="2">โครงงานวิจัย</option>
-          <option data-tokens="frosting" value="3">โครงงานไร้สาระ</option>
+      <div class="col-sm-5">
+          <select class="form-control" name='type_project'>
+          @foreach ($TypeProject as $t)
+            <option value="{{$t->id}}">{{$t->type}}</option>
+          @endforeach
         </select>
       </div>
     </div>
@@ -75,11 +75,11 @@
       <label  class="col-sm-3 col-form-label">
           Advisors
       </label>
-      <div class="col-sm-9">
-        <select class="selectpicker" data-live-search="true" name="advisors">
-          <option data-tokens="ketchup mustard" value="0">ศ.ดร. อาร์มมี้</option>
-          <option data-tokens="mustard" value="1">นพ.มาคกี้</option>
-          <option data-tokens="frosting" value="2" >อ.กิตศิริ</option>
+      <div class="col-sm-5">
+        <select class="form-control" name='advisors'>
+          @foreach ($userLetureShow as $u)
+            <option value="{{$u->id}}">{{$u->name}}</option>
+          @endforeach
         </select>
       </div>
     </div>
@@ -88,8 +88,20 @@
       <label  class="col-sm-3 col-form-label">
           Developer
       </label>
-      <div class="col-sm-9">
-          <input type="text" class="form-control" name="developer" placeholder="enter. . ." data-role="tagsinput">
+      <div class="col-sm-3">
+        <select class="form-control" name='developer_1'>
+          @foreach ($userStd as $ustd)
+            <option value="{{$ustd->id}}">{{$ustd->name}}</option>
+          @endforeach
+        </select>
+          {{-- <input type="text" class="form-control" name="developer_1" placeholder="คนที่ 1" > --}}
+      </div>
+      <div class="col-sm-3">
+        <select class="form-control" name='developer_2'>
+          @foreach ($userStd as $ustd)
+            <option value="{{$ustd->id}}">{{$ustd->name}}</option>
+          @endforeach
+        </select>
       </div>
     </div>
 
@@ -106,8 +118,8 @@
       <label  class="col-sm-3 col-form-label">
         Keyword
       </label>
-      <div class="col-sm-7">
-        <input type="text" class="form-control" name="keyword" placeholder="example algorithm ..." data-role="tagsinput">
+      <div class="col-sm-5">
+        <input type="text" class="form-control" name="keyword" placeholder="ตัวอย่างเช่น Al,ระบบฝังตัว" >
       </div>
     </div>
     <div class="form group row">
@@ -116,7 +128,8 @@
         <button type="submit" class="btn btn-info btn-lg">Confirm </button>
       </div>
     </div>
-      <input type="hidden" name="userId" value="1">
+
+      <input type="hidden" name="usermakePJ" value="{{ Auth::user()->id }}">
   </form>
 
 </div>

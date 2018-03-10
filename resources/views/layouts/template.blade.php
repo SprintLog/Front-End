@@ -35,24 +35,40 @@
               <ul class="nav navbar-nav">
 
                 <li class="{{ Request::segment(1) === 'home' ? 'active' : null }}">
-                  <a href="{{url('home')}}">Home</a></li>
+                  <a href="{{url('home')}}">Home</a>
+                </li>
+
                 <li  class="{{ Request::segment(1) === 'projectinfo' ? 'active' : null }}">
-                  <a href="{{url('projectinfo')}}">Project Info</a></li>
+                  <a href="{{url('project/'.(App\Match::find(Auth::user()->id))->projectId)}}">Project Info</a>
+                </li>
+
                 <li class="{{ Request::segment(1) === 'planing' ? 'active' : null }}">
-                  <a href="{{url('planing')}}">Planing</a></li>
+                  <a href="{{url('task/'.(App\Match::find(Auth::user()->id))->projectId)}}">Planing</a>
+                </li>
+
+                {{--
                 <li class="{{ Request::segment(1) === 'estimage' ? 'active' : null }}">
-                  <a href="{{url('estimage')}}">Estimage</a></li>
+                  <a href="{{url('estimage')}}">Estimage</a>
+                </li>
+
                 <li class="{{ Request::segment(1) === 'kanbanBoard' ? 'active' : null }}">
-                  <a href="{{url('kanbanBoard')}}">Kanban Board</a></li>
+                  <a href="{{url('kanbanBoard')}}">Kanban Board</a>
+                </li>
+
+
                 <li>
-                  <a href="{{url('upload')}}">Upload</a></li>
+                  <a href="{{url('upload')}}">Upload</a>
+                </li> --}}
+
                 <li  class="{{ Request::segment(1) === 'dashboard' ? 'active' : null }}">
-                  <a href="{{url('dashboard')}}">Dashboard</a></li>
+                  <a href="{{url('dashboard/'.(App\Match::find(Auth::user()->id))->projectId)}}">Dashboard</a>
+                </li>
               </ul>
+
               <ul class="nav navbar-nav navbar-right">
                   <!-- Authentication Links -->
                   @guest
-                    
+
                   @else
                       <li class="dropdown">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">

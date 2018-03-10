@@ -31,7 +31,6 @@
 @section('content')
   <div class="jumbotron far">
     <div class="form-group row far">
-
       @foreach ($project as $project )
         <div class="col-sm-6 col-md-6">
             <div class="thumbnail">
@@ -39,7 +38,10 @@
                   <h3>{{$project->eng_name}} &nbsp; {{$project->thai_name}}</h3>
                     <p>{{$project->abstack}}</p>
                     <p>
-                      <a href="#" class="btn btn-primary btn-lg " role="button">View</a> &nbsp;
+                      <a href="{{ url('/project', $project->id) }}"
+                        class="btn btn-primary btn-lg "
+                        role="button">View
+                      </a> &nbsp;
 
                       <a href="#!delete"
                       onclick=
@@ -52,7 +54,6 @@
                     </p>
                 </div>
             </div>
-          </form>
         </div>
       @endforeach
 

@@ -36,6 +36,9 @@ class viewController extends Controller
     public function pageProjectInfoRegis(){
       return view('projectInfoRegis');
     }
+    public function pageAddTask(){
+      return view('addTask');
+    }
 
 
 }
