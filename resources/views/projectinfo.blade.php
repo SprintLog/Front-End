@@ -36,14 +36,15 @@
     </div>
   @endif
 <div class="jumbotron far">
-  <form class=""  action="{{ url('projectinfo') }}" method="post" enctype="multipart/form-data">
+  <form class=""  action="{{ url('project/'.$project->id) }}" method="post" enctype="multipart/form-data">
   {{ csrf_field() }}
+  {{ method_field('PUT') }}
     <div class="form-group row far">
       <label  class="col-sm-3 col-form-label">
           Thai Project Name
       </label>
       <div class="col-sm-7">
-        <input type="text" name="tproject_name" class="form-control"  value="{{$project->thai_name}}">
+        <input type="text" name="t_project_name" class="form-control"  value="{{$project->thai_name}}">
       </div>
     </div>
 
@@ -52,7 +53,7 @@
           Eng Project Name
       </label>
       <div class="col-sm-7">
-        <input type="text" name="eproject_name"  class="form-control" value="{{$project->eng_name}}">
+        <input type="text" name="e_project_name"  class="form-control" value="{{$project->eng_name}}">
       </div>
     </div>
 
@@ -90,7 +91,7 @@
       </label>
       <div class="col-sm-5">
           @foreach ($userStd as $dev)
-            <input type="text" class="form-control" name="developer" value='{{$dev->name}}'> <br>
+            <input type="text" class="form-control" name="developer[]" value='{{$dev->name}}'> <br>
           @endforeach
       </div>
     </div>
@@ -118,7 +119,7 @@
         <button type="submit" class="btn btn-info btn-lg">Save Change</button>
       </div>
     </div>
-      <input type="hidden" name="userId" value="1">
+      {{-- <input type="hidden" name="userId" value="1"> --}}
   </form>
 </div>
 

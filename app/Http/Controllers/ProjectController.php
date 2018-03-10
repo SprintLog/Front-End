@@ -44,38 +44,6 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
 
-
-            $validator = Validator::make($request->all(), [
-                'tproject_name' => 'required|max:255',
-                'eproject_name' => 'required|max:255',
-                'type_project' => 'required|max:255',
-                'advisors' => 'required|max:255',
-                //'developer' => 'required|max:255',
-                'abstract' => 'required|max:255',
-                'keyword' => 'required|max:255',
-            ]);
-
-            if ($validator->fails()) {
-                return redirect('/projectinfo')
-                    ->withInput()
-                    ->withErrors($validator)
-                    ->with('warning', 'plz check input');
-            }
-
-            //dd($request);
-            $project = new Project;
-            $project->thai_name     = $request->t_project_name;
-            $project->eng_name      = $request->e_project_name;
-            $project->typeProjectId = $request->type_project;
-            $project->advisorsId    = $request->advisors;
-            $project->developerId   = 1;
-            $project->abstack       = $request->abstract;
-            $project->keywords      = $request->keyword;
-            $project->userId        = $request->userId;
-
-
-            $project->save();
-            return redirect('/projectinfo')->with('success', 'Addproject Success');
     }
 
     /**
@@ -104,7 +72,7 @@ class ProjectController extends Controller
                ->where('ProjectId',$id);
             })->where('typeUser','=',1)
       ->first();
-      
+
       $userStd  = DB::table("users")->select('*')
             ->whereIn('id',function($query) use ($id){
                $query->select('userId')
@@ -153,9 +121,21 @@ class ProjectController extends Controller
      * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Project $project)
+    public function update(Request $request,$id)
     {
+         // dd($request);
+
         //
+        // $mL = DB::table("matches")->select('*')
+        //       ->whereIn('userId',function($query) use ($request){
+        //          $query->select('id')
+        //          ->from('users')
+        //          ->where('typeUser','=',1);
+        //       })
+        // ->where("projectId",'=',$id)
+        // ->update(['userId' => $request->advisorsId]);
+
+        dd($m);
     }
 
     /**
