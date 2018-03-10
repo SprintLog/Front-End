@@ -45,12 +45,11 @@
                 <li class="{{ Request::segment(1) === 'planing' ? 'active' : null }}">
                   <a href="{{url('task/'.(App\Match::find(Auth::user()->id))->projectId)}}">Planing</a>
                 </li>
+                <li class="{{ Request::segment(1) === 'estimate' ? 'active' : null }}">
 
-                {{--
-                <li class="{{ Request::segment(1) === 'estimage' ? 'active' : null }}">
-                  <a href="{{url('estimage')}}">Estimage</a>
+                  <a href="{{url('estimage/'.(App\Match::find(Auth::user()->id))->projectId)}}">Estimate</a>
                 </li>
-
+            
                 <li class="{{ Request::segment(1) === 'kanbanBoard' ? 'active' : null }}">
                   <a href="{{url('kanbanBoard')}}">Kanban Board</a>
                 </li>

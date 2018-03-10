@@ -24,6 +24,12 @@ class MatchSeeder extends Seeder
       $randomIndexUSer = rand(0, count($UserIDs));
       $randomIndexPJ = rand(0, count($ProjectIDs));
 
+      DB::table('matches')->insert([
+        "userId"    => 1,
+        "projectId" => 1,
+        'created_at'=> Carbon::now()->format('Y-m-d H:i:s'),
+        'updated_at'=> Carbon::now()->format('Y-m-d H:i:s'),
+      ]);
         for ($i=0; $i < 15; $i++) {
           DB::table('matches')->insert([
             "userId"    => $UserIDs[$i],
