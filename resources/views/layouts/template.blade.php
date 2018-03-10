@@ -35,7 +35,7 @@
               <ul class="nav navbar-nav">
 
                 <li class="{{ Request::segment(1) === 'home' ? 'active' : null }}">
-                  <a href="{{url('home/'.(App\Match::find(Auth::user()->id))->projectId)}}">Home</a>
+                  <a href="{{url('home')}}">Home</a>
                 </li>
 
                 <li  class="{{ Request::segment(1) === 'projectinfo' ? 'active' : null }}">
