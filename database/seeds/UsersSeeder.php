@@ -25,12 +25,24 @@ class UsersSeeder extends Seeder
             'created_at'=> Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at'=> Carbon::now()->format('Y-m-d H:i:s'),
         ]);
+
         for ($i=0; $i < 6; $i++) {
           DB::table('users')->insert([
             'name'      => $faker->name,
             'lastname'  => $faker->lastName,
             'email'     => str_random(10).'@gmail.com',
-            'typeUser'  => array_random($arrayTypeUser),
+            'typeUser'  => 1,
+            'password'  => bcrypt('secret'),
+            'created_at'=> Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at'=> Carbon::now()->format('Y-m-d H:i:s'),
+          ]);
+       }
+        for ($i=0; $i < 10; $i++) {
+          DB::table('users')->insert([
+            'name'      => $faker->name,
+            'lastname'  => $faker->lastName,
+            'email'     => str_random(10).'@gmail.com',
+            'typeUser'  => 0,
             'password'  => bcrypt('secret'),
             'created_at'=> Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at'=> Carbon::now()->format('Y-m-d H:i:s'),

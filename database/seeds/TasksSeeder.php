@@ -14,9 +14,8 @@ class TasksSeeder extends Seeder
       $faker = Faker\Factory::create();
 
       $arrayComplexity = [1,2,3];
-      $arrayprojectId = [1,2,3,4,5,6];
-      for ($i=0; $i < 20; $i++) {
-
+      $arrayprojectId = [1,2,3,4,5];
+      for ($i=0; $i < 50; $i++) {
         DB::table('tasks')->insert([
             'nametask'   => $faker->numerify('Task ###'),
             'complexity' => array_random($arrayComplexity),
