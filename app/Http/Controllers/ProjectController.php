@@ -57,7 +57,7 @@ class ProjectController extends Controller
 
       $project = Project::find($id);
 
-      $TypeProjectIsNow = DB::table('type_project')->select('type')
+      $TypeProjectIsNow = DB::table('type_project')->select('id','type')
         ->where('id',function($query) use ($id){
            $query->select('typeProjectId')
            ->from('projects')
@@ -123,19 +123,22 @@ class ProjectController extends Controller
      */
     public function update(Request $request,$id)
     {
-         // dd($request);
+         //dd($request);
+        //dd($request->developer);
+        $thainame = $request->t_project_name;
+        $engname = $request->e_project_name;
+        $typeProject= $request->typeProjectId;
+        $advisors = $request->advisorsId;
+        $developer = $request->developer;
+        $abstract= $request->abstract;
+        $keyword= $request->keyword;
 
-        //
-        // $mL = DB::table("matches")->select('*')
-        //       ->whereIn('userId',function($query) use ($request){
-        //          $query->select('id')
-        //          ->from('users')
-        //          ->where('typeUser','=',1);
-        //       })
-        // ->where("projectId",'=',$id)
-        // ->update(['userId' => $request->advisorsId]);
 
-        dd($m);
+        DB::table("projects")
+        ->where('id' , $id)
+        ->update(['thai_name' => $thainame ,'eng_name' => $engname ,'typeProjectId'=>$typeProject , 'abstack' =>$abstract ,'keywords' => $keyword] );
+
+        return back()->with('success', 'Update Success');;
     }
 
     /**

@@ -63,7 +63,7 @@
       </label>
       <div class="col-sm-5">
           <select class="form-control" name='typeProjectId'>
-            <option selected="selected">{{$TypeProjectIsNow->type}}</option>
+            <option selected="selected" value="{{$TypeProjectIsNow->id}}">{{$TypeProjectIsNow->type}}</option>
             @foreach ($TypeProject as $t)
               <option value="{{$t->id}}">{{$t->type}}</option>
             @endforeach
