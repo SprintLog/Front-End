@@ -49,15 +49,15 @@
 
                   <a href="{{url('estimage/'.(App\Match::find(Auth::user()->id))->projectId)}}">Estimate</a>
                 </li>
-            
-                <li class="{{ Request::segment(1) === 'kanbanBoard' ? 'active' : null }}">
+
+                {{-- <li class="{{ Request::segment(1) === 'kanbanBoard' ? 'active' : null }}">
                   <a href="{{url('kanbanBoard')}}">Kanban Board</a>
                 </li>
 
 
                 <li>
                   <a href="{{url('upload')}}">Upload</a>
-                </li> --}}
+                </li>  --}}
 
                 <li  class="{{ Request::segment(1) === 'dashboard' ? 'active' : null }}">
                   <a href="{{url('dashboard/'.(App\Match::find(Auth::user()->id))->projectId)}}">Dashboard</a>
