@@ -82,6 +82,7 @@
               <option value="{{$u->id}}">{{$u->name}}</option>
             @endforeach
           </select>
+          <input type="hidden" name="userLetureIsDefault" value="{{$userLeture->id}}">
       </div>
     </div>
 
@@ -96,6 +97,7 @@
               <option value="{{$dev->id}}">{{$dev->name}}</option>
             @endforeach
           </select>
+          <input type="hidden" name="userStdIsDefault_1" value="{{$userStd[0]->id}}">
       </div>
     </div>
     <div class="form-group row far">
@@ -106,6 +108,7 @@
               <option value="{{$dev->id}}">{{$dev->name}}</option>
             @endforeach
           </select>
+          <input type="hidden" name="userStdIsDefault_2" value="{{$userStd[1]->id}}">
       </div>
     </div>
     <div class="form-group row far">
