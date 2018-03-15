@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use App\Match;
+use App\User;
 
 
 use Illuminate\Http\Request;
@@ -80,7 +81,7 @@ class ProjectController extends Controller
                ->where('ProjectId',$id);
             })->where('typeUser','=',0)
       ->get();
-
+      // dd($userStd);
       $TypeProject = DB::table('type_project')->get();
 
       $userStdShow  = DB::table("users")
@@ -123,20 +124,47 @@ class ProjectController extends Controller
      */
     public function update(Request $request,$id)
     {
-         //dd($request);
+
         //dd($request->developer);
-        $thainame = $request->t_project_name;
-        $engname = $request->e_project_name;
-        $typeProject= $request->typeProjectId;
-        $advisors = $request->advisorsId;
-        $developer = $request->developer;
-        $abstract= $request->abstract;
-        $keyword= $request->keyword;
+        $thainame       = $request->t_project_name;
+        $engname        = $request->e_project_name;
+        $typeProject    = $request->typeProjectId;
+        $advisorsId     = $request->advisors;
+        //  FOR TEST ONLY
+        $developerId_1  = 2;
+        $developerId_2  = 2;
+        $abstract       = $request->abstract;
+        $keyword        = $request->keyword;
 
 
+
+        // UPDATE VALUE
         DB::table("projects")
         ->where('id' , $id)
-        ->update(['thai_name' => $thainame ,'eng_name' => $engname ,'typeProjectId'=>$typeProject , 'abstack' =>$abstract ,'keywords' => $keyword] );
+        ->update(['thai_name' => $thainame ,
+                  'eng_name' => $engname ,
+                  'typeProjectId'=>$typeProject ,
+                  'abstack' =>$abstract ,
+                  'keywords' => $keyword] );
+
+        $emailStd = DB::table("users")
+        ->where('id','=',5)
+        ->value('email');
+
+        $t = DB::table("users")->where('email','like','%'.$emailStd)
+        ->where('typeUser','=',1)->value('id');
+          // dd($t);
+
+        DB::table('matches')->where('userId','=',$t)->where('projectId','=',1)
+        ->update(['userId' => 9]);
+
+        // Match::where('userId', function($query) use($emailStd){
+        //     $query->from('users')
+        //         ->select('id')
+        //         ->where('email','like','%'.$emailStd)
+        //         ->where('typeUser','=','0');
+        // })->where('projectId','=',$id)->update(['userId' => $developerId_1]);
+
 
         return back()->with('success', 'Update Success');;
     }
