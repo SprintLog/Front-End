@@ -1,11 +1,7 @@
-
-
-
 Bugs is Now
-- relationship update  table match
+- DESIGN UI USER
 - UI Logout
-- URL with ID
-
+- RE-DESIGN UI PROJECTLIST 
 
 Work
 - KabanBoard
