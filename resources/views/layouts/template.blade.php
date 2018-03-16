@@ -39,15 +39,15 @@
                 </li>
 
                 <li  class="{{ Request::segment(1) === 'projectinfo' ? 'active' : null }}">
-                  <a href="{{url('project/'.(App\Match::find(Auth::user()->id))->projectId)}}">Project Info</a>
+                  <a href="{{url('project/'.Cache::get('key'))}}">Project Info</a>
                 </li>
 
                 <li class="{{ Request::segment(1) === 'planing' ? 'active' : null }}">
-                  <a href="{{url('task/'.(App\Match::find(Auth::user()->id))->projectId)}}">Planing</a>
+                  <a href="{{url('task/'.Cache::get('key'))}}">Planing</a>
                 </li>
                 <li class="{{ Request::segment(1) === 'estimate' ? 'active' : null }}">
 
-                  <a href="{{url('estimage/'.(App\Match::find(Auth::user()->id))->projectId)}}">Estimate</a>
+                  <a href="{{url('estimage/'.Cache::get('key'))}}">Estimate</a>
                 </li>
 
                 {{-- <li class="{{ Request::segment(1) === 'kanbanBoard' ? 'active' : null }}">
@@ -60,7 +60,7 @@
                 </li>  --}}
 
                 <li  class="{{ Request::segment(1) === 'dashboard' ? 'active' : null }}">
-                  <a href="{{url('dashboard/'.(App\Match::find(Auth::user()->id))->projectId)}}">Dashboard</a>
+                  <a href="{{url('dashboard/'.Cache::get('key'))}}">Dashboard</a>
                 </li>
               </ul>
 

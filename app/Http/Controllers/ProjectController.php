@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Facades\Cache;
 class ProjectController extends Controller
 {
     /**
@@ -57,7 +57,8 @@ class ProjectController extends Controller
     {
 
       $project = Project::find($id);
-
+      Cache::forever('key', $id);
+      
       $TypeProjectIsNow = DB::table('type_project')->select('id','type')
         ->where('id',function($query) use ($id){
            $query->select('typeProjectId')
