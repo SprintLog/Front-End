@@ -55,7 +55,7 @@
         <div class="col-sm-offset-2 col-sm-8">
           <!-- Current Tasks -->
           @if (count($tasks) > 0)
-              <div class="panel panel-default">
+              <div class="panel panel-info">
                   <div class="panel-heading">
                       Current Tasks
                   </div>
@@ -94,7 +94,7 @@
                                               {{ method_field('DELETE') }}
 
                                               <button type="submit" class="btn btn-danger">
-                                                  <i class="fa fa-btn fa-trash"></i>Delete
+                                                  <i class="fa fa-btn fa-trash"></i> Delete
                                               </button>
                                           </form>
                                       </td>
