@@ -63,7 +63,7 @@
       </label>
       <div class="col-sm-5">
           <select class="form-control" name='typeProjectId'>
-            <option selected="selected">{{$TypeProjectIsNow->type}}</option>
+            <option selected="selected" value="{{$TypeProjectIsNow->id}}">{{$TypeProjectIsNow->type}}</option>
             @foreach ($TypeProject as $t)
               <option value="{{$t->id}}">{{$t->type}}</option>
             @endforeach
@@ -77,11 +77,12 @@
       </label>
       <div class="col-sm-5">
           <select class="form-control" name='advisorsId'>
-            <option selected="selected">{{$userLeture->name}}</option>
+            <option selected="selected" value="{{$userLeture->id}}">{{$userLeture->name}}</option>
             @foreach ($userLetureShow as $u)
               <option value="{{$u->id}}">{{$u->name}}</option>
             @endforeach
           </select>
+          <input type="hidden" name="userLetureIsDefault" value="{{$userLeture->id}}">
       </div>
     </div>
 
@@ -90,12 +91,26 @@
           Developer
       </label>
       <div class="col-sm-5">
-          @foreach ($userStd as $dev)
-            <input type="text" class="form-control" name="developer[]" value='{{$dev->name}}'> <br>
-          @endforeach
+          <select class="form-control" name='developerId_1'>
+            <option selected="selected" value="{{$userStd[0]->id}}">{{$userStd[0]->name}}</option>
+            @foreach ($userStdShow as $dev)
+              <option value="{{$dev->id}}">{{$dev->name}}</option>
+            @endforeach
+          </select>
+          <input type="hidden" name="userStdIsDefault_1" value="{{$userStd[0]->id}}">
       </div>
     </div>
-
+    <div class="form-group row far">
+      <div class="col-sm-offset-3 col-sm-5">
+          <select class="form-control" name='developerId_2'>
+            <option selected="selected" value="{{$userStd[1]->id}}">{{$userStd[1]->name}}</option>
+            @foreach ($userStdShow as $dev)
+              <option value="{{$dev->id}}">{{$dev->name}}</option>
+            @endforeach
+          </select>
+          <input type="hidden" name="userStdIsDefault_2" value="{{$userStd[1]->id}}">
+      </div>
+    </div>
     <div class="form-group row far">
       <label  class="col-sm-3 col-form-label">
         Abstract

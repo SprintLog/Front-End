@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use App\Match;
+use App\User;
 
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Facades\Cache;
 class ProjectController extends Controller
 {
     /**
@@ -56,8 +57,9 @@ class ProjectController extends Controller
     {
 
       $project = Project::find($id);
-
-      $TypeProjectIsNow = DB::table('type_project')->select('type')
+      Cache::forever('key', $id);
+      
+      $TypeProjectIsNow = DB::table('type_project')->select('id','type')
         ->where('id',function($query) use ($id){
            $query->select('typeProjectId')
            ->from('projects')
@@ -80,7 +82,7 @@ class ProjectController extends Controller
                ->where('ProjectId',$id);
             })->where('typeUser','=',0)
       ->get();
-
+      // dd($userStd);
       $TypeProject = DB::table('type_project')->get();
 
       $userStdShow  = DB::table("users")
@@ -123,19 +125,43 @@ class ProjectController extends Controller
      */
     public function update(Request $request,$id)
     {
+
          // dd($request);
+        $thainame       = $request->t_project_name;
+        $engname        = $request->e_project_name;
+        $typeProject    = $request->typeProjectId;
+        $advisorsId     = $request->advisors;
+        $developerId_1  = $request->developerId_1;
+        $developerId_2  = $request->developerId_2;
+        $abstract       = $request->abstract;
+        $keyword        = $request->keyword;
 
-        //
-        // $mL = DB::table("matches")->select('*')
-        //       ->whereIn('userId',function($query) use ($request){
-        //          $query->select('id')
-        //          ->from('users')
-        //          ->where('typeUser','=',1);
-        //       })
-        // ->where("projectId",'=',$id)
-        // ->update(['userId' => $request->advisorsId]);
+        $userLetureIsDefault = $request->userLetureIsDefault;
+        $userStdIsDefault_1 = $request->userStdIsDefault_1;
+        $userStdIsDefault_2  = $request->userStdIsDefault_1;
 
-        dd($m);
+        // UPDATE VALUE
+        DB::table("projects")
+        ->where('id' , $id)
+        ->update(['thai_name' => $thainame ,
+                  'eng_name' => $engname ,
+                  'typeProjectId'=>$typeProject ,
+                  'abstack' =>$abstract ,
+                  'keywords' => $keyword]);
+
+
+
+        DB::table('matches')
+        ->where('userId','=',$userStdIsDefault_1)
+        ->where('projectId','=',$id)
+        ->update(['userId' =>  $developerId_1 ]);
+
+        DB::table('matches')
+        ->where('userId','=',$userStdIsDefault_2)
+        ->where('projectId','=',$id)
+        ->update(['userId' =>  $developerId_2 ]);
+
+        return back()->with('success', 'Update Success');;
     }
 
     /**

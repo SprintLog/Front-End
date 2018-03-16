@@ -39,29 +39,28 @@
                 </li>
 
                 <li  class="{{ Request::segment(1) === 'projectinfo' ? 'active' : null }}">
-                  <a href="{{url('project/'.(App\Match::find(Auth::user()->id))->projectId)}}">Project Info</a>
+                  <a href="{{url('project/'.Cache::get('key'))}}">Project Info</a>
                 </li>
 
                 <li class="{{ Request::segment(1) === 'planing' ? 'active' : null }}">
-                  <a href="{{url('task/'.(App\Match::find(Auth::user()->id))->projectId)}}">Planing</a>
+                  <a href="{{url('task/'.Cache::get('key'))}}">Planing</a>
+                </li>
+                <li class="{{ Request::segment(1) === 'estimate' ? 'active' : null }}">
+
+                  <a href="{{url('estimage/'.Cache::get('key'))}}">Estimate</a>
                 </li>
 
-                {{--
-                <li class="{{ Request::segment(1) === 'estimage' ? 'active' : null }}">
-                  <a href="{{url('estimage')}}">Estimage</a>
-                </li>
-
-                <li class="{{ Request::segment(1) === 'kanbanBoard' ? 'active' : null }}">
+                {{-- <li class="{{ Request::segment(1) === 'kanbanBoard' ? 'active' : null }}">
                   <a href="{{url('kanbanBoard')}}">Kanban Board</a>
                 </li>
 
 
                 <li>
                   <a href="{{url('upload')}}">Upload</a>
-                </li> --}}
+                </li>  --}}
 
                 <li  class="{{ Request::segment(1) === 'dashboard' ? 'active' : null }}">
-                  <a href="{{url('dashboard/'.(App\Match::find(Auth::user()->id))->projectId)}}">Dashboard</a>
+                  <a href="{{url('dashboard/'.Cache::get('key'))}}">Dashboard</a>
                 </li>
               </ul>
 

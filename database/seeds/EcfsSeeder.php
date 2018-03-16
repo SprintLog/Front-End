@@ -23,6 +23,20 @@ class EcfsSeeder extends Seeder
                 "Difficult programming language");
         $arrayrate = [0,1,2,3,4,5];
 
+      // for ($i=0; $i <= 7; $i++){
+      //   $rate = array_random($arrayrate);
+      //   DB::table('ecfs')->insert([
+      //     'topic'     => $EF[$i],
+      //     'des'       => str_random(10),
+      //     'weight'    => $arrayweight[$i],
+      //     'rate'      => $rate,
+      //     'result'    => $rate * $arrayweight[$i]  ,
+      //     'projectId' => 1,
+      //     'created_at'=> Carbon::now()->format('Y-m-d H:i:s'),
+      //     'updated_at'=> Carbon::now()->format('Y-m-d H:i:s'),
+      //   ]);
+      // }
+
       for ($i=0; $i <= 7; $i++){
         $rate = array_random($arrayrate);
         DB::table('ecfs')->insert([
@@ -31,7 +45,7 @@ class EcfsSeeder extends Seeder
           'weight'    => $arrayweight[$i],
           'rate'      => $rate,
           'result'    => $rate * $arrayweight[$i]  ,
-          'projectId' => 1,
+          'projectId' => 6,
           'created_at'=> Carbon::now()->format('Y-m-d H:i:s'),
           'updated_at'=> Carbon::now()->format('Y-m-d H:i:s'),
         ]);
