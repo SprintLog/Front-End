@@ -37,6 +37,8 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+
+      // dd($request);
       $validator = Validator::make($request->all(), [
             'nameTask' => 'required|max:255',
             'complexity' => 'required|max:255',

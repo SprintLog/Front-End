@@ -38,7 +38,7 @@
                             </div>
 
                               <input type="hidden" name="projectId"
-                              value="{{(App\Match::find(Auth::user()->id))->projectId}}">
+                              value="{{Cache::get('key')}}">
                           </div>
                           <!-- Add Task Button -->
                           <div class="form-group">
