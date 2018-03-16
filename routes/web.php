@@ -25,16 +25,17 @@ Route::resource('/estimage', 'EffortEstimationsController')->name('tcf','ecf');
 Route::post('/estimage_updateall', 'EffortEstimationsController@updateAll');
 
 
-
+Route::post('/upload/file', 'UploadController@uploadDocument');
+Route::get('/upload', 'UploadController@index');
+Route::get('/download/{filename}', 'UploadController@downloadDocument');
 //for add task
 // Route::get('/addTask', 'TaskController@index')->name('tasks');
 // Route::post('/task', 'TaskController@insert');
 // Route::delete('/task/{task}' , 'TaskController@destroy');
 Route::resource('/task', 'TaskController');
-Route::post('/task/{id}', 'TaskController@storeById');
 
 //showdashboard
-Route::resource('/dashboard', 'DashboardController')->name('UCP','HUCP','tasks');
+Route::resource('/dashboard', 'DashboardController');
 /* --------------- VIEW ONLY -------------------- */
 
 
@@ -45,5 +46,8 @@ Route::get('/projectinfo', 'viewController@pageprojectInfo');
 Route::get('/planing', 'viewController@pagePlaning');
 
 Route::get('/kanbanBoard', 'viewController@pageKanbanBoard');
-Route::get('/upload', 'viewController@pageUpload');
+
+//Route::get('/upload', 'viewController@pageUpload');
+
+
 //Route::get('/dashboard', 'viewController@pageDashboard');
