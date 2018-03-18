@@ -32,6 +32,30 @@ class CreateMatchesTable extends Migration
                 ->onDelete('cascade');
 
         });
+        Schema::table('uploads', function(Blueprint $table){
+            $table->foreign('projectId')
+                ->references('id')->on('projects')
+                ->onDelete('cascade');
+
+        });
+        Schema::table('posts', function(Blueprint $table){
+          $table->foreign('userId')
+              ->references('id')->on('users')
+              ->onDelete('cascade');
+
+          $table->foreign('projectId')
+              ->references('id')->on('projects')
+              ->onDelete('cascade');
+        });
+        Schema::table('comment', function(Blueprint $table){
+          $table->foreign('ownerPost')
+              ->references('id')->on('posts')
+              ->onDelete('cascade');
+
+          $table->foreign('userId')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
+        });
         Schema::table('matches', function(Blueprint $table){
           $table->foreign('userId')
               ->references('id')->on('users')

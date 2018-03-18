@@ -17,7 +17,11 @@ class UploadController extends Controller
     {
         //
         $files = DB::table('uploads')->get();
-        return view('upload', ['files' => $files]);
+        $posts = DB::table('posts')
+            ->join('users', 'posts.userId', '=', 'users.id')
+            ->select('posts.*' ,'users.name' , 'users.lastname')
+            ->get();
+        return view('upload', ['files' => $files , 'posts' => $posts]);
         //return view('upload',['files' => Upload::get()]);
     }
     /**
@@ -92,7 +96,7 @@ class UploadController extends Controller
             $fileName = $file->getClientOriginalName();
             $ext = $file->getClientOriginalExtension();
             // save in folder storage/userid/filename
-            $file->storeAs('document/' . Auth::user()->id , $fileName) ;
+            $file->storeAs('document/' . 1, $fileName) ;
             //save filename to DB
             $upload = new Upload();
             $upload->fileName = $fileName ;
