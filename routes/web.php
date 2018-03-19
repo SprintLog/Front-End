@@ -35,8 +35,9 @@ Route::resource('/task', 'TaskController');
 //showdashboard
 Route::resource('/dashboard', 'DashboardController');
 /* --------------- VIEW ONLY -------------------- */
+Route::get('autocomplete-search',array('as'=>'autocomplete.search','uses'=>'AutoCompleteController@index'));
 
-
+Route::get('autocomplete-ajax',array('as'=>'autocomplete.ajax','uses'=>'AutoCompleteController@ajaxData'));
 
 Route::get('/listproject', 'viewController@pageListProject');
 Route::get('/homet', 'viewController@pageHome');
