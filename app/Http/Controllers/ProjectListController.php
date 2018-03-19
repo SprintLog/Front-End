@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use App\Match;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -90,7 +91,7 @@ class ProjectListController extends Controller
                             $request->developer_1,
                             $request->developer_2,
                             $request->advisors);
-    
+
         for ($i=0; $i < 4 ; $i++) {
           $m = new Match;
           $m->userId              = $arrayUser[$i];
@@ -145,4 +146,11 @@ class ProjectListController extends Controller
     {
         //
     }
+
+    public function ajaxData(Request $request){
+     $query = $request->get('query','');
+     $posts = User::where('name','LIKE','%'.$query.'%')->get();
+     return response()->json($posts);
+   }
+
 }
