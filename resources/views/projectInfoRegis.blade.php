@@ -1,19 +1,17 @@
 @extends('layouts.templateList')
 
 @section('style')
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
   <link rel="stylesheet" href="{{elixir('css/bootstrap-tagsinput.css')}}">
   <link rel="stylesheet" href="{{elixir('css/fix-general.css')}}">
-
 @endsection
 
 @section('script')
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
   <script src="{{elixir('js/bootstrap-tagsinput.js')}}"></script>
-
   <script type="text/javascript">
   $("input").val()
   </script>
+
 @endsection
 
 @section('content')
@@ -88,20 +86,10 @@
       <label  class="col-sm-3 col-form-label">
           Developer
       </label>
-      <div class="col-sm-3">
-        <select class="form-control" name='developer_1'>
-          @foreach ($userStd as $ustd)
-            <option value="{{$ustd->id}}">{{$ustd->name}}</option>
-          @endforeach
-        </select>
-          {{-- <input type="text" class="form-control" name="developer_1" placeholder="คนที่ 1" > --}}
-      </div>
-      <div class="col-sm-3">
-        <select class="form-control" name='developer_2'>
-          @foreach ($userStd as $ustd)
-            <option value="{{$ustd->id}}">{{$ustd->name}}</option>
-          @endforeach
-        </select>
+      <div class="col-sm-5">
+         <div class="form-group">
+             <input class="form-control" type="text" id="search_text" name="search_text">
+         </div>
       </div>
     </div>
 
@@ -133,5 +121,14 @@
   </form>
 
 </div>
-
+<script type="text/javascript">
+    var url = "{{ route('autocomplete.ajax') }}";
+    $('#search_text').typeahead({
+        source:  function (query, process) {
+        return $.get(url, { query: query }, function (data) {
+                return process(data);
+          });
+        }
+    });
+</script>
 @endsection
