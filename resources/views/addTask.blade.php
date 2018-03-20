@@ -68,7 +68,7 @@
                               <tbody>
                                   @foreach ($tasks as $tasks)
                                       <tr>
-                                          <td class="table-text"><div>{{ $tasks->nametask }}</div></td>
+                                          <td class="table-text"><a href="/subTask/{{$tasks->id}}"><div>{{ $tasks->nametask }}</div></a></td>
                                           <td class="table-text"><div>@if($tasks->complexity == 1) Simple
                                           @elseif ($tasks->complexity == 2) Middle
                                           @else Complex

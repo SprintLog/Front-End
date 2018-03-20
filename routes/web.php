@@ -37,6 +37,10 @@ Route::post('/post/new', 'PostController@post');
 // Route::delete('/task/{task}' , 'TaskController@destroy');
 Route::resource('/task', 'TaskController');
 
+//for sub task
+Route::get('/subTask/{id}', 'SubTaskController@index');
+Route::post('/subTask/create', 'SubTaskController@store');
+Route::get('/subTask/completed/{id}', 'SubTaskController@completed');
 
 
 //showdashboard

@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     @yield('style')
     @yield('script')
-    <title>﻿Ｓ Ｌ</title>
+    <title>﻿Ｓ Ｌ</title>
   </head>
   <body>
     <div class="container">
@@ -35,24 +35,37 @@
               <ul class="nav navbar-nav">
 
                 <li class="{{ Request::segment(1) === 'home' ? 'active' : null }}">
-                  <a href="{{url('home')}}">Home</a></li>
+                  <a href="{{url('home')}}">Home</a>
+                </li>
+
                 <li  class="{{ Request::segment(1) === 'projectinfo' ? 'active' : null }}">
-                  <a href="{{url('projectinfo')}}">Project Info</a></li>
+                  <a href="{{url('project/'.Cache::get('key'))}}">Project Info</a>
+                </li>
+
                 <li class="{{ Request::segment(1) === 'planing' ? 'active' : null }}">
-                  <a href="{{url('planing')}}">Planing</a></li>
-                <li class="{{ Request::segment(1) === 'estimage' ? 'active' : null }}">
-                  <a href="{{url('estimage')}}">Estimage</a></li>
+                  <a href="{{url('task/'.Cache::get('key'))}}">Planing</a>
+                </li>
+                <li class="{{ Request::segment(1) === 'estimate' ? 'active' : null }}">
+
+                  <a href="{{url('estimage/'.Cache::get('key'))}}">Estimate</a>
+                </li>
+
                 <li class="{{ Request::segment(1) === 'kanbanBoard' ? 'active' : null }}">
-                  <a href="{{url('kanbanBoard')}}">Kanban Board</a></li>
+                  <a href="{{url('kanbanBoard')}}">Kanban Board</a>
+                </li>
                 <li>
-                  <a href="{{url('upload')}}">Upload</a></li>
+                  <a href="{{url('upload')}}">Upload</a>
+                </li>  
+
                 <li  class="{{ Request::segment(1) === 'dashboard' ? 'active' : null }}">
-                  <a href="{{url('dashboard')}}">Dashboard</a></li>
+                  <a href="{{url('dashboard/'.Cache::get('key'))}}">Dashboard</a>
+                </li>
               </ul>
+
               <ul class="nav navbar-nav navbar-right">
                   <!-- Authentication Links -->
                   @guest
-                    
+
                   @else
                       <li class="dropdown">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">

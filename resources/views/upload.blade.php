@@ -99,7 +99,7 @@
         </table>
 
         {{-- New post--}}
-        <div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
+        <div class="form-group {{ $errors->has('body') ? ' has-error' : '' }}">
         <div class="panel panel-default">
           <div class="panel-heading"><label class="control-label" for="numberInput"></label>New Post</div>
           <div class="panel-body">
