@@ -22,8 +22,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-      $projects = DB::table('projects')->get();
-      return view('projectlist', ['projects' => $projects]);
+      
     }
 
     /**
@@ -58,7 +57,7 @@ class ProjectController extends Controller
 
       $project = Project::find($id);
       Cache::forever('key', $id);
-      
+
       $TypeProjectIsNow = DB::table('type_project')->select('id','type')
         ->where('id',function($query) use ($id){
            $query->select('typeProjectId')
