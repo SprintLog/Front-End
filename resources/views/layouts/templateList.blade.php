@@ -34,7 +34,6 @@
             @if (Auth::check())
               <ul class="nav navbar-nav">
 
-              
               </ul>
               <ul class="nav navbar-nav navbar-right">
                   <!-- Authentication Links -->
