@@ -1,16 +1,19 @@
 @extends('layouts.templateList')
 
 @section('style')
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
   <link rel="stylesheet" href="{{elixir('css/bootstrap-tagsinput.css')}}">
   <link rel="stylesheet" href="{{elixir('css/fix-general.css')}}">
+  <style media="screen">
 
+   #field {
+      margin-bottom:20px;
+   }
+  </style>
 @endsection
 
 @section('script')
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
   <script src="{{elixir('js/bootstrap-tagsinput.js')}}"></script>
-
   <script type="text/javascript">
   $("input").val()
   </script>
@@ -38,7 +41,7 @@
     </div>
   @endif
 <div class="jumbotron far">
-  <form class=""  action="{{ url('projectcreate') }}" method="post" enctype="multipart/form-data">
+  <form class="input-append"  action="{{ url('projectlist') }}" method="post" enctype="multipart/form-data">
   {{ csrf_field() }}
     <div class="form-group row far">
       <label  class="col-sm-3 col-form-label">
@@ -63,7 +66,7 @@
           Type Project
       </label>
       <div class="col-sm-5">
-          <select class="form-control" name='type_project'>
+         <select class="form-control" name='type_project'>
           @foreach ($TypeProject as $t)
             <option value="{{$t->id}}">{{$t->type}}</option>
           @endforeach
@@ -88,20 +91,15 @@
       <label  class="col-sm-3 col-form-label">
           Developer
       </label>
-      <div class="col-sm-3">
-        <select class="form-control" name='developer_1'>
-          @foreach ($userStd as $ustd)
-            <option value="{{$ustd->id}}">{{$ustd->name}}</option>
-          @endforeach
-        </select>
-          {{-- <input type="text" class="form-control" name="developer_1" placeholder="คนที่ 1" > --}}
-      </div>
-      <div class="col-sm-3">
-        <select class="form-control" name='developer_2'>
-          @foreach ($userStd as $ustd)
-            <option value="{{$ustd->id}}">{{$ustd->name}}</option>
-          @endforeach
-        </select>
+      <div class="col-sm-5">
+         <div class="form-inline"  id="fields" >
+            <div id="field">
+               <input   class="form-control" id="field1" name="developer[]" type="text" data-items="8"/>
+                <button id="b1" class="btn add-more" type="button"    >
+                 Add
+               </button>
+             </div>
+         </div>
       </div>
     </div>
 
@@ -133,5 +131,48 @@
   </form>
 
 </div>
-
+<script type="text/javascript">
+    var url = "{{ route('autocomplete.ajax') }}";
+    $('#field1').typeahead({
+        source:  function (query, process) {
+        return $.get(url, { query: query }, function (data) {
+                return process(data);
+          });
+        }
+    });
+</script>
+<script type="text/javascript">
+   $(document).ready(function(){
+    var next = 1;
+    $(".add-more").click(function(e){
+         e.preventDefault();
+         var addto = "#field" + next;
+         var addRemove = "#field" + (next);
+         next = next + 1;
+         var newIn = '<input autocomplete="off" class="input form-control" id="field' + next + '" name="developer[]" type="text">';
+         var newInput = $(newIn);
+         var removeBtn = '<button id="remove' + (next - 1) + '" class="btn  remove-me" >Remove </button></div><div id="field">';
+         var removeButton = $(removeBtn);
+         $(addto).after(newInput);
+         $(addRemove).after(removeButton);
+         $("#field" + next).attr('data-source',$(addto).attr('data-source'));
+         $("#count").val(next);
+         $('.remove-me').click(function(e){
+           e.preventDefault();
+           var fieldNum = this.id.charAt(this.id.length-1);
+           var fieldID = "#field" + fieldNum;
+           $(this).remove();
+           $(fieldID).remove();
+         });
+         var url = "{{ route('autocomplete.ajax') }}";
+         $("#field" + next).typeahead({
+             source:  function (query, process) {
+             return $.get(url, { query: query }, function (data) {
+                     return process(data);
+               });
+             }
+         });
+    });
+ });
+</script>
 @endsection

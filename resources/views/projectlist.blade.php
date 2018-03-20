@@ -59,7 +59,7 @@
 
         <div class="row">
           <div class="col-sm-6 col-md-12">
-            <a href="{{url('projectcreate/create')}}" class="btn btn-success">
+            <a href="{{url('projectlist/create')}}" class="btn btn-success">
               <span class="glyphicon glyphicon-plus"></span> Create New Project
             </a>
           </div>

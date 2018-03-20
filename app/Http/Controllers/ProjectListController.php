@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use App\Match;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -59,25 +60,25 @@ class ProjectListController extends Controller
     public function store(Request $request)
     {
 
-
+         // dd($request);
         $validator = Validator::make($request->all(), [
-            't_project_name' => 'required|max:255',
-            'e_project_name' => 'required|max:255',
-            'type_project'   => 'required|max:255',
-            'advisors'       => 'required|max:255',
-            //'developer' => 'required|max:255',
-            'abstract'       => 'required|max:255',
-            'keyword'        => 'required|max:255',
+            't_project_name' => 'required|nullable|string|max:25',
+            'e_project_name' => 'required|nullable|string|max:25',
+            'type_project'   => 'required|nullable|string',
+            'advisors'       => 'required|nullable|string|max:25',
+            'developer.*'    => 'required|nullable|string',
+            'abstract'       => 'required|nullable|string|max:255',
+            'keyword'        => 'required|nullable|string|max:255',
         ]);
 
         if ($validator->fails()) {
-            return redirect('projectcreate/create')
+            return redirect('projectlist/create')
                 ->withInput()
                 ->withErrors($validator)
                 ->with('warning', 'plz check input');
         }
 
-        //dd($request);
+        // dd($request); 2 3 16
         $project  =   new Project;
         $project->thai_name     = $request->t_project_name;
         $project->eng_name      = $request->e_project_name;
@@ -86,17 +87,30 @@ class ProjectListController extends Controller
         $project->keywords      = $request->keyword;
 
         $project->save();
-        $arrayUser = array( $request->usermakePJ,
-                            $request->developer_1,
-                            $request->developer_2,
-                            $request->advisors);
-    
-        for ($i=0; $i < 4 ; $i++) {
-          $m = new Match;
-          $m->userId              = $arrayUser[$i];
-          $m->ProjectId           = $project->id;
-          $m->save();
+
+        // NAME CONVENT TO ID
+
+
+        for ($i=0; $i < count($request->developer); $i++) {
+         $m = new Match;
+         $devId =  DB::table("users")
+         ->where('name','LIKE','%'.$request->developer[$i].'%')->pluck('id')->first();
+
+         $m->userId    = $devId;
+         $m->ProjectId = $project->id;
+         $m->save();
         }
+
+        $m = new Match;
+        // dd($request->usermakePJ);
+        $m->userId    =  $request->usermakePJ;
+        $m->ProjectId =  $project->id;
+        $m->save();
+
+        $m->userId    =  $request->advisors;
+        $m->ProjectId =  $project->id;
+        $m->save();
+
 
         return redirect('/home');
     }
@@ -145,4 +159,11 @@ class ProjectListController extends Controller
     {
         //
     }
+
+    public function ajaxData(Request $request){
+     $query = $request->get('query','');
+     $users = User::where('name','LIKE','%'.$query.'%')->get();
+     return response()->json($users);
+   }
+
 }
