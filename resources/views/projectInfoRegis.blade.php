@@ -41,7 +41,7 @@
     </div>
   @endif
 <div class="jumbotron far">
-  <form class="input-append"  action="{{ url('projectcreate') }}" method="post" enctype="multipart/form-data">
+  <form class="input-append"  action="{{ url('projectlist') }}" method="post" enctype="multipart/form-data">
   {{ csrf_field() }}
     <div class="form-group row far">
       <label  class="col-sm-3 col-form-label">
@@ -86,6 +86,7 @@
         </select>
       </div>
     </div>
+
     <div class="form-group row far">
       <label  class="col-sm-3 col-form-label">
           Developer
@@ -93,8 +94,8 @@
       <div class="col-sm-5">
          <div class="form-inline"  id="fields" >
             <div id="field">
-               <input   class="form-control" id="field1" name="prof1" type="text" data-items="8"/>
-                <button id="b1" class="btn add-more" type="button"      >
+               <input   class="form-control" id="field1" name="developer[]" type="text" data-items="8"/>
+                <button id="b1" class="btn add-more" type="button"    >
                  Add
                </button>
              </div>
@@ -148,7 +149,7 @@
          var addto = "#field" + next;
          var addRemove = "#field" + (next);
          next = next + 1;
-         var newIn = '<input autocomplete="off" class="input form-control" id="field' + next + '" name="field' + next + '" type="text">';
+         var newIn = '<input autocomplete="off" class="input form-control" id="field' + next + '" name="developer[]" type="text">';
          var newInput = $(newIn);
          var removeBtn = '<button id="remove' + (next - 1) + '" class="btn  remove-me" >Remove </button></div><div id="field">';
          var removeButton = $(removeBtn);
