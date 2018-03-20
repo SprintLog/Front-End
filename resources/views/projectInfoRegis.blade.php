@@ -4,9 +4,7 @@
   <link rel="stylesheet" href="{{elixir('css/bootstrap-tagsinput.css')}}">
   <link rel="stylesheet" href="{{elixir('css/fix-general.css')}}">
   <style media="screen">
-   * {
-      .border-radius(0) !important;
-   }
+
    #field {
       margin-bottom:20px;
    }
@@ -88,34 +86,19 @@
         </select>
       </div>
     </div>
-
     <div class="form-group row far">
       <label  class="col-sm-3 col-form-label">
           Developer
       </label>
       <div class="col-sm-5">
-         <div class="form-group">
-             <input class="form-control" type="text" id="search_text" name="search_text">
-         </div>
-      </div>
-    </div>
-
-    <div class="form-group row far">
-      <label  class="col-sm-3 col-form-label">
-          Developer
-      </label>
-      <div class="col-sm-5">
-         <div class="form-group">
+         <div class="form-inline"  id="fields" >
             <div id="field">
-               <input   class="form-control" id="field1" name="prof1" type="text"
-                placeholder="Type something" data-items="8"/>
+               <input   class="form-control" id="field1" name="prof1" type="text" data-items="8"/>
+                <button id="b1" class="btn add-more" type="button"      >
+                 Add
+               </button>
              </div>
          </div>
-      </div>
-      <div class="col-sm-2">
-         <button id="b1" class="btn add-more" type="button">
-           +
-      </button>
       </div>
     </div>
 
@@ -167,7 +150,7 @@
          next = next + 1;
          var newIn = '<input autocomplete="off" class="input form-control" id="field' + next + '" name="field' + next + '" type="text">';
          var newInput = $(newIn);
-         var removeBtn = '<button id="remove' + (next - 1) + '" class="btn btn-danger remove-me" >-</button></div><div id="field">';
+         var removeBtn = '<button id="remove' + (next - 1) + '" class="btn  remove-me" >Remove </button></div><div id="field">';
          var removeButton = $(removeBtn);
          $(addto).after(newInput);
          $(addRemove).after(removeButton);
