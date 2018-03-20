@@ -60,7 +60,7 @@ class ProjectListController extends Controller
     public function store(Request $request)
     {
 
-         // dd($request);
+          // dd($request);
         $validator = Validator::make($request->all(), [
             't_project_name' => 'required|nullable|string|max:25',
             'e_project_name' => 'required|nullable|string|max:25',
@@ -90,9 +90,9 @@ class ProjectListController extends Controller
 
         // NAME CONVENT TO ID
 
-
+        $m = new Match;
         for ($i=0; $i < count($request->developer); $i++) {
-         $m = new Match;
+
          $devId =  DB::table("users")
          ->where('name','LIKE','%'.$request->developer[$i].'%')->pluck('id')->first();
 
@@ -100,10 +100,10 @@ class ProjectListController extends Controller
          $m->ProjectId = $project->id;
          $m->save();
         }
+        // cant send value userid scope variable 
 
-        $m = new Match;
-        // dd($request->usermakePJ);
-        $m->userId    =  $request->usermakePJ;
+         // dd($request->usermakePJ);
+        $m->userId    =  1;
         $m->ProjectId =  $project->id;
         $m->save();
 
