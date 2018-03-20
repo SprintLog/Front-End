@@ -40,6 +40,7 @@ Route::resource('/task', 'TaskController');
 //for sub task
 Route::get('/subTask/{id}', 'SubTaskController@index');
 Route::post('/subTask/create', 'SubTaskController@store');
+Route::delete('/subTask/{id}', 'SubTaskController@destroy');
 Route::get('/subTask/completed/{id}', 'SubTaskController@completed');
 
 

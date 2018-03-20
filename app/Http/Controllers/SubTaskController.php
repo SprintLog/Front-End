@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Subtasks;
+use App\Project;
+use App\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -14,8 +16,10 @@ class SubTaskController extends Controller
     public function index($id)
     {
         //
+        $projectId =Task::find($id)->projectId;
+        $taskName =Task::find($id)->nametask;
         $subtasks = DB::table('subtasks')->where('taskId' , $id)->get();
-        return view('subTask', ['taskId' => $id , 'subtasks' => $subtasks ]);
+        return view('subTask', ['taskId' => $id , 'subtasks' => $subtasks, 'projectId' => $projectId , 'taskName' => $taskName]);
     }
     public function completed($id, Request $request)
     {
@@ -60,4 +64,9 @@ class SubTaskController extends Controller
             return back()->with('success', 'Add Sub-Task Success');
     }
 
+    public function destroy($id)
+    {
+      $task = Subtasks::find($id)->delete();
+      return back();
+    }
 }

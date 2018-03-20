@@ -1,12 +1,10 @@
 <?php
-
 namespace App\Http\Controllers;
 use App\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-
 class TaskController extends Controller
 {
     /**
@@ -16,9 +14,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -26,9 +22,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -37,19 +31,18 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+      // dd($request);
       $validator = Validator::make($request->all(), [
             'nameTask' => 'required|max:255',
             'complexity' => 'required|max:255',
             'projectId' => 'required|max:255',
         ]);
-
         if ($validator->fails()) {
             return redirect('/')
                 ->withInput()
                 ->withErrors($validator)
                 ->with('warning', 'plz check input');
         }
-
       // dd($request);
       $task = new Task;
       $task->nametask   = $request->nameTask;
@@ -58,9 +51,6 @@ class TaskController extends Controller
       $task->save();
       return back();
     }
-
-
-
     /**
      * Display the specified resource.
      *
@@ -74,7 +64,6 @@ class TaskController extends Controller
       // dd($tasks);
       return view('addTask', ['tasks' => $tasks]);
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -85,7 +74,6 @@ class TaskController extends Controller
     {
         //
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -97,7 +85,6 @@ class TaskController extends Controller
     {
         //
     }
-
     /**
      * Remove the specified resource from storage.
      *

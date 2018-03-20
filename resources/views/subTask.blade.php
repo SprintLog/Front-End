@@ -18,6 +18,12 @@
     </div>
   @endif
   <div class="panel panel-default">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/task/{{$projectId}}">Tasks</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{$taskName}}</li>
+    </ol>
+  </nav>
   <div class="panel-heading">
       New Sub-Task
   </div>
@@ -46,6 +52,7 @@
       </form>
   </div>
   </div>
+  @if (count($subtasks) > 0)
     <div class="jumbotron far">
       <div class="row fart">
         <table class="table table-bordered">
@@ -55,6 +62,7 @@
               <th scope="col">Desc</th>
               <th scope="col">Date Summit</th>
               <th scope="col">Status</th>
+              <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -76,13 +84,24 @@
                   Complete
                   </button>
                 @endif
+                </form>
+                <td>
+                  <form action="{{ url('subTask/'.$subtask->id) }}" method="POST">
+                      {{ csrf_field() }}
+                      {{ method_field('DELETE') }}
+                      <button type="submit" class="btn btn-danger">
+                          <i class="fa fa-btn fa-trash"></i>Delete
+                      </button>
+                  </form>
+                </td>
 
             </td>
             </tr>
-              </form>
             @endforeach
+
+
           </tbody>
         </table>
       </div>
-
+    @endif
 @endsection
