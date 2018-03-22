@@ -69,4 +69,47 @@ class SubTaskController extends Controller
       $task = Subtasks::find($id)->delete();
       return back();
     }
+    public function calculate()
+    {
+      //$tasks = DB::table('subtasks')->where('taskId' , 6)->where('completed' , 0)->get();
+      //$tasks = Subtasks::where('completed', '=', 0)->where('taskId', '=', 6)->get();
+      $taskLists = Task::where('projectId', '=', 1)->get();
+      //echo $tasksList;
+      $progressProject = [] ;
+      $progressAll = 0 ;
+      foreach ($taskLists as $tasksList){
+      //echo $tasksList->id ;
+
+        $tasks = Subtasks::where('taskId', '=', $tasksList->id )->get();
+        $taskName =Task::find($tasksList->id )->nametask;
+        //echo $tasks;
+        $complete = 0 ;
+        $waiting = 0 ;
+        $progress = 0 ;
+            foreach ($tasks as $task) {
+              if ($task->completed == 0) {
+                $waiting = $waiting +1 ;
+              }elseif ($task->completed == 1){
+                $complete= $complete +1 ;
+              }
+              }
+        echo "Nametask: " . $taskName . "<br>" ;
+        echo "complete ".$complete . "<br>" . "waiting ".$waiting . "<br>" ;
+
+        //progress
+        if ($complete != 0) {
+            $progress =  ($complete / ($waiting+$complete)) * 100 ;
+        }else{
+            $progress = 0 ;
+        }
+        array_push($progressProject,$progress);
+        echo "progress = " .$progress . "<br>". "<br>";
+
+      }
+      // for ($i=0; $i < count($progressProject) ; $i++) {
+      //     $progressAll = $progressAll + $progressProject[$i] ;
+      // }
+      // $progressAll = array_sum($progressProject) / count($progressProject) ;
+      // echo "progress in project = $progressAll" ;
+    }
 }
