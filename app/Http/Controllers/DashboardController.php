@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Subtasks;
+use App\Project;
+use App\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +20,7 @@ class DashboardController extends Controller
         //
         //Maybe get request value projectId
 
-        //Get sum result of rate TCF
+        //********************Get sum result of rate TCF***********************
         $tcf = DB::table('tcfs')->select(DB::raw('SUM(result) as total_result'))->where('projectId', 1)->get();
         $total_resultTcf ;
 
@@ -34,16 +36,16 @@ class DashboardController extends Controller
            $total_resultEcf = $ecf->total_result;
         }
 
-        //calculate UUCP
+        //*********************************calculate UUCP**********************
         //get simple task
 
-        $simple = DB::table('tasks')->where('complexity', 1)->where('projectId', 3)->count();
+        $simple = DB::table('tasks')->where('complexity', 1)->where('projectId', 1)->count();
       //echo 'simple tasks = '.$simple.'<br>';
 
-        $middle = DB::table('tasks')->where('complexity', 2)->where('projectId', 3)->count();
+        $middle = DB::table('tasks')->where('complexity', 2)->where('projectId', 1)->count();
         //echo 'middle tasks = '.$middle.'<br>';
 
-        $complex = DB::table('tasks')->where('complexity', 3)->where('projectId', 3)->count();
+        $complex = DB::table('tasks')->where('complexity', 3)->where('projectId', 1)->count();
         //echo 'complex tasks = '.$complex.'<br>';
 
         $UUCP = ($simple * 5) + ($middle * 10) +  ($complex * 15);
@@ -62,10 +64,46 @@ class DashboardController extends Controller
         echo "Hours/UCP = " . 405/$UCP . " UUCP" ;
         */
 
+
+        //********************* Calculate Progress****************************
         $tasks = DB::table('tasks')->get();
+        $taskLists = Task::where('projectId', '=', 1)->get();
+        //echo $tasksList;
+        $progressProject = [] ;
+        $taskNameList = [] ;
+        $progressAll = 0 ;
+        foreach ($taskLists as $tasksList){
+        //echo $tasksList->id ;
 
+          $tasks = Subtasks::where('taskId', '=', $tasksList->id )->get();
+          $taskName =Task::find($tasksList->id )->nametask;
+          //echo $tasks;
+          $complete = 0 ;
+          $waiting = 0 ;
+          $progress = 0 ;
+              foreach ($tasks as $task) {
+                if ($task->completed == 0) {
+                  $waiting = $waiting +1 ;
+                }elseif ($task->completed == 1){
+                  $complete= $complete +1 ;
+                }
+                }
+          // echo "Nametask: " . $taskName . "<br>" ;
+          // echo "complete ".$complete . "<br>" . "waiting ".$waiting . "<br>" ;
 
-        return view('dashboard', ['TCF' => $TCF , 'ECF'=> $ECF , 'UCP' => $UCP , 'HUCP' => $HUCP ,'tasks' =>$tasks]);
+          //progress
+          if ($complete != 0) {
+              $progress =  ($complete / ($waiting+$complete)) * 100 ;
+          }else{
+              $progress = 0 ;
+          }
+           array_push($taskNameList,$taskName);
+           array_push($progressProject,$progress);
+          // echo "progress = " .$progress . "<br>". "<br>";
+
+        }
+
+        return view('dashboard', ['TCF' => $TCF , 'ECF'=> $ECF , 'UCP' => $UCP , 'HUCP' => $HUCP ,'tasks' =>$taskLists,'taskNameList'=> $taskNameList ,'progressProject'=> $progressProject ]);
     }
 
     /**
