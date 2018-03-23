@@ -96,7 +96,6 @@ class ProjectController extends Controller
                                         'userStd',
                                         'TypeProject',
                                         'TypeProjectIsNow',
-
                                         'userLetureShow'));
     }
 

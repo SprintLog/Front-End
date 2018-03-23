@@ -91,12 +91,18 @@
       </label>
       <div class="col-sm-5">
          <div class="form-inline"  id="fields" >
-            <div id="field">
-               <input   class="form-control" id="field1" name="developer[]" type="text" data-items="8"/>
-                <button id="b1" class="btn add-more" type="button"    >
-                 Add
-               </button>
-             </div>
+            @for ($i=0; $i < count($userStd); $i++)
+               <div id="field">
+                  <input   class="form-control" id="field1" name="developer[]"
+                  type="text" data-items="8" value={{$userStd[$i]->name}}/>
+                  @if ($i ==  count($userStd)-1)
+                     <button id="b1" class="btn add-more" type="button"    >
+                      Add
+                    </button>
+                  @endif
+                </div>
+            @endfor
+
          </div>
       </div>
     </div>
@@ -136,5 +142,39 @@
           });
         }
     });
+</script>
+<script type="text/javascript">
+   $(document).ready(function(){
+    var next = 1;
+    $(".add-more").click(function(e){
+         e.preventDefault();
+         var addto = "#field" + next;
+         var addRemove = "#field" + (next);
+         next = next + 1;
+         var newIn = '<input autocomplete="off" class="input form-control" id="field' + next + '" name="developer[]" type="text">';
+         var newInput = $(newIn);
+         var removeBtn = '<button id="remove' + (next - 1) + '" class="btn  remove-me" >Remove </button></div><div id="field">';
+         var removeButton = $(removeBtn);
+         $(addto).after(newInput);
+         $(addRemove).after(removeButton);
+         $("#field" + next).attr('data-source',$(addto).attr('data-source'));
+         $("#count").val(next);
+         $('.remove-me').click(function(e){
+           e.preventDefault();
+           var fieldNum = this.id.charAt(this.id.length-1);
+           var fieldID = "#field" + fieldNum;
+           $(this).remove();
+           $(fieldID).remove();
+         });
+         var url = "{{ route('autocomplete.ajax') }}";
+         $("#field" + next).typeahead({
+             source:  function (query, process) {
+             return $.get(url, { query: query }, function (data) {
+                     return process(data);
+               });
+             }
+         });
+    });
+ });
 </script>
 @endsection
