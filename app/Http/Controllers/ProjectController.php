@@ -54,7 +54,7 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-      
+
       $project = Project::find($id);
       Cache::forever('key', $id);
 
@@ -81,13 +81,9 @@ class ProjectController extends Controller
                ->where('ProjectId',$id);
             })->where('typeUser','=',0)
       ->get();
-      // dd($userStd);
-      $TypeProject = DB::table('type_project')->get();
+       // dd($userStd);
 
-      $userStdShow  = DB::table("users")
-      ->select('id','name','lastname')
-      ->where('typeUser','=',0)
-      ->get();
+      $TypeProject = DB::table('type_project')->get();
 
       $userLetureShow = DB::table("users")
       ->select('id','name','lastname')
@@ -100,7 +96,7 @@ class ProjectController extends Controller
                                         'userStd',
                                         'TypeProject',
                                         'TypeProjectIsNow',
-                                        'userStdShow',
+
                                         'userLetureShow'));
     }
 

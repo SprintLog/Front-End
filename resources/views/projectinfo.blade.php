@@ -1,14 +1,13 @@
 @extends('layouts.template')
 
 @section('style')
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
 
   <link rel="stylesheet" href="{{elixir('css/fix-general.css')}}">
 
 @endsection
 
 @section('script')
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
   <script type="text/javascript">
   $("input").val()
   </script>
@@ -91,26 +90,17 @@
           Developer
       </label>
       <div class="col-sm-5">
-          <select class="form-control" name='developerId_1'>
-            <option selected="selected" value="{{$userStd[0]->id}}">{{$userStd[0]->name}}</option>
-            @foreach ($userStdShow as $dev)
-              <option value="{{$dev->id}}">{{$dev->name}}</option>
-            @endforeach
-          </select>
-          <input type="hidden" name="userStdIsDefault_1" value="{{$userStd[0]->id}}">
+         <div class="form-inline"  id="fields" >
+            <div id="field">
+               <input   class="form-control" id="field1" name="developer[]" type="text" data-items="8"/>
+                <button id="b1" class="btn add-more" type="button"    >
+                 Add
+               </button>
+             </div>
+         </div>
       </div>
     </div>
-    <div class="form-group row far">
-      <div class="col-sm-offset-3 col-sm-5">
-          <select class="form-control" name='developerId_2'>
-            <option selected="selected" value="{{$userStd[1]->id}}">{{$userStd[1]->name}}</option>
-            @foreach ($userStdShow as $dev)
-              <option value="{{$dev->id}}">{{$dev->name}}</option>
-            @endforeach
-          </select>
-          <input type="hidden" name="userStdIsDefault_2" value="{{$userStd[1]->id}}">
-      </div>
-    </div>
+
     <div class="form-group row far">
       <label  class="col-sm-3 col-form-label">
         Abstract
@@ -137,5 +127,14 @@
       {{-- <input type="hidden" name="userId" value="1"> --}}
   </form>
 </div>
-
+<script type="text/javascript">
+    var url = "{{ route('autocomplete.ajax') }}";
+    $('#field1').typeahead({
+        source:  function (query, process) {
+        return $.get(url, { query: query }, function (data) {
+                return process(data);
+          });
+        }
+    });
+</script>
 @endsection
