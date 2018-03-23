@@ -196,7 +196,7 @@ new Chart(document.getElementById("pie-chart"), {
     datasets: [{
       label: "Overview Status",
       backgroundColor: ["#c45850", "#e8c3b9"],
-      data: [20,80]
+      data: [{{$projectComplete}},100-{{$projectComplete}}]
     }]
   },
   options: {

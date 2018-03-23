@@ -66,18 +66,15 @@ class DashboardController extends Controller
 
 
         //********************* Calculate Progress****************************
-        $tasks = DB::table('tasks')->get();
         $taskLists = Task::where('projectId', '=', 1)->get();
-        //echo $tasksList;
         $progressProject = [] ;
         $taskNameList = [] ;
         $progressAll = 0 ;
+        $UUCPWMade = [];
+        $UUCPW ;
         foreach ($taskLists as $tasksList){
-        //echo $tasksList->id ;
-
           $tasks = Subtasks::where('taskId', '=', $tasksList->id )->get();
           $taskName =Task::find($tasksList->id )->nametask;
-          //echo $tasks;
           $complete = 0 ;
           $waiting = 0 ;
           $progress = 0 ;
@@ -87,23 +84,52 @@ class DashboardController extends Controller
                 }elseif ($task->completed == 1){
                   $complete= $complete +1 ;
                 }
-                }
-          // echo "Nametask: " . $taskName . "<br>" ;
-          // echo "complete ".$complete . "<br>" . "waiting ".$waiting . "<br>" ;
+              }
 
-          //progress
+          //progress ที่ทำได้
           if ($complete != 0) {
               $progress =  ($complete / ($waiting+$complete)) * 100 ;
+              if($tasksList->complexity == 1 ){
+                $UUCP = ($progress / 100) * 5  ;
+                array_push ($UUCPWMade ,$UUCP) ;
+              }elseif ($tasksList->complexity == 2 ) {
+                $UUCP = ($progress / 100) * 10  ;
+                array_push ($UUCPWMade ,$UUCP) ;
+              }else {
+                $UUCP = ($progress / 100) * 15 ;
+                array_push ($UUCPWMade ,$UUCP) ;
+              }
+
           }else{
-              $progress = 0 ;
+              $UUCP = ($progress / 100) * 0  ;
+              array_push ($UUCPWMade ,$UUCP);
           }
+          //UCP Made
+
+
+          //*****************push value for view***********************
            array_push($taskNameList,$taskName);
            array_push($progressProject,$progress);
-          // echo "progress = " .$progress . "<br>". "<br>";
+
 
         }
+          // UCP ที่ทำได้
+          $UCPMade = array_sum($UUCPWMade) * $TCF *$ECF  ;
 
-        return view('dashboard', ['TCF' => $TCF , 'ECF'=> $ECF , 'UCP' => $UCP , 'HUCP' => $HUCP ,'tasks' =>$taskLists,'taskNameList'=> $taskNameList ,'progressProject'=> $progressProject ]);
+          //คิด % งานทั้งหมดทีทำได้
+          $projectComplete = ($UCPMade / $UCP) * 100  ;
+
+
+        return view('dashboard',
+                                ['TCF' => $TCF ,
+                                'ECF'=> $ECF ,
+                                'UCP' => $UCP ,
+                                'HUCP' => $HUCP ,
+                                'tasks' =>$taskLists,
+                                'taskNameList'=> $taskNameList ,
+                                'progressProject'=> $progressProject ,
+                                'projectComplete'=>$projectComplete
+                              ]);
     }
 
     /**
