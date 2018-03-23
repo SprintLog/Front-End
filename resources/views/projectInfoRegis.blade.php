@@ -79,9 +79,9 @@
           Advisors
       </label>
       <div class="col-sm-5">
-        <select class="form-control" name='advisors'>
+        <select class="form-control" name='advisorsId'>
           @foreach ($userLetureShow as $u)
-            <option value="{{$u->id}}">{{$u->name}}</option>
+            <option value={{$u->id}}>{{$u->name}}</option>
           @endforeach
         </select>
       </div>
@@ -127,7 +127,7 @@
       </div>
     </div>
 
-      <input type="hidden" name="usermakePJ" value="{{ Auth::user()->id }}">
+      <input type="hidden" name="usermakePJ" value={{ Auth::user()->id }}>
   </form>
 
 </div>

@@ -60,12 +60,12 @@ class ProjectListController extends Controller
     public function store(Request $request)
     {
 
-          // dd($request);
+           // dd($request);
         $validator = Validator::make($request->all(), [
             't_project_name' => 'required|nullable|string|max:25',
             'e_project_name' => 'required|nullable|string|max:25',
             'type_project'   => 'required|nullable|string',
-            'advisors'       => 'required|nullable|string|max:25',
+            'advisorsId'       => 'required|nullable|string|max:25',
             'developer.*'    => 'required|nullable|string',
             'abstract'       => 'required|nullable|string|max:255',
             'keyword'        => 'required|nullable|string|max:255',
@@ -89,28 +89,20 @@ class ProjectListController extends Controller
         $project->save();
 
         // NAME CONVENT TO ID
-
-        $m = new Match;
+        $devId =  array();
         for ($i=0; $i < count($request->developer); $i++) {
-
-         $devId =  DB::table("users")
+         $devId[$i] =  DB::table("users")
          ->where('name','LIKE','%'.$request->developer[$i].'%')->pluck('id')->first();
-
-         $m->userId    = $devId;
-         $m->ProjectId = $project->id;
-         $m->save();
         }
-        // cant send value userid scope variable 
-
-         // dd($request->usermakePJ);
-        $m->userId    =  1;
-        $m->ProjectId =  $project->id;
-        $m->save();
-
-        $m->userId    =  $request->advisors;
-        $m->ProjectId =  $project->id;
-        $m->save();
-
+        $devId[] =  $request->usermakePJ;
+        $devId[] =  $request->advisorsId;
+        // dd($devId);
+        for ($i=0; $i < count($devId); $i++) {
+          $m = new Match;
+          $m->userId    = $devId[$i];
+          $m->projectId = $project->id;
+          $m->save();
+        }
 
         return redirect('/home');
     }
