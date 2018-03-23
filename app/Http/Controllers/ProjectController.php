@@ -22,7 +22,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-      
+
     }
 
     /**
@@ -54,7 +54,7 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-
+      
       $project = Project::find($id);
       Cache::forever('key', $id);
 
