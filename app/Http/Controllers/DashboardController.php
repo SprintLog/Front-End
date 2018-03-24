@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Subtasks;
+use App\Project;
+use App\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +18,116 @@ class DashboardController extends Controller
     public function index()
     {
 
+        //********************Get sum result of rate TCF***********************
+        $tcf = DB::table('tcfs')->select(DB::raw('SUM(result) as total_result'))->where('projectId', 1)->get();
+        $total_resultTcf ;
+
+
+        foreach ($tcf as $tcf) {
+           $total_resultTcf = $tcf->total_result;
+        }
+
+        //Get sum result of rate ECF
+        $ecf = DB::table('ecfs')->select(DB::raw('SUM(result) as total_result'))->where('projectId', 1)->get();
+        $total_resultEcf ;
+        foreach ($ecf as $ecf) {
+           $total_resultEcf = $ecf->total_result;
+        }
+
+        //*********************************calculate UUCP**********************
+        //get simple task
+
+        $simple = DB::table('tasks')->where('complexity', 1)->where('projectId', 1)->count();
+      //echo 'simple tasks = '.$simple.'<br>';
+
+        $middle = DB::table('tasks')->where('complexity', 2)->where('projectId', 1)->count();
+        //echo 'middle tasks = '.$middle.'<br>';
+
+        $complex = DB::table('tasks')->where('complexity', 3)->where('projectId', 1)->count();
+        //echo 'complex tasks = '.$complex.'<br>';
+
+        $UUCP = ($simple * 5) + ($middle * 10) +  ($complex * 15);
+
+        //Calculate UUCP
+        $TCF = 0.6 + ($total_resultTcf / 100 ) ;
+        $ECF = 1.4 + (-0.03 * $total_resultEcf) ;
+        $UCP = $UUCP * $TCF *$ECF ;
+        //$HUCP = 405/$UCP ;
+
+        $HUCP = number_format(405/$UCP, 2, '.', ' ');
+        /*
+        echo "UCP = UUCP * TCF * ECF". "<br>";
+        echo "UCP = " . $UUCP . " * " . $TCF . " * " . $ECF. "<br>" ;
+        echo "UCP = " . $UUCP * $TCF *$ECF . "<br>";
+        echo "Hours/UCP = " . 405/$UCP . " UUCP" ;
+        */
+
+
+        //********************* Calculate Progress****************************
+        $taskLists = Task::where('projectId', '=', 1)->get();
+        $progressProject = [] ;
+        $taskNameList = [] ;
+        $progressAll = 0 ;
+        $UUCPWMade = [];
+        $UUCPW ;
+        foreach ($taskLists as $tasksList){
+          $tasks = Subtasks::where('taskId', '=', $tasksList->id )->get();
+          $taskName =Task::find($tasksList->id )->nametask;
+          $complete = 0 ;
+          $waiting = 0 ;
+          $progress = 0 ;
+              foreach ($tasks as $task) {
+                if ($task->completed == 0) {
+                  $waiting = $waiting +1 ;
+                }elseif ($task->completed == 1){
+                  $complete= $complete +1 ;
+                }
+              }
+
+          //progress ที่ทำได้
+          if ($complete != 0) {
+              $progress =  ($complete / ($waiting+$complete)) * 100 ;
+              if($tasksList->complexity == 1 ){
+                $UUCP = ($progress / 100) * 5  ;
+                array_push ($UUCPWMade ,$UUCP) ;
+              }elseif ($tasksList->complexity == 2 ) {
+                $UUCP = ($progress / 100) * 10  ;
+                array_push ($UUCPWMade ,$UUCP) ;
+              }else {
+                $UUCP = ($progress / 100) * 15 ;
+                array_push ($UUCPWMade ,$UUCP) ;
+              }
+
+          }else{
+              $UUCP = ($progress / 100) * 0  ;
+              array_push ($UUCPWMade ,$UUCP);
+          }
+          //UCP Made
+
+
+          //*****************push value for view***********************
+           array_push($taskNameList,$taskName);
+           array_push($progressProject,$progress);
+
+
+        }
+          // UCP ที่ทำได้
+          $UCPMade = array_sum($UUCPWMade) * $TCF *$ECF  ;
+
+          //คิด % งานทั้งหมดทีทำได้
+          $projectComplete = ($UCPMade / $UCP) * 100  ;
+
+
+        return view('dashboard',
+                                ['TCF' => $TCF ,
+                                'ECF'=> $ECF ,
+                                'UCP' => $UCP ,
+                                'HUCP' => $HUCP ,
+                                'tasks' =>$taskLists,
+                                'taskNameList'=> $taskNameList ,
+                                'progressProject'=> $progressProject ,
+                                'projectComplete'=>$projectComplete
+                              ]);
     }
 
     /**

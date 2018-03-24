@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     @yield('style')
     @yield('script')
-    <title>﻿Ｓ Ｌ</title>
+    <title>﻿Ｓ Ｌ</title>
   </head>
   <body>
     <div class="container">
@@ -50,14 +50,12 @@
                   <a href="{{url('estimage/'.Cache::get('key'))}}">Estimate</a>
                 </li>
 
-                {{-- <li class="{{ Request::segment(1) === 'kanbanBoard' ? 'active' : null }}">
+                <li class="{{ Request::segment(1) === 'kanbanBoard' ? 'active' : null }}">
                   <a href="{{url('kanbanBoard')}}">Kanban Board</a>
                 </li>
-
-
                 <li>
                   <a href="{{url('upload')}}">Upload</a>
-                </li>  --}}
+                </li>  
 
                 <li  class="{{ Request::segment(1) === 'dashboard' ? 'active' : null }}">
                   <a href="{{url('dashboard/'.Cache::get('key'))}}">Dashboard</a>

@@ -1,10 +1,11 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Upload;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 class UploadController extends Controller
 {
     /**
@@ -15,8 +16,14 @@ class UploadController extends Controller
     public function index()
     {
         //
+        $files = DB::table('uploads')->get();
+        $posts = DB::table('posts')
+            ->join('users', 'posts.userId', '=', 'users.id')
+            ->select('posts.*' ,'users.name' , 'users.lastname')
+            ->get();
+        return view('upload', ['files' => $files , 'posts' => $posts]);
+        //return view('upload',['files' => Upload::get()]);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -26,7 +33,6 @@ class UploadController extends Controller
     {
         //
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -37,7 +43,6 @@ class UploadController extends Controller
     {
         //
     }
-
     /**
      * Display the specified resource.
      *
@@ -48,7 +53,6 @@ class UploadController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -59,7 +63,6 @@ class UploadController extends Controller
     {
         //
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -71,7 +74,6 @@ class UploadController extends Controller
     {
         //
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -82,4 +84,37 @@ class UploadController extends Controller
     {
         //
     }
+    public function uploadDocument(Request $request)
+    {
+        //dd($request);
+        $validator = Validator::make($request->all(), [
+                    'document'   => 'required|mimes:doc,pdf,docx,zip,rar'
+                ]);
+        if (($request->hasFile('document'))) {
+          try {
+            $file =  $request->file('document');
+            $fileName = $file->getClientOriginalName();
+            $ext = $file->getClientOriginalExtension();
+            // save in folder storage/userid/filename
+            $file->storeAs('document/' . 1, $fileName) ;
+            //save filename to DB
+            $upload = new Upload();
+            $upload->fileName = $fileName ;
+            $upload->FileExtension = $ext ;
+            $upload->projectId = 1;
+            $upload->save();
+            return back()->with('success', 'upload file success');
+          } catch (\Exception $e) {
+            dd($e);
+            }
+          }else {
+            return back()->with('warning', 'no file');
+          }
+  }
+  public function downloadDocument($fileName)
+  {
+      //  1 = projectId
+      $pathToFile = '../storage/app/document/1/'.$fileName;
+      return response()->file($pathToFile);
+  }
 }

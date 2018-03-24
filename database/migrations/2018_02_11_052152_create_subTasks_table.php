@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUploadsTable extends Migration
+class CreateSubTasksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateUploadsTable extends Migration
      */
     public function up()
     {
-        Schema::create('uploads', function (Blueprint $table) {
+        Schema::create('subTasks', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('fileName');
-            $table->string('FileExtension');
-            $table->integer('projectId')->unsigned();
+            $table->string('name');
+            $table->LongText('desc');
+            $table->integer('taskId')->unsigned();
+            $table->boolean('completed')->default(false);
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateUploadsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('uploads');
+        Schema::dropIfExists('subTasks');
     }
 }
