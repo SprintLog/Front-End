@@ -107,9 +107,9 @@ class ProjectListController extends Controller
         }
 
 
-        //  INSERT FACTER
+        //  INSERT FACTER ECF
        $pid = $project->id;
-       $array_topic = array(
+       $array_topic_ecf = array(
                 "Familiar with the development process",
                 "Application experience",
                 "Object-oriented experience",
@@ -119,13 +119,13 @@ class ProjectListController extends Controller
                 "Part-time staff",
                 "Difficult programming language"
            );
-      $array_weight =  array(5,2,1,2,2,5,4,3);
+      $array_weight_ecf =  array(5,2,1,2,2,5,4,3);
 
        for ($i=0; $i < 7 ; $i++) {
           $ecf = new Ecf;
-          $ecf->topic    = $array_topic[$i];
-          $ecf->des      = "คำอธิบาย";
-          $ecf->weight   = $array_weight[$i];
+          $ecf->topic    =  $array_topic_ecf[$i];
+          $ecf->des      =  "คำอธิบาย";
+          $ecf->weight   =  $array_weight_ecf[$i];
           $ecf->rate     =  0;
           $ecf->result   =  0;
           $ecf->projectId=  $pid;
@@ -133,7 +133,35 @@ class ProjectListController extends Controller
        }
 
 
+       //  INSERT FACTER TCF
+       $pid = $project->id;
+       $array_topic_tcf = array(
+               "Distributed system",
+               "Performance objectives",
+               "End-user efficiency",
+               "Complex processing",
+               "Reusable code",
+               "Easy to install",
+               "Easy to use",
+               "Portable",
+               "Easy to change",
+               "Security",
+               "Access for third parties",
+               "Training needs",
 
+          );
+     $array_weight_tcf =  array(2,1,1,1,1,0,0,2,1,1,1,1,1);
+
+      for ($i=0; $i < 7 ; $i++) {
+         $tcf = new Tcf;
+         $tcf->topic    = $array_topic_tcf[$i];
+         $tcf->des      = "คำอธิบาย";
+         $tcf->weight   = $array_weight_tcf[$i];
+         $tcf->rate     =  0;
+         $tcf->result   =  0;
+         $tcf->projectId=  $pid;
+         $tcf->save();
+      }
         return redirect('/home');
     }
 
