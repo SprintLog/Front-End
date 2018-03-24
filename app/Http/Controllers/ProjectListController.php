@@ -152,10 +152,6 @@ class ProjectListController extends Controller
         //
     }
 
-    public function ajaxData(Request $request){
-     $query = $request->get('query','');
-     $users = User::where('name','LIKE','%'.$query.'%')->get();
-     return response()->json($users);
-   }
+   
 
 }

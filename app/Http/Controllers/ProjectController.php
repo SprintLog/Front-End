@@ -85,18 +85,14 @@ class ProjectController extends Controller
 
       $TypeProject = DB::table('type_project')->get();
 
-      $userLetureShow = DB::table("users")
-      ->select('id','name','lastname')
-      ->where('typeUser','=',1)
-      ->get();
+
 
        // dd($userInfo);
       return view('projectinfo', compact('project',
                                         'userLeture',
                                         'userStd',
                                         'TypeProject',
-                                        'TypeProjectIsNow',
-                                        'userLetureShow'));
+                                        'TypeProjectIsNow'));
     }
 
     /**

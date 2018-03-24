@@ -132,7 +132,7 @@
 
 </div>
 <script type="text/javascript">
-    var url = "{{ route('autocomplete.ajax') }}";
+    var url = "{{ route('autocomplete.ajax.std') }}";
     $('#field1').typeahead({
         source:  function (query, process) {
         return $.get(url, { query: query }, function (data) {
@@ -151,7 +151,7 @@
          next = next + 1;
          var newIn = '<input autocomplete="off" class="input form-control" id="field' + next + '" name="developer[]" type="text">';
          var newInput = $(newIn);
-         var removeBtn = '<button id="remove' + (next - 1) + '" class="btn  remove-me" >Remove </button></div><div id="field">';
+         var removeBtn = '<button id="remove' + (next - 1) + '" class="btn  remove-me" >Remove </button>';
          var removeButton = $(removeBtn);
          $(addto).after(newInput);
          $(addRemove).after(removeButton);
@@ -164,7 +164,7 @@
            $(this).remove();
            $(fieldID).remove();
          });
-         var url = "{{ route('autocomplete.ajax') }}";
+         var url = "{{ route('autocomplete.ajax.std') }}";
          $("#field" + next).typeahead({
              source:  function (query, process) {
              return $.get(url, { query: query }, function (data) {

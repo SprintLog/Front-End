@@ -75,12 +75,8 @@
           Advisors
       </label>
       <div class="col-sm-5">
-          <select class="form-control" name='advisorsId'>
-            <option selected="selected" value="{{$userLeture->id}}">{{$userLeture->name}}</option>
-            @foreach ($userLetureShow as $u)
-              <option value="{{$u->id}}">{{$u->name}}</option>
-            @endforeach
-          </select>
+         <input   class="form-control" id="fieldLec"  name="developer[]"
+         type="text" data-items="8" value={{$userLeture->name}}/>
           <input type="hidden" name="userLetureIsDefault" value="{{$userLeture->id}}">
       </div>
     </div>
@@ -93,14 +89,14 @@
          <div class="form-inline"  id="fields" >
             @for ($i=0; $i < count($userStd); $i++)
                <div id="field">
-                  <input   class="form-control" id="field1" name="developer[]"
+                  <input   class="form-control" id="field{{$i}}"  name="developer[]"
                   type="text" data-items="8" value={{$userStd[$i]->name}}/>
                   @if ($i ==  count($userStd)-1)
                      <button id="b1" class="btn add-more" type="button"    >
                       Add
                     </button>
                   @endif
-                </div>
+               </div>
             @endfor
 
          </div>
@@ -134,8 +130,18 @@
   </form>
 </div>
 <script type="text/javascript">
-    var url = "{{ route('autocomplete.ajax') }}";
-    $('#field1').typeahead({
+    var url = "{{ route('autocomplete.ajax.lec') }}";
+    $('#fieldLec').typeahead({
+        source:  function (query, process) {
+        return $.get(url, { query: query }, function (data) {
+                return process(data);
+          });
+        }
+    });
+</script>
+<script type="text/javascript">
+    var url = "{{ route('autocomplete.ajax.std') }}";
+    $('#field0').typeahead({
         source:  function (query, process) {
         return $.get(url, { query: query }, function (data) {
                 return process(data);
@@ -145,7 +151,7 @@
 </script>
 <script type="text/javascript">
    $(document).ready(function(){
-    var next = 1;
+    var next = 2;
     $(".add-more").click(function(e){
          e.preventDefault();
          var addto = "#field" + next;
@@ -153,7 +159,7 @@
          next = next + 1;
          var newIn = '<input autocomplete="off" class="input form-control" id="field' + next + '" name="developer[]" type="text">';
          var newInput = $(newIn);
-         var removeBtn = '<button id="remove' + (next - 1) + '" class="btn  remove-me" >Remove </button></div><div id="field">';
+         var removeBtn = '<button id="remove' + (next - 1) + '" class="btn  remove-me" >Remove </button>';
          var removeButton = $(removeBtn);
          $(addto).after(newInput);
          $(addRemove).after(removeButton);
@@ -166,7 +172,7 @@
            $(this).remove();
            $(fieldID).remove();
          });
-         var url = "{{ route('autocomplete.ajax') }}";
+         var url = "{{ route('autocomplete.ajax.std') }}";
          $("#field" + next).typeahead({
              source:  function (query, process) {
              return $.get(url, { query: query }, function (data) {
