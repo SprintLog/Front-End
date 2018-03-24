@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Project;
 use App\Match;
 use App\User;
+use App\Ecf;
+use App\Tcf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -104,8 +106,37 @@ class ProjectListController extends Controller
           $m->save();
         }
 
+
+        //  INSERT FACTER
+       $pid = $project->id;
+       $array_topic = array(
+                "Familiar with the development process",
+                "Application experience",
+                "Object-oriented experience",
+                "Lead analyst capability",
+                "Motivation",
+                "Stable requirements",
+                "Part-time staff",
+                "Difficult programming language"
+           );
+      $array_weight =  array(5,2,1,2,2,5,4,3);
+
+       for ($i=0; $i < 7 ; $i++) {
+          $ecf = new Ecf;
+          $ecf->topic    = $array_topic[$i];
+          $ecf->des      = "คำอธิบาย";
+          $ecf->weight   = $array_weight[$i];
+          $ecf->rate     =  0;
+          $ecf->result   =  0;
+          $ecf->projectId=  $pid;
+          $ecf->save();
+       }
+
+
+
         return redirect('/home');
     }
+
 
     /**
      * Display the specified resource.
@@ -152,6 +183,6 @@ class ProjectListController extends Controller
         //
     }
 
-   
+
 
 }
