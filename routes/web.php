@@ -11,10 +11,10 @@ Route::post('/estimage_updateall', 'EffortEstimationsController@updateAll'); // 
 Route::resource('/task', 'TaskController');
 Route::resource('/dashboard', 'DashboardController');
 
-Route::get('autocomplete-ajaxLectureStd',
+Route::get('autocomplete-ajaxStd',
    array('as'=>'autocomplete.ajax.std',
    'uses'=>'AutoComplateController@ajaxDataStd'));
 
-Route::get('autocomplete-ajaxLectureLec',
+Route::get('autocomplete-ajaxLec',
    array('as'=>'autocomplete.ajax.lec',
    'uses'=>'AutoComplateController@ajaxDataLec'));

@@ -1,4 +1,4 @@
-@extends('layouts.template')
+   @extends('layouts.template')
 
 @section('style')
 
@@ -130,26 +130,6 @@
   </form>
 </div>
 <script type="text/javascript">
-    var url = "{{ route('autocomplete.ajax.lec') }}";
-    $('#fieldLec').typeahead({
-        source:  function (query, process) {
-        return $.get(url, { query: query }, function (data) {
-                return process(data);
-          });
-        }
-    });
-</script>
-<script type="text/javascript">
-    var url = "{{ route('autocomplete.ajax.std') }}";
-    $('#field0').typeahead({
-        source:  function (query, process) {
-        return $.get(url, { query: query }, function (data) {
-                return process(data);
-          });
-        }
-    });
-</script>
-<script type="text/javascript">
    $(document).ready(function(){
     var next = 2;
     $(".add-more").click(function(e){
@@ -180,6 +160,15 @@
                });
              }
          });
+    });
+    //  FOR PROFRESSER 
+    var url = "{{ route('autocomplete.ajax.lec') }}";
+    $('#fieldLec').typeahead({
+        source:  function (query, process) {
+        return $.get(url, { query: query }, function (data) {
+                return process(data);
+          });
+        }
     });
  });
 </script>
