@@ -1,5 +1,4 @@
 <?php
-/* --------------- Login -------------------- */
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
@@ -28,6 +27,10 @@ Route::resource('/dashboard', 'DashboardController');
 Route::get('autocomplete-ajaxStd',
    array('as'=>'autocomplete.ajax.std',
    'uses'=>'AutoComplateController@ajaxDataStd'));
+
+Route::get('autocomplete-ajaxLec',
+   array('as'=>'autocomplete.ajax.lec',
+   'uses'=>'AutoComplateController@ajaxDataLec'));
 //for sub task
 Route::get('/subTask/{id}', 'SubTaskController@index');
 Route::post('/subTask/create', 'SubTaskController@store');
@@ -39,17 +42,5 @@ Route::get('/subTask/completed/{id}', 'SubTaskController@completed');
 Route::resource('/dashboard', 'DashboardController');
 /* --------------- VIEW ONLY -------------------- */
 
-Route::get('autocomplete-ajaxLec',
-   array('as'=>'autocomplete.ajax.lec',
-   'uses'=>'AutoComplateController@ajaxDataLec'));
-
-
-Route::get('/listproject', 'viewController@pageListProject');
-Route::get('/homet', 'viewController@pageHome');
-Route::get('/projectinfo', 'viewController@pageprojectInfo');
-Route::get('/planing', 'viewController@pagePlaning');
 
 Route::get('/kanbanBoard', 'viewController@pageKanbanBoard');
-
-//Route::get('/upload', 'viewController@pageUpload');
-//Route::get('/dashboard', 'viewController@pageDashboard');

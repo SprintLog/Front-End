@@ -18,8 +18,43 @@ class DashboardController extends Controller
     public function index()
     {
 
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+        //
+        //Maybe get request value projectId
+
         //********************Get sum result of rate TCF***********************
-        $tcf = DB::table('tcfs')->select(DB::raw('SUM(result) as total_result'))->where('projectId', 1)->get();
+        $tcf = DB::table('tcfs')->select(DB::raw('SUM(result) as total_result'))->where('projectId', $id)->get();
         $total_resultTcf ;
 
 
@@ -28,7 +63,7 @@ class DashboardController extends Controller
         }
 
         //Get sum result of rate ECF
-        $ecf = DB::table('ecfs')->select(DB::raw('SUM(result) as total_result'))->where('projectId', 1)->get();
+        $ecf = DB::table('ecfs')->select(DB::raw('SUM(result) as total_result'))->where('projectId', $id)->get();
         $total_resultEcf ;
         foreach ($ecf as $ecf) {
            $total_resultEcf = $ecf->total_result;
@@ -37,13 +72,13 @@ class DashboardController extends Controller
         //*********************************calculate UUCP**********************
         //get simple task
 
-        $simple = DB::table('tasks')->where('complexity', 1)->where('projectId', 1)->count();
+        $simple = DB::table('tasks')->where('complexity', 1)->where('projectId', $id)->count();
       //echo 'simple tasks = '.$simple.'<br>';
 
-        $middle = DB::table('tasks')->where('complexity', 2)->where('projectId', 1)->count();
+        $middle = DB::table('tasks')->where('complexity', 2)->where('projectId', $id)->count();
         //echo 'middle tasks = '.$middle.'<br>';
 
-        $complex = DB::table('tasks')->where('complexity', 3)->where('projectId', 1)->count();
+        $complex = DB::table('tasks')->where('complexity', 3)->where('projectId', $id)->count();
         //echo 'complex tasks = '.$complex.'<br>';
 
         $UUCP = ($simple * 5) + ($middle * 10) +  ($complex * 15);
@@ -64,7 +99,7 @@ class DashboardController extends Controller
 
 
         //********************* Calculate Progress****************************
-        $taskLists = Task::where('projectId', '=', 1)->get();
+        $taskLists = Task::where('projectId', '=', $id)->get();
         $progressProject = [] ;
         $taskNameList = [] ;
         $progressAll = 0 ;
@@ -128,92 +163,6 @@ class DashboardController extends Controller
                                 'progressProject'=> $progressProject ,
                                 'projectComplete'=>$projectComplete
                               ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-      //
-      //Maybe get request value projectId
-
-      //Get sum result of rate TCF
-      $tcf = DB::table('tcfs')->select(DB::raw('SUM(result) as total_result'))->where('projectId','=',$id)->get();
-      $total_resultTcf ;
-
-
-      foreach ($tcf as $tcf) {
-         $total_resultTcf = $tcf->total_result;
-      }
-
-      //Get sum result of rate ECF
-      $ecf = DB::table('ecfs')->select(DB::raw('SUM(result) as total_result'))->where('projectId','=',$id)->get();
-      $total_resultEcf ;
-      foreach ($ecf as $ecf) {
-         $total_resultEcf = $ecf->total_result;
-      }
-
-      //calculate UUCP
-      //get simple task
-
-      $simple = DB::table('tasks')->where('complexity', 1)->where('projectId','=',$id)->count();
-    //echo 'simple tasks = '.$simple.'<br>';
-
-      $middle = DB::table('tasks')->where('complexity', 2)->where('projectId', '=',$id)->count();
-      //echo 'middle tasks = '.$middle.'<br>';
-
-      $complex = DB::table('tasks')->where('complexity', 3)->where('projectId', '=',$id)->count();
-      //echo 'complex tasks = '.$complex.'<br>';
-
-      $UUCP = ($simple * 5) + ($middle * 10) +  ($complex * 15);
-
-      //Calculate UUCP
-      $TCF = 0.6 + ($total_resultTcf / 100 ) ;
-      $ECF = 1.4 + (-0.03 * $total_resultEcf) ;
-      $UCP = $UUCP * $TCF *$ECF ;
-      //$HUCP = 405/$UCP ;
-
-      $HUCP = number_format(405/$UCP, 2, '.', ' ');
-      /*
-      echo "UCP = UUCP * TCF * ECF". "<br>";
-      echo "UCP = " . $UUCP . " * " . $TCF . " * " . $ECF. "<br>" ;
-      echo "UCP = " . $UUCP * $TCF *$ECF . "<br>";
-      echo "Hours/UCP = " . 405/$UCP . " UUCP" ;
-      */
-
-      $tasks = DB::table('tasks')->where('projectId','=',$id)->get();
-
-
-      return view('dashboard', ['TCF'   => $TCF ,
-                                'ECF'   => $ECF ,
-                                'UCP'   => $UCP ,
-                                'HUCP'  => $HUCP ,
-                                'tasks' => $tasks]);
     }
 
     /**
