@@ -12,5 +12,8 @@ class User extends Authenticatable
     public function macth(){
       return $this->hasMany('App\Match');
     }
-
+    public function post()
+    {
+      return $this->hasMany(Posts::class ,'userId');
+    }
 }

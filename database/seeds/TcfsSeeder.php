@@ -42,19 +42,20 @@ class TcfsSeeder extends Seeder
       //   ]);
       // }
 
-      for ($i=0; $i <= 12; $i++){
-        $rate = array_random($arrayrate);
-        DB::table('tcfs')->insert([
-          'topic'     => $TC[$i],
-          'des'       => str_random(10),
-          'weight'    => $arrayweight[$i],
-          'rate'      => $rate,
-          'result'    => $rate * $arrayweight[$i]  ,
-          'projectId' => 6,
-          'created_at'=> Carbon::now()->format('Y-m-d H:i:s'),
-          'updated_at'=> Carbon::now()->format('Y-m-d H:i:s'),
-        ]);
+      for ($j=1; $j < 6; $j++) {
+         for ($i=0; $i <= 12; $i++){
+           $rate = array_random($arrayrate);
+           DB::table('tcfs')->insert([
+             'topic'     => $TC[$i],
+             'des'       => str_random(10),
+             'weight'    => $arrayweight[$i],
+             'rate'      => $rate,
+             'result'    => $rate * $arrayweight[$i]  ,
+             'projectId' => $j,
+             'created_at'=> Carbon::now()->format('Y-m-d H:i:s'),
+             'updated_at'=> Carbon::now()->format('Y-m-d H:i:s'),
+           ]);
+         }
       }
-
     }
 }

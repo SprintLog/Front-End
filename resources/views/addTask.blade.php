@@ -72,7 +72,7 @@
                                   <tr>
                                       <td class="table-text">
                                           <div>
-                                            {{ $tasks->nametask }}
+                                            <a href="/subTask/{{$tasks->id}}"><div>{{ $tasks->nametask }}</div></a>
                                           </div>
                                       </td>
 

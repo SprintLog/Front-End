@@ -50,6 +50,7 @@
           @php
           $nametask = [] ;
           $complexity = [] ;
+          $progress=[] ;
           @endphp
           @foreach ($tasks as $tasks)
             @php
@@ -57,9 +58,15 @@
               array_push($complexity,$tasks->complexity);
             @endphp
           @endforeach
+          @foreach ($progressProject as $progressProject)
+            @php
+              array_push($progress,$progressProject);
+            @endphp
+          @endforeach
           @php
             echo '<script>';
             echo 'var nametask = ' . json_encode($nametask) . ';';
+            echo 'var progress = ' . json_encode($progress) . ';';
             echo '</script>';
           @endphp
 
@@ -133,7 +140,7 @@
           labels: nametask,
           datasets: [{
               label: 'Progress Transaction (%)',
-              data: [12, 19, 3, 5, 2, 3],
+              data: progress,
               backgroundColor: [
                   'rgba(255, 99, 132, 0.2)',
                   'rgba(54, 162, 235, 0.2)',
@@ -189,7 +196,7 @@ new Chart(document.getElementById("pie-chart"), {
     datasets: [{
       label: "Overview Status",
       backgroundColor: ["#c45850", "#e8c3b9"],
-      data: [20,80]
+      data: [{{$projectComplete}},100-{{$projectComplete}}]
     }]
   },
   options: {
