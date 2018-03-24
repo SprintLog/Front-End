@@ -22,7 +22,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-      
+
     }
 
     /**
@@ -81,27 +81,18 @@ class ProjectController extends Controller
                ->where('ProjectId',$id);
             })->where('typeUser','=',0)
       ->get();
-      // dd($userStd);
+       // dd($userStd);
+
       $TypeProject = DB::table('type_project')->get();
 
-      $userStdShow  = DB::table("users")
-      ->select('id','name','lastname')
-      ->where('typeUser','=',0)
-      ->get();
 
-      $userLetureShow = DB::table("users")
-      ->select('id','name','lastname')
-      ->where('typeUser','=',1)
-      ->get();
 
        // dd($userInfo);
       return view('projectinfo', compact('project',
                                         'userLeture',
                                         'userStd',
                                         'TypeProject',
-                                        'TypeProjectIsNow',
-                                        'userStdShow',
-                                        'userLetureShow'));
+                                        'TypeProjectIsNow'));
     }
 
     /**
