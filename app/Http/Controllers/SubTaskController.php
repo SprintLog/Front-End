@@ -69,6 +69,17 @@ class SubTaskController extends Controller
       $task = Subtasks::find($id)->delete();
       return back();
     }
+    public function update(Request $request)
+    {
+      $subtaskId = $request->id;
+      $subtaskName =  $request->name;
+      $desc =  $request->desc;
+
+      Subtasks::where('id', $subtaskId)
+          ->update(['name' => $subtaskName , 'desc' => $desc ]);
+
+        return back()->with('success', 'Update Sub-Task Success');  
+    }
     public function calculate()
     {
       //$tasks = DB::table('subtasks')->where('taskId' , 6)->where('completed' , 0)->get();
@@ -111,5 +122,6 @@ class SubTaskController extends Controller
       // }
       // $progressAll = array_sum($progressProject) / count($progressProject) ;
       // echo "progress in project = $progressAll" ;
+      return view('dashboard', ['progressProject' => $progressProject]);
     }
 }
