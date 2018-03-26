@@ -4,6 +4,15 @@
 @endsection
 
 @section('script')
+  {{-- <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous"> --}}
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
 @endsection
 
 @section('content')
@@ -28,7 +37,7 @@
       New Sub-Task
   </div>
   <div class="panel-body">
-      <!-- New Task Form -->
+      <!-- New Sub-Task Form -->
       <form data-toggle="validator" action="/subTask/create" method="POST" enctype="multipart/form-data">
           {{ csrf_field() }}
           <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }} ">
@@ -86,6 +95,15 @@
                 @endif
                 </form>
                 <td>
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-info"
+                  data-toggle="modal"
+                  data-name="{{$subtask->name}}"
+                  data-id="{{$subtask->id}}"
+                  data-desc="{{$subtask->desc}}"
+                  data-target="#exampleModal">
+                    Edit
+                  </button>
                   <form action="{{ url('subTask/'.$subtask->id) }}" method="POST">
                       {{ csrf_field() }}
                       {{ method_field('DELETE') }}
@@ -104,4 +122,56 @@
         </table>
       </div>
     @endif
+
+    <!-- Modal for edit -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form action="{{ url('subTask/update') }}" method="POST">
+              {{ csrf_field() }}
+              {{ method_field('PUT') }}
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Sub-Task Name:</label>
+                 <input type="hidden" name ="id" id="subtask-id" >
+                <input type="text" class="form-control" name="name" id="subtask-name">
+              </div>
+              <div class="form-group">
+                <label for="message-text" class="col-form-label">Description:</label>
+                <textarea class="form-control" name="desc" id="desc-text"></textarea>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Send message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{-- script ajax for show data to modal  --}}
+    <script type="text/javascript">
+    $('#exampleModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) // Button that triggered the modal
+      var name = button.data('name')
+      var id = button.data('id')
+      var desc = button.data('desc')
+      // Extract info from data-* attributes
+      // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+      // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+      var modal = $(this)
+      modal.find('.modal-title').text('New message to ' + id)
+      modal.find('#subtask-id').val(id)
+      modal.find('#subtask-name').val(name)
+      modal.find('#desc-text').val(desc)
+    })
+      </script>
+
 @endsection
