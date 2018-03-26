@@ -78,7 +78,7 @@ class SubTaskController extends Controller
       Subtasks::where('id', $subtaskId)
           ->update(['name' => $subtaskName , 'desc' => $desc ]);
 
-        return back()->with('success', 'Update Sub-Task Success');  
+        return back()->with('success', 'Update Sub-Task Success');
     }
     public function calculate()
     {

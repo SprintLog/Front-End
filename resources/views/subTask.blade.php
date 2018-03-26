@@ -96,7 +96,12 @@
                 </form>
                 <td>
                   <!-- Button trigger modal -->
-                  <button type="button" class="btn btn-info" data-toggle="modal" data-name="{{$subtask->name}}" data-id="{{$subtask->id}}" data-desc="{{$subtask->desc}}"  data-target="#exampleModal">
+                  <button type="button" class="btn btn-info"
+                  data-toggle="modal"
+                  data-name="{{$subtask->name}}"
+                  data-id="{{$subtask->id}}"
+                  data-desc="{{$subtask->desc}}"
+                  data-target="#exampleModal">
                     Edit
                   </button>
                   <form action="{{ url('subTask/'.$subtask->id) }}" method="POST">
@@ -131,6 +136,7 @@
           <div class="modal-body">
             <form action="{{ url('subTask/update') }}" method="POST">
               {{ csrf_field() }}
+              {{ method_field('PUT') }}
               <div class="form-group">
                 <label for="recipient-name" class="col-form-label">Sub-Task Name:</label>
                  <input type="hidden" name ="id" id="subtask-id" >
