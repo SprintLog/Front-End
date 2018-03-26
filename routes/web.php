@@ -38,6 +38,9 @@ Route::delete('/subTask/{id}', 'SubTaskController@destroy');
 Route::get('/subTask/completed/{id}', 'SubTaskController@completed');
 
 
+//calculate progress
+//Route::get('/dashboard  ', 'SubTaskController@calculate');
+
 //showdashboard
 Route::resource('/dashboard', 'DashboardController');
 /* --------------- VIEW ONLY -------------------- */
