@@ -2,74 +2,127 @@
 @section('style')
   <link rel="stylesheet" href="/css/EJ-kanban.css">
 @endsection
-
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 @section('script')
 @endsection
 
 @section('content')
   <div class="jumbotron far">
-    <div class="form-group row far">
-        <p class="total-card-counter" id="totalCards"></p>
-        <form id="frmAddTodo" class="form-add-todo">
-          Add Project:
-          <input type="text" autocomplete="off" name="todo_text" id="" value="" placeholder="Write and press enter" />
-        </form>
-    </div>
-    <div class="form-group row far">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/home/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{$projectName}}</li>
+      </ol>
+    </nav>
+    <div class="container-fluid" style="min-width: 1050px;">
+            <div id="sortableKanbanBoards" class="row">
+                <div class="col-md-10 col-md-offset-1">
+                                <div class="panel panel-primary kanban-col">
+                    <div class="panel-heading">
+                        TODO
+                        <i class="fa fa-2x fa-plus-circle pull-right"></i>
+                    </div>
+                    <div class="panel-body" style="max-height: 401px;">
+                        <div id="TODO" class="kanban-centered">
+                          @foreach ($todos as $todo)
+                            <article class="kanban-entry grab" draggable="true">
+                              <div class="kanban-entry-inner">
+                              <div class="kanban-label">
+                                <h2>{{$todo}}</h2>
+                              </div>
+                            </div>
+                            </article>
+                          @endforeach
+                        {{-- <article class="kanban-entry grab" id="item0" draggable="true">
+                          <div class="kanban-entry-inner">
+                          <div class="kanban-label">
+                            <h2>qwdq</h2>
+                          </div>
+                        </div>
+                        </article>
+                        <article class="kanban-entry grab" id="item1" draggable="true">
+                            <div class="kanban-entry-inner">
+                            <div class="kanban-label"><h2>wdq</h2>
+                            </div>
+                          </div>
+                        </article>
+                        <article class="kanban-entry grab" id="item2" draggable="true">
+                              <div class="kanban-entry-inner"><div class="kanban-label">
+                                <h2>wdqqeqe</h2></div>
+                              </div>
+                        </article>
+                        <article class="kanban-entry grab" id="item3" draggable="true">
+                                <div class="kanban-entry-inner">
+                                <div class="kanban-label">
+                                  <h2>wqe</h2>
+                                </div>
+                              </div>
+                      </article> --}}
 
-      <div class="boards" id="boards">
-        {{-- FORTEST --}}
-        <div draggable="true" data-id="1" data-list-id="1" id="todo_1" class="card">
-          <div class="row">
-            <div class="col-sm-8">
-              <i class="fa fa-file-code-o"></i> Authentication
-            </div>
-            <div class="col-sm-3 pull-right">
-              <i class="fa fa-user"></i> Army
-            </div>
-          </div>
-            <div class="row">
-              <div class="col-sm-8">
-                  login user มี type 2 แบบ
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-8">
-                Dependency: Task001
-              </div>
-            </div>
-        </div>
-        {{-- FORTEST --}}
-      </div>
-    </div>
-  </div>
+                          </div>
+                    </div>
+                </div>
+                <div class="panel panel-primary kanban-col">
+                    <div class="panel-heading">
+                        DOING
+                        <i class="fa fa-2x fa-plus-circle pull-right"></i>
+                    </div>
+                    <div class="panel-body" style="max-height: 401px;">
+                        <div id="DOING" class="kanban-centered">
+                          @foreach ($doings as $doing)
+                            <article class="kanban-entry grab" draggable="true">
+                              <div class="kanban-entry-inner">
+                              <div class="kanban-label">
+                                <h2>{{$doing}}</h2>
+                              </div>
+                            </div>
+                            </article>
+                          @endforeach
+                          {{-- <article class="kanban-entry grab" id="item3" draggable="true">
+                                  <div class="kanban-entry-inner">
+                                  <div class="kanban-label">
+                                    <h2>wqe</h2>
+                                  </div>
+                                </div>
+                        </article> --}}
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-primary kanban-col">
+                    <div class="panel-heading">
+                        DONE
+                        <i class="fa fa-2x fa-plus-circle pull-right"></i>
+                    </div>
+                    <div class="panel-body" style="max-height: 401px;">
+                        <div id="DONE" class="kanban-centered">
 
-  <div class="jumbotron far">
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-      Launch demo modal
-    </button>
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            ...
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </div>
-</div>
+                          @foreach ($doings as $doing)
+                            <article class="kanban-entry grab" draggable="true">
+                              <div class="kanban-entry-inner">
+                              <div class="kanban-label">
+                                <h2>{{$doing}}</h2>
+                              </div>
+                            </div>
+                            </article>
+                          @endforeach
+                          {{-- <article class="kanban-entry grab" id="item3" draggable="true">
+                                  <div class="kanban-entry-inner">
+                                  <div class="kanban-label">
+                                    <h2>wqe</h2>
+                                  </div>
+                                </div>
+                        </article> --}}
+                        </div>
+                    </div>
+                </div>
+                    <div class="col-md-2">
+                        {{-- <button id="btn-add-task" class="btn btn-primary">Add Task</button> --}}
+                    </div>
+                </div>
+            </div>
+            </div>
   </div>
 @endsection
 
