@@ -31,7 +31,7 @@
               <img id="brand-image"  style="height:120%;display:inline-block;" src="https://avatars1.githubusercontent.com/u/34474167?s=200&v=4"></a>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
-            @if (Auth::check())
+              @if(Auth::user()->typeUser == 0)  <!-- for Std -->
               <ul class="nav navbar-nav">
 
                 <li class="{{ Request::segment(1) === 'home' ? 'active' : null }}">
@@ -55,11 +55,31 @@
                 </li>
                 <li>
                   <a href="{{url('upload')}}">Upload</a>
-                </li>  
+                </li>
 
                 <li  class="{{ Request::segment(1) === 'dashboard' ? 'active' : null }}">
                   <a href="{{url('dashboard/'.Cache::get('key'))}}">Dashboard</a>
                 </li>
+              </ul>
+
+              @elseif(Auth::user()->typeUser == 1) <!-- for Teacher -->
+
+              <ul class="nav navbar-nav">
+
+                <li class="{{ Request::segment(1) === 'home' ? 'active' : null }}">
+                  <a href="{{url('home')}}">Home</a></li>
+                <li  class="{{ Request::segment(1) === 'projectinfo' ? 'active' : null }}">
+                  <a href="{{url('projectinfo')}}">Project Info</a></li>
+                <li class="{{ Request::segment(1) === 'planing' ? 'active' : null }}">
+                  <a href="{{url('planing')}}">Planing</a></li>
+                <li class="{{ Request::segment(1) === 'estimage' ? 'active' : null }}">
+                  <a href="{{url('estimage')}}">Estimage</a></li>
+                <li class="{{ Request::segment(1) === 'kanbanBoard' ? 'active' : null }}">
+                  <a href="{{url('kanbanBoard')}}">Kanban Board</a></li>
+                <li>
+                  <a href="{{url('upload')}}">progress</a></li>
+                <li  class="{{ Request::segment(1) === 'dashboard' ? 'active' : null }}">
+                  <a href="{{url('dashboard')}}">Dashboard</a></li>
               </ul>
 
               <ul class="nav navbar-nav navbar-right">
