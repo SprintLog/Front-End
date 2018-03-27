@@ -37,7 +37,7 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function redirectPath()
+  /*  public function redirectPath()
     {
       if (\Auth::user()->userType == '0') {
             return '/home';
@@ -50,6 +50,6 @@ class LoginController extends Controller
       else {
             return '/home';
       }
-    }
+    }*/
 
 }
