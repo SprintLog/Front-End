@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 use App\Task;
+use App\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -31,6 +32,7 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+
       // dd($request);
       $validator = Validator::make($request->all(), [
             'nameTask' => 'required|max:255',
@@ -61,8 +63,9 @@ class TaskController extends Controller
     {
       $globalsID=$id;
       $tasks = DB::table('tasks')->where('projectId','=',$id)->get();
+      $projectName = Project::where('id' , $id)->first()->eng_name ;
       // dd($tasks);
-      return view('addTask', ['tasks' => $tasks]);
+    return view('addTask', ['tasks' => $tasks , 'projectName' => $projectName]);
     }
     /**
      * Show the form for editing the specified resource.
