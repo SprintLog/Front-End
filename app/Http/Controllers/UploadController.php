@@ -49,9 +49,15 @@ class UploadController extends Controller
      * @param  \App\Upload  $upload
      * @return \Illuminate\Http\Response
      */
-    public function show(Upload $upload)
+    public function show($id)
     {
         //
+        $files = DB::table('uploads')->where('projectId' ,$id )->get();
+        $posts = DB::table('posts')
+            ->join('users', 'posts.userId', '=', 'users.id')
+            ->select('posts.*' ,'users.name' , 'users.lastname')
+            ->get();
+        return view('upload', ['files' => $files , 'posts' => $posts, 'id' => $id]);
     }
     /**
      * Show the form for editing the specified resource.
@@ -96,12 +102,12 @@ class UploadController extends Controller
             $fileName = $file->getClientOriginalName();
             $ext = $file->getClientOriginalExtension();
             // save in folder storage/userid/filename
-            $file->storeAs('document/' . 1, $fileName) ;
+            $file->storeAs('document/' . $request->projectId, $fileName) ;
             //save filename to DB
             $upload = new Upload();
             $upload->fileName = $fileName ;
             $upload->FileExtension = $ext ;
-            $upload->projectId = 1;
+            $upload->projectId = $request->projectId;
             $upload->save();
             return back()->with('success', 'upload file success');
           } catch (\Exception $e) {
@@ -111,10 +117,10 @@ class UploadController extends Controller
             return back()->with('warning', 'no file');
           }
   }
-  public function downloadDocument($fileName)
+  public function downloadDocument($fileName , Request $request)
   {
-      //  1 = projectId
-      $pathToFile = '../storage/app/document/1/'.$fileName;
+      $projectId = $request->projectId ;
+      $pathToFile = '../storage/app/document/' . $projectId .'/'.$fileName;
       return response()->file($pathToFile);
   }
 }
