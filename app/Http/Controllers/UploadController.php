@@ -56,6 +56,7 @@ class UploadController extends Controller
         $posts = DB::table('posts')
             ->join('users', 'posts.userId', '=', 'users.id')
             ->select('posts.*' ,'users.name' , 'users.lastname')
+            ->where('projectId' ,$id )
             ->get();
         return view('upload', ['files' => $files , 'posts' => $posts, 'id' => $id]);
     }
