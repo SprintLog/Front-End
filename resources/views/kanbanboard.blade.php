@@ -5,10 +5,14 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
 @section('script')
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 @endsection
 
 @section('content')
+    {{-- {{$doings[1]}} --}}
   <div class="jumbotron far">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
@@ -98,11 +102,11 @@
                     <div class="panel-body" style="max-height: 401px;">
                         <div id="DONE" class="kanban-centered">
 
-                          @foreach ($doings as $doing)
+                          @foreach ($dones as $done)
                             <article class="kanban-entry grab" draggable="true">
                               <div class="kanban-entry-inner">
                               <div class="kanban-label">
-                                <h2>{{$doing}}</h2>
+                                <h2>{{$done}}</h2>
                               </div>
                             </div>
                             </article>
@@ -124,6 +128,105 @@
             </div>
             </div>
   </div>
+  <div class="jumbotron far">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Complexity</th>
+        <th scope="col">Status</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach ($taskLists as $taskList)
+      <tr>
+        <th scope="row">{{$taskList->nametask}}</th>
+        <td>
+          @if($taskList->complexity == 1)
+            Simple
+          @elseif ($taskList->complexity == 2)
+            Middle
+          @else
+            Complex
+          @endif
+        </td>
+        <td>
+          <button type="button" class = "btn btn-btn btn-warning">
+          waiting
+          </button>
+        </td>
+       <td>
+         <button type="button" class="btn btn-info"
+         data-toggle="modal"
+         data-id="{{$taskList->id}}"
+         data-name="{{$taskList->nametask}}"
+         data-target="#exampleModal">
+           Comment
+         </button>
+       </td>
+      </tr>
+
+      @endforeach
+
+
+    </tbody>
+  </table>
+
+</div>
+
+  <!-- Modal for look comment -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Comment in task by : Advisor </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="{{ url('subTask/update') }}" method="POST">
+            {{ csrf_field() }}
+            {{ method_field('PUT') }}
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Sub-Task Name:</label>
+               <input type="hidden" name ="id" id="task-id" >
+              <input type="text" class="form-control" name="name" id="task-name" readonly>
+            </div>
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">Comment By : Advisor </label>
+              <textarea class="form-control" name="desc" id="desc-text" readonly></textarea>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{-- script ajax for show data to modal  --}}
+  <script type="text/javascript">
+  $('#exampleModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var name = button.data('name')
+    var id = button.data('id')
+    var desc = button.data('desc')
+    // Extract info from data-* attributes
+    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    var modal = $(this)
+    modal.find('.modal-title').text('Task ID : ' + id)
+    modal.find('#task-id').val(id)
+    modal.find('#task-name').val(name)
+    modal.find('#desc-text').val(desc)
+  })
+    </script>
+
+
+
 @endsection
 
 {{--  --}}
