@@ -109,7 +109,10 @@
               <div class = "form-group">
                 <textarea class="form-control" rows="4" cols="50" name="body" placeholder="Post status" required ></textarea>
               </div>
-              <div class = "form-gruop pull-right"><input type="submit" class ="btn btn-primary" value = "post" ></div>
+              <div class = "form-gruop pull-right">
+                <input type="hidden" name = "projectId" value="{{$id}}">
+                <input type="submit" class ="btn btn-primary" value = "post" >
+              </div>
               <div class="help-block with-errors"></div>
               <div class="form-group">
 
