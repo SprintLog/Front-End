@@ -71,7 +71,7 @@ class ProjectController extends Controller
                $query->select('userId')
                ->from('matches')
                ->where('ProjectId',$id);
-            })->where('typeUser','=',0)
+            })->where('typeUser','=',1)
       ->first();
 
       $userStd  = DB::table("users")->select('*')
@@ -79,7 +79,7 @@ class ProjectController extends Controller
                $query->select('userId')
                ->from('matches')
                ->where('ProjectId',$id);
-            })->where('typeUser','=',1)
+            })->where('typeUser','=',0)
       ->get();
        // dd($userStd);
 
@@ -165,8 +165,6 @@ class ProjectController extends Controller
       $project = Project::find($id)->delete();
       return back();
     }
-
-    
 }
 // GET     /forums              ->  index    หน้า list
 // GET     /forums/new          ->  new      show form html ให้กรอกข้อมูล

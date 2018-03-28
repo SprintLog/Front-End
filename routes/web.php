@@ -3,8 +3,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-
-Route::resource('/homeTeacher','ProjectController@showProject');
+//for Teacher
+Route::get('/homeTeacher','HomeController@indexTeacher');
 
 Route::resource('/project', 'ProjectController');
 Route::resource('/projectlist', 'ProjectListController');

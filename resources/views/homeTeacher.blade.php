@@ -2,9 +2,6 @@
 @section('style')
   <link rel="stylesheet" href="/css/EJ-kanban.css">
 @endsection
-
-<!--
-
 @section('content')
   <div class="jumbotron far">
     <div class="form-group row far">
@@ -30,4 +27,4 @@
       @endforeach
 
 
-@endsection -->
+@endsection

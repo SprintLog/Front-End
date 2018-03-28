@@ -37,4 +37,20 @@ class HomeController extends Controller
        return view('projectlist', ['project' => $project]);
     }
 
+    public function indexTeacher()
+    {
+
+       $project = DB::table("projects")->select('*')
+             ->whereIn('id',function($query) {
+                $query->select('ProjectId')
+                ->from('matches')
+                ->where('UserId',Auth::user()->id);
+             })
+       ->get();
+
+       return view('homeTeacher', ['project' => $project]);
+    }
+
+
+
 }
