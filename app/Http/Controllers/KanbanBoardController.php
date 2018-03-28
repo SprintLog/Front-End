@@ -48,7 +48,7 @@ class KanbanBoardController extends Controller
      */
     public function show($id)
     {
-        //
+        //List to kanbanboard
         $taskLists = Task::where('projectId', '=', $id)->get();
         $todos = [] ;
         $doings = [] ;
@@ -76,23 +76,26 @@ class KanbanBoardController extends Controller
 
           //echo $taskName . " : " .$progress ."<br>";
           if($progress == 0 ){
-            array_push ($todos ,$taskName);
-            // echo $taskName . " todo : " .$progress ."<br>";
-          }elseif ($progress > 0 && $progress < 100 ) {
+             array_push ($todos ,$taskName);
+             // echo $taskName . " todo : " .$progress ."<br>";
+          }elseif ($progress > 0  && $progress < 100 ) {
             array_push ($doings ,$taskName);
-            // echo $taskName . " doing : " .$progress ."<br>";
+             // echo $taskName . " doing : " .$progress ."<br>";
           }else {
             array_push ($dones ,$taskName);
-            // echo $taskName . " done : " .$progress ."<br>";
+             // echo $taskName . " done : " .$progress ."<br>";
           }
 
         }
         $projectName = Project::where('id' , $id)->first()->eng_name ;
+        // $comment =  Comment::where()
+
         return view('kanbanboard',
                                 ['todos' => $todos ,
                                 'doings'=> $doings ,
                                 'dones' => $dones,
-                                'projectName' =>$projectName
+                                'projectName' =>$projectName,
+                                'taskLists' => $taskLists
                               ]);
     }
 
