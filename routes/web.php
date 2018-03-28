@@ -5,6 +5,7 @@ Route::get('/home', 'HomeController@index');
 
 //for Teacher
 Route::get('/homeTeacher','HomeController@indexTeacher');
+Route::resource('/projectTeacher', 'ProjectController');
 
 Route::resource('/project', 'ProjectController');
 Route::resource('/projectlist', 'ProjectListController');

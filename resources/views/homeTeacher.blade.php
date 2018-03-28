@@ -13,7 +13,7 @@
                   <h3>{{$project->eng_name}} &nbsp; {{$project->thai_name}}</h3>
                     <p>{{$project->abstack}}</p>
                     <p>
-                      <a href="{{ url('/homeTeacher', $project->id) }}"
+                      <a href="{{ url('/projectTeacher', $project->id) }}"
                         class="btn btn-primary btn-lg "
                         role="button">View
                       </a> &nbsp;
