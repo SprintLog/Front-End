@@ -1,45 +1,33 @@
-@extends('layouts.template')
+@extends('layouts.templateList')
 @section('style')
-
+  <link rel="stylesheet" href="/css/EJ-kanban.css">
 @endsection
 
-@section('script')
-
-@endsection
+<!--
 
 @section('content')
+  <div class="jumbotron far">
+    <div class="form-group row far">
 
-        <h2>Project</h2>
-
-        <table class="table table-hover table boardered">
-          <thead>
-            <tr>
-              <th>No.</th>
-              <th>Project Name</th>
-              <th>view</th>
-
-            </tr>
-            <?php
-              $i = 0;
-             ?>
-
-
-            @foreach ($showprojects as $showproject)
-
-              <tr>
-
-                <th>{{ ++$i }}</th>
-
-                <th>{{ $showproject -> eng_name }} &nbsp; {{$showproject->thai_name}}</th>
-                <th><a class="btn btn-primary" href="showinfo" role="button">View Project Info</th>
-              </tr>
-            @endforeach
+      @foreach ($project as $project )
+        <div class="col-sm-6 col-md-6">
+            <div class="thumbnail">
+                <div class="caption">
+                  <h3>{{$project->eng_name}} &nbsp; {{$project->thai_name}}</h3>
+                    <p>{{$project->abstack}}</p>
+                    <p>
+                      <a href="{{ url('/homeTeacher', $project->id) }}"
+                        class="btn btn-primary btn-lg "
+                        role="button">View
+                      </a> &nbsp;
 
 
 
-          </thead>
+                    </p>
+                </div>
+            </div>
+        </div>
+      @endforeach
 
-        </table>
 
-
-@endsection
+@endsection -->

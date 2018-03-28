@@ -39,6 +39,9 @@ class viewController extends Controller
     public function pageAddTask(){
       return view('addTask');
     }
+    /*public function pagehomeTeacher(){
+      return view('homeTeacher');
+    }*/
 
 
 }

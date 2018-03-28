@@ -36,12 +36,12 @@ class ProjectListController extends Controller
 
         $userStd  = DB::table("users")
         ->select('id','name','lastname')
-        ->where('typeUser','=',0)
+        ->where('typeUser','=',1)
         ->get();
 
         $userLetureShow = DB::table("users")
         ->select('id','name','lastname')
-        ->where('typeUser','=',1)
+        ->where('typeUser','=',0)
         ->get();
 
 

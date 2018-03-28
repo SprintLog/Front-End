@@ -3,6 +3,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
+
+Route::resource('/homeTeacher','ProjectController@showProject');
+
 Route::resource('/project', 'ProjectController');
 Route::resource('/projectlist', 'ProjectListController');
 Route::resource('/estimage', 'EffortEstimationsController')->name('tcf','ecf');
