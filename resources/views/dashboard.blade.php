@@ -178,7 +178,7 @@
       datasets: [{
         label: "Task Status",
         backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f"],
-        data: [15,45,30]
+        data: [{{sizeof($todos)}},{{sizeof($doings)}},{{sizeof($dones)}}]
       }]
     },
     options: {
