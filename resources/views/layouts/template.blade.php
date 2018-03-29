@@ -68,11 +68,11 @@
                 <ul class="nav navbar-nav">
 
                   <li class="{{ Request::segment(1) === 'home' ? 'active' : null }}">
-                    <a href="{{url('homeTeacher')}}">HomeTeacher</a>
+                    <a href="{{url('homeTeacher')}}">Home</a>
                   </li>
 
                   <li  class="{{ Request::segment(1) === 'projectinfo' ? 'active' : null }}">
-                    <a href="{{url('project/'.Cache::get('key'))}}">TProject Info</a>
+                    <a href="{{url('projectTeacher/'.Cache::get('key'))}}">Project Info</a>
                   </li>
 
                   <li class="{{ Request::segment(1) === 'planing' ? 'active' : null }}">
@@ -88,6 +88,9 @@
                   </li>
                   <li>
                     <a href="{{url('uploadTeacher')}}">Upload</a>
+                  </li>
+                  <li class="{{ Request::segment(1) === 'progress' ? 'active' : null }}">
+                    <a href="{{url('progress')}}">Progress</a>
                   </li>
 
                   <li  class="{{ Request::segment(1) === 'dashboard' ? 'active' : null }}">
