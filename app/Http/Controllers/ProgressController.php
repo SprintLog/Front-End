@@ -1,9 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Subtasks;
+use App\Project;
+use App\Task;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Progress;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ProgressController extends Controller
 {
@@ -12,9 +17,15 @@ class ProgressController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //public function index($id)
     public function index()
     {
-        //
+      //$globalsID=$id;
+      /*$tasks = DB::table('tasks')->where('projectId','=',$id)->get();
+      // dd($tasks);
+      return view('progress', ['tasks' => $tasks]);*/
+        //$viewtask = tasks::all()
+        return view ('progress');
     }
 
     /**
