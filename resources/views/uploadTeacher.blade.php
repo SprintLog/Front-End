@@ -21,6 +21,23 @@
   <div class="jumbotron far">
 
     @if (count($files) > 0)
+    <div class="form-group row far">
+      <form  action="/uploadDoc/file" method="post" enctype="multipart/form-data">
+        {{ csrf_field() }}
+      <div class="row">
+        <div class="fileinput fileinput-new" data-provides="fileinput">
+          <span>Document</span>
+          <span class="btn btn-default btn-file">
+            <input type="file" class = "form-control" name = "document">
+          </span>
+          <span class="fileinput-filename"></span>
+          <input type="submit" class = "btn btn-success " value ="Upload Document">
+        </div>
+      </div>
+
+    </form>
+  </div>
+
     <table class="table">
       <thead>
     <tr>
@@ -42,21 +59,6 @@
      </tbody>
     </table>
     @endif
-    <div class="form-group row far">
-      <form  action="/uploadDoc/file" method="post" enctype="multipart/form-data">
-        {{ csrf_field() }}
-      <div class="row">
-        <div class="fileinput fileinput-new" data-provides="fileinput">
-          <span>Document</span>
-          <span class="btn btn-default btn-file">
-            <input type="file" class = "form-control" name = "document">
-          </span>
-          <span class="fileinput-filename"></span>
-          <input type="submit" class = "btn btn-success pull-right" value ="Upload new Document">
-        </div>
-      </div>
 
-    </form>
-  </div>
 
 @endsection
