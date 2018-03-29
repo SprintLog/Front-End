@@ -24,6 +24,18 @@ class UploadController extends Controller
         return view('upload', ['files' => $files , 'posts' => $posts]);
         //return view('upload',['files' => Upload::get()]);
     }
+
+    public function indexTeacher()
+    {
+        //
+        $files = DB::table('uploads')->get();
+        $posts = DB::table('posts')
+            ->join('users', 'posts.userId', '=', 'users.id')
+            ->select('posts.*' ,'users.name' , 'users.lastname')
+            ->get();
+        return view('uploadTeacher', ['files' => $files , 'posts' => $posts]);
+        //return view('upload',['files' => Upload::get()]);
+    }
     /**
      * Show the form for creating a new resource.
      *
