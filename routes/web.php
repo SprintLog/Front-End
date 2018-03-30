@@ -10,8 +10,8 @@ Route::post('/uploadDoc/file', 'UploadController@uploadDocument');
 Route::get('/uploadTeacher', 'UploadController@indexTeacher');
 Route::get('/downloadDoc/{filename}', 'UploadController@downloadDocument');
 
-Route::get('/progress', 'ProgressController@index')->name('tasks');
-
+Route::resource('/progress', 'ProgressController');
+Route::resource('/subTask/teacher', 'SubtaskTeacherController');
 
 Route::resource('/project', 'ProjectController');
 Route::resource('/projectlist', 'ProjectListController');

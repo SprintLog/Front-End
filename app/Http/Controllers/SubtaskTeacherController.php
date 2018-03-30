@@ -4,28 +4,24 @@ namespace App\Http\Controllers;
 use App\Subtasks;
 use App\Project;
 use App\Task;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use App\Progress;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
-class ProgressController extends Controller
+
+class SubtaskTeacherController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    //public function index($id)
     public function index()
     {
-      //$globalsID=$id;
-      /*$tasks = DB::table('tasks')->where('projectId','=',$id)->get();
-      // dd($tasks);
-      return view('progress', ['tasks' => $tasks]);*/
-        //$viewtask = tasks::all()
-        // return view ('progress');
+        //
     }
 
     /**
@@ -52,24 +48,26 @@ class ProgressController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Progress  $progress
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         //
-        $tasks = DB::table('tasks')->where('projectId' , $id)->get();
-        $projectName = DB::table('projects')->where('id' , $id)->first()->eng_name;
-        return view ('progress' , ['tasks' =>$tasks,'projectName' => $projectName]);
+        $projectId =Task::find($id)->projectId;
+        $taskName =Task::find($id)->nametask;
+        $subtasks = DB::table('subtasks')->where('taskId' , $id)->get();
+        return view('subtaskTeacher', ['taskId' => $id , 'subtasks' => $subtasks, 'projectId' => $projectId , 'taskName' => $taskName]);
+
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Progress  $progress
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Progress $progress)
+    public function edit($id)
     {
         //
     }
@@ -78,10 +76,10 @@ class ProgressController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Progress  $progress
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Progress $progress)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -89,10 +87,10 @@ class ProgressController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Progress  $progress
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Progress $progress)
+    public function destroy($id)
     {
         //
     }

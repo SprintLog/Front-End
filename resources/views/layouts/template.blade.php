@@ -74,15 +74,6 @@
                   <li  class="{{ Request::segment(1) === 'projectinfo' ? 'active' : null }}">
                     <a href="{{url('projectTeacher/'.Cache::get('key'))}}">Project Info</a>
                   </li>
-
-                  <li class="{{ Request::segment(1) === 'planing' ? 'active' : null }}">
-                    <a href="{{url('task/'.Cache::get('key'))}}">Planing</a>
-                  </li>
-                  <li class="{{ Request::segment(1) === 'estimate' ? 'active' : null }}">
-
-                    <a href="{{url('estimage/'.Cache::get('key'))}}">Estimate</a>
-                  </li>
-
                   <li class="{{ Request::segment(1) === 'kanbanBoard' ? 'active' : null }}">
                     <a href="{{url('kanbanBoard')}}">Kanban Board</a>
                   </li>
@@ -90,7 +81,7 @@
                     <a href="{{url('uploadTeacher')}}">Upload</a>
                   </li>
                   <li class="{{ Request::segment(1) === 'progress' ? 'active' : null }}">
-                    <a href="{{url('progress')}}">Progress</a>
+                    <a href="{{url('progress/'.Cache::get('key'))}}">Progress</a>
                   </li>
 
                   <li  class="{{ Request::segment(1) === 'dashboard' ? 'active' : null }}">

@@ -14,11 +14,15 @@
   width: 100px;
 }
 </style>
-
-
-
   <div class="jumbotron far">
-      <div class="row fart">
+
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/homeTeacher">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{$projectName}}</li>
+      </ol>
+    </nav>
+      {{-- <div class="row fart">
         <table class="table table-bordered">
           <thead>
             <tr>
@@ -89,10 +93,6 @@
                 </div>
               </div>
 
-
-
-
-
             <tr>
               <th scope="row">1</th>
               <td>Mark</td>
@@ -124,7 +124,7 @@
 
           </tbody>
         </table>
-      </div>
+      </div> --}}
 
       <table class="table table-bordered">
         <thead>
@@ -136,11 +136,20 @@
           </tr>
         </thead>
         <tbody>
-
-
+          @foreach ($tasks as $task)
+          <tr>
+            {{-- <th scope="column">3</th> --}}
+            <td><a href="/subTask/teacher/{{$task->id}}"><div>{{ $task->nametask }}</div></a></td>
+            {{-- <td>{{$task->nametask}}</td> --}}
+            <td>{{$task->created_at}}</td>
+            <td><button type="button " name="button" class="btn btn-warning">Waiting</button></td>
+            <td><button type="button " name="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal1">Check</button>
+          </tr>
+        @endforeach
+          </tbody>
       </table>
 
-    
+
 
 
     </div>
