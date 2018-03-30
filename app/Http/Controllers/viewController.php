@@ -42,6 +42,9 @@ class viewController extends Controller
     /*public function pagehomeTeacher(){
       return view('homeTeacher');
     }*/
+  /*  public function pageProgress(){
+      return view('progress');
+    }*/
 
 
 }

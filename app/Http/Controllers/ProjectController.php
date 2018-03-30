@@ -95,6 +95,8 @@ class ProjectController extends Controller
                                         'TypeProjectIsNow'));
     }
 
+
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -164,6 +166,50 @@ class ProjectController extends Controller
     {
       $project = Project::find($id)->delete();
       return back();
+    }
+
+
+    public function showProject($id)
+    {
+
+      $project = Project::find($id);
+      Cache::forever('key', $id);
+
+      $TypeProjectIsNow = DB::table('type_project')->select('id','type')
+        ->where('id',function($query) use ($id){
+           $query->select('typeProjectId')
+           ->from('projects')
+           ->where('id',$id);
+        })
+        ->first();
+      // dd($TypeProjectIsNow);
+      $userLeture = DB::table("users")->select('*')
+            ->whereIn('id',function($query) use ($id){
+               $query->select('userId')
+               ->from('matches')
+               ->where('ProjectId',$id);
+            })->where('typeUser','=',1)
+      ->first();
+
+      $userStd  = DB::table("users")->select('*')
+            ->whereIn('id',function($query) use ($id){
+               $query->select('userId')
+               ->from('matches')
+               ->where('ProjectId',$id);
+            })->where('typeUser','=',0)
+      ->get();
+       // dd($userStd);
+
+      $TypeProject = DB::table('type_project')->get();
+
+
+
+       // dd($userInfo);
+      return view('projectinfoTeacher', compact('project',
+                                        'userLeture',
+                                        'userStd',
+                                        'TypeProject',
+                                        'TypeProjectIsNow'));
     }
 }
 // GET     /forums              ->  index    หน้า list
