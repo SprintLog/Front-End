@@ -60,6 +60,40 @@ class ProgressController extends Controller
         //
         $tasks = DB::table('tasks')->where('projectId' , $id)->get();
         $projectName = DB::table('projects')->where('id' , $id)->first()->eng_name;
+        $taskLists = Task::where('projectId', '=', $id)->get();
+        $progressProject = [] ;
+        $taskname = [];
+        foreach ($taskLists as $taskList){
+            $subtasks = Subtasks::where('taskId', '=', $taskList->id )->get();
+            $complete = 0 ;
+            $waiting = 0 ;
+            $progress = 0 ;
+            foreach ($subtasks as $subtask) {
+              if ($subtask->completed == 0) {
+                $waiting = $waiting +1 ;
+              }elseif ($subtask->completed == 1){
+                $complete= $complete +1 ;
+              }
+            }
+
+            if ($complete != 0) {
+                $progress =  ($complete / ($waiting+$complete)) * 100 ;
+
+            }else{
+                $progress = ($progress / 100) * 0  ;
+            }
+
+
+            // echo $taskList->nametask ."<br>";
+            // echo $progress."<br>";
+            array_push($taskname,$taskList->nametask );
+            // print_r($taskname);
+            array_push($progressProject,$progress);
+            // print_r($taskname);
+        }
+
+            // print_r($taskname)."<br>";
+
         return view ('progress' , ['tasks' =>$tasks,'projectName' => $projectName]);
     }
 
