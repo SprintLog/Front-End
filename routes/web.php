@@ -5,7 +5,7 @@ Route::get('/home', 'HomeController@index');
 
 //for Teacher
 Route::get('/homeTeacher','HomeController@indexTeacher');
-Route::resource('/projectTeacher', 'ProjectController');
+Route::resource('/projectTeacher', 'ProjectTeacherController');
 Route::post('/uploadDoc/file', 'UploadController@uploadDocument');
 Route::get('/uploadTeacher', 'UploadController@indexTeacher');
 Route::get('/downloadDoc/{filename}', 'UploadController@downloadDocument');
