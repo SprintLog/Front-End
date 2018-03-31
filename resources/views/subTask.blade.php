@@ -61,6 +61,26 @@
       </form>
   </div>
   </div>
+
+  <div class="panel-body">
+    <form  action="/upload/image" method="post" enctype="multipart/form-data">
+      {{ csrf_field() }}
+    <div class="row">
+      <div class="fileinput fileinput-new" data-provides="fileinput">
+        <span>Image</span>
+        <span class="btn btn-default btn-file">
+          <input type="file" class = "form-control" name = "image">
+          <input type="hidden" name = "projectId" value="1">
+        </span>
+        <span class="fileinput-filename"></span>
+      </div>
+    <div class = "form-gruop">
+        <input type="submit" class = "btn btn-success pull-right" value ="Upload new image">
+    </div>
+      </div>
+    </form>
+  </div>
+
   @if (count($subtasks) > 0)
     <div class="jumbotron far">
       <div class="row fart">
@@ -166,6 +186,89 @@
       modal.find('#subtask-name').val(name)
       modal.find('#desc-text').val(desc)
     })
+
+    $("#carousel").carousel();
+    .carousel {
+    height: 500px;
+    margin-bottom: 60px;
+}
+/* Since positioning the image, we need to help out the caption */
+ .carousel-caption {
+    z-index: 10;
+}
+/* Declare heights because of positioning of img element */
+ .carousel .item {
+    width: 100%;
+    height: 500px;
+    background-color: #777;
+}
+.carousel-inner > .item > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    height: 500px;
+}
       </script>
+
+
+{{--
+      <div id="Carousel" class="carousel slide col-md-9 col-md-offset-1 ">
+              <ol class="carousel-indicators">
+                  <li data-target="Carousel" data-slide-to="0" class="active"></li>
+                  <li data-target="Carousel" data-slide-to="1"></li>
+                  <li data-target="Carousel" data-slide-to="2"></li>
+              </ol>
+
+              <div class="carousel-inner">
+                  <div class="item active">
+                      <img src="https://www.w3schools.com/howto/img_fjords.jpg" class="img-responsive">
+                  </div>
+                 <div class="item">
+                   <img src="https://www.w3schools.com/howto/img_fjords.jpg" class="img-responsive">
+                  </div>
+                 <div class="item">
+                   <img src="https://www.w3schools.com/howto/img_fjords.jpg" class="img-responsive">
+                  </div>
+              </div>
+
+              <a class="left carousel-control" href="#Carousel" data-slide="prev">
+                  <span class="glyphicon glyphicon-chevron-left"></span>
+              </a>
+              <a class="right carousel-control" href="#Carousel" data-slide="next">
+                  <span class="glyphicon glyphicon-chevron-right"></span>
+              </a>
+      </div> --}}
+
+
+      <div id="carousel" class="carousel slide" data-ride="carousel">
+          <!-- Menu -->
+          <ol class="carousel-indicators">
+              <li data-target="#carousel" data-slide-to="0" class="active"></li>
+              <li data-target="#carousel" data-slide-to="1"></li>
+              <li data-target="#carousel" data-slide-to="2"></li>
+          </ol>
+
+          <!-- Items -->
+          <div class="carousel-inner">
+{{-- {{Storage::size('storage/app/images/1/img_fjords.jpg')}} --}}
+              <div class="item active">
+                  {{-- <img src="{{URL::to('../storage/app/image/1/img_fjords.jpg')}}"  alt="Slide 1"  class = "img-responsive"/> --}}
+                  <img src="{{url('image/1/img_fjords.jpg')}}"  alt="Slide 1"  class = "img-responsive"/>
+              </div>
+              <div class="item">
+                  <img src="{{url('image/1/youbaojiding03.jpg')}}" alt="Slide 2" />
+              </div>
+              <div class="item">
+                  <img src="https://i.ytimg.com/vi/cXm1IW-3ee4/maxresdefault.jpg" alt="Slide 3" />
+              </div>
+          </div>
+          <a href="#carousel" class="left carousel-control" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left"></span>
+          </a>
+          <a href="#carousel" class="right carousel-control" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right"></span>
+          </a>
+      </div>
 
 @endsection
