@@ -19,7 +19,6 @@
   @endif
 
   <div class="jumbotron far">
-
     @if (count($files) > 0)
     <table class="table">
       <thead>
@@ -35,6 +34,7 @@
           <td>
             <form action="{{ url('download/'.$file->fileName) }}" method="GET">
                 {{ csrf_field() }}
+                <input type="hidden" name = "projectId" value="{{$id}}">
             <button type="submit" class="btn btn-info">download</button></td>
               </form>
       </tr>
@@ -50,6 +50,7 @@
           <span>Document</span>
           <span class="btn btn-default btn-file">
             <input type="file" class = "form-control" name = "document">
+            <input type="hidden" name = "projectId" value="{{$id}}">
           </span>
           <span class="fileinput-filename"></span>
         </div>
@@ -108,7 +109,10 @@
               <div class = "form-group">
                 <textarea class="form-control" rows="4" cols="50" name="body" placeholder="Post status" required ></textarea>
               </div>
-              <div class = "form-gruop pull-right"><input type="submit" class ="btn btn-primary" value = "post" ></div>
+              <div class = "form-gruop pull-right">
+                <input type="hidden" name = "projectId" value="{{$id}}">
+                <input type="submit" class ="btn btn-primary" value = "post" >
+              </div>
               <div class="help-block with-errors"></div>
               <div class="form-group">
 

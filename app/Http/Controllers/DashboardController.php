@@ -105,6 +105,9 @@ class DashboardController extends Controller
         $progressAll = 0 ;
         $UUCPWMade = [];
         $UUCPW ;
+        $todos = [] ;
+        $doings = [] ;
+        $dones = [] ;
         foreach ($taskLists as $tasksList){
           $tasks = Subtasks::where('taskId', '=', $tasksList->id )->get();
           $taskName =Task::find($tasksList->id )->nametask;
@@ -137,7 +140,7 @@ class DashboardController extends Controller
               $UUCP = ($progress / 100) * 0  ;
               array_push ($UUCPWMade ,$UUCP);
           }
-          //UCP Made
+
 
 
           //*****************push value for view***********************
@@ -145,6 +148,17 @@ class DashboardController extends Controller
            array_push($progressProject,$progress);
 
 
+           // check todo list
+           if($progress == 0 ){
+              array_push ($todos ,$taskName);
+              // echo $taskName . " todo : " .$progress ."<br>";
+           }elseif ($progress > 0  && $progress < 100 ) {
+             array_push ($doings ,$taskName);
+              // echo $taskName . " doing : " .$progress ."<br>";
+           }else {
+             array_push ($dones ,$taskName);
+              // echo $taskName . " done : " .$progress ."<br>";
+           }
         }
           // UCP ที่ทำได้
           $UCPMade = array_sum($UUCPWMade) * $TCF *$ECF  ;
@@ -161,7 +175,10 @@ class DashboardController extends Controller
                                 'tasks' =>$taskLists,
                                 'taskNameList'=> $taskNameList ,
                                 'progressProject'=> $progressProject ,
-                                'projectComplete'=>$projectComplete
+                                'projectComplete'=>$projectComplete,
+                                'todos' => $todos,
+                                'doings' => $doings,
+                                'dones' => $dones
                               ]);
     }
 

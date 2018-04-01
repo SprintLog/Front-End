@@ -35,7 +35,7 @@ class PostController extends Controller
 
       $posts = new Posts();
       $posts->body = $request->body;
-      $posts->projectId = 1;
+      $posts->projectId = $request->projectId;
       $posts->userId = Auth::user()->id;
       $posts->save();
       return back();
