@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 use App\Upload;
+use App\Images;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -118,6 +119,35 @@ class UploadController extends Controller
             return back()->with('warning', 'no file');
           }
   }
+
+  public function uploadImage(Request $request)
+  {
+      //dd($request);
+      $validator = Validator::make($request->all(), [
+                  'image'   =>  'required | mimes:jpeg,jpg,png | max:1000',
+              ]);
+      if (($request->hasFile('image'))) {
+        try {
+          $file =  $request->file('image');
+          $projectId =  $request->projectId;
+          $taskId =  $request->taskId;
+          $fileName = $file->getClientOriginalName();
+          $ext = $file->getClientOriginalExtension();
+          $file->move("image/".$projectId."/".$taskId, $fileName);
+          //save filename to DB
+          $images = new Images();
+          $images->fileName = $fileName ;
+          $images->FileExtension = $ext ;
+          $images->taskId = $taskId;
+          $images->save();
+          return back()->with('success', 'upload image success');
+        } catch (\Exception $e) {
+          dd($e);
+          }
+        }else {
+          return back()->with('warning', 'no file');
+        }
+}
   public function downloadDocument($fileName , Request $request)
   {
       $projectId = $request->projectId ;
