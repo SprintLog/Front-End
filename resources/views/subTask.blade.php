@@ -61,6 +61,56 @@
       </form>
   </div>
   </div>
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+          <form  action="/upload/image" method="post" enctype="multipart/form-data">
+            {{ csrf_field() }}
+          <div class="row">
+            <div class="fileinput fileinput-new" data-provides="fileinput">
+              <span>Image</span>
+              <span class="btn btn-default btn-file">
+                <input type="file" class = "form-control" name = "image">
+                <input type="hidden" name = "projectId" value="{{$projectId}}">
+                <input type="hidden" name = "taskId" value="{{$taskId}}">
+              </span>
+              <span class="fileinput-filename"></span>
+            </div>
+          <div class = "form-gruop">
+              <input type="submit" class = "btn btn-success pull-right" value ="Upload new image">
+          </div>
+            </div>
+          </form>
+          <br><br>
+          @if (count($subtasks) > 0)
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">Image Name</th>
+                <th scope="col">Date Summit</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                  @foreach ($images as $image)
+                  <tr>
+                    <th scope="row">{{$image->fileName}}</th>
+                    <td>{{$image->updated_at}}</td>
+                    <td>
+                        <button type="button" class="btn btn-danger">
+                        <i class="fa fa-btn fa-trash"></i>Delete
+                        </button>
+                     </td>
+                  </tr>
+                  @endforeach
+            </tbody>
+          </table>
+        @endif
+      </div>
+    </div>
+
+
+
   @if (count($subtasks) > 0)
     <div class="jumbotron far">
       <div class="row fart">
@@ -172,6 +222,89 @@
       modal.find('#subtask-name').val(name)
       modal.find('#desc-text').val(desc)
     })
-      </script>
+//for image
+          $("#carousel").carousel();
+              .carousel {
+              height: 500px;
+              margin-bottom: 60px;
+          }
+          /* Since positioning the image, we need to help out the caption */
+           .carousel-caption {
+              z-index: 10;
+          }
+          /* Declare heights because of positioning of img element */
+           .carousel .item {
+              width: 100%;
+              height: 500px;
+              background-color: #777;
+          }
+          .carousel-inner > .item > img {
+              position: absolute;
+              top: 0;
+              left: 0;
+              min-width: 100%;
+              height: 500px;
+            }
+  </script>
+      {{-- <div id="carousel" class="carousel slide" data-ride="carousel">
+          <!-- Menu -->
+          <ol class="carousel-indicators">
+              <li data-target="#carousel" data-slide-to="0" class="active"></li>
+              <li data-target="#carousel" data-slide-to="1"></li>
+              <li data-target="#carousel" data-slide-to="2"></li>
+          </ol>
+          <!-- Items -->
+          <div class="carousel-inner">
+              <div class="item active">
+                  <img src="{{url('image/1/img_fjords.jpg')}}"  alt="Slide 1"  class = "img-responsive"/>
+              </div>
+              <div class="item">
+                  <img src="{{url('image/1/youbaojiding03.jpg')}}" alt="Slide 2" />
+              </div>
+              <div class="item">
+                  <img src="https://i.ytimg.com/vi/cXm1IW-3ee4/maxresdefault.jpg" alt="Slide 3" />
+              </div>
+          </div>
+          <a href="#carousel" class="left carousel-control" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left"></span>
+          </a>
+          <a href="#carousel" class="right carousel-control" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right"></span>
+          </a>
+      </div> --}}
 
+@if ($images)
+      <div id="carousel" class="carousel slide" data-ride="carousel">
+          <!-- Menu -->
+          <ol class="carousel-indicators">
+              @for ($i=0; $i < count($images); $i++)
+                @if ($i == 0 )
+                  <li data-target="#carousel" data-slide-to="{{$i}}" class="active"></li>
+                @else
+                  <li data-target="#carousel" data-slide-to="{{$i}}"></li>
+                @endif
+              @endfor
+          </ol>
+          <!-- Items -->
+          <div class="carousel-inner">
+            @for ($i=0; $i < count($images); $i++)
+              @if ($i == 0 )
+              <div class="item active">
+                  <img src="{{url('image/'.$projectId.'/' . $taskId .'/' . $images[$i]->fileName )}}"  alt="Slide 1"  class = "img-responsive"/>
+              </div>
+              @else
+              <div class="item">
+                  <img src="{{url('image/'.$projectId.'/' . $taskId .'/' . $images[$i]->fileName )}}" alt="Slide {{$i}}" />
+              </div>
+              @endif
+            @endfor
+          </div>
+          <a href="#carousel" class="left carousel-control" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left"></span>
+          </a>
+          <a href="#carousel" class="right carousel-control" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right"></span>
+          </a>
+      </div>
+  @endif
 @endsection

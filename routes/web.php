@@ -9,6 +9,7 @@ Route::post('/estimage_updateall', 'EffortEstimationsController@updateAll'); // 
 Route::post('/estimage_updateall', 'EffortEstimationsController@updateAll');
 //for upload and download
 Route::post('/upload/file', 'UploadController@uploadDocument');
+Route::post('/upload/image', 'UploadController@uploadImage');
 Route::resource('/upload', 'UploadController');
 Route::get('/download/{filename}', 'UploadController@downloadDocument');
 Route::get('/like/{id}', 'PostController@like');

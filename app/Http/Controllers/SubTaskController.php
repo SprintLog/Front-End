@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Subtasks;
 use App\Project;
 use App\Task;
+use App\Images;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -19,7 +20,19 @@ class SubTaskController extends Controller
         $projectId =Task::find($id)->projectId;
         $taskName =Task::find($id)->nametask;
         $subtasks = DB::table('subtasks')->where('taskId' , $id)->get();
-        return view('subTask', ['taskId' => $id , 'subtasks' => $subtasks, 'projectId' => $projectId , 'taskName' => $taskName]);
+        $images = DB::table('images')->where('taskId' , $id);
+        if ($images !== null) {
+          $images= $images->get();
+        }
+        // foreach ($images as $image) {
+        //     echo $image->fileName."<br>";
+        // }
+        return view('subTask', ['taskId' => $id ,
+                                'subtasks' => $subtasks,
+                                'projectId' => $projectId ,
+                                'taskName' => $taskName,
+                                'images'   => $images
+                              ]);
     }
     public function completed($id, Request $request)
     {
