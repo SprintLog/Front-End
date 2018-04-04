@@ -41,7 +41,7 @@
     </div>
   @endif
 <div class="jumbotron far">
-  <form class="input-append"  action="{{ url('projectTeacher') }}" method="post" enctype="multipart/form-data">
+  <form class="input-append"  action="{{ url('project') }}" method="post" enctype="multipart/form-data">
   {{ csrf_field() }}
     <div class="form-group row far">
       <label  class="col-sm-3 col-form-label">
