@@ -15,12 +15,15 @@ class CreateCommentTable extends Migration
     {
         Schema::create('comment', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('projectId')->unsigned();
             $table->integer('ownerPost')->unsigned();
             $table->integer('userId')->unsigned();
             $table->string('body');
             $table->integer('likes')->unsigned()->default(0);
             $table->timestamps();
         });
+
+        
     }
 
     /**
