@@ -82,7 +82,7 @@
             </div>
           </form>
           <br><br>
-          @if (count($subtasks) > 0)
+          @if (count($images) > 0)
           <table class="table table-bordered">
             <thead>
               <tr>
@@ -217,28 +217,31 @@
       modal.find('#desc-text').val(desc)
     })
 //for image
-          $("#carousel").carousel();
-              .carousel {
-              height: 500px;
-              margin-bottom: 60px;
-          }
-          /* Since positioning the image, we need to help out the caption */
-           .carousel-caption {
-              z-index: 10;
-          }
-          /* Declare heights because of positioning of img element */
-           .carousel .item {
-              width: 100%;
-              height: 500px;
-              background-color: #777;
-          }
-          .carousel-inner > .item > img {
-              position: absolute;
-              top: 0;
-              left: 0;
-              min-width: 100%;
-              height: 500px;
-            }
+
+  </script>
+  <script>
+  $("#carousel").carousel();
+      .carousel {
+      height: 500px;
+      margin-bottom: 60px;
+  }
+  /* Since positioning the image, we need to help out the caption */
+   .carousel-caption {
+      z-index: 10;
+  }
+  /* Declare heights because of positioning of img element */
+   .carousel .item {
+      width: 100%;
+      height: 500px;
+      background-color: #777;
+  }
+  .carousel-inner > .item > img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      height: 500px;
+    }
   </script>
       {{-- <div id="carousel" class="carousel slide" data-ride="carousel">
           <!-- Menu -->
