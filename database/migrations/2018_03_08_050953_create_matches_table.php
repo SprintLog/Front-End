@@ -55,6 +55,10 @@ class CreateMatchesTable extends Migration
           $table->foreign('userId')
                 ->references('id')->on('users')
                 ->onDelete('cascade');
+
+          $table->foreign('projectId')
+                    ->references('id')->on('projects')
+                    ->onDelete('cascade');
         });
         Schema::table('subTasks', function(Blueprint $table){
           $table->foreign('taskId')
