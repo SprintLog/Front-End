@@ -9,9 +9,12 @@ Route::resource('/projectTeacher', 'ProjectTeacherController');
 Route::post('/uploadDoc/file', 'UploadController@uploadDocument');
 Route::get('/uploadTeacher', 'UploadController@indexTeacher');
 Route::get('/downloadDoc/{filename}', 'UploadController@downloadDocument');
+Route::get('/like/{id}', 'CommentController@like');
+Route::post('/post/new', 'CommentController@post');
 
 Route::resource('/progress', 'ProgressController');
 Route::resource('/subTask/teacher', 'SubtaskTeacherController');
+Route::get('/subTask/completed/{id}', 'SubtaskTeacherController@completed');
 
 Route::resource('/project', 'ProjectController');
 Route::resource('/projectlist', 'ProjectListController');

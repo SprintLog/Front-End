@@ -60,7 +60,19 @@ class SubtaskTeacherController extends Controller
         return view('subtaskTeacher', ['taskId' => $id , 'subtasks' => $subtasks, 'projectId' => $projectId , 'taskName' => $taskName]);
 
     }
+    public function completed($id, Request $request)
+    {
+      $subtask = Subtasks::find($id);
 
+      if ($subtask->completed == 1) {
+        $subtask->completed = $subtask->completed - 1  ;
+        $subtask->save();
+      }elseif ($subtask->completed == 0) {
+        $subtask->completed = $subtask->completed + 1  ;
+        $subtask->save();
+      }
+       return back();
+    }
     /**
      * Show the form for editing the specified resource.
      *
