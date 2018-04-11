@@ -243,32 +243,7 @@
       height: 500px;
     }
   </script>
-      {{-- <div id="carousel" class="carousel slide" data-ride="carousel">
-          <!-- Menu -->
-          <ol class="carousel-indicators">
-              <li data-target="#carousel" data-slide-to="0" class="active"></li>
-              <li data-target="#carousel" data-slide-to="1"></li>
-              <li data-target="#carousel" data-slide-to="2"></li>
-          </ol>
-          <!-- Items -->
-          <div class="carousel-inner">
-              <div class="item active">
-                  <img src="{{url('image/1/img_fjords.jpg')}}"  alt="Slide 1"  class = "img-responsive"/>
-              </div>
-              <div class="item">
-                  <img src="{{url('image/1/youbaojiding03.jpg')}}" alt="Slide 2" />
-              </div>
-              <div class="item">
-                  <img src="https://i.ytimg.com/vi/cXm1IW-3ee4/maxresdefault.jpg" alt="Slide 3" />
-              </div>
-          </div>
-          <a href="#carousel" class="left carousel-control" data-slide="prev">
-              <span class="glyphicon glyphicon-chevron-left"></span>
-          </a>
-          <a href="#carousel" class="right carousel-control" data-slide="next">
-              <span class="glyphicon glyphicon-chevron-right"></span>
-          </a>
-      </div> --}}
+
 
 @if ($images)
       <div id="carousel" class="carousel slide" data-ride="carousel">
@@ -304,4 +279,24 @@
           </a>
       </div>
   @endif
+
+  @if (count($comments) > 0)
+    <div class="panel-body">
+    <div class="panel panel-default">
+      <div class="panel-heading"><label class="control-label" for="numberInput"></label>Commet By advisor</div>
+  {{-- Post Timeline --}}
+  @foreach ($comments as $comment)
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h4>{{$comment->name}} {{$comment->lastname}}</h4>
+        <small>{{$comment->created_at}}</small>
+        <p>{{$comment->body}}</P>
+        {{-- <a href= "/like/{{$comment->id}}"><strong>{{$comment->likes}}Like(s)</strong></a> --}}
+      </div>
+    </div>
+  @endforeach
+      </div>
+    </div>
+  </div>
+@endif
 @endsection
