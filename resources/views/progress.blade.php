@@ -142,19 +142,8 @@
             <td><a href="/subTask/teacher/{{$task->id}}"><div>{{ $task->nametask }}</div></a></td>
             {{-- <td>{{$task->nametask}}</td> --}}
             <td>{{$task->created_at}}</td>
-            <td>
-              @foreach ($task -> $subtasks as $subtask)
-                @if($subtask->completed == false)
-                  <button type="button " name="button" class="btn btn-warning">Waiting</button>
-                @else
-                  <button type="button " name="button" class="btn btn-warning">Complete</button>
-                @endif
-              @endforeach
-
-            </td>
-
-
-              <td><button type="button " name="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal1">Check</button>
+            <td><button type="button " name="button" class="btn btn-warning">Waiting</button></td>
+            <td><button type="button " name="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal1">Check</button>
           </tr>
         @endforeach
           </tbody>
