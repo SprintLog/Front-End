@@ -7,6 +7,7 @@ use App\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
@@ -105,6 +106,9 @@ class DashboardController extends Controller
         $progressAll = 0 ;
         $UUCPWMade = [];
         $UUCPW ;
+        $todos = [] ;
+        $doings = [] ;
+        $dones = [] ;
         foreach ($taskLists as $tasksList){
           $tasks = Subtasks::where('taskId', '=', $tasksList->id )->get();
           $taskName =Task::find($tasksList->id )->nametask;
@@ -137,7 +141,7 @@ class DashboardController extends Controller
               $UUCP = ($progress / 100) * 0  ;
               array_push ($UUCPWMade ,$UUCP);
           }
-          //UCP Made
+
 
 
           //*****************push value for view***********************
@@ -145,6 +149,17 @@ class DashboardController extends Controller
            array_push($progressProject,$progress);
 
 
+           // check todo list
+           if($progress == 0 ){
+              array_push ($todos ,$taskName);
+              // echo $taskName . " todo : " .$progress ."<br>";
+           }elseif ($progress > 0  && $progress < 100 ) {
+             array_push ($doings ,$taskName);
+              // echo $taskName . " doing : " .$progress ."<br>";
+           }else {
+             array_push ($dones ,$taskName);
+              // echo $taskName . " done : " .$progress ."<br>";
+           }
         }
           // UCP ที่ทำได้
           $UCPMade = array_sum($UUCPWMade) * $TCF *$ECF  ;
@@ -152,7 +167,14 @@ class DashboardController extends Controller
           //คิด % งานทั้งหมดทีทำได้
           $projectComplete = ($UCPMade / $UCP) * 100  ;
 
+          //หาเวลาที่ใช้ในการทำโปรเจ็ค (นับตั้งแต่วันที่สร้างโปรเจ็ต)
+          $projectStart = Project::find($id)->created_at;
+          $interval = $projectStart->diffInDays();
 
+          //คิดค่า UCP ที่ควรจะทำได้ในตอนนี้
+          $UCPBeLike =  ($UCP / (15*7)) * $interval ;
+
+          
         return view('dashboard',
                                 ['TCF' => $TCF ,
                                 'ECF'=> $ECF ,
@@ -161,7 +183,13 @@ class DashboardController extends Controller
                                 'tasks' =>$taskLists,
                                 'taskNameList'=> $taskNameList ,
                                 'progressProject'=> $progressProject ,
-                                'projectComplete'=>$projectComplete
+                                'projectComplete'=>$projectComplete,
+                                'todos' => $todos,
+                                'doings' => $doings,
+                                'dones' => $dones,
+                                'UCPBeLike' => $UCPBeLike,
+                                'UCPMade' => $UCPMade
+
                               ]);
     }
 

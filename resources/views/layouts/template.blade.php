@@ -39,23 +39,23 @@
                   <a href="{{url('home')}}">Home</a>
                 </li>
 
-                <li  class="{{ Request::segment(1) === 'projectinfo' ? 'active' : null }}">
+                <li  class="{{ Request::segment(1) === 'project' ? 'active' : null }}">
                   <a href="{{url('project/'.Cache::get('key'))}}">Project Info</a>
                 </li>
 
-                <li class="{{ Request::segment(1) === 'planing' ? 'active' : null }}">
+                <li class="{{ Request::segment(1) === 'task' ? 'active' : null }}">
                   <a href="{{url('task/'.Cache::get('key'))}}">Planing</a>
                 </li>
-                <li class="{{ Request::segment(1) === 'estimate' ? 'active' : null }}">
+                <li class="{{ Request::segment(1) === 'estimage' ? 'active' : null }}">
 
                   <a href="{{url('estimage/'.Cache::get('key'))}}">Estimate</a>
                 </li>
 
                 <li class="{{ Request::segment(1) === 'kanbanBoard' ? 'active' : null }}">
-                  <a href="{{url('kanbanBoard')}}">Kanban Board</a>
+                  <a href="{{url('kanbanBoard/'.Cache::get('key'))}}">Kanban Board</a>
                 </li>
-                <li>
-                  <a href="{{url('upload')}}">Upload</a>
+                <li class="{{ Request::segment(1) === 'upload' ? 'active' : null }}">
+                  <a href="{{url('upload/'.Cache::get('key'))}}">Upload</a>
                 </li>
 
                 <li  class="{{ Request::segment(1) === 'dashboard' ? 'active' : null }}">
