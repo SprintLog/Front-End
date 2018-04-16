@@ -64,17 +64,19 @@
       </div>
     @endif
 
-
+    {{-- New post--}}
     <div class="form-group {{ $errors->has('body') ? ' has-error' : '' }}">
     <div class="panel panel-default">
-      <div class="panel-heading"><label class="control-label" for="numberInput"></label>Commet By advisor</div>
+      <div class="panel-heading"><label class="control-label" for="numberInput"></label>Comment By advisor</div>
       <div class="panel-body">
-        <form data-toggle="validator" action="/post/new" method="post" enctype="multipart/form-data">
+        <form data-toggle="validator" action="/comment/new" method="post" enctype="multipart/form-data">
           {{ csrf_field() }}
           <div class = "form-group">
             <textarea class="form-control" rows="4" cols="50" name="body" placeholder="Post status" required ></textarea>
           </div>
-          <div class = "form-gruop pull-right"><input type="submit" class ="btn btn-primary" value = "post" ></div>
+          <div class = "form-gruop pull-right">
+            
+            <input type="submit" class ="btn btn-primary" value = "post" ></div>
           <div class="help-block with-errors"></div>
           <div class="form-group">
 
@@ -84,6 +86,7 @@
     </div>
 
   </div>
+
   <div class="panel panel-default">
     <div class="panel-body">
           <form  action="/upload/image" method="post" enctype="multipart/form-data">

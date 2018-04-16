@@ -68,19 +68,7 @@ class SubtaskTeacherController extends Controller
                     'images'   => $images]);
 
     }
-    public function completed($id, Request $request)
-    {
-      $subtask = Subtasks::find($id);
 
-      if ($subtask->completed == 1) {
-        $subtask->completed = $subtask->completed - 1  ;
-        $subtask->save();
-      }elseif ($subtask->completed == 0) {
-        $subtask->completed = $subtask->completed + 1  ;
-        $subtask->save();
-      }
-       return back();
-    }
     /**
      * Show the form for editing the specified resource.
      *
