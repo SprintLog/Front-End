@@ -26,7 +26,7 @@
   </nav>
 
   @if (count($subtasks) > 0)
-    <div class="jumbotron far">
+    
       <div class="row fart">
         <table class="table table-bordered">
           <thead>

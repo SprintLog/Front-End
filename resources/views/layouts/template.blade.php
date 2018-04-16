@@ -77,8 +77,8 @@
                   <li class="{{ Request::segment(1) === 'kanbanBoard' ? 'active' : null }}">
                     <a href="{{url('kanbanBoard/'.Cache::get('key'))}}">Kanban Board</a>
                   </li>
-                  <li>
-                    <a href="{{url('uploadTeacher')}}">Upload</a>
+                  <li class="{{ Request::segment(1) === 'upload' ? 'active' : null }}">
+                    <a href="{{url('uploadTeacher/'.Cache::get('key'))}}">Upload</a>
                   </li>
                   <li class="{{ Request::segment(1) === 'progress' ? 'active' : null }}">
                     <a href="{{url('progress/'.Cache::get('key'))}}">Progress</a>
