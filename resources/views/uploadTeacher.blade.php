@@ -29,6 +29,7 @@
           <span>Document</span>
           <span class="btn btn-default btn-file">
             <input type="file" class = "form-control" name = "document">
+            <input type="hidden" name = "projectId" value="{{$id}}">
           </span>
           <span class="fileinput-filename"></span>
           <input type="submit" class = "btn btn-success " value ="Upload Document">
@@ -52,6 +53,7 @@
           <td>
             <form action="{{ url('downloadDoc/'.$file->fileName) }}" method="GET">
                 {{ csrf_field() }}
+                <input type="hidden" name = "projectId" value="{{$id}}">
             <button type="submit" class="btn btn-primary">download</button></td>
               </form>
       </tr>

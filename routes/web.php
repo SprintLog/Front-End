@@ -6,9 +6,9 @@ Route::get('/home', 'HomeController@index');
 Route::get('/homeTeacher','HomeController@indexTeacher');
 Route::resource('/projectTeacher', 'ProjectTeacherController');
 Route::post('/uploadDoc/file', 'UploadController@uploadDocument');
-Route::get('/uploadTeacher', 'UploadController@indexTeacher');
-Route::get('/downloadDoc/{filename}', 'UploadController@downloadDocument');
-
+Route::get('/uploadTeacher', 'uploadTeacherController@index');
+Route::get('/downloadDoc/{filename}', 'uploadTeacherController@downloadDocument');
+Route::resource('/uploadTeacher', 'uploadTeacherController');
 Route::resource('/progress', 'ProgressController');
 Route::resource('/subTask/teacher', 'SubtaskTeacherController');
 
