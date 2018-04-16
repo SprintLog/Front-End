@@ -11,6 +11,7 @@ Route::get('/downloadDoc/{filename}', 'uploadTeacherController@downloadDocument'
 Route::resource('/uploadTeacher', 'uploadTeacherController');
 Route::resource('/progress', 'ProgressController');
 Route::resource('/subTask/teacher', 'SubtaskTeacherController');
+Route::get('/subTask/completed/{id}', 'SubtaskTeacherController@completed');
 
 Route::resource('/project', 'ProjectController');
 Route::resource('/projectlist', 'ProjectListController');
