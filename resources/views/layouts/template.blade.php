@@ -75,7 +75,7 @@
                     <a href="{{url('projectTeacher/'.Cache::get('key'))}}">Project Info</a>
                   </li>
                   <li class="{{ Request::segment(1) === 'kanbanBoard' ? 'active' : null }}">
-                    <a href="{{url('kanbanBoard')}}">Kanban Board</a>
+                    <a href="{{url('kanbanBoard/'.Cache::get('key'))}}">Kanban Board</a>
                   </li>
                   <li>
                     <a href="{{url('uploadTeacher')}}">Upload</a>

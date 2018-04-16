@@ -57,7 +57,15 @@ class SubtaskTeacherController extends Controller
         $projectId =Task::find($id)->projectId;
         $taskName =Task::find($id)->nametask;
         $subtasks = DB::table('subtasks')->where('taskId' , $id)->get();
-        return view('subtaskTeacher', ['taskId' => $id , 'subtasks' => $subtasks, 'projectId' => $projectId , 'taskName' => $taskName]);
+        $images = DB::table('images')->where('taskId' , $id);
+        if ($images !== null) {
+          $images= $images->get();
+        }
+        return view('subtaskTeacher', ['taskId' => $id ,
+                    'subtasks' => $subtasks,
+                    'projectId' => $projectId ,
+                    'taskName' => $taskName,
+                    'images'   => $images]);
 
     }
 

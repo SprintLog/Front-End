@@ -20,7 +20,7 @@
 
   <div class="jumbotron far">
 
-    @if (count($files) > 0)
+    @if (count($files) >= 0)
     <div class="form-group row far">
       <form  action="/uploadDoc/file" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
