@@ -174,7 +174,10 @@ class DashboardController extends Controller
           //คิดค่า UCP ที่ควรจะทำได้ในตอนนี้
           $UCPBeLike =  ($UCP / (15*7)) * $interval ;
 
-          
+          if ($UCPBeLike > $UCP) {
+            $UCPBeLike = $UCP ;
+          }
+
         return view('dashboard',
                                 ['TCF' => $TCF ,
                                 'ECF'=> $ECF ,
