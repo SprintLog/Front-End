@@ -15,6 +15,7 @@ class TasksSeeder extends Seeder
 
       $arrayComplexity = [1,2,3];
       $arrayprojectId = [1,2,3,4,5,6];
+
       for ($i=0; $i < 20; $i++) {
 
         DB::table('tasks')->insert([
@@ -24,6 +25,15 @@ class TasksSeeder extends Seeder
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
+
+        DB::table('progresses')->insert([
+            'taskId'     => $i+1,
+            'desc'       => "Test",
+            'approved'  => 0,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+
       }
     }
 }
