@@ -140,4 +140,23 @@ class ProgressController extends Controller
     {
         //
     }
+    public function updateProgress(Request $request, Progress $progress)
+    {
+        //
+        $id = $request->id ;
+        $desc = $request->desc ;
+        // echo $request->approve_button;
+        // echo $request->repair_button;
+        if ($request->repair_button !== null) {
+          DB::table('progresses')
+          ->where('id', $id)
+          ->update(['approved' => 1 ,'desc' => $desc] );
+          return back()->with('success', 'Update Success');;
+        }elseif ($request->approve_button !== null) {
+          DB::table('progresses')
+          ->where('id', $id)
+          ->update(['approved' => 2 ,'desc' => $desc] );
+          return back()->with('success', 'Update Success');
+        }
+    }
 }

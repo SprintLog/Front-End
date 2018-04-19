@@ -26,7 +26,6 @@
                                 <div class="panel panel-primary kanban-col">
                     <div class="panel-heading">
                         TODO
-                        <i class="fa fa-2x fa-plus-circle pull-right"></i>
                     </div>
                     <div class="panel-body" style="max-height: 401px;">
                         <div id="TODO" class="kanban-centered">
@@ -71,7 +70,6 @@
                 <div class="panel panel-primary kanban-col">
                     <div class="panel-heading">
                         DOING
-                        <i class="fa fa-2x fa-plus-circle pull-right"></i>
                     </div>
                     <div class="panel-body" style="max-height: 401px;">
                         <div id="DOING" class="kanban-centered">
@@ -97,7 +95,6 @@
                 <div class="panel panel-primary kanban-col">
                     <div class="panel-heading">
                         DONE
-                        <i class="fa fa-2x fa-plus-circle pull-right"></i>
                     </div>
                     <div class="panel-body" style="max-height: 401px;">
                         <div id="DONE" class="kanban-centered">
@@ -152,15 +149,30 @@
           @endif
         </td>
         <td>
-          <button type="button" class = "btn btn-btn btn-warning">
-          waiting
-          </button>
+          @for ($i=0; $i < sizeof($taskname); $i++)
+          @if ($taskList->nametask == $taskname[$i] && $taskList->id == $taskId[$i])
+            @if ($progressProject[$i] == 100 )
+              <button type="button " name="button" class="btn btn-success">Complete</button>
+              @if ($taskList->approved == 0 )
+                 <button type="button " name="button" class="btn btn-warning">Not approved</button>
+               @elseif ($taskList->approved == 1)
+                  <button type="button " name="button" class="btn btn-danger">Repair</button>
+               @else
+                 <button type="button " name="button" class="btn btn-success">approved</button>
+              @endif
+            @else
+              <button type="button " name="button" class="btn btn-warning">Waiting</button>
+            @endif
+          @endif
+          @endfor
+
         </td>
        <td>
          <button type="button" class="btn btn-info"
          data-toggle="modal"
          data-id="{{$taskList->id}}"
          data-name="{{$taskList->nametask}}"
+         data-desc="{{$taskList->desc}}"
          data-target="#exampleModal">
            Comment
          </button>
