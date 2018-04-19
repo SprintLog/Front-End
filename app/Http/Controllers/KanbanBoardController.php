@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 use App\Subtasks;
 use App\Project;
 use App\Task;
+use App\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\DB;
 class KanbanBoardController extends Controller
 {
     /**
@@ -49,12 +50,33 @@ class KanbanBoardController extends Controller
     public function show($id)
     {
         //List to kanbanboard
-        $taskLists = Task::where('projectId', '=', $id)->get();
+        // $taskLists = Task::where('projectId', '=', $id)->get();
+        $taskLists = DB::table('tasks')
+            ->join('progresses', 'progresses.taskId', '=', 'tasks.id')
+            ->select('tasks.*' ,'progresses.desc' , 'progresses.approved')
+            ->where('projectId' ,$id )
+            ->get();
+
         $todos = [] ;
         $doings = [] ;
         $dones = [] ;
+        $taskId = [] ;
+        $commentBody = [] ;
+        $progressProject = [] ;
+        $taskname = [];
         foreach ($taskLists as $tasksList){
           $tasks = Subtasks::where('taskId', '=', $tasksList->id )->get();
+          // $comments = Comment::where('taskId', $tasksList->id)->get();
+          //
+          // if (sizeof($comments) !== 0 ) {
+          //      foreach ($comments as $comment) {
+          //        // echo $comment->taskId."<br>";
+          //        // echo $comment->body."<br>";
+          //        array_push ($taskId ,$comment->taskId);
+          //        array_push ($commentBody ,$comment->body);
+          //      }
+          // }
+
           $taskName =Task::find($tasksList->id )->nametask;
           $complete = 0 ;
           $waiting = 0 ;
@@ -85,7 +107,10 @@ class KanbanBoardController extends Controller
             array_push ($dones ,$taskName);
              // echo $taskName . " done : " .$progress ."<br>";
           }
-
+          array_push($taskname,$tasksList->nametask);
+          array_push($taskId,$tasksList->id);
+          array_push($progressProject,$progress);
+          // array_push($taskid,$progress);
         }
         $projectName = Project::where('id' , $id)->first()->eng_name ;
         // $comment =  Comment::where()
@@ -95,7 +120,10 @@ class KanbanBoardController extends Controller
                                 'doings'=> $doings ,
                                 'dones' => $dones,
                                 'projectName' =>$projectName,
-                                'taskLists' => $taskLists
+                                'taskLists' => $taskLists,
+                                'taskname'=> $taskname,
+                                'taskId' => $taskId,
+                                'progressProject' => $progressProject
                               ]);
     }
 

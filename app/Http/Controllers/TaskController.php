@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use App\Task;
 use App\Project;
+use App\Progress;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -51,6 +52,10 @@ class TaskController extends Controller
       $task->complexity = $request->complexity;
       $task->projectId  = $request->projectId;
       $task->save();
+
+      $progress = new Progress;
+      $progress->taskId   = $task->id;
+      $progress->save();
       return back();
     }
     /**
@@ -97,6 +102,7 @@ class TaskController extends Controller
     public function destroy($id)
     {
       $task = Task::find($id)->delete();
+      $progress = Progress::where('taskId' , $id)->delete();
       return back();
     }
 }

@@ -17,4 +17,9 @@ class Task extends Model
   {
     return $this->hasMany('App\Images');
   }
+
+  public function progress()
+  {
+    return $this->hasMany('App\Progress');
+  }
 }
