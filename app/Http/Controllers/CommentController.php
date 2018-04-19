@@ -4,22 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Comment;
-use App\Task;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 class CommentController extends Controller
 {
-    //
     public function like($id)
     {
-      $comments = Comment::find($id);
-      $comments->likes = $comments->likes + 1 ;
+      $posts = Comment::find($id);
+      $posts->likes = $posts->likes + 1 ;
 
-      $comments->save();
+      $posts->save();
       return back();
     }
 
-    public function comment(Request $request)
+    public function post(Request $request)
     {
 
       //dd($request);
@@ -34,11 +32,11 @@ class CommentController extends Controller
               ->with('warning', 'plz check input');
       }
 
-      $comments = new Comment();
-      $comments->body = $request->body;
-      $comments->taskId = $request->taskId;
-      $comments->userId = Auth::user()->id;
-      $comments->save();
+      $comment = new Comment();
+      $comment->body = $request->body;
+      $comment->taskId = $request->taskId;
+      $comment->userId = Auth::user()->id;
+      $comment->save();
       return back();
     }
 }

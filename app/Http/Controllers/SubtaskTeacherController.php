@@ -61,11 +61,20 @@ class SubtaskTeacherController extends Controller
         if ($images !== null) {
           $images= $images->get();
         }
+        $comments = DB::table('comment')
+            ->join('users', 'comment.userId', '=', 'users.id')
+            ->select('comment.*' ,'users.name' , 'users.lastname')
+            ->where('taskId', $id)
+            ->get();
+
+
         return view('subtaskTeacher', ['taskId' => $id ,
-                    'subtasks' => $subtasks,
-                    'projectId' => $projectId ,
-                    'taskName' => $taskName,
-                    'images'   => $images]);
+                                        'subtasks' => $subtasks,
+                                        'projectId' => $projectId ,
+                                         'taskName' => $taskName,
+                                         'images'   => $images,
+                                         'comments'  =>$comments
+                                       ]);
 
     }
 
