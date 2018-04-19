@@ -62,5 +62,20 @@
     </table>
     @endif
 
-
+    @if (count($posts) > 0)
+      <div class="panel-body">
+      <div class="panel panel-default">
+        <div class="panel-heading"><label class="control-label" for="numberInput"></label>Post By Student</div>
+    {{-- Post Timeline --}}
+    @foreach ($posts as $post)
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4>{{$post->name}} {{$post->lastname}}</h4>
+          <small>{{$post->created_at}}</small>
+          <p>{{$post->body}}</P>
+          <a href= "/like/{{$post->id}}"><strong>{{$post->likes}}Like(s)</strong></a>
+        </div>
+      </div>
+    @endforeach
+    @endif
 @endsection

@@ -34,7 +34,7 @@ class UploadController extends Controller
             ->join('users', 'posts.userId', '=', 'users.id')
             ->select('posts.*' ,'users.name' , 'users.lastname')
             ->get();
-        return view('uploadTeacher', ['files' => $files , 'posts' => $posts]);
+        return view('upload', ['files' => $files , 'posts' => $posts]);
         //return view('upload',['files' => Upload::get()]);
     }
     /**
@@ -69,7 +69,7 @@ class UploadController extends Controller
         $posts = DB::table('posts')
             ->join('users', 'posts.userId', '=', 'users.id')
             ->select('posts.*' ,'users.name' , 'users.lastname')
-            ->where('projectId' ,$id ) 
+            ->where('projectId' ,$id )
             ->get();
         return view('upload', ['files' => $files , 'posts' => $posts, 'id' => $id]);
     }
