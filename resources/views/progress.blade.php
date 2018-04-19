@@ -4,6 +4,8 @@
 @endsection
 
 @section('script')
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 @endsection
 
 @section('content')
@@ -22,109 +24,6 @@
         <li class="breadcrumb-item active" aria-current="page">{{$projectName}}</li>
       </ol>
     </nav>
-      {{-- <div class="row fart">
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th scope="col">No.</th>
-              <th scope="col">Name</th>
-              <th scope="col">Task</th>
-              <th scope="col">Date Submit</th>
-              <th scope="col">Status</th>
-              <th scope="col">CheckTask</th>
-            </tr>
-          </thead>
-
-
-          <tbody>
-
-          <!-- dialog-->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">View Task</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    ....
-                    <form>
-                      <div class="form-group">
-                        <label for="comment">Abstract</label>
-                        <textarea class="form-control" rows="5" id="comment"></textarea>
-                      </div>
-                    </form>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-              <!-- dialog2-->
-              <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Check Task</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      Are you sure to check this task?
-
-                      <form>
-                        <div class="form-group">
-                          <label for="comment">Please give some comments</label>
-                          <textarea class="form-control" rows="5" id="comment"></textarea>
-                        </div>
-                      </form>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Authentication <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">View</button></td>
-              <td>2018-01-22</td>
-              <td><button type="button " name="button" class="btn btn-success">Approved</button></td>
-              <td><button type="button " name="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal1">Check</button>
-
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Army</td>
-              <td>Estimate <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">View</button></td>
-              <td>2018-01-23</td>
-              <td><button type="button " name="button" class="btn btn-danger">Failed</button></td>
-              <td><button type="button " name="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal1">Check</button>
-
-
-            </tr>
-            <tr>
-              <th scope="column">3</th>
-              <td>Fang</td>
-              <td>Progress <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">View</button></td>
-              <td>2018-01-23</td>
-              <td><button type="button " name="button" class="btn btn-warning">Waiting</button></td>
-              <td><button type="button " name="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal1">Check</button>
-            </tr>
-
-
-          </tbody>
-        </table>
-      </div> --}}
 
       <table class="table table-bordered">
         <thead>
@@ -142,9 +41,36 @@
             <td><a href="/subTask/teacher/{{$task->id}}"><div>{{ $task->nametask }}</div></a></td>
             {{-- <td>{{$task->nametask}}</td> --}}
             <td>{{$task->created_at}}</td>
-            <td><button type="button " name="button" class="btn btn-warning">Waiting</button></td>
-            <td><button type="button " name="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal1">Check</button>
-          </tr>
+            <td>
+              @for ($i=0; $i < sizeof($taskname); $i++)
+              @if ($task->nametask == $taskname[$i] && $task->id == $taskId[$i])
+                @if ($progressProject[$i] == 100 )
+                  <button type="button " name="button" class="btn btn-success">Complete</button>
+                  @if ($task->approved == 0 )
+                     <button type="button " name="button" class="btn btn-warning">Not approved</button>
+                  @elseif ($task->approved == 1)
+                      <button type="button " name="button" class="btn btn-danger">Repair</button>
+                  @else
+                     <button type="button " name="button" class="btn btn-success">approved</button>
+                  @endif
+                </td>
+                <td>
+                  <button type="button " name="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" data-name="{{$taskname[$i]}}" data-id="{{$task->id}}" data-desc="{{$task->desc}}">Check</button>
+                </td>
+                </tr>
+                @else
+                  <button type="button " name="button" class="btn btn-warning">Waiting</button>
+                </td>
+                <td>
+                  <button type="button " name="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModal1">Check</button>
+                </td>
+                </tr>
+                @endif
+              @endif
+            @endfor
+            {{-- </td>
+          <td><button type="button " name="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal1">Check</button>
+        </tr> --}}
         @endforeach
           </tbody>
       </table>
@@ -154,6 +80,53 @@
 
     </div>
   </div>
-
-
+  <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form action="{{ url('progress/approve') }}" method="POST">
+          {{ csrf_field() }}
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">Description By : Advisor </label>
+              <textarea class="form-control" name="desc" id="desc-text"></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <input type="hidden" name ="id" id="task-id" >
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" name="repair_button" class="btn btn-danger" value = "repair">Repair</button>
+          {{-- <form action="{{ url('progress/approve') }}" method="POST"> --}}
+            <input type="hidden" name ="id" id="task-id2" >
+              {{-- {{ csrf_field() }} --}}
+            <button type="submit" name="approve_button" class="btn btn-success" value = "approve">Approve</button>
+          {{-- </form> --}}
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{-- script ajax for show data to modal  --}}
+      <script type="text/javascript">
+      $('#exampleModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var name = button.data('name')
+        var id = button.data('id')
+          var desc = button.data('desc')
+        // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this)
+        modal.find('#task-id').val(id)
+        modal.find('#task-id2').val(id) 
+        modal.find('#desc-text').val(desc)
+        modal.find('.modal-title').text("Do you want to approve this task?")
+      })
+      </script>
 @endsection

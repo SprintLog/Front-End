@@ -58,11 +58,16 @@ class ProgressController extends Controller
     public function show($id)
     {
         //
-        $tasks = DB::table('tasks')->where('projectId' , $id)->get();
+        $tasks = DB::table('tasks')
+            ->join('progresses', 'progresses.taskId', '=', 'tasks.id')
+            ->select('tasks.*' ,'progresses.desc' , 'progresses.approved')
+            ->where('projectId' ,$id )
+            ->get();
         $projectName = DB::table('projects')->where('id' , $id)->first()->eng_name;
         $taskLists = Task::where('projectId', '=', $id)->get();
         $progressProject = [] ;
         $taskname = [];
+        $taskId = [] ;
         foreach ($taskLists as $taskList){
             $subtasks = Subtasks::where('taskId', '=', $taskList->id )->get();
             $complete = 0 ;
@@ -85,16 +90,21 @@ class ProgressController extends Controller
 
 
             // echo $taskList->nametask ."<br>";
-            // echo $progress."<br>";
-            array_push($taskname,$taskList->nametask );
-            // print_r($taskname);
-            array_push($progressProject,$progress);
-            // print_r($taskname);
+           // echo $progress."<br>";
+           array_push($taskname,$taskList->nametask );
+           array_push($taskId,$taskList->id);
+           array_push($progressProject,$progress);
+           // print_r($taskname);
         }
 
             // print_r($taskname)."<br>";
 
-        return view ('progress' , ['tasks' =>$tasks,'projectName' => $projectName]);
+            return view ('progress' , ['tasks' =>$tasks,
+                                       'projectName' => $projectName,
+                                       'taskname'=> $taskname,
+                                       'taskId' => $taskId,
+                                       'progressProject' => $progressProject
+                                    ]);
     }
 
     /**
@@ -130,4 +140,23 @@ class ProgressController extends Controller
     {
         //
     }
+    public function updateProgress(Request $request, Progress $progress)
+    {
+       //
+       $id = $request->id ;
+       $desc = $request->desc ;
+       // echo $request->approve_button;
+       // echo $request->repair_button;
+       if ($request->repair_button !== null) {
+         DB::table('progresses')
+         ->where('id', $id)
+         ->update(['approved' => 1 ,'desc' => $desc] );
+         return back()->with('success', 'Update Success');;
+       }elseif ($request->approve_button !== null) {
+         DB::table('progresses')
+         ->where('id', $id)
+         ->update(['approved' => 2 ,'desc' => $desc] );
+         return back()->with('success', 'Update Success');
+       }
+   }
 }
