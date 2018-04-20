@@ -24,19 +24,26 @@
       <thead>
     <tr>
         <td>Filename</td>
-        <td>Download</td>
+        <td>Name</td>
+        <td>Date upload</td>
+        <td>Action</td>
     </tr>
     </thead>
     <tbody>
     @foreach ($files as $file)
       <tr>
           <td>{{$file->fileName}}</td>
+          <td>{{$file->name}}</td>
+          <td>{{$file->created_at}}</td>
           <td>
             <form action="{{ url('download/'.$file->fileName) }}" method="GET">
                 {{ csrf_field() }}
                 <input type="hidden" name = "projectId" value="{{$id}}">
-            <button type="submit" class="btn btn-info">download</button></td>
-              </form>
+            <button type="submit" class="btn btn-info">Download</button>
+            <button type="button" class="btn btn-danger">Delete</button>
+            </form>
+
+          </td>
       </tr>
     @endforeach
      </tbody>
@@ -58,6 +65,7 @@
       <div class = "form-gruop">
           <input type="submit" class = "btn btn-success pull-right" value ="Upload new Document">
       </div>
+      </form>
       <div class="row far">
         <h3>Respone Advisor</h3>
         <div class="col-sm-5">
@@ -66,7 +74,7 @@
            <button type="button" name="button" class="btn">Upload</button>
         </div>
       </div>
-    </form>
+
       <div class="row fart">
         <table class="table table-bordered">
           <thead>

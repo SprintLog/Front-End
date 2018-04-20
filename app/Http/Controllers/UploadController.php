@@ -53,7 +53,12 @@ class UploadController extends Controller
     public function show($id)
     {
         //
-        $files = DB::table('uploads')->where('projectId' ,$id )->get();
+        // $files = DB::table('uploads')->where('projectId' ,$id )->get();
+        $files = DB::table('uploads')
+            ->join('users', 'uploads.userId', '=', 'users.id')
+            ->select('uploads.*' ,'users.name' , 'users.lastname')
+            ->where('projectId' ,$id )
+            ->get();
         $posts = DB::table('posts')
             ->join('users', 'posts.userId', '=', 'users.id')
             ->select('posts.*' ,'users.name' , 'users.lastname')
@@ -110,6 +115,7 @@ class UploadController extends Controller
             $upload->fileName = $fileName ;
             $upload->FileExtension = $ext ;
             $upload->projectId = $request->projectId;
+            $upload->userId = Auth::id();
             $upload->save();
             return back()->with('success', 'upload file success');
           } catch (\Exception $e) {
