@@ -30,7 +30,8 @@
           <tr>
             <th scope="col">Task</th>
             <th scope="col">Date Submit</th>
-            <th scope="col">Status</th>
+            <th scope="col">Task Status</th>
+            <th scope="col">Check By Teacher</th>
             <th scope="col">CheckTask</th>
           </tr>
         </thead>
@@ -47,6 +48,7 @@
               @if ($task->nametask == $taskname[$i] && $task->id == $taskId[$i])
                 @if ($progressProject[$i] == 100 )
                   <button type="button " name="button" class="btn btn-success">Complete</button>
+                  <td>
                   @if ($task->approved == 0 )
                      <button type="button " name="button" class="btn btn-warning">Not approved</button>
                   @elseif ($task->approved == 1)
@@ -55,12 +57,15 @@
                     <button type="button " name="button" class="btn btn-success">approved</button>
                   @endif
                 </td>
+                </td>
                 <td>
                   <button type="button " name="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" data-name="{{$taskname[$i]}}" data-id="{{$task->id}}" data-desc="{{$task->desc}}" >Check</button>
                 </td>
                 </tr>
                 @else
                   <button type="button " name="button" class="btn btn-warning">Waiting</button>
+                  <td>
+                  </td>
                 </td>
                 <td>
                   <button type="button " name="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModal1">Check</button>
