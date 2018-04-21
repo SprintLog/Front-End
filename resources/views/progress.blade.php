@@ -30,7 +30,8 @@
           <tr>
             <th scope="col">Task</th>
             <th scope="col">Date Submit</th>
-            <th scope="col">Status</th>
+            <th scope="col">Task Status</th>
+            <th scope="col">Check By Teacher</th>
             <th scope="col">CheckTask</th>
           </tr>
         </thead>
@@ -46,13 +47,15 @@
               @if ($task->nametask == $taskname[$i] && $task->id == $taskId[$i])
                 @if ($progressProject[$i] == 100 )
                   <button type="button " name="button" class="btn btn-success">Complete</button>
+                  <td>
                   @if ($task->approved == 0 )
                      <button type="button " name="button" class="btn btn-warning">Not approved</button>
                   @elseif ($task->approved == 1)
-                      <button type="button " name="button" class="btn btn-danger">Repair</button>
+                      <button type="button " name="button" class="btn btn-danger">Reject</button>
                   @else
-                     <button type="button " name="button" class="btn btn-success">approved</button>
+                     <button type="button " name="button" class="btn btn-success">Approved</button>
                   @endif
+                </td>
                 </td>
                 <td>
                   <button type="button " name="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" data-name="{{$taskname[$i]}}" data-id="{{$task->id}}" data-desc="{{$task->desc}}">Check</button>
@@ -60,6 +63,8 @@
                 </tr>
                 @else
                   <button type="button " name="button" class="btn btn-warning">Waiting</button>
+                  <td>
+                  </td>
                 </td>
                 <td>
                   <button type="button " name="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModal1">Check</button>
@@ -124,7 +129,7 @@
         // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
         var modal = $(this)
         modal.find('#task-id').val(id)
-        modal.find('#task-id2').val(id) 
+        modal.find('#task-id2').val(id)
         modal.find('#desc-text').val(desc)
         modal.find('.modal-title').text("Do you want to approve this task?")
       })

@@ -120,7 +120,7 @@
 
     <div class="form-group {{ $errors->has('body') ? ' has-error' : '' }}">
         <div class="panel panel-default">
-          <div class="panel-heading"><label class="control-label" for="numberInput"></label>Comment By advisor</div>
+          <div class="panel-heading"><label class="control-label" for="numberInput"></label>Comment By Advisor</div>
           <div class="panel-body">
             <form data-toggle="validator" action="/comment/new" method="post" enctype="multipart/form-data">
               {{ csrf_field() }}
@@ -148,7 +148,7 @@
           <h4>{{$comment->name}} {{$comment->lastname}}</h4>
           <small>{{$comment->created_at}}</small>
           <p>{{$comment->body}}</P>
-          <a href= "/like/{{$comment->id}}"><strong>{{$comment->likes}}Like(s)</strong></a>
+          {{--<a href= "/like/{{$comment->id}}"><strong>{{$comment->likes}}Like(s)</strong></a>--}}
         </div>
       </div>
     @endforeach

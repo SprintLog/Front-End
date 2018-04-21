@@ -53,7 +53,7 @@
             <textarea class="form-control" name ="desc" rows="3" placeholder="description" required ></textarea>
             <div class="help-block with-errors"></div>
             <div class="invalid-feedback">
-              Please description your sub-task.
+              Please describe your Sub-Task.
             </div>
           </div>
             <input type="hidden" name="taskId" value="{{$taskId}}">
@@ -283,7 +283,7 @@
   @if (count($comments) > 0)
     <div class="panel-body">
     <div class="panel panel-default">
-      <div class="panel-heading"><label class="control-label" for="numberInput"></label>Commet By advisor</div>
+      <div class="panel-heading"><label class="control-label" for="numberInput"></label>Comment By Advisor</div>
   {{-- Post Timeline --}}
   @foreach ($comments as $comment)
     <div class="panel panel-default">

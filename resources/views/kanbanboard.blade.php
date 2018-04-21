@@ -12,8 +12,7 @@
 @endsection
 
 @section('content')
-    {{-- {{$doings[1]}} --}}
-  <div class="jumbotron far">
+
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/home/">Home</a></li>
@@ -22,8 +21,8 @@
     </nav>
     <div class="container-fluid" style="min-width: 1050px;">
             <div id="sortableKanbanBoards" class="row">
-                <div class="col-md-10 col-md-offset-1">
-                                <div class="panel panel-primary kanban-col">
+                <div class="col-md-10 col-md-offset-0">
+                    <div class="panel panel-primary kanban-col">
                     <div class="panel-heading">
                         TODO
                     </div>
@@ -124,14 +123,15 @@
                 </div>
             </div>
             </div>
-  </div>
+
   <div class="jumbotron far">
   <table class="table table-bordered">
     <thead>
       <tr>
         <th scope="col">Name</th>
         <th scope="col">Complexity</th>
-        <th scope="col">Status</th>
+        <th scope="col">Task Status</th>
+        <th scope="col">Check By Teacher</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
@@ -143,7 +143,7 @@
           @if($taskList->complexity == 1)
             Simple
           @elseif ($taskList->complexity == 2)
-            Middle
+            Medium
           @else
             Complex
           @endif
@@ -153,15 +153,19 @@
           @if ($taskList->nametask == $taskname[$i] && $taskList->id == $taskId[$i])
             @if ($progressProject[$i] == 100 )
               <button type="button " name="button" class="btn btn-success">Complete</button>
+              <td>
               @if ($taskList->approved == 0 )
                  <button type="button " name="button" class="btn btn-warning">Not approved</button>
                @elseif ($taskList->approved == 1)
-                  <button type="button " name="button" class="btn btn-danger">Repair</button>
+                  <button type="button " name="button" class="btn btn-danger">Reject</button>
                @else
-                 <button type="button " name="button" class="btn btn-success">approved</button>
+                 <button type="button " name="button" class="btn btn-success">Approved</button>
               @endif
+            </td>
             @else
               <button type="button " name="button" class="btn btn-warning">Waiting</button>
+              <td>
+              </td>
             @endif
           @endif
           @endfor

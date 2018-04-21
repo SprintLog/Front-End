@@ -129,7 +129,7 @@
               <h4>{{$post->name}} {{$post->lastname}}</h4>
               <small>{{$post->created_at}}</small>
               <p>{{$post->body}}</P>
-              <a href= "/like/{{$post->id}}"><strong>{{$post->likes}}Like(s)</strong></a>
+              {{--<a href= "/like/{{$post->id}}"><strong>{{$post->likes}}Like(s)</strong></a>--}}
             </div>
           </div>
         @endforeach
