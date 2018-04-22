@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 class UploadController extends Controller
 {
     /**
@@ -93,7 +94,7 @@ class UploadController extends Controller
      * @param  \App\Upload  $upload
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Upload $upload)
+    public function destroy($id)
     {
         //
     }
@@ -125,7 +126,11 @@ class UploadController extends Controller
             return back()->with('warning', 'no file');
           }
   }
-
+    public function deleteDocument(Request $request)
+    {
+      $upload = Upload::find($request->id)->delete();
+      return back();
+    }
   public function uploadImage(Request $request)
   {
       //dd($request);
@@ -154,6 +159,7 @@ class UploadController extends Controller
           return back()->with('warning', 'no file');
         }
 }
+
   public function downloadDocument($fileName , Request $request)
   {
       $projectId = $request->projectId ;
