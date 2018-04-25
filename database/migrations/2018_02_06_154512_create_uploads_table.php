@@ -18,6 +18,7 @@ class CreateUploadsTable extends Migration
             $table->string('fileName');
             $table->string('FileExtension');
             $table->integer('projectId')->unsigned();
+            $table->integer('userId')->unsigned(); 
             $table->timestamps();
         });
     }
