@@ -5,9 +5,11 @@ Route::get('/home', 'HomeController@index');
 //for Teacher
 Route::get('/homeTeacher','HomeController@indexTeacher');
 Route::resource('/projectTeacher', 'ProjectTeacherController');
-Route::post('/uploadDoc/file', 'UploadController@uploadDocument');
-Route::get('/uploadTeacher', 'uploadTeacherController@index');
-Route::get('/downloadDoc/{filename}', 'uploadTeacherController@downloadDocument');
+Route::post('/uploadDoc/file', 'UploadTeacherController@uploadDocument');
+Route::post('/uploadTeacher/delete', 'UploadTeacherController@deleteDocument');
+Route::get('/uploadTeacher', 'UploadTeacherController@index');
+Route::get('/downloadDoc/{filename}', 'UploadTeacherController@downloadDocument');
+
 Route::resource('/uploadTeacher', 'uploadTeacherController');
 Route::resource('/progress', 'ProgressController');
 Route::post('progress/approve', 'ProgressController@updateProgress');
@@ -24,6 +26,7 @@ Route::post('/estimage_updateall', 'EffortEstimationsController@updateAll');
 //for upload and download
 Route::post('/estimage_updateall', 'EffortEstimationsController@updateAll');
 Route::post('/upload/file', 'UploadController@uploadDocument');
+Route::post('/upload/delete', 'UploadController@deleteDocument');
 Route::post('/upload/image', 'UploadController@uploadImage');
 Route::resource('/upload', 'UploadController');
 Route::get('/download/{filename}', 'UploadController@downloadDocument');
