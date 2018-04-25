@@ -4,6 +4,8 @@
 @endsection
 
 @section('script')
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 @endsection
 
 @section('content')
@@ -37,25 +39,94 @@
       </div>
 
     </form>
+    <!-- Modal for look popup -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Comment in task by : Advisor </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form action="{{ url('upload/delete') }}" id="file-id"  method="POST">
+                {{ csrf_field() }}
+                {{-- {{ method_field('DELETE') }} --}}
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">File Name:</label>
+                   <input type="hidden" name ="id" id="file-id" >
+                  <input type="text" class="form-control" name="name" id="file-name" readonly>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {{-- script ajax for show data to modal  --}}
+      <script type="text/javascript">
+      $('#exampleModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var name = button.data('name')
+        var id = button.data('id')
+        var desc = button.data('desc')
+
+
+        // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this)
+        modal.find('.modal-title').text('Do you want to delete the file?')
+        modal.find('#file-id').val(id)
+        modal.find('#file-name').val(name)
+        // modal.find('#desc-text').val(desc)
+      })
+        </script> 
   </div>
 
     <table class="table">
       <thead>
     <tr>
         <td>Filename</td>
-        <td>Download</td>
+        <td>Name</td>
+        <td>Date upload</td>
+        <td>Action</td>
     </tr>
     </thead>
     <tbody>
     @foreach ($files as $file)
+      @php
+      $fileDate = $file->created_at;
+      $interval = Carbon\Carbon::parse($fileDate)->diffInDays(now(), false);
+      @endphp
       <tr>
-          <td>{{$file->fileName}}</td>
+          <td>{{$file->fileName}}&nbsp&nbsp
+            @if ($interval == false)
+              <span class="label label-info">New</span>
+            @endif
+          </td>
+          <td>{{$file->name}}</td>
+          <td>{{$file->created_at}}</td>
           <td>
             <form action="{{ url('downloadDoc/'.$file->fileName) }}" method="GET">
                 {{ csrf_field() }}
                 <input type="hidden" name = "projectId" value="{{$id}}">
-            <button type="submit" class="btn btn-primary">download</button></td>
-              </form>
+                <button type="submit" class="btn btn-info">Download</button>
+                <button type="button" class="btn btn-danger"
+                  data-toggle="modal"
+                  data-id="{{$file->id}}"
+                  data-name="{{$file->fileName}}"
+                  data-target="#exampleModal">
+                    Delete
+              </button>
+            </form>
+
+              </td>
       </tr>
     @endforeach
      </tbody>
