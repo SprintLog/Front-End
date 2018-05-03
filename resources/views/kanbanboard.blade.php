@@ -155,7 +155,7 @@
              @elseif ($taskList->approved == 1)
                 <button type="button " name="button" class="btn btn-danger">Repair</button>
              @else
-               <button type="button " name="button" class="btn btn-success">approved</button>
+               <button type="button " name="button" class="btn btn-success">Approved</button>
             @endif
             </td>
           @else
