@@ -87,7 +87,7 @@
             <thead>
               <tr>
                 <th scope="col">Image Name</th>
-                <th scope="col">Date Summit</th>
+                <th scope="col">Date Submit</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
@@ -118,8 +118,8 @@
           <thead>
             <tr>
               <th scope="col">Name</th>
-              <th scope="col">Desc</th>
-              <th scope="col">Date Summit</th>
+              <th scope="col">Description</th>
+              <th scope="col">Date Submit</th>
               <th scope="col">Status</th>
               <th scope="col">Action</th>
             </tr>

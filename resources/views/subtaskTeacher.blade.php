@@ -26,8 +26,8 @@
               <thead>
                 <tr>
                   <th scope="col">Name</th>
-                  <th scope="col">Desc</th>
-                  <th scope="col">Date Summit</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Date Submit</th>
                   <th scope="col">Status</th>
                 </tr>
               </thead>
