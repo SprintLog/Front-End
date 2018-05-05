@@ -8,7 +8,14 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 class CommentController extends Controller
 {
-    //
+    public function like($id)
+    {
+      $posts = Comment::find($id);
+      $posts->likes = $posts->likes + 1 ;
+
+      $posts->save();
+      return back();
+    }
 
     public function post(Request $request)
     {

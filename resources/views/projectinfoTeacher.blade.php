@@ -39,7 +39,7 @@ $("input").val()
  </div>
 @endif
 <div class="jumbotron far">
-<form class=""  action="{{ url('project/'.$project->id) }}" method="post" enctype="multipart/form-data">
+<form class=""  action="{{ url('projectTeacher/'.$project->id) }}" method="post" enctype="multipart/form-data">
 {{ csrf_field() }}
 {{ method_field('PUT') }}
  <div class="form-group row far">
@@ -47,7 +47,7 @@ $("input").val()
        Thai Project Name
    </label>
    <div class="col-sm-7">
-     <input type="text" name="t_project_name" class="form-control"  value="{{$project->thai_name}}">
+     <input type="text" name="t_project_name" class="form-control"  value="{{$project->thai_name}}" disabled>
    </div>
  </div>
 
@@ -56,7 +56,7 @@ $("input").val()
        Eng Project Name
    </label>
    <div class="col-sm-7">
-     <input type="text" name="e_project_name"  class="form-control" value="{{$project->eng_name}}">
+     <input type="text" name="e_project_name"  class="form-control" value="{{$project->eng_name}}"disabled>
    </div>
  </div>
 
@@ -65,8 +65,8 @@ $("input").val()
        Type Project
    </label>
    <div class="col-sm-5">
-       <select class="form-control" name='typeProjectId'>
-         <option selected="selected" value="{{$TypeProjectIsNow->id}}">{{$TypeProjectIsNow->type}}</option>
+       <select class="form-control" name='typeProjectId' disabled>
+         <option selected="selected"  value="{{$TypeProjectIsNow->id}}">{{$TypeProjectIsNow->type}}</option>
          @foreach ($TypeProject as $t)
            <option value="{{$t->id}}">{{$t->type}}</option>
          @endforeach
@@ -80,7 +80,7 @@ $("input").val()
    </label>
    <div class="col-sm-5">
       <input   class="form-control" id="fieldLec"  name="developer[]"
-      type="text" data-items="8" value={{$userLeture->name}}/>
+      type="text" data-items="8"  disabled value={{$userLeture->name}}/>
        <input type="hidden" name="userLetureIsDefault" value="{{$userLeture->id}}">
    </div>
  </div>
@@ -94,12 +94,8 @@ $("input").val()
          @for ($i=0; $i < count($userStd); $i++)
             <div id="field">
                <input   class="form-control" id="field{{$i}}"  name="developer[]"
-               type="text" data-items="8" value={{$userStd[$i]->name}}/>
-               @if ($i ==  count($userStd)-1)
-                  <button id="b1" class="btn add-more" type="button"    >
-                   Add
-                 </button>
-               @endif
+               type="text" data-items="8" value={{$userStd[$i]->name}}/ disabled>
+
             </div>
          @endfor
 
@@ -112,7 +108,7 @@ $("input").val()
      Abstract
    </label>
    <div class="col-sm-7">
-       <textarea class="form-control" rows="3" name="abstract" >{{$project->abstack}}</textarea>
+       <textarea class="form-control" rows="3" name="abstract" disabled>{{$project->abstack}}</textarea>
    </div>
  </div>
 
@@ -121,15 +117,10 @@ $("input").val()
      Keyword
    </label>
    <div class="col-sm-7">
-     <input type="text" class="form-control" name="keyword" value="{{$project->keywords}}">
+     <input type="text" class="form-control" name="keyword" value="{{$project->keywords}}"disabled>
    </div>
  </div>
- <div class="form group row">
-   <div class="col-sm-offset-2 col-sm-4">
-     <button type="button" class="btn btn-dark btn-lg">Cancle</button> &nbsp;
-     <button type="submit" class="btn btn-info btn-lg">Save Change</button>
-   </div>
- </div>
+
    {{-- <input type="hidden" name="userId" value="1"> --}}
 </form>
 </div>

@@ -18,7 +18,7 @@ class UsersSeeder extends Seeder
 
         DB::table('users')->insert([
             'name'      => $faker->name,
-            'lastname'  => $faker->lastName,
+            'lastname'  => $faker->lastName, 
             'email'     => 'arm@gmail.com',
             'typeUser'  => array_random($arrayTypeUser),
             'password'  => bcrypt('arm@gmail.com'),

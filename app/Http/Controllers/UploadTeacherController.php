@@ -7,8 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
-class UploadController extends Controller
+class uploadTeacherController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,21 +22,11 @@ class UploadController extends Controller
             ->join('users', 'posts.userId', '=', 'users.id')
             ->select('posts.*' ,'users.name' , 'users.lastname')
             ->get();
-        return view('upload', ['files' => $files , 'posts' => $posts]);
+        return view('uploadTeacher', ['files' => $files , 'posts' => $posts]);
         //return view('upload',['files' => Upload::get()]);
     }
 
-    public function indexTeacher()
-    {
-        //
-        $files = DB::table('uploads')->get();
-        $posts = DB::table('posts')
-            ->join('users', 'posts.userId', '=', 'users.id')
-            ->select('posts.*' ,'users.name' , 'users.lastname')
-            ->get();
-        return view('upload', ['files' => $files , 'posts' => $posts]);
-        //return view('upload',['files' => Upload::get()]);
-    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -77,7 +66,7 @@ class UploadController extends Controller
             ->select('posts.*' ,'users.name' , 'users.lastname')
             ->where('projectId' ,$id )
             ->get();
-        return view('upload', ['files' => $files , 'posts' => $posts, 'id' => $id]);
+        return view('uploadTeacher', ['files' => $files , 'posts' => $posts, 'id' => $id]);
     }
     /**
      * Show the form for editing the specified resource.
@@ -139,11 +128,11 @@ class UploadController extends Controller
           }
   }
 
-  public function deleteDocument(Request $request)
-    {
-      $upload = Upload::find($request->id)->delete();
-      return back();
-    } 
+    public function deleteDocument(Request $request)
+      {
+        $upload = Upload::find($request->id)->delete();
+        return back();
+      }
 
   public function uploadImage(Request $request)
   {
@@ -173,7 +162,6 @@ class UploadController extends Controller
           return back()->with('warning', 'no file');
         }
 }
-
   public function downloadDocument($fileName , Request $request)
   {
       $projectId = $request->projectId ;

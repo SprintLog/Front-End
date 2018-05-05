@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Cache;
-class ProjectController extends Controller
+class ProjectTeacherController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -88,7 +88,7 @@ class ProjectController extends Controller
 
 
        // dd($userInfo);
-      return view('projectinfo', compact('project',
+      return view('projectinfoTeacher', compact('project',
                                         'userLeture',
                                         'userStd',
                                         'TypeProject',

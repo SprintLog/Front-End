@@ -43,7 +43,6 @@
             {{-- <td>{{$task->nametask}}</td> --}}
             <td>{{$task->created_at}}</td>
             <td>
-
               @for ($i=0; $i < sizeof($taskname); $i++)
               @if ($task->nametask == $taskname[$i] && $task->id == $taskId[$i])
                 @if ($progressProject[$i] == 100 )
@@ -52,14 +51,14 @@
                   @if ($task->approved == 0 )
                      <button type="button " name="button" class="btn btn-warning">Not approved</button>
                   @elseif ($task->approved == 1)
-                     <button type="button " name="button" class="btn btn-danger">Repair</button>
+                      <button type="button " name="button" class="btn btn-danger">Reject</button>
                   @else
-                    <button type="button " name="button" class="btn btn-success">approved</button>
+                     <button type="button " name="button" class="btn btn-success">Approved</button>
                   @endif
                 </td>
                 </td>
                 <td>
-                  <button type="button " name="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" data-name="{{$taskname[$i]}}" data-id="{{$task->id}}" data-desc="{{$task->desc}}" >Check</button>
+                  <button type="button " name="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" data-name="{{$taskname[$i]}}" data-id="{{$task->id}}" data-desc="{{$task->desc}}">Check</button>
                 </td>
                 </tr>
                 @else
@@ -74,10 +73,9 @@
                 @endif
               @endif
             @endfor
-
             {{-- </td>
-            <td><button type="button " name="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal1">Check</button>
-          </tr> --}}
+          <td><button type="button " name="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal1">Check</button>
+        </tr> --}}
         @endforeach
           </tbody>
       </table>
@@ -87,56 +85,53 @@
 
     </div>
   </div>
-
-
   <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <form action="{{ url('progress/approve') }}" method="POST">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form action="{{ url('progress/approve') }}" method="POST">
           {{ csrf_field() }}
-        <div class="modal-body">
+          <div class="modal-body">
             <div class="form-group">
-              <label for="message-text" class="col-form-label">Description By : Advisor </label>
+              <label for="message-text" class="col-form-label">Describe By : Advisor </label>
               <textarea class="form-control" name="desc" id="desc-text"></textarea>
             </div>
-        </div>
-        <div class="modal-footer">
-          <input type="hidden" name ="id" id="task-id" >
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" name="repair_button" class="btn btn-danger" value = "repair">Repair</button>
-        {{-- <form action="{{ url('progress/approve') }}" method="POST"> --}}
-          <input type="hidden" name ="id" id="task-id2" >
-            {{-- {{ csrf_field() }} --}}
-          <button type="submit" name="approve_button" class="btn btn-success" value = "approve">Approve</button>
-        {{-- </form> --}}
-          </form>
+          </div>
+          <div class="modal-footer">
+            <input type="hidden" name ="id" id="task-id" >
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" name="repair_button" class="btn btn-danger" value = "repair">Repair</button>
+          {{-- <form action="{{ url('progress/approve') }}" method="POST"> --}}
+            <input type="hidden" name ="id" id="task-id2" >
+              {{-- {{ csrf_field() }} --}}
+            <button type="submit" name="approve_button" class="btn btn-success" value = "approve">Approve</button>
+          {{-- </form> --}}
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
-  {{-- script ajax for show data to modal  --}}
-  <script type="text/javascript">
-  $('#exampleModal').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget) // Button that triggered the modal
-    var name = button.data('name')
-    var id = button.data('id')
-      var desc = button.data('desc')
-    // Extract info from data-* attributes
-    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-    var modal = $(this)
-    modal.find('#task-id').val(id)
-    modal.find('#task-id2').val(id)
-    modal.find('#desc-text').val(desc)
-    modal.find('.modal-title').text("Do you want to approve this task?")
-  })
-  </script>
+    {{-- script ajax for show data to modal  --}}
+      <script type="text/javascript">
+      $('#exampleModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var name = button.data('name')
+        var id = button.data('id')
+          var desc = button.data('desc')
+        // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this)
+        modal.find('#task-id').val(id)
+        modal.find('#task-id2').val(id)
+        modal.find('#desc-text').val(desc)
+        modal.find('.modal-title').text("Do you want to approve this task?")
+      })
+      </script>
 @endsection

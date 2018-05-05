@@ -17,10 +17,19 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::guard($guard)->check()) {
-            return redirect('/home');
+      //กำหนดการ redirect หลังจาก ตรวจสอบการ authen
+        /*if (Auth::guard($guard)->check()) {
+            return redirect('/homeTeacher');
+        }*/
+        if (Auth::guard($guard)->check() && auth()->user()->userType == 1)
+        {
+          return redirect('/home');
         }
 
+        if (Auth::guard($guard)->check() && auth()->user()->userType == 0)
+        {
+          return redirect('/homeTeacher');
+        }
         return $next($request);
     }
 }
