@@ -3,20 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Posts;
+use App\Comment;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
-class PostController extends Controller
+class CommentController extends Controller
 {
     //
-    public function like($id)
-    {
-      $posts = Posts::find($id);
-      $posts->likes = $posts->likes + 1 ;
-
-      $posts->save();
-      return back();
-    }
 
     public function post(Request $request)
     {
@@ -33,11 +25,11 @@ class PostController extends Controller
               ->with('warning', 'plz check input');
       }
 
-      $posts = new Posts();
-      $posts->body = $request->body;
-      $posts->projectId = $request->projectId;
-      $posts->userId = Auth::user()->id;
-      $posts->save();
+      $comment = new Comment();
+      $comment->body = $request->body;
+      $comment->taskId = $request->taskId;
+      $comment->userId = Auth::user()->id;
+      $comment->save();
       return back();
     }
 }

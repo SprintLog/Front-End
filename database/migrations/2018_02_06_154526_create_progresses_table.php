@@ -15,6 +15,9 @@ class CreateProgressesTable extends Migration
     {
         Schema::create('progresses', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('taskId')->unsigned();
+            $table->LongText('desc')->nullable();
+            $table->boolean('approved')->default(false);
             $table->timestamps();
         });
     }

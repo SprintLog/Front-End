@@ -96,7 +96,7 @@
         </tbody>
       </table>
       <!-- $UCP ไม่ใช่ค่าที่ต้องการ ค่าที่ต้องการคือ ค่า UCP ทีี่ทำได้ ซึ่งตอนนี้ยังทำไม่ได้-->
-      @if ($UCP > 1)
+      @if ($UCPMade > $UCPBeLike)
         <!-- show image status-->
         <div class="card" style="width: 80rem;">
           <img class="card-img-top"  height="100px" width"100px" display= "block"  src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Smile3_no-blur.svg/2000px-Smile3_no-blur.svg.png" alt="Card image cap">
@@ -113,6 +113,7 @@
           </div>
         </div>
       @endif
+
     <div class="form-group row far">
     <label  class="col-sm-4 col-form-label label label-default">
          Overview
@@ -129,6 +130,8 @@
   </label>
   <br><br><br>
   <canvas id="myChart" width="80px" height="80px"></canvas>
+  <br><br><br>
+  <canvas id="bar-chart-horizontal" width="800" height="450"></canvas>
 
   <!-- make grarph-->
   <script>
@@ -178,7 +181,7 @@
       datasets: [{
         label: "Task Status",
         backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f"],
-        data: [15,45,30]
+        data: [{{sizeof($todos)}},{{sizeof($doings)}},{{sizeof($dones)}}]
       }]
     },
     options: {
@@ -205,6 +208,27 @@ new Chart(document.getElementById("pie-chart"), {
       text: 'System Overview'
     }
   }
+});
+
+new Chart(document.getElementById("bar-chart-horizontal"), {
+    type: 'horizontalBar',
+    data: {
+      labels: ["UCP should do", "UCP made", "UCP"],
+      datasets: [
+        {
+          label: "Population (millions)",
+          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+          data: [{{$UCPBeLike}} , {{$UCPMade}} , {{$UCP}}]
+        }
+      ]
+    },
+    options: {
+      legend: { display: false },
+      title: {
+        display: true,
+        text: 'Compare UCP values ​​in project'
+      }
+    }
 });
 
   </script>

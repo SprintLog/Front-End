@@ -4,11 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Progress extends Model
+class Images extends Model
 {
     //
-
-    public function project(){
+    public function task(){
       return $this->belongsTo('App\Task');
     }
 }

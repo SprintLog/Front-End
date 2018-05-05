@@ -4,6 +4,8 @@
 @endsection
 
 @section('script')
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 @endsection
 
 @section('content')
@@ -19,24 +21,45 @@
   @endif
 
   <div class="jumbotron far">
-
     @if (count($files) > 0)
     <table class="table">
       <thead>
     <tr>
         <td>Filename</td>
-        <td>Download</td>
+        <td>Name</td>
+        <td>Date upload</td>
+        <td>Action</td>
     </tr>
     </thead>
     <tbody>
     @foreach ($files as $file)
+      @php
+      $fileDate = $file->created_at;
+      $interval = Carbon\Carbon::parse($fileDate)->diffInDays(now(), false);
+      @endphp
       <tr>
-          <td>{{$file->fileName}}</td>
+          <td>{{$file->fileName}}&nbsp&nbsp
+            @if ($interval == false)
+              <span class="label label-info">New</span>
+            @endif
+          </td>
+          <td>{{$file->name}}</td>
+          <td>{{$file->created_at}}</td>
           <td>
             <form action="{{ url('download/'.$file->fileName) }}" method="GET">
                 {{ csrf_field() }}
-            <button type="submit" class="btn btn-info">download</button></td>
-              </form>
+                <input type="hidden" name = "projectId" value="{{$id}}">
+            <button type="submit" class="btn btn-info">Download</button>
+            <button type="button" class="btn btn-danger"
+            data-toggle="modal"
+            data-id="{{$file->id}}"
+            data-name="{{$file->fileName}}"
+            data-target="#exampleModal">
+              Delete
+            </button>
+            </form>
+
+          </td>
       </tr>
     @endforeach
      </tbody>
@@ -50,6 +73,7 @@
           <span>Document</span>
           <span class="btn btn-default btn-file">
             <input type="file" class = "form-control" name = "document">
+            <input type="hidden" name = "projectId" value="{{$id}}">
           </span>
           <span class="fileinput-filename"></span>
         </div>
@@ -57,15 +81,67 @@
       <div class = "form-gruop">
           <input type="submit" class = "btn btn-success pull-right" value ="Upload new Document">
       </div>
+    </form><br><br>
+
+
+      <!-- Modal for look popup -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Comment in task by : Advisor </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form action="{{ url('upload/delete') }}" id="file-id"  method="POST">
+                {{ csrf_field() }}
+                {{-- {{ method_field('DELETE') }} --}}
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">File Name:</label>
+                   <input type="hidden" name ="id" id="file-id" >
+                  <input type="text" class="form-control" name="name" id="file-name" readonly>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {{-- script ajax for show data to modal  --}}
+      <script type="text/javascript">
+      $('#exampleModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var name = button.data('name')
+        var id = button.data('id')
+        var desc = button.data('desc')
+
+
+        // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this)
+        modal.find('.modal-title').text('Do you want to delete the file?')
+        modal.find('#file-id').val(id)
+        modal.find('#file-name').val(name)
+        // modal.find('#desc-text').val(desc)
+      })
+        </script>
+
       <div class="row far">
         <h3>Respone Advisor</h3>
-        <div class="col-sm-5">
+        {{-- <div class="col-sm-5">
            <span class="label label-default">LastVer.</span>
            filename
            <button type="button" name="button" class="btn">Upload</button>
         </div>
       </div>
-    </form>
+
       <div class="row fart">
         <table class="table table-bordered">
           <thead>
@@ -96,7 +172,7 @@
               <td>@twitter</td>
             </tr>
           </tbody>
-        </table>
+        </table> --}}
 
         {{-- New post--}}
         <div class="form-group {{ $errors->has('body') ? ' has-error' : '' }}">
@@ -108,7 +184,10 @@
               <div class = "form-group">
                 <textarea class="form-control" rows="4" cols="50" name="body" placeholder="Post status" required ></textarea>
               </div>
-              <div class = "form-gruop pull-right"><input type="submit" class ="btn btn-primary" value = "post" ></div>
+              <div class = "form-gruop pull-right">
+                <input type="hidden" name = "projectId" value="{{$id}}">
+                <input type="submit" class ="btn btn-primary" value = "post" >
+              </div>
               <div class="help-block with-errors"></div>
               <div class="form-group">
 
@@ -125,7 +204,7 @@
               <h4>{{$post->name}} {{$post->lastname}}</h4>
               <small>{{$post->created_at}}</small>
               <p>{{$post->body}}</P>
-              <a href= "/like/{{$post->id}}"><strong>{{$post->likes}}Like(s)</strong></a>
+              {{-- <a href= "/like/{{$post->id}}"><strong>{{$post->likes}}Like(s)</strong></a> --}}
             </div>
           </div>
         @endforeach
@@ -133,5 +212,6 @@
       </div>
     </div>
   </div>
+
 
 @endsection

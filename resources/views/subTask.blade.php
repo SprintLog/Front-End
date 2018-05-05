@@ -61,6 +61,56 @@
       </form>
   </div>
   </div>
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+          <form  action="/upload/image" method="post" enctype="multipart/form-data">
+            {{ csrf_field() }}
+          <div class="row">
+            <div class="fileinput fileinput-new" data-provides="fileinput">
+              <span>Image</span>
+              <span class="btn btn-default btn-file">
+                <input type="file" class = "form-control" name = "image">
+                <input type="hidden" name = "projectId" value="{{$projectId}}">
+                <input type="hidden" name = "taskId" value="{{$taskId}}">
+              </span>
+              <span class="fileinput-filename"></span>
+            </div>
+          <div class = "form-gruop">
+              <input type="submit" class = "btn btn-success pull-right" value ="Upload new image">
+          </div>
+            </div>
+          </form>
+          <br><br>
+          @if (count($images) > 0)
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">Image Name</th>
+                <th scope="col">Date Summit</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                  @foreach ($images as $image)
+                  <tr>
+                    <th scope="row">{{$image->fileName}}</th>
+                    <td>{{$image->updated_at}}</td>
+                    <td>
+                        <button type="button" class="btn btn-danger">
+                        <i class="fa fa-btn fa-trash"></i>Delete
+                        </button>
+                     </td>
+                  </tr>
+                  @endforeach
+            </tbody>
+          </table>
+        @endif
+      </div>
+    </div>
+
+
+
   @if (count($subtasks) > 0)
     <div class="jumbotron far">
       <div class="row fart">
@@ -172,6 +222,87 @@
       modal.find('#subtask-name').val(name)
       modal.find('#desc-text').val(desc)
     })
-      </script>
+//for image
 
+  </script>
+  <script>
+  $("#carousel").carousel();
+      .carousel {
+      height: 500px;
+      margin-bottom: 60px;
+  }
+  /* Since positioning the image, we need to help out the caption */
+   .carousel-caption {
+      z-index: 10;
+  }
+  /* Declare heights because of positioning of img element */
+   .carousel .item {
+      width: 100%;
+      height: 500px;
+      background-color: #777;
+  }
+  .carousel-inner > .item > img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      height: 500px;
+    }
+  </script>
+
+
+@if ($images)
+      <div id="carousel" class="carousel slide" data-ride="carousel">
+          <!-- Menu -->
+          <ol class="carousel-indicators">
+              @for ($i=0; $i < count($images); $i++)
+                @if ($i == 0 )
+                  <li data-target="#carousel" data-slide-to="{{$i}}" class="active"></li>
+                @else
+                  <li data-target="#carousel" data-slide-to="{{$i}}"></li>
+                @endif
+              @endfor
+          </ol>
+          <!-- Items -->
+          <div class="carousel-inner">
+            @for ($i=0; $i < count($images); $i++)
+              @if ($i == 0 )
+              <div class="item active">
+                  <img src="{{url('image/'.$projectId.'/' . $taskId .'/' . $images[$i]->fileName )}}"  alt="Slide 1"  class = "img-responsive"/>
+              </div>
+              @else
+              <div class="item">
+                  <img src="{{url('image/'.$projectId.'/' . $taskId .'/' . $images[$i]->fileName )}}" alt="Slide {{$i}}" />
+              </div>
+              @endif
+            @endfor
+          </div>
+          <a href="#carousel" class="left carousel-control" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left"></span>
+          </a>
+          <a href="#carousel" class="right carousel-control" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right"></span>
+          </a>
+      </div>
+  @endif
+
+  @if (count($comments) > 0)
+    <div class="panel-body">
+    <div class="panel panel-default">
+      <div class="panel-heading"><label class="control-label" for="numberInput"></label>Commet By advisor</div>
+  {{-- Post Timeline --}}
+  @foreach ($comments as $comment)
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h4>{{$comment->name}} {{$comment->lastname}}</h4>
+        <small>{{$comment->created_at}}</small>
+        <p>{{$comment->body}}</P>
+        {{-- <a href= "/like/{{$comment->id}}"><strong>{{$comment->likes}}Like(s)</strong></a> --}}
+      </div>
+    </div>
+  @endforeach
+      </div>
+    </div>
+  </div>
+@endif
 @endsection

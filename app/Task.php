@@ -13,4 +13,13 @@ class Task extends Model
   {
     return $this->hasMany('App\Subtasks');
   }
+  public function images()
+  {
+    return $this->hasMany('App\Images');
+  }
+
+  public function progress()
+  {
+    return $this->hasMany('App\Progress');
+  }
 }
