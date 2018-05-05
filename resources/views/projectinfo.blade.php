@@ -165,7 +165,7 @@
              }
          });
     });
-    //  FOR PROFRESSER 
+    //  FOR PROFRESSER
     var url = "{{ route('autocomplete.ajax.lec') }}";
     $('#fieldLec').typeahead({
         source:  function (query, process) {

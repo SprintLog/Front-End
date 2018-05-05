@@ -53,7 +53,6 @@ class TaskController extends Controller
       $task->projectId  = $request->projectId;
       $task->save();
 
-
       $progress = new Progress;
       $progress->taskId   = $task->id;
       $progress->save();

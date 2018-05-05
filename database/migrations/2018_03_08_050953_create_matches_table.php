@@ -36,6 +36,10 @@ class CreateMatchesTable extends Migration
             $table->foreign('projectId')
                 ->references('id')->on('projects')
                 ->onDelete('cascade');
+                
+            $table->foreign('userId')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
 
             $table->foreign('userId')
                   ->references('id')->on('users')
@@ -74,9 +78,9 @@ class CreateMatchesTable extends Migration
         });
 
         Schema::table('progresses', function(Blueprint $table){
-          $table->foreign('taskId')
-                  ->references('id')->on('tasks')
-                  ->onDelete('cascade');
+         $table->foreign('taskId')
+                 ->references('id')->on('tasks')
+                 ->onDelete('cascade');
         });
 
         Schema::table('matches', function(Blueprint $table){

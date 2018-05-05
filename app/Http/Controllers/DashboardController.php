@@ -89,7 +89,7 @@ class DashboardController extends Controller
         $ECF = 1.4 + (-0.03 * $total_resultEcf) ;
         $UCP = $UUCP * $TCF *$ECF ;
         //$HUCP = 405/$UCP ;
-
+        // echo $TCF . "<br>" . $ECF . "<br>" . $UUCP  . "<br>" . $total_resultEcf;
         $HUCP = number_format(405/$UCP, 2, '.', ' ');
         /*
         echo "UCP = UUCP * TCF * ECF". "<br>";

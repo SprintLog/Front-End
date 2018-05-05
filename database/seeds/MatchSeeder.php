@@ -73,6 +73,27 @@ class MatchSeeder extends Seeder
           'created_at'=> Carbon::now()->format('Y-m-d H:i:s'),
           'updated_at'=> Carbon::now()->format('Y-m-d H:i:s'),
         ]);
+        DB::table('matches')->insert([
+          "userId"    => 4,
+          "projectId" => 3,
+          'created_at'=> Carbon::now()->format('Y-m-d H:i:s'),
+          'updated_at'=> Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+
+        DB::table('matches')->insert([
+          "userId"    => 5,
+          "projectId" => 3,
+          'created_at'=> Carbon::now()->format('Y-m-d H:i:s'),
+          'updated_at'=> Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+
+        DB::table('matches')->insert([
+          "userId"    => 6,
+          "projectId" => 3,
+          'created_at'=> Carbon::now()->format('Y-m-d H:i:s'),
+          'updated_at'=> Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+
 
 
     }

@@ -36,12 +36,12 @@ class ProjectListController extends Controller
 
         $userStd  = DB::table("users")
         ->select('id','name','lastname')
-        ->where('typeUser','=',0)
+        ->where('typeUser','=',1)
         ->get();
 
         $userLetureShow = DB::table("users")
         ->select('id','name','lastname')
-        ->where('typeUser','=',1)
+        ->where('typeUser','=',0)
         ->get();
 
 
@@ -119,9 +119,9 @@ class ProjectListController extends Controller
                 "Part-time staff",
                 "Difficult programming language"
            );
-      $array_weight_ecf =  array(5,2,1,2,2,5,4,3);
+      $array_weight_ecf =  array(1.5,0.5,1,0.5,1,2,-1,-1);
 
-       for ($i=0; $i < 7 ; $i++) {
+       for ($i=0; $i < 8 ; $i++) {
           $ecf = new Ecf;
           $ecf->topic    =  $array_topic_ecf[$i];
           $ecf->des      =  "คำอธิบาย";
@@ -137,22 +137,23 @@ class ProjectListController extends Controller
        $pid = $project->id;
        $array_topic_tcf = array(
                "Distributed system",
-               "Performance objectives",
+               "Response time/performance objectives",
                "End-user efficiency",
-               "Complex processing",
-               "Reusable code",
+               "Internal processing complexity",
+               "Code reusability",
                "Easy to install",
                "Easy to use",
-               "Portable",
-               "Easy to change",
-               "Security",
+               "Portability to other platforms",
+               "System maintenance",
+               "Concurrent/parallel processing",
+               "Security features",
                "Access for third parties",
-               "Training needs",
+               "End user training"
 
           );
-     $array_weight_tcf =  array(2,1,1,1,1,0,0,2,1,1,1,1,1);
+     $array_weight_tcf =  array(2,1,1,1,1,0.5,0.5,2,1,1,1,1,1);
 
-      for ($i=0; $i < 7 ; $i++) {
+      for ($i=0; $i < 13 ; $i++) {
          $tcf = new Tcf;
          $tcf->topic    = $array_topic_tcf[$i];
          $tcf->des      = "คำอธิบาย";

@@ -119,12 +119,12 @@
          Overview
       </label>
       <canvas id="pie-chart" width="40px" height="15px"></canvas>
-      <br><br><br>
+      <br><br>
     <label  class="col-sm-4 col-form-label label label-default">
         Status
     </label>
-    <br><br><br>
-  <canvas id="pie-chart2" width="40px" height="15px"></canvas>
+    <br><br>
+  <canvas id="pie-chart2" width="40px" height="15px"></canvas><br><br>
   <label  class="col-sm-4 col-form-label label label-default">
       Progress
   </label>
@@ -145,15 +145,15 @@
               label: 'Progress Transaction (%)',
               data: progress,
               backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-                  'rgba(54, 162, 235, 0.2)',
-                  'rgba(255, 206, 86, 0.2)',
-                  'rgba(75, 192, 192, 0.2)',
-                  'rgba(153, 102, 255, 0.2)',
-                  'rgba(255, 159, 64, 0.2)'
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)'
               ],
               borderColor: [
-                  'rgba(255,99,132,1)',
+                  'rgba(255,99,132, 1)',
                   'rgba(54, 162, 235, 1)',
                   'rgba(255, 206, 86, 1)',
                   'rgba(75, 192, 192, 1)',
@@ -198,7 +198,7 @@ new Chart(document.getElementById("pie-chart"), {
     labels: ["Complete","InComplete"],
     datasets: [{
       label: "Overview Status",
-      backgroundColor: ["#c45850", "#e8c3b9"],
+      backgroundColor: ["#ffff33", "#3366ff"],
       data: [{{$projectComplete}},100-{{$projectComplete}}]
     }]
   },

@@ -22,6 +22,8 @@ class CreateCommentTable extends Migration
           $table->integer('likes')->unsigned()->default(0);
           $table->timestamps();
         });
+
+        
     }
 
     /**

@@ -90,21 +90,21 @@ class ProgressController extends Controller
 
 
             // echo $taskList->nametask ."<br>";
-            // echo $progress."<br>";
-            array_push($taskname,$taskList->nametask );
-            array_push($taskId,$taskList->id);
-            array_push($progressProject,$progress);
-            // print_r($taskname);
+           // echo $progress."<br>";
+           array_push($taskname,$taskList->nametask );
+           array_push($taskId,$taskList->id);
+           array_push($progressProject,$progress);
+           // print_r($taskname);
         }
 
             // print_r($taskname)."<br>";
 
-        return view ('progress' , ['tasks' =>$tasks,
-                                   'projectName' => $projectName,
-                                   'taskname'=> $taskname,
-                                   'taskId' => $taskId,
-                                   'progressProject' => $progressProject
-                                ]);
+            return view ('progress' , ['tasks' =>$tasks,
+                                       'projectName' => $projectName,
+                                       'taskname'=> $taskname,
+                                       'taskId' => $taskId,
+                                       'progressProject' => $progressProject
+                                    ]);
     }
 
     /**
@@ -142,21 +142,21 @@ class ProgressController extends Controller
     }
     public function updateProgress(Request $request, Progress $progress)
     {
-        //
-        $id = $request->id ;
-        $desc = $request->desc ;
-        // echo $request->approve_button;
-        // echo $request->repair_button;
-        if ($request->repair_button !== null) {
-          DB::table('progresses')
-          ->where('id', $id)
-          ->update(['approved' => 1 ,'desc' => $desc] );
-          return back()->with('success', 'Update Success');;
-        }elseif ($request->approve_button !== null) {
-          DB::table('progresses')
-          ->where('id', $id)
-          ->update(['approved' => 2 ,'desc' => $desc] );
-          return back()->with('success', 'Update Success');
-        }
-    }
+       //
+       $id = $request->id ;
+       $desc = $request->desc ;
+       // echo $request->approve_button;
+       // echo $request->repair_button;
+       if ($request->repair_button !== null) {
+         DB::table('progresses')
+         ->where('id', $id)
+         ->update(['approved' => 1 ,'desc' => $desc] );
+         return back()->with('success', 'Update Success');;
+       }elseif ($request->approve_button !== null) {
+         DB::table('progresses')
+         ->where('id', $id)
+         ->update(['approved' => 2 ,'desc' => $desc] );
+         return back()->with('success', 'Update Success');
+       }
+   }
 }

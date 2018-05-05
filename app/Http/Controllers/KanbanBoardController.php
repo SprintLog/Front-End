@@ -107,7 +107,6 @@ class KanbanBoardController extends Controller
             array_push ($dones ,$taskName);
              // echo $taskName . " done : " .$progress ."<br>";
           }
-
           array_push($taskname,$tasksList->nametask);
           array_push($taskId,$tasksList->id);
           array_push($progressProject,$progress);

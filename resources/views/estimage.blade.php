@@ -66,7 +66,7 @@
     <div class="row far">
       <div class="col-sm-offset-2 col-sm-8">
         <label  class="col-sm-6 col-form-label label label-default">
-            Calculate Technical Complexity
+            Technical Complexity Factor (TCF)
         </label>
         <table class="table table-striped">
           <thead>
@@ -81,7 +81,7 @@
               <tr>
                 <th scope="row">{{ $tcf -> topic}}</th>
                 <td>
-                  <div class="col-sm-7">
+                  <div class="col-sm-10">
                     <input type="number" class="form-control" name="rateTcf[]" min="1" max="5"  value="{{ $tcf -> rate}}">
                     <input type="hidden" name="topicTcf[]" value="{{ $tcf -> topic}}">
                     <input type="hidden" name="weightTcf[]" value="{{ $tcf -> weight}}">
@@ -93,7 +93,7 @@
           </tbody>
         </table>
         <label  class="col-sm-6 col-form-label label label-default">
-            Calculate Technical Complexity
+            Environmental Complexity Factor (ECF)
         </label>
         <table class="table table-striped">
           <thead>

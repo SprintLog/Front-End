@@ -31,7 +31,8 @@
               <img id="brand-image"  style="height:120%;display:inline-block;" src="https://avatars1.githubusercontent.com/u/34474167?s=200&v=4"></a>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
-            @if (Auth::check())
+            @if(Auth::check())
+            @if (Auth::user()->typeUser == 0)
               <ul class="nav navbar-nav">
 
                 <li class="{{ Request::segment(1) === 'home' ? 'active' : null }}">
@@ -61,6 +62,33 @@
                   <a href="{{url('dashboard/'.Cache::get('key'))}}">Dashboard</a>
                 </li>
               </ul>
+
+
+            @elseif (Auth::user()->typeUser == 1)
+                <ul class="nav navbar-nav">
+
+                  <li class="{{ Request::segment(1) === 'home' ? 'active' : null }}">
+                    <a href="{{url('homeTeacher')}}">Home</a>
+                  </li>
+
+                  <li  class="{{ Request::segment(1) === 'projectinfo' ? 'active' : null }}">
+                    <a href="{{url('projectTeacher/'.Cache::get('key'))}}">Project Info</a>
+                  </li>
+                  <li class="{{ Request::segment(1) === 'kanbanBoard' ? 'active' : null }}">
+                    <a href="{{url('kanbanBoard/'.Cache::get('key'))}}">Kanban Board</a>
+                  </li>
+                  <li class="{{ Request::segment(1) === 'upload' ? 'active' : null }}">
+                    <a href="{{url('uploadTeacher/'.Cache::get('key'))}}">Upload</a>
+                  </li>
+                  <li class="{{ Request::segment(1) === 'progress' ? 'active' : null }}">
+                    <a href="{{url('progress/'.Cache::get('key'))}}">Progress</a>
+                  </li>
+
+                  <li  class="{{ Request::segment(1) === 'dashboard' ? 'active' : null }}">
+                    <a href="{{url('dashboard/'.Cache::get('key'))}}">Dashboard</a>
+                  </li>
+                </ul>
+                @endif
 
               <ul class="nav navbar-nav navbar-right">
                   <!-- Authentication Links -->
