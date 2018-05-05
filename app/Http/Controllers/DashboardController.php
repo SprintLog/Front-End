@@ -7,6 +7,7 @@ use App\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
@@ -166,6 +167,16 @@ class DashboardController extends Controller
           //คิด % งานทั้งหมดทีทำได้
           $projectComplete = ($UCPMade / $UCP) * 100  ;
 
+          //หาเวลาที่ใช้ในการทำโปรเจ็ค (นับตั้งแต่วันที่สร้างโปรเจ็ต)
+          $projectStart = Project::find($id)->created_at;
+          $interval = $projectStart->diffInDays();
+
+          //คิดค่า UCP ที่ควรจะทำได้ในตอนนี้
+          $UCPBeLike =  ($UCP / (15*7)) * $interval ;
+
+          if ($UCPBeLike > $UCP) {
+            $UCPBeLike = $UCP ;
+          }
 
         return view('dashboard',
                                 ['TCF' => $TCF ,
@@ -178,7 +189,10 @@ class DashboardController extends Controller
                                 'projectComplete'=>$projectComplete,
                                 'todos' => $todos,
                                 'doings' => $doings,
-                                'dones' => $dones
+                                'dones' => $dones,
+                                'UCPBeLike' => $UCPBeLike,
+                                'UCPMade' => $UCPMade
+
                               ]);
     }
 

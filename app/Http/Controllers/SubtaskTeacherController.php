@@ -1,13 +1,18 @@
 <?php
+
 namespace App\Http\Controllers;
-use App\Task;
+use App\Subtasks;
 use App\Project;
-use App\Progress;
+use App\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-class TaskController extends Controller
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+
+
+class SubtaskTeacherController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +21,9 @@ class TaskController extends Controller
      */
     public function index()
     {
+        //
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -24,7 +31,9 @@ class TaskController extends Controller
      */
     public function create()
     {
+        //
     }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -33,32 +42,9 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-
-      // dd($request);
-      $validator = Validator::make($request->all(), [
-            'nameTask' => 'required|max:255',
-            'complexity' => 'required|max:255',
-            'projectId' => 'required|max:255',
-        ]);
-        if ($validator->fails()) {
-            return redirect('/')
-                ->withInput()
-                ->withErrors($validator)
-                ->with('warning', 'plz check input');
-        }
-      // dd($request);
-      $task = new Task;
-      $task->nametask   = $request->nameTask;
-      $task->complexity = $request->complexity;
-      $task->projectId  = $request->projectId;
-      $task->save();
-
-
-      $progress = new Progress;
-      $progress->taskId   = $task->id;
-      $progress->save();
-      return back();
+        //
     }
+
     /**
      * Display the specified resource.
      *
@@ -67,12 +53,31 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-      $globalsID=$id;
-      $tasks = DB::table('tasks')->where('projectId','=',$id)->get();
-      $projectName = Project::where('id' , $id)->first()->eng_name ;
-      // dd($tasks);
-    return view('addTask', ['tasks' => $tasks , 'projectName' => $projectName]);
+        //
+        $projectId =Task::find($id)->projectId;
+        $taskName =Task::find($id)->nametask;
+        $subtasks = DB::table('subtasks')->where('taskId' , $id)->get();
+        $images = DB::table('images')->where('taskId' , $id);
+        if ($images !== null) {
+          $images= $images->get();
+        }
+        $comments = DB::table('comment')
+            ->join('users', 'comment.userId', '=', 'users.id')
+            ->select('comment.*' ,'users.name' , 'users.lastname')
+            ->where('taskId', $id)
+            ->get();
+
+
+        return view('subtaskTeacher', ['taskId' => $id ,
+                                        'subtasks' => $subtasks,
+                                        'projectId' => $projectId ,
+                                         'taskName' => $taskName,
+                                         'images'   => $images,
+                                         'comments'  =>$comments
+                                       ]);
+
     }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -83,6 +88,7 @@ class TaskController extends Controller
     {
         //
     }
+
     /**
      * Update the specified resource in storage.
      *
@@ -94,6 +100,7 @@ class TaskController extends Controller
     {
         //
     }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -102,8 +109,6 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-      $task = Task::find($id)->delete();
-      $progress = Progress::where('taskId' , $id)->delete();
-      return back();
+        //
     }
 }

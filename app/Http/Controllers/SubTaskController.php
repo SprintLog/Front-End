@@ -27,11 +27,19 @@ class SubTaskController extends Controller
         // foreach ($images as $image) {
         //     echo $image->fileName."<br>";
         // }
+
+        $comments = DB::table('comment')
+            ->join('users', 'comment.userId', '=', 'users.id')
+            ->select('comment.*' ,'users.name' , 'users.lastname')
+            ->where('taskId', $id)
+            ->get();
+
         return view('subTask', ['taskId' => $id ,
                                 'subtasks' => $subtasks,
                                 'projectId' => $projectId ,
                                 'taskName' => $taskName,
-                                'images'   => $images
+                                'images'   => $images,
+                                'comments'  =>$comments
                               ]);
     }
     public function completed($id, Request $request)

@@ -12,9 +12,9 @@ class ProgressesSeeder extends Seeder
     public function run()
     {
         //
-        DB::table('progresses')->insert([
-          'created_at'=> Carbon::now()->format('Y-m-d H:i:s'),
-          'updated_at'=> Carbon::now()->format('Y-m-d H:i:s'),
-        ]);
+        // DB::table('progresses')->insert([
+        //   'created_at'=> Carbon::now()->format('Y-m-d H:i:s'),
+        //   'updated_at'=> Carbon::now()->format('Y-m-d H:i:s'),
+        // ]);
     }
 }

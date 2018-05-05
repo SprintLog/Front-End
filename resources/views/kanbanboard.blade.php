@@ -12,8 +12,7 @@
 @endsection
 
 @section('content')
-    {{-- {{$doings[1]}} --}}
-  <div class="jumbotron far">
+
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/home/">Home</a></li>
@@ -22,11 +21,10 @@
     </nav>
     <div class="container-fluid" style="min-width: 1050px;">
             <div id="sortableKanbanBoards" class="row">
-                <div class="col-md-10 col-md-offset-1">
-                                <div class="panel panel-primary kanban-col">
+                <div class="col-md-0 col-md-offset-0">
+                  <div class="panel panel-primary kanban-col">
                     <div class="panel-heading">
                         TODO
-                        <i class="fa fa-2x fa-plus-circle pull-right"></i>
                     </div>
                     <div class="panel-body" style="max-height: 401px;">
                         <div id="TODO" class="kanban-centered">
@@ -71,7 +69,6 @@
                 <div class="panel panel-primary kanban-col">
                     <div class="panel-heading">
                         DOING
-                        <i class="fa fa-2x fa-plus-circle pull-right"></i>
                     </div>
                     <div class="panel-body" style="max-height: 401px;">
                         <div id="DOING" class="kanban-centered">
@@ -97,7 +94,6 @@
                 <div class="panel panel-primary kanban-col">
                     <div class="panel-heading">
                         DONE
-                        <i class="fa fa-2x fa-plus-circle pull-right"></i>
                     </div>
                     <div class="panel-body" style="max-height: 401px;">
                         <div id="DONE" class="kanban-centered">
@@ -127,14 +123,15 @@
                 </div>
             </div>
             </div>
-  </div>
+
   <div class="jumbotron far">
   <table class="table table-bordered">
     <thead>
       <tr>
         <th scope="col">Name</th>
         <th scope="col">Complexity</th>
-        <th scope="col">Status</th>
+        <th scope="col">Task Status</th>
+        <th scope="col">Check By Teacher</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
@@ -152,15 +149,34 @@
           @endif
         </td>
         <td>
-          <button type="button" class = "btn btn-btn btn-warning">
-          waiting
-          </button>
+          @for ($i=0; $i < sizeof($taskname); $i++)
+          @if ($taskList->nametask == $taskname[$i] && $taskList->id == $taskId[$i])
+            @if ($progressProject[$i] == 100 )
+              <button type="button " name="button" class="btn btn-success">Complete</button>
+              <td>
+              @if ($taskList->approved == 0 )
+                 <button type="button " name="button" class="btn btn-warning">Not approved</button>
+               @elseif ($taskList->approved == 1)
+                  <button type="button " name="button" class="btn btn-danger">Repair</button>
+               @else
+                 <button type="button " name="button" class="btn btn-success">approved</button>
+              @endif
+              </td>
+            @else
+              <button type="button " name="button" class="btn btn-warning">Waiting</button>
+              <td>
+              </td>
+            @endif
+          @endif
+          @endfor
+
         </td>
        <td>
          <button type="button" class="btn btn-info"
          data-toggle="modal"
          data-id="{{$taskList->id}}"
          data-name="{{$taskList->nametask}}"
+         data-desc="{{$taskList->desc}}"
          data-target="#exampleModal">
            Comment
          </button>
