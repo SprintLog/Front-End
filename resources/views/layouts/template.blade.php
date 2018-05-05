@@ -32,7 +32,7 @@
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             @if(Auth::check())
-            @if (Auth::user()->typeUser == 1)
+            @if (Auth::user()->typeUser == 0)
               <ul class="nav navbar-nav">
 
                 <li class="{{ Request::segment(1) === 'home' ? 'active' : null }}">
@@ -64,7 +64,7 @@
               </ul>
 
 
-              @elseif (Auth::user()->typeUser == 0)
+            @elseif (Auth::user()->typeUser == 1)
                 <ul class="nav navbar-nav">
 
                   <li class="{{ Request::segment(1) === 'home' ? 'active' : null }}">
