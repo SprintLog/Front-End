@@ -12,6 +12,8 @@
 @endsection
 
 @section('script')
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
   <script src="{{elixir('js/bootstrap-tagsinput.js')}}"></script>
   <script type="text/javascript">
@@ -122,7 +124,6 @@
     </div>
     <div class="form group row">
       <div class="col-sm-offset-2 col-sm-4">
-        <button type="button" class="btn btn-dark btn-lg">Cancel</button> &nbsp;
         <button type="submit" class="btn btn-info btn-lg">Save </button>
       </div>
     </div>

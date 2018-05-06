@@ -20,6 +20,8 @@
 
 @section('script')
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 @endsection
 
 @section('content')
@@ -80,7 +82,7 @@
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Task</th>
+            <th scope="col">Task Name</th>
             <th scope="col">Time Limit</th>
           </tr>
         </thead>
@@ -219,7 +221,7 @@ new Chart(document.getElementById("pie-chart"), {
 new Chart(document.getElementById("bar-chart-horizontal"), {
     type: 'horizontalBar',
     data: {
-      labels: ["UCP should do", "UCP made", "UCP"],
+      labels: ["UCP(Estimate)", "UCP(Done)", "UCP(Total)"],
       datasets: [
         {
           label: "Population (millions)",

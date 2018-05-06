@@ -96,7 +96,7 @@
               <span class="fileinput-filename"></span>
             </div>
           <div class = "form-gruop">
-              <input type="submit" class = "btn btn-success pull-right" value ="Upload new image">
+              <input type="submit" class = "btn btn-success pull-right" value ="Upload">
           </div>
             </div>
           </form>
@@ -140,7 +140,7 @@
         <table class="table table-bordered">
           <thead>
             <tr>
-              <th scope="col">Name</th>
+              <th scope="col">Sub-Name</th>
               <th scope="col">Description</th>
               <th scope="col">Date Submit</th>
               <th scope="col">Status</th>

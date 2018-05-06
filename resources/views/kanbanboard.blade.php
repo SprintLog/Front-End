@@ -35,35 +35,11 @@
                         </div>
                         </article>
                       @endforeach
-                      {{-- <article class="kanban-entry grab" id="item0" draggable="true">
-                            <div class="kanban-entry-inner">
-                            <div class="kanban-label">
-                              <h2>qwdq</h2>
-                            </div>
-                          </div>
-                          </article>
-                          <article class="kanban-entry grab" id="item1" draggable="true">
-                              <div class="kanban-entry-inner">
-                              <div class="kanban-label"><h2>wdq</h2>
-                              </div>
-                            </div>
-                          </article>
-                          <article class="kanban-entry grab" id="item2" draggable="true">
-                                <div class="kanban-entry-inner"><div class="kanban-label">
-                                  <h2>wdqqeqe</h2></div>
-                                </div>
-                          </article>
-                          <article class="kanban-entry grab" id="item3" draggable="true">
-                                  <div class="kanban-entry-inner">
-                                  <div class="kanban-label">
-                                    <h2>wqe</h2>
-                                  </div>
-                                </div>
-                        </article> --}}
+
                       </div>
                   </div>
               </div>
-              <div class="panel panel-primary kanban-col">
+              <div class="panel panel-primary kanban-col ">
                   <div class="panel-heading">
                       DOING
                   </div>
@@ -128,7 +104,7 @@
             <th scope="col">Complexity</th>
             <th scope="col">Task Status</th>
             <th scope="col">Decision</th>
-            <th scope="col">Action</th>
+            <th scope="col">Comment</th>
           </tr>
         </thead>
         <tbody>
@@ -148,18 +124,19 @@
         @for ($i=0; $i < sizeof($taskname); $i++)
         @if ($taskList->nametask == $taskname[$i] && $taskList->id == $taskId[$i])
           @if ($progressProject[$i] == 100 )
-            <button type="button " name="button" class="btn btn-success">Complete</button>
+            <font color="green"><b>Complete</b></font>
             <td>
             @if ($taskList->approved == 0 )
-               <button type="button " name="button" class="btn btn-warning">Non-approved</button>
+
+              <font color="orange"><b>Non-approved</b></font>
              @elseif ($taskList->approved == 1)
-                <button type="button " name="button" class="btn btn-danger">Revise</button>
+              <font color="red"><b>Revise</b></font>
              @else
-               <button type="button " name="button" class="btn btn-success">Approved</button>
+               <font color="green"><b>Approved</b></font>
             @endif
             </td>
           @else
-            <button type="button " name="button" class="btn btn-warning">Incomplete</button>
+            <font color="red"><b>Incomplete</b></font>
             <td>
             </td>
           @endif
@@ -174,7 +151,7 @@
        data-name="{{$taskList->nametask}}"
        data-desc="{{$taskList->desc}}"
        data-target="#exampleModal">
-         Comment
+         View
        </button>
      </td>
     </tr>
@@ -229,7 +206,7 @@
     // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
     // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
     var modal = $(this)
-    modal.find('.modal-title').text('Task ID : ' + id)
+    modal.find('.modal-title').text('View Decision ')
     modal.find('#task-id').val(id)
     modal.find('#task-name').val(name)
     modal.find('#desc-text').val(desc)
