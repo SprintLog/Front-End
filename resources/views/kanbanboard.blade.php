@@ -124,10 +124,10 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th scope="col">Name</th>
+            <th scope="col">Task name</th>
             <th scope="col">Complexity</th>
             <th scope="col">Task Status</th>
-            <th scope="col">Check By Teacher</th>
+            <th scope="col">Decision</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
@@ -139,7 +139,7 @@
               @if($taskList->complexity == 1)
                 Simple
               @elseif ($taskList->complexity == 2)
-                Middle
+                Medium
               @else
                 Complex
               @endif
@@ -151,15 +151,15 @@
             <button type="button " name="button" class="btn btn-success">Complete</button>
             <td>
             @if ($taskList->approved == 0 )
-               <button type="button " name="button" class="btn btn-warning">Not approved</button>
+               <button type="button " name="button" class="btn btn-warning">Non-approved</button>
              @elseif ($taskList->approved == 1)
-                <button type="button " name="button" class="btn btn-danger">Repair</button>
+                <button type="button " name="button" class="btn btn-danger">Revise</button>
              @else
                <button type="button " name="button" class="btn btn-success">Approved</button>
             @endif
             </td>
           @else
-            <button type="button " name="button" class="btn btn-warning">Waiting</button>
+            <button type="button " name="button" class="btn btn-warning">Incomplete</button>
             <td>
             </td>
           @endif
