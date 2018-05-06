@@ -3,6 +3,30 @@
 @endsection
 
 @section('script')
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  {{--For Form delect--}}
+  <form id="form-delete" method="post">
+    {{ csrf_field() }}
+    {{ method_field('DELETE') }}
+  </form>
+  <script type="text/javascript">
+    function confirmDelete(msg, url, action) {
+        if (confirm(msg)) {
+            if(action == 'restore'){
+                window.location.href = url;
+            }else{
+                var element = document.getElementById('form-delete');
+                element.action = url;
+                element.submit();
+            }
+            // $('form#form-delete').attr('action', url);
+            // $('form#form-delete').submit();
+        } else {
+            alert('Canceled');
+        }
+    }
+  </script>
 @endsection
 
 @section('content')
@@ -48,7 +72,7 @@
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-6">
                             <button type="submit" class="btn btn-default">
-                                <i class="fa fa-btn fa-plus"></i>Add 
+                                <i class="fa fa-btn fa-plus"></i>Add
                             </button>
                         </div>
                     </div>
@@ -69,7 +93,7 @@
                   <div class="panel-body">
                       <table class="table table-striped task-table">
                           <thead>
-                              <th>Task</th>
+                              <th>Task Name</th>
                               <th>Complexity</th>
                               <th>&nbsp;</th>
                           </thead>
@@ -87,7 +111,7 @@
                                           @if($tasks->complexity == 1)
                                             Simple
                                           @elseif ($tasks->complexity == 2)
-                                            Middle
+                                            Medium
                                           @else
                                             Complex
                                           @endif
@@ -95,14 +119,13 @@
                                       </td>
                                       <!-- Task Delete Button -->
                                       <td>
-                                          <form action="{{ url('task/'.$tasks->id) }}" method="POST">
-                                              {{ csrf_field() }}
-                                              {{ method_field('DELETE') }}
-
-                                              <button type="submit" class="btn btn-danger">
-                                                  <i class="fa fa-btn fa-trash"></i> Delete
-                                              </button>
-                                          </form>
+                                              <a href="#!delete"
+                                              onclick=
+                                                "confirmDelete('Are you sure to delete ?',
+                                                '{{  url('task/'.$tasks->id) }}',
+                                                'delete');"
+                                                class="btn btn-danger">
+                                              Delete</a>
                                       </td>
                                   </tr>
                               @endforeach
