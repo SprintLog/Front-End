@@ -108,9 +108,11 @@ class UploadController extends Controller
      * @param  \App\Upload  $upload
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function deleteImage($id)
     {
         //
+        $image = Images::find($id)->delete();
+        return back();
     }
     public function uploadDocument(Request $request)
     {

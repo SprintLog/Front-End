@@ -28,6 +28,7 @@ Route::post('/estimage_updateall', 'EffortEstimationsController@updateAll');
 Route::post('/upload/file', 'UploadController@uploadDocument');
 Route::post('/upload/delete', 'UploadController@deleteDocument');
 Route::post('/upload/image', 'UploadController@uploadImage');
+Route::delete('/upload/image/delete/{id}', 'UploadController@deleteImage');
 Route::resource('/upload', 'UploadController');
 Route::get('/download/{filename}', 'UploadController@downloadDocument');
 Route::get('/like/{id}', 'PostController@like');
@@ -47,7 +48,7 @@ Route::get('subTask/{id}', 'SubTaskController@index');
 Route::post('subTask/create', 'SubTaskController@store');
 Route::delete('subTask/{id}', 'SubTaskController@destroy');
 Route::get('subTask/completed/{id}', 'SubTaskController@completed');
-Route::put('subTask/update', 'SubTaskController@update');
+Route::post('subTask/update', 'SubTaskController@update');
 
 //showdashboard
 Route::resource('/dashboard', 'DashboardController');
