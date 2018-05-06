@@ -4,7 +4,7 @@
 @endsection
 
 @section('script')
-
+  
 @endsection
 
 @section('content')
