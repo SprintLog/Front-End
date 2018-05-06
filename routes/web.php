@@ -1,6 +1,6 @@
 <?php
 Auth::routes();
-Route::group(['middleware' => 'auth'], function(){
+
   Route::group(['middleware' => 'MustBeStudent'], function(){
     Route::get('/home', 'HomeController@index');
     Route::resource('/project', 'ProjectController');
@@ -55,6 +55,3 @@ Route::group(['middleware' => 'auth'], function(){
   Route::get('autocomplete-ajaxLec',
      array('as'=>'autocomplete.ajax.lec',
      'uses'=>'AutoComplateController@ajaxDataLec'));
-
-
-});
