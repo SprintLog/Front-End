@@ -2,7 +2,28 @@
 @section('style')
 
 @endsection
-
+{{--For Form delect--}}
+<form id="form-delete" method="post">
+  {{ csrf_field() }}
+  {{ method_field('DELETE') }}
+</form>
+<script type="text/javascript">
+  function confirmDelete(msg, url, action) {
+      if (confirm(msg)) {
+          if(action == 'restore'){
+              window.location.href = url;
+          }else{
+              var element = document.getElementById('form-delete');
+              element.action = url;
+              element.submit();
+          }
+          // $('form#form-delete').attr('action', url);
+          // $('form#form-delete').submit();
+      } else {
+          alert('Canceled');
+      }
+  }
+</script>
 @section('script')
   {{-- <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -95,9 +116,13 @@
                     <th scope="row">{{$image->fileName}}</th>
                     <td>{{$image->updated_at}}</td>
                     <td>
-                        <button type="button" class="btn btn-danger">
-                        <i class="fa fa-btn fa-trash"></i>Delete
-                        </button>
+                      <a href="#!delete"
+                      onclick=
+                        "confirmDelete('Are you sure to delete ?',
+                        '{{  url('upload/image/delete/'.$image->id) }}',
+                        'delete');"
+                        class="btn btn-danger">
+                      Delete</a>
                      </td>
                   </tr>
                   @endforeach
@@ -134,7 +159,7 @@
 
                 @if ($subtask->completed == false)
                   <button type="submit" class = "btn btn-btn btn-warning">
-                  Pending
+                  Incomplete
                   </button>
                 @else
                   <button type="submit" class = "btn btn-success">
@@ -147,15 +172,14 @@
                   <button type="button" class="btn btn-info" data-toggle="modal" data-name="{{$subtask->name}}" data-id="{{$subtask->id}}" data-desc="{{$subtask->desc}}"  data-target="#exampleModal">
                     Edit
                   </button>
-                  <form action="{{ url('subTask/'.$subtask->id) }}" method="POST">
-                      {{ csrf_field() }}
-                      {{ method_field('DELETE') }}
-                      <button type="submit" class="btn btn-danger">
-                          <i class="fa fa-btn fa-trash"></i>Delete
-                      </button>
-                  </form>
+                      <a href="#!delete"
+                      onclick=
+                        "confirmDelete('Are you sure to delete ?',
+                        '{{  url('subTask/'.$subtask->id) }}',
+                        'delete');"
+                        class="btn btn-danger">
+                      Delete</a>
                 </td>
-
             </td>
             </tr>
             @endforeach
