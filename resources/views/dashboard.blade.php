@@ -24,6 +24,12 @@
 
 @section('content')
   <div class="jumbotron far">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/home/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{$projectName}}</li>
+      </ol>
+    </nav>
       <!-- show status UCP-->
       <div class="row">
         <div class="col-sm-6">
@@ -101,7 +107,7 @@
         <div class="card" style="width: 80rem;">
           <img class="card-img-top"  height="100px" width"100px" display= "block"  src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Smile3_no-blur.svg/2000px-Smile3_no-blur.svg.png" alt="Card image cap">
           <div class="card-body">
-            <p class="card-text">You can develop the project  within the time limit</p>
+            <p class="card-text">You can develop this project  within limited time</p>
           </div>
         </div>
       @else
@@ -109,7 +115,7 @@
         <div class="card" style="width: 80rem;">
           <img class="card-img-top"  height="100px" width"100px" display= "block"  src="http://www.pngmart.com/files/1/Sad-Emoji-PNG-Clipart.png" alt="Card image cap">
           <div class="card-body">
-            <p class="card-text">You can not  develop the project  within the time limit</p>
+            <p class="card-text">Do more, work harder!</p>
           </div>
         </div>
       @endif
@@ -195,7 +201,7 @@
 new Chart(document.getElementById("pie-chart"), {
   type: 'pie',
   data: {
-    labels: ["Complete","InComplete"],
+    labels: ["Complete","Incomplete"],
     datasets: [{
       label: "Overview Status",
       backgroundColor: ["#ffff33", "#3366ff"],

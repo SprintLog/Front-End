@@ -101,6 +101,7 @@ class DashboardController extends Controller
 
         //********************* Calculate Progress****************************
         $taskLists = Task::where('projectId', '=', $id)->get();
+        $projectName = DB::table('projects')->where('id' , $id)->first()->eng_name;
         $progressProject = [] ;
         $taskNameList = [] ;
         $progressAll = 0 ;
@@ -191,7 +192,8 @@ class DashboardController extends Controller
                                 'doings' => $doings,
                                 'dones' => $dones,
                                 'UCPBeLike' => $UCPBeLike,
-                                'UCPMade' => $UCPMade
+                                'UCPMade' => $UCPMade,
+                                'projectName' => $projectName
 
                               ]);
     }
