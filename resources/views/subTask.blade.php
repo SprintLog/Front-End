@@ -41,23 +41,21 @@
       <form data-toggle="validator" action="/subTask/create" method="POST" enctype="multipart/form-data">
           {{ csrf_field() }}
           <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }} ">
-              <label>Name Sub-Task</label>
-              <input class="form-control" name = "name" class="form-control" type="text" placeholder="Default input" required>
+              <label>Sub-Task Name</label>
+              <input class="form-control" name = "name" class="form-control" type="text" placeholder="Sub-Task Name" required>
               <div class="help-block with-errors"></div>
-              <div class="invalid-feedback">
-                Please choose a Sub-Task.
-              </div>
+
           </div>
           <div class="form-group {{ $errors->has('desc') ? ' has-error' : '' }}  ">
             <label>Description</label>
             <textarea class="form-control" name ="desc" rows="3" placeholder="description" required ></textarea>
             <div class="help-block with-errors"></div>
-            <div class="invalid-feedback">
-              Please describe your Sub-Task.
-            </div>
+
           </div>
             <input type="hidden" name="taskId" value="{{$taskId}}">
-            <button type="submit" class = "btn btn-primary pull-right">Add Sub-Task</button>
+            <button type="submit" class="btn btn-primary">
+                <i class="fa fa-btn fa-plus"></i>Add
+            </button>
       </form>
   </div>
   </div>
@@ -193,7 +191,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Send message</button>
+            <button type="submit" class="btn btn-primary">Save</button>
             </form>
           </div>
         </div>
@@ -211,7 +209,7 @@
       // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
       // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
       var modal = $(this)
-      modal.find('.modal-title').text('New message to ' + id)
+      modal.find('.modal-title').text('Edit Sub-Task Name ')
       modal.find('#subtask-id').val(id)
       modal.find('#subtask-name').val(name)
       modal.find('#desc-text').val(desc)
@@ -283,7 +281,7 @@
   @if (count($comments) > 0)
     <div class="panel-body">
     <div class="panel panel-default">
-      <div class="panel-heading"><label class="control-label" for="numberInput"></label>Comment By Advisor</div>
+      <div class="panel-heading"><label class="control-label" for="numberInput"></label>Teacher's comment</div>
   {{-- Post Timeline --}}
   @foreach ($comments as $comment)
     <div class="panel panel-default">

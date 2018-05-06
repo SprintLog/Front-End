@@ -20,7 +20,12 @@
     </div>
   @endif
   <div class="jumbotron far">
-
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/home/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{$projectName}}</li>
+      </ol>
+    </nav>
     @if (count($tasks) > 0)
     <div class="row far">
       <div class="col-sm-offset-2 col-sm-8">
