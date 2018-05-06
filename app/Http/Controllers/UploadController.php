@@ -17,12 +17,14 @@ class UploadController extends Controller
     public function index()
     {
         //
+
         $files = DB::table('uploads')->get();
         $posts = DB::table('posts')
             ->join('users', 'posts.userId', '=', 'users.id')
             ->select('posts.*' ,'users.name' , 'users.lastname')
             ->get();
-        return view('upload', ['files' => $files , 'posts' => $posts]);
+
+        return view('upload', ['files' => $files , 'posts' => $posts ,  ]);
         //return view('upload',['files' => Upload::get()]);
     }
 
@@ -76,7 +78,8 @@ class UploadController extends Controller
             ->select('posts.*' ,'users.name' , 'users.lastname')
             ->where('projectId' ,$id )
             ->get();
-        return view('upload', ['files' => $files , 'posts' => $posts, 'id' => $id]);
+        $projectName = DB::table('projects')->where('id' , $id)->first()->eng_name;
+        return view('upload', ['files' => $files , 'posts' => $posts, 'id' => $id , 'projectName' => $projectName]);
     }
     /**
      * Show the form for editing the specified resource.
@@ -142,7 +145,7 @@ class UploadController extends Controller
     {
       $upload = Upload::find($request->id)->delete();
       return back();
-    } 
+    }
 
   public function uploadImage(Request $request)
   {
