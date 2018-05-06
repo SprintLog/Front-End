@@ -90,7 +90,11 @@ class DashboardController extends Controller
         $UCP = $UUCP * $TCF *$ECF ;
         //$HUCP = 405/$UCP ;
         // echo $TCF . "<br>" . $ECF . "<br>" . $UUCP  . "<br>" . $total_resultEcf;
+        if($UCP == 0 ){
+          $HUCP = 0 ;
+        }else{
         $HUCP = number_format(405/$UCP, 2, '.', ' ');
+      }
         /*
         echo "UCP = UUCP * TCF * ECF". "<br>";
         echo "UCP = " . $UUCP . " * " . $TCF . " * " . $ECF. "<br>" ;
@@ -166,7 +170,13 @@ class DashboardController extends Controller
           $UCPMade = array_sum($UUCPWMade) * $TCF *$ECF  ;
 
           //คิด % งานทั้งหมดทีทำได้
+
+          // $projectComplete = ($UCPMade / $UCP) * 100  ;
+          if($UCP == 0 ){
+            $projectComplete = 0 ;
+          }else{
           $projectComplete = ($UCPMade / $UCP) * 100  ;
+        }
 
           //หาเวลาที่ใช้ในการทำโปรเจ็ค (นับตั้งแต่วันที่สร้างโปรเจ็ต)
           $projectStart = Project::find($id)->created_at;
