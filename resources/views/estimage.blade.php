@@ -127,7 +127,6 @@
         </table>
         <div class="row">
           <div class="col-sm-offset-4 col-sm-8">
-            <button type="button" name="button" class="btn">Cancle</button>
             <button type="submit" name="button" class="btn btn-warning">Save</button>
           </div>
         </div>
