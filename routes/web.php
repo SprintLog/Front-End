@@ -1,7 +1,7 @@
 <?php
 Auth::routes();
-
-  Route::group(['middleware' => 'MustBeStudent'], function(){
+Route::group(['middleware' => ['auth']], function () {
+  Route::group(['middleware' => ['MustBeStudent']], function () {
     Route::get('/home', 'HomeController@index');
     Route::resource('/project', 'ProjectController');
     Route::resource('/projectlist', 'ProjectListController');
@@ -28,7 +28,7 @@ Auth::routes();
     Route::put('subTask/update', 'SubTaskController@update');
   });
 
-  Route::group(['middleware' => 'MustBeTeacher'], function(){
+  Route::group(['middleware' => ['MustBeTeacher']], function () {
     //for Teacher
     Route::get('/homeTeacher','HomeController@indexTeacher');
     Route::resource('/projectTeacher', 'ProjectTeacherController');
@@ -45,6 +45,8 @@ Auth::routes();
     Route::post('/comment/new', 'CommentController@post');
   });
 
+
+
   //showdashboard
   Route::resource('/dashboard', 'DashboardController');
   Route::resource('/kanbanBoard', 'KanbanBoardController');
@@ -52,6 +54,9 @@ Auth::routes();
   Route::get('autocomplete-ajaxStd',
      array('as'=>'autocomplete.ajax.std',
      'uses'=>'AutoComplateController@ajaxDataStd'));
+
   Route::get('autocomplete-ajaxLec',
      array('as'=>'autocomplete.ajax.lec',
      'uses'=>'AutoComplateController@ajaxDataLec'));
+
+});
