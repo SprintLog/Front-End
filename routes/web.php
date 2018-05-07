@@ -56,3 +56,4 @@ Route::resource('/kanbanBoard', 'KanbanBoardController');
 
 
 Route::get('/document/{filename}', 'UploadController@downloadDocument1');
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
