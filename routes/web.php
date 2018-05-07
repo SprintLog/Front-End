@@ -53,3 +53,6 @@ Route::post('subTask/update', 'SubTaskController@update');
 //showdashboard
 Route::resource('/dashboard', 'DashboardController');
 Route::resource('/kanbanBoard', 'KanbanBoardController');
+
+
+Route::get('/document/{filename}', 'UploadController@downloadDocument1');

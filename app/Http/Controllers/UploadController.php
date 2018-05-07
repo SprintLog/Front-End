@@ -183,4 +183,11 @@ class UploadController extends Controller
       $pathToFile = '../storage/app/document/' . $projectId .'/'.$fileName;
       return response()->file($pathToFile);
   }
+
+  public function downloadDocument1($fileName)
+  {
+      $pathToFile = '../storage/app/document/'.$fileName;
+      echo $fileName;
+      return response()->file($pathToFile);
+  }
 }
