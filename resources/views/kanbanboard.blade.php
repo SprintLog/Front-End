@@ -9,22 +9,31 @@
 @section('script')
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+  .panel panel-default kanban-col > .panel-heading {
+      background-image: none;
+      background-color: red;
+      color: white;
+
+  }
+  </script>
 @endsection
 
 @section('content')
-
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/home/">Home</a></li>
         <li class="breadcrumb-item active" aria-current="page">{{$projectName}}</li>
       </ol>
     </nav>
+    <div>
     <div class="container-fluid" style="min-width: 1050px;">
             <div id="sortableKanbanBoards" class="row">
                 <div class="col-md-0 col-md-offset-0">
                   <div class="panel panel-primary kanban-col">
                     <div class="panel-heading">
                         TODO
+                    </div>
                         <div id="TODO" class="kanban-centered">
                       @foreach ($todos as $todo)
                         <article class="kanban-entry grab" draggable="true">
@@ -39,8 +48,9 @@
                       </div>
                   </div>
               </div>
-              <div class="panel panel-primary kanban-col ">
-                  <div class="panel-heading">
+
+              <div class="panel panel-primary kanban-col">
+                  <div class="panel-heading " style="background-color:#8e5ea2;">
                       DOING
                   </div>
                   <div class="panel-body" style="max-height: 401px;">
@@ -65,7 +75,7 @@
                   </div>
               </div>
               <div class="panel panel-primary kanban-col">
-                  <div class="panel-heading">
+                  <div class="panel-heading" style="background-color:#3cba9f;">
                       DONE
                   </div>
                   <div class="panel-body" style="max-height: 401px;">
@@ -135,14 +145,26 @@
                <font color="green"><b>Approved</b></font>
             @endif
             </td>
+            <td>
+                   <button type="button" class="btn btn-info"
+                   data-toggle="modal"
+                   data-id="{{$taskList->id}}"
+                   data-name="{{$taskList->nametask}}"
+                   data-desc="{{$taskList->desc}}"
+                   data-target="#exampleModal">
+                     View
+                   </button>
+           </td>
           @else
             <font color="red"><b>Incomplete</b></font>
+            <td>
+            </td>
             <td>
             </td>
           @endif
         @endif
         @endfor
-
+{{--
       </td>
      <td>
        <button type="button" class="btn btn-info"
@@ -153,7 +175,7 @@
        data-target="#exampleModal">
          View
        </button>
-     </td>
+     </td> --}}
     </tr>
 
     @endforeach
