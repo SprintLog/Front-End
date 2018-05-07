@@ -1,7 +1,7 @@
 @extends('layouts.templateList')
 
 @section('style')
-  <link rel="stylesheet" href="{{elixir('css/bootstrap-tagsinput.css')}}">
+
   <link rel="stylesheet" href="{{elixir('css/fix-general.css')}}">
   <style media="screen">
 
@@ -13,7 +13,7 @@
 
 @section('script')
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
-  <script src="{{elixir('js/bootstrap-tagsinput.js')}}"></script>
+
   <script type="text/javascript">
   $("input").val()
   </script>
