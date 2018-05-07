@@ -80,7 +80,7 @@
       </label>
       <div class="col-md-5">
          <input   class="form-control" id="fieldLec"  name="developer[]"
-         type="text" data-items="8" value="{{$userLeture->name}}"/>
+         type="text"  value="{{$userLeture->name}}"/>
           <input type="hidden" name="userLetureId" value="{{$userLeture->id}}">
           <input type="hidden" name="userLetureId_IsDefault" value="{{$userLeture->id}}">
       </div>
@@ -135,10 +135,10 @@
   </form>
 </div>
 <script type="text/javascript">
-var url = "{{ route('autocomplete.ajax.lec') }}";
-$('#fieldlec').typeahead({
+var url2 = "{{ route('autocomplete.ajax.lec') }}";
+$('#fieldLec').typeahead({
     source:  function (query, process) {
-    return $.get(url, { query: query }, function (data) {
+    return $.get(url2, { query: query }, function (data) {
             return process(data);
       });
     }
