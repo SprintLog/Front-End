@@ -121,7 +121,9 @@
           </div>
         </div>
       @endif
-
+      <br><br>
+  <canvas id="bar-chart-horizontal" width="800" height="450"></canvas>
+  <br><br><br>
     <div class="form-group row far">
     <label  class="col-sm-4 col-form-label label label-default">
          Overview
@@ -139,7 +141,7 @@
   <br><br><br>
   <canvas id="myChart" width="80px" height="80px"></canvas>
   <br><br><br>
-  <canvas id="bar-chart-horizontal" width="800" height="450"></canvas>
+  {{-- <canvas id="bar-chart-horizontal" width="800" height="450"></canvas> --}}
 
   <!-- make grarph-->
   <script>
