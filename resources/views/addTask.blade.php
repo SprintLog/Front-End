@@ -50,13 +50,18 @@
 
                     <!-- Task Name -->
                     <div class="form-group">
-                        <label for="task-name" class="col-sm-3 control-label">Task</label>
+                        <label for="task-name" class="col-sm-3 control-label">Task Name</label>
 
                         <div class="col-sm-6">
                             <input type="text" name="nameTask" id="task-name" class="form-control" value="{{ old('task') }}">
                         </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="task-name" class="col-sm-3 control-label">Complexity</label>
                        <div class="row">
+
                         <div class="col-sm-4">
+
                           <select class="form-control" name='complexity'>
                             <option data-tokens="" value=1>Simple</option>
                             <option data-tokens="" value=2>Medium</option>
@@ -68,12 +73,14 @@
                         <input type="hidden" name="projectId"
                         value="{{Cache::get('key')}}">
                     </div>
+
+
                     <!-- Add Task Button -->
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-6">
-                            <button type="submit" class="btn btn-default">
-                                <i class="fa fa-btn fa-plus"></i>Add
-                            </button>
+                          <button type="submit" class="btn btn-primary">
+                              <i class="fa fa-btn fa-plus"></i>Add
+                          </button>
                         </div>
                     </div>
                 </form>

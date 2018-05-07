@@ -169,7 +169,7 @@
                 </form>
                 <td>
                   <!-- Button trigger modal -->
-                  <button type="button" class="btn btn-info" data-toggle="modal" data-name="{{$subtask->name}}" data-id="{{$subtask->id}}" data-desc="{{$subtask->desc}}"  data-target="#exampleModal">
+                  <button type="button" class="btn btn-warning" data-toggle="modal" data-name="{{$subtask->name}}" data-id="{{$subtask->id}}" data-desc="{{$subtask->desc}}"  data-target="#exampleModal">
                     Edit
                   </button>
                       <a href="#!delete"
