@@ -81,7 +81,7 @@
       <div class="col-md-5">
          <input   class="form-control" id="fieldLec"  name="developer[]"
          type="text"  value="{{$userLeture->name}}"/>
-          <input type="hidden" name="userLetureId_IsDefault" value="{{$userLeture->id}}">
+          <input type="hidden" name="userId_IsDefault[]" value="{{$userLeture->id}}">
       </div>
     </div>
 
@@ -91,18 +91,23 @@
       </label>
       <div class="col-md-5">
          {{-- <input type="text" id="field" name="" value=""> --}}
-         <div class="multi-field-wrapper">
-           <div class="multi-fields">
-               @for ($i=0; $i < count($userStd); $i++)
-                  <div class="multi-field">
-                    <input type="text" id="field" name="developer[]" value="{{$userStd[$i]->name}}">
-                    <input type="hidden" name="userStdId_IsDefault[]" value="{{$userStd[$i]->id}}">
-                    <button type="button" class="btn-danger">Remove</button>
-                  </div>
-               @endfor
+         <div class="form-inline">
+           <div class="multi-field-wrapper">
+             <div class="multi-fields">
+                 @for ($i=0; $i < count($userStd); $i++)
+                    <div class="multi-field">
 
+                         <input type="text" id="field" class="form-control" name="developer[]" value="{{$userStd[$i]->name}}">
+
+
+                      <button type="button" class="btn-danger">Remove</button>
+
+                      <input type="hidden" name="userId_IsDefault[]" value="{{$userStd[$i]->id}}">
+                    </div>
+                 @endfor
+             </div>
+             <button type="button" class="btn">Add field</button>
            </div>
-           <button type="button" class="btn">Add field</button>
          </div>
      </div>
    </div>
@@ -152,7 +157,7 @@ $('#fieldLec').typeahead({
         .clone(true)
         .appendTo($wrapper)
         .find('input')
-        .val('2')
+        .val('')
         .focus();
     });
 

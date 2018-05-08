@@ -118,7 +118,7 @@ class ProjectController extends Controller
     public function update(Request $request,$id)
     {
 
-        // dd($request);
+         dd($request);
         $thainame       = $request->t_project_name;
         $engname        = $request->e_project_name;
         $typeProject    = $request->typeProjectId;
@@ -126,8 +126,7 @@ class ProjectController extends Controller
         $keyword        = $request->keyword;
 
 
-        $userLetureId_IsDefault   = $request->userLetureId_IsDefault;
-        $userStdId_IsDefault      = $request->userStdId_IsDefault;
+        $userId_IsDefault   = $request->userId_IsDefault;
 
 
 
@@ -147,29 +146,47 @@ class ProjectController extends Controller
           ->where('name',$request->developer[$i])
           ->pluck('id')->first();;
         }
+
          // dd($devIds[0]);
 
 
          //  updATE TABLE Match
 
 
-         DB::table('matches')
-         ->where('userId','=',$userLetureId_IsDefault)
-         ->where('projectId','=',$id)
-         ->update(['userId' =>  $devIds[0]]);
-
-
-
+         for ($i=0; $i < count($userId_IsDefault) ; $i++) {
            DB::table('matches')
-           ->where('userId','=',$userStdId_IsDefault[$i])
+           ->where('userId','=',$userId_IsDefault[$i])
            ->where('projectId','=',$id)
-           ->update(['userId' =>  $devIds[$i+1 ]]);
+           ->update(['userId' =>  $devIds[$i]]);
+         }
 
+         $loop = count($devIds) - count($userId_IsDefault);
+         if($loop > 0)
+         {
+           for ($i=0; $i < $loop; $i++) {
+             $m = new Match;
+             $m->userId    = $devId[count($userId_IsDefault)+$i];
+             $m->projectId = $project->id;
+             $m->save();
+           }
+         }
+         else
+        {
 
-          // $m = new Match;
-          // $m->userId    = $devId[$i];
-          // $m->projectId = $project->id;
-          // $m->save();
+        }
+
+         /*
+          0 1
+          1 2
+          2 3
+          3 4 count = 4
+
+          0 1
+          1 2
+          2 3 count =3
+
+         */
+
 
 
 
