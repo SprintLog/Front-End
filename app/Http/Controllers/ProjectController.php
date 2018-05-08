@@ -118,7 +118,7 @@ class ProjectController extends Controller
     public function update(Request $request,$id)
     {
 
-        // dd($request);
+        dd($request);
         $thainame       = $request->t_project_name;
         $engname        = $request->e_project_name;
         $typeProject    = $request->typeProjectId;
