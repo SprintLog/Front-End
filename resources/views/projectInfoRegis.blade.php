@@ -78,7 +78,7 @@
 
     <div class="form-group row far">
       <label  class="col-sm-3 col-form-label">
-          Teacher's Name
+          Advisor's Name
       </label>
       <div class="col-sm-5">
         <select class="form-control" name='advisorsId'>
