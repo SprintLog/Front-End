@@ -4,9 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
-
+    use  Notifiable;
     protected $fillable = ['name', 'lastname', 'email','password','projectid','typeUser'];
 
     public function macth(){
@@ -20,4 +21,5 @@ class User extends Authenticatable
     {
       return $this->hasMany(Comment::class ,'userId');
     }
+  
 }

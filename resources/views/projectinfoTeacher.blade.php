@@ -44,7 +44,7 @@ $("input").val()
 {{ method_field('PUT') }}
  <div class="form-group row far">
    <label  class="col-sm-3 col-form-label">
-       Thai Project Name
+       Project's Name (Thai)
    </label>
    <div class="col-sm-7">
      <input type="text" name="t_project_name" class="form-control"  value="{{$project->thai_name}}" disabled>
@@ -53,7 +53,7 @@ $("input").val()
 
  <div class="form-group row far">
    <label  class="col-sm-3 col-form-label">
-       Eng Project Name
+       Project's Name (English)
    </label>
    <div class="col-sm-7">
      <input type="text" name="e_project_name"  class="form-control" value="{{$project->eng_name}}"disabled>
@@ -62,7 +62,7 @@ $("input").val()
 
  <div class="form-group row far">
    <label  class="col-sm-3 col-form-label">
-       Type Project
+       Project Type
    </label>
    <div class="col-sm-5">
        <select class="form-control" name='typeProjectId' disabled>
@@ -76,7 +76,7 @@ $("input").val()
 
  <div class="form-group row far">
    <label  class="col-sm-3 col-form-label">
-       Advisors
+       Advisor's Name
    </label>
    <div class="col-sm-5">
       <input   class="form-control" id="fieldLec"  name="developer[]"
@@ -87,7 +87,7 @@ $("input").val()
 
  <div class="form-group row far">
    <label  class="col-sm-3 col-form-label">
-       Developer
+       Developer's Name
    </label>
    <div class="col-sm-5">
       <div class="form-inline"  id="fields" >
@@ -114,7 +114,7 @@ $("input").val()
 
  <div class="form-group row far">
    <label  class="col-sm-3 col-form-label">
-     Keyword
+     Keywords
    </label>
    <div class="col-sm-7">
      <input type="text" class="form-control" name="keyword" value="{{$project->keywords}}"disabled>

@@ -2,7 +2,28 @@
 @section('style')
 
 @endsection
-
+{{--For Form delect--}}
+<form id="form-delete" method="post">
+  {{ csrf_field() }}
+  {{ method_field('DELETE') }}
+</form>
+<script type="text/javascript">
+  function confirmDelete(msg, url, action) {
+      if (confirm(msg)) {
+          if(action == 'restore'){
+              window.location.href = url;
+          }else{
+              var element = document.getElementById('form-delete');
+              element.action = url;
+              element.submit();
+          }
+          // $('form#form-delete').attr('action', url);
+          // $('form#form-delete').submit();
+      } else {
+          alert('Canceled');
+      }
+  }
+</script>
 @section('script')
   {{-- <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -41,23 +62,21 @@
       <form data-toggle="validator" action="/subTask/create" method="POST" enctype="multipart/form-data">
           {{ csrf_field() }}
           <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }} ">
-              <label>Name Sub-Task</label>
-              <input class="form-control" name = "name" class="form-control" type="text" placeholder="Default input" required>
+              <label>Sub-Task Name</label>
+              <input class="form-control" name = "name" class="form-control" type="text" placeholder="Sub-Task Name" required>
               <div class="help-block with-errors"></div>
-              <div class="invalid-feedback">
-                Please choose a Sub-Task.
-              </div>
+
           </div>
           <div class="form-group {{ $errors->has('desc') ? ' has-error' : '' }}  ">
             <label>Description</label>
             <textarea class="form-control" name ="desc" rows="3" placeholder="description" required ></textarea>
             <div class="help-block with-errors"></div>
-            <div class="invalid-feedback">
-              Please describe your Sub-Task.
-            </div>
+
           </div>
             <input type="hidden" name="taskId" value="{{$taskId}}">
-            <button type="submit" class = "btn btn-primary pull-right">Add Sub-Task</button>
+            <button type="submit" class="btn btn-primary">
+                <i class="fa fa-btn fa-plus"></i>Add
+            </button>
       </form>
   </div>
   </div>
@@ -77,7 +96,7 @@
               <span class="fileinput-filename"></span>
             </div>
           <div class = "form-gruop">
-              <input type="submit" class = "btn btn-success pull-right" value ="Upload new image">
+              <input type="submit" class = "btn btn-success pull-right" value ="Upload">
           </div>
             </div>
           </form>
@@ -97,9 +116,13 @@
                     <th scope="row">{{$image->fileName}}</th>
                     <td>{{$image->updated_at}}</td>
                     <td>
-                        <button type="button" class="btn btn-danger">
-                        <i class="fa fa-btn fa-trash"></i>Delete
-                        </button>
+                      <a href="#!delete"
+                      onclick=
+                        "confirmDelete('Are you sure to delete ?',
+                        '{{  url('upload/image/delete/'.$image->id) }}',
+                        'delete');"
+                        class="btn btn-danger">
+                      Delete</a>
                      </td>
                   </tr>
                   @endforeach
@@ -117,7 +140,7 @@
         <table class="table table-bordered">
           <thead>
             <tr>
-              <th scope="col">Name</th>
+              <th scope="col">Sub-Name</th>
               <th scope="col">Description</th>
               <th scope="col">Date Submit</th>
               <th scope="col">Status</th>
@@ -136,7 +159,7 @@
 
                 @if ($subtask->completed == false)
                   <button type="submit" class = "btn btn-btn btn-warning">
-                  Pending
+                  Incomplete
                   </button>
                 @else
                   <button type="submit" class = "btn btn-success">
@@ -154,15 +177,14 @@
                   data-target="#exampleModal">
                     Edit
                   </button>
-                  <form action="{{ url('subTask/'.$subtask->id) }}" method="POST">
-                      {{ csrf_field() }}
-                      {{ method_field('DELETE') }}
-                      <button type="submit" class="btn btn-danger">
-                          <i class="fa fa-btn fa-trash"></i>Delete
-                      </button>
-                  </form>
+                      <a href="#!delete"
+                      onclick=
+                        "confirmDelete('Are you sure to delete ?',
+                        '{{  url('subTask/'.$subtask->id) }}',
+                        'delete');"
+                        class="btn btn-danger">
+                      Delete</a>
                 </td>
-
             </td>
             </tr>
             @endforeach
@@ -199,7 +221,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Send message</button>
+            <button type="submit" class="btn btn-primary">Save</button>
             </form>
           </div>
         </div>
@@ -217,7 +239,7 @@
       // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
       // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
       var modal = $(this)
-      modal.find('.modal-title').text('New message to ' + id)
+      modal.find('.modal-title').text('Edit Sub-Task Name ')
       modal.find('#subtask-id').val(id)
       modal.find('#subtask-name').val(name)
       modal.find('#desc-text').val(desc)
@@ -289,7 +311,7 @@
   @if (count($comments) > 0)
     <div class="panel-body">
     <div class="panel panel-default">
-      <div class="panel-heading"><label class="control-label" for="numberInput"></label>Comment By Advisor</div>
+      <div class="panel-heading"><label class="control-label" for="numberInput"></label>Teacher's comment</div>
   {{-- Post Timeline --}}
   @foreach ($comments as $comment)
     <div class="panel panel-default">

@@ -71,7 +71,7 @@
 
         <div class="form-group">
           <div class="col-md-6 col-md-offset-4">
-            <label class="checkbox-inline"><input type="radio" name='typeUser' value='0'>Professor</label>
+            <label class="checkbox-inline"><input type="radio" name='typeUser' value='0'>Advisor</label>
             <label class="checkbox-inline"><input type="radio" name='typeUser' value='1'>Scholar</label>
           </div>
         </div>

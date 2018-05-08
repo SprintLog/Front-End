@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -31,17 +32,13 @@ class LoginController extends Controller
 
     protected function redirectTo()
      {
-
-
-       if(Auth::user()->userType == 1) {
+       if(Auth::user()->userType == 0) {
              return ('/home');
        }
-      /* elseif (Auth::user()->userType == 0) {
-             return ('/homeTeacher');
-       }*/
-       else{
+       else if(Auth::user()->userType == 1){
             return ('/homeTeacher');
        }
+       
      }
 
     /**
@@ -54,6 +51,10 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        return redirect('/login');
+    }
 
 }

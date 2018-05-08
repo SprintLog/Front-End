@@ -43,28 +43,28 @@
   {{ csrf_field() }}
   {{ method_field('PUT') }}
     <div class="form-group row far">
-      <label  class="col-sm-3 col-form-label">
+      <label  class="col-md-3 col-form-label">
           Thai Project Name
       </label>
-      <div class="col-sm-7">
+      <div class="col-md-7">
         <input type="text" name="t_project_name" class="form-control"  value="{{$project->thai_name}}">
       </div>
     </div>
 
     <div class="form-group row far">
-      <label  class="col-sm-3 col-form-label">
+      <label  class="col-md-3 col-form-label">
           Eng Project Name
       </label>
-      <div class="col-sm-7">
+      <div class="col-md-7">
         <input type="text" name="e_project_name"  class="form-control" value="{{$project->eng_name}}">
       </div>
     </div>
 
     <div class="form-group row far">
       <label  class="col-sm-3 col-form-label">
-          Type Project
+          Project Type
       </label>
-      <div class="col-sm-5">
+      <div class="col-md-5">
           <select class="form-control" name='typeProjectId'>
             <option selected="selected" value="{{$TypeProjectIsNow->id}}">{{$TypeProjectIsNow->type}}</option>
             @foreach ($TypeProject as $t)
@@ -78,49 +78,49 @@
       <label  class="col-sm-3 col-form-label">
           Advisors
       </label>
-      <div class="col-sm-5">
+      <div class="col-md-5">
          <input   class="form-control" id="fieldLec"  name="developer[]"
-         type="text" data-items="8" value={{$userLeture->name}}/>
-          <input type="hidden" name="userLetureIsDefault" value="{{$userLeture->id}}">
+         type="text"  value="{{$userLeture->name}}"/>
+          <input type="hidden" name="userLetureId_IsDefault" value="{{$userLeture->id}}">
       </div>
     </div>
 
     <div class="form-group row far">
       <label  class="col-sm-3 col-form-label">
-          Developer
+          Developer' Name
       </label>
-      <div class="col-sm-5">
-         <div class="form-inline"  id="fields" >
-            @for ($i=0; $i < count($userStd); $i++)
-               <div id="field">
-                  <input   class="form-control" id="field{{$i}}"  name="developer[]"
-                  type="text" data-items="8" value={{$userStd[$i]->name}}/>
-                  @if ($i ==  count($userStd)-1)
-                     <button id="b1" class="btn add-more" type="button"    >
-                      Add
-                    </button>
-                  @endif
-               </div>
-            @endfor
+      <div class="col-md-5">
+         {{-- <input type="text" id="field" name="" value=""> --}}
+         <div class="multi-field-wrapper">
+           <div class="multi-fields">
+               @for ($i=0; $i < count($userStd); $i++)
+                  <div class="multi-field">
+                    <input type="text" id="field" name="developer[]" value="{{$userStd[$i]->name}}">
+                    <input type="hidden" name="userStdId_IsDefault[]" value="{{$userStd[$i]->id}}">
+                    <button type="button" class="btn-danger">Remove</button>
+                  </div>
+               @endfor
 
+           </div>
+           <button type="button" class="btn">Add field</button>
          </div>
-      </div>
-    </div>
+     </div>
+   </div>
 
     <div class="form-group row far">
-      <label  class="col-sm-3 col-form-label">
+      <label  class="col-md-3 col-form-label">
         Abstract
       </label>
-      <div class="col-sm-7">
+      <div class="col-md-7">
           <textarea class="form-control" rows="3" name="abstract" >{{$project->abstack}}</textarea>
       </div>
     </div>
 
     <div class="form-group row far">
       <label  class="col-sm-3 col-form-label">
-        Keyword
+        Keywords
       </label>
-      <div class="col-sm-7">
+      <div class="col-md-7">
         <input type="text" class="form-control" name="keyword" value="{{$project->keywords}}">
       </div>
     </div>
@@ -134,46 +134,43 @@
   </form>
 </div>
 <script type="text/javascript">
-   $(document).ready(function(){
-    var next = 2;
-    $(".add-more").click(function(e){
-         e.preventDefault();
-         var addto = "#field" + next;
-         var addRemove = "#field" + (next);
-         next = next + 1;
-         var newIn = '<input autocomplete="off" class="input form-control" id="field' + next + '" name="developer[]" type="text">';
-         var newInput = $(newIn);
-         var removeBtn = '<button id="remove' + (next - 1) + '" class="btn  remove-me" >Remove </button>';
-         var removeButton = $(removeBtn);
-         $(addto).after(newInput);
-         $(addRemove).after(removeButton);
-         $("#field" + next).attr('data-source',$(addto).attr('data-source'));
-         $("#count").val(next);
-         $('.remove-me').click(function(e){
-           e.preventDefault();
-           var fieldNum = this.id.charAt(this.id.length-1);
-           var fieldID = "#field" + fieldNum;
-           $(this).remove();
-           $(fieldID).remove();
-         });
-         var url = "{{ route('autocomplete.ajax.std') }}";
-         $("#field" + next).typeahead({
-             source:  function (query, process) {
-             return $.get(url, { query: query }, function (data) {
-                     return process(data);
-               });
-             }
-         });
+var url2 = "{{ route('autocomplete.ajax.lec') }}";
+$('#fieldLec').typeahead({
+    source:  function (query, process) {
+    return $.get(url2, { query: query }, function (data) {
+            return process(data);
+      });
+    }
+});
+</script>
+<script type="text/javascript">
+  $('.multi-field-wrapper').each(function() {
+
+    var $wrapper = $('.multi-fields', this);
+
+    $(".btn", $(this)).click(function(e) {
+        $('.multi-field:first-child', $wrapper)
+        .clone(true)
+        .appendTo($wrapper)
+        .find('input')
+        .val('2')
+        .focus();
     });
-    //  FOR PROFRESSER
-    var url = "{{ route('autocomplete.ajax.lec') }}";
-    $('#fieldLec').typeahead({
+
+    $('.multi-field .btn-danger', $wrapper).click(function() {
+        if ($('.multi-field', $wrapper).length > 1)
+            $(this).parent('.multi-field').remove();
+    });
+  });
+  var url = "{{ route('autocomplete.ajax.std') }}";
+    $('[id="field"]').typeahead({
         source:  function (query, process) {
         return $.get(url, { query: query }, function (data) {
                 return process(data);
           });
         }
     });
- });
+
+
 </script>
 @endsection

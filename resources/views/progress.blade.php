@@ -28,10 +28,10 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th scope="col">Task</th>
-            <th scope="col">Date Submit</th>
+            <th scope="col">Task Name</th>
+            <th scope="col">Date</th>
             <th scope="col">Task Status</th>
-            <th scope="col">Check By Teacher</th>
+            <th scope="col">Decision</th>
             <th scope="col">CheckTask</th>
           </tr>
         </thead>
@@ -46,14 +46,14 @@
               @for ($i=0; $i < sizeof($taskname); $i++)
               @if ($task->nametask == $taskname[$i] && $task->id == $taskId[$i])
                 @if ($progressProject[$i] == 100 )
-                  <button type="button " name="button" class="btn btn-success">Complete</button>
+                  <font color="green"><b>Complete</b></font>
                   <td>
                   @if ($task->approved == 0 )
-                     <button type="button " name="button" class="btn btn-warning">Not approved</button>
+                     <font color="orange"><b>Non-approved</b></font>
                   @elseif ($task->approved == 1)
-                      <button type="button " name="button" class="btn btn-danger">Reject</button>
+                      <font color="red"><b>Revise</b></font>
                   @else
-                     <button type="button " name="button" class="btn btn-success">Approved</button>
+                     <font color="green"><b>Approved</b></font>
                   @endif
                 </td>
                 </td>
@@ -62,7 +62,7 @@
                 </td>
                 </tr>
                 @else
-                  <button type="button " name="button" class="btn btn-warning">Waiting</button>
+                  <font color="red"><b>Incomplete</b></font>
                   <td>
                   </td>
                 </td>
@@ -106,7 +106,7 @@
           <div class="modal-footer">
             <input type="hidden" name ="id" id="task-id" >
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" name="repair_button" class="btn btn-danger" value = "repair">Repair</button>
+            <button type="submit" name="repair_button" class="btn btn-danger" value = "repair">Revise</button>
           {{-- <form action="{{ url('progress/approve') }}" method="POST"> --}}
             <input type="hidden" name ="id" id="task-id2" >
               {{-- {{ csrf_field() }} --}}

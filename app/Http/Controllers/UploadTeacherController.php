@@ -66,7 +66,8 @@ class uploadTeacherController extends Controller
             ->select('posts.*' ,'users.name' , 'users.lastname')
             ->where('projectId' ,$id )
             ->get();
-        return view('uploadTeacher', ['files' => $files , 'posts' => $posts, 'id' => $id]);
+        $projectName = DB::table('projects')->where('id' , $id)->first()->eng_name;
+        return view('uploadTeacher', ['files' => $files , 'posts' => $posts, 'id' => $id , 'projectName' => $projectName]);
     }
     /**
      * Show the form for editing the specified resource.

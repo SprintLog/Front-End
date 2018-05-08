@@ -1,7 +1,7 @@
 @extends('layouts.templateList')
 
 @section('style')
-  <link rel="stylesheet" href="{{elixir('css/bootstrap-tagsinput.css')}}">
+
   <link rel="stylesheet" href="{{elixir('css/fix-general.css')}}">
   <style media="screen">
 
@@ -12,8 +12,10 @@
 @endsection
 
 @section('script')
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
-  <script src="{{elixir('js/bootstrap-tagsinput.js')}}"></script>
+
   <script type="text/javascript">
   $("input").val()
   </script>
@@ -45,7 +47,7 @@
   {{ csrf_field() }}
     <div class="form-group row far">
       <label  class="col-sm-3 col-form-label">
-          Thai Project Name
+          Project Name (Thai)
       </label>
       <div class="col-sm-7">
         <input type="text" name="t_project_name" class="form-control" placeholder="example  เครื่องมือจัดการซอฟต์แวร์ . . . ">
@@ -54,7 +56,7 @@
 
     <div class="form-group row far">
       <label  class="col-sm-3 col-form-label">
-          Eng Project Name
+          Project Name (English)
       </label>
       <div class="col-sm-7">
         <input type="text" name="e_project_name"  class="form-control" placeholder="example SpintLog . . . ">
@@ -63,7 +65,7 @@
 
     <div class="form-group row far">
       <label  class="col-sm-3 col-form-label">
-          Type Project
+          Project Type
       </label>
       <div class="col-sm-5">
          <select class="form-control" name='type_project'>
@@ -76,7 +78,7 @@
 
     <div class="form-group row far">
       <label  class="col-sm-3 col-form-label">
-          Advisors
+          Teacher's Name
       </label>
       <div class="col-sm-5">
         <select class="form-control" name='advisorsId'>
@@ -89,7 +91,7 @@
 
     <div class="form-group row far">
       <label  class="col-sm-3 col-form-label">
-          Developer
+          Developer's Name
       </label>
       <div class="col-sm-5">
          <div class="form-inline"  id="fields" >
@@ -114,7 +116,7 @@
 
     <div class="form-group row far">
       <label  class="col-sm-3 col-form-label">
-        Keyword
+        Keywords
       </label>
       <div class="col-sm-5">
         <input type="text" class="form-control" name="keyword" placeholder="ตัวอย่างเช่น Al,ระบบฝังตัว" >
@@ -122,8 +124,7 @@
     </div>
     <div class="form group row">
       <div class="col-sm-offset-2 col-sm-4">
-        <button type="button" class="btn btn-dark btn-lg">Cancle</button> &nbsp;
-        <button type="submit" class="btn btn-info btn-lg">Confirm </button>
+        <button type="submit" class="btn btn-info btn-lg">Save </button>
       </div>
     </div>
 

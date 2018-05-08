@@ -9,6 +9,14 @@
 @endsection
 
 @section('content')
+<div class="jumbotron far">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/home">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{$projectName}}</li>
+    </ol>
+  </nav>
+
   @if (session('success'))
     <div class="alert alert-success">
       <p><h4>{{session('success')}}</h4></p>
@@ -26,7 +34,7 @@
     <tr>
         <td>Filename</td>
         <td>Name</td>
-        <td>Date upload</td>
+        <td>Date</td>
         <td>Action</td>
     </tr>
     </thead>
@@ -69,7 +77,7 @@
       {{ csrf_field() }}
     <div class="row">
       <div class="fileinput fileinput-new" data-provides="fileinput">
-        <span>Document</span>
+        <span>Upload Document </span>
         <span class="btn btn-default btn-file">
           <input type="file" class = "form-control" name = "document">
           <input type="hidden" name = "projectId" value="{{$id}}">
@@ -78,7 +86,7 @@
       </div>
     </div>
     <div class = "form-gruop">
-        <input type="submit" class = "btn btn-success pull-right" value ="Upload new Document">
+        <input type="submit" class = "btn btn-success pull-right" value ="Upload">
     </div>
   </form><br><br>
   <!-- Modal for look popup -->
@@ -129,7 +137,7 @@
       })
         </script>
         <div class="row far">
-        <h3>Respone Advisor</h3>
+        <h3>Student's Comment</h3>
         {{-- <div class="col-sm-5">
            <span class="label label-default">LastVer.</span>
            filename
@@ -207,6 +215,6 @@
       </div>
     </div>
   </div>
-
+</div>
 
 @endsection

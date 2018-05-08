@@ -1,7 +1,7 @@
 <?php
 Auth::routes();
-Route::group(['middleware' => 'auth'], function(){
-  Route::group(['middleware' => 'MustBeStudent'], function(){
+Route::group(['middleware' => ['auth']], function () {
+  Route::group(['middleware' => ['MustBeStudent']], function () {
     Route::get('/home', 'HomeController@index');
     Route::resource('/project', 'ProjectController');
     Route::resource('/projectlist', 'ProjectListController');
@@ -28,7 +28,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::put('subTask/update', 'SubTaskController@update');
   });
 
-  Route::group(['middleware' => 'MustBeTeacher'], function(){
+  Route::group(['middleware' => ['MustBeTeacher']], function () {
     //for Teacher
     Route::get('/homeTeacher','HomeController@indexTeacher');
     Route::resource('/projectTeacher', 'ProjectTeacherController');
@@ -45,16 +45,19 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('/comment/new', 'CommentController@post');
   });
 
+
+
   //showdashboard
   Route::resource('/dashboard', 'DashboardController');
   Route::resource('/kanbanBoard', 'KanbanBoardController');
 
-  Route::get('autocomplete-ajaxStd',
-     array('as'=>'autocomplete.ajax.std',
-     'uses'=>'AutoComplateController@ajaxDataStd'));
-  Route::get('autocomplete-ajaxLec',
-     array('as'=>'autocomplete.ajax.lec',
-     'uses'=>'AutoComplateController@ajaxDataLec'));
-
 
 });
+
+Route::get('autocomplete-ajaxStd',
+   array('as'=>'autocomplete.ajax.std',
+   'uses'=>'AutoComplateController@ajaxDataStd'));
+
+Route::get('autocomplete-ajaxLec',
+   array('as'=>'autocomplete.ajax.lec',
+   'uses'=>'AutoComplateController@ajaxDataLec'));

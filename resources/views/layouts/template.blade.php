@@ -44,7 +44,7 @@
                 </li>
 
                 <li class="{{ Request::segment(1) === 'task' ? 'active' : null }}">
-                  <a href="{{url('task/'.Cache::get('key'))}}">Planing</a>
+                  <a href="{{url('task/'.Cache::get('key'))}}">Tasks</a>
                 </li>
                 <li class="{{ Request::segment(1) === 'estimage' ? 'active' : null }}">
 
@@ -55,7 +55,7 @@
                   <a href="{{url('kanbanBoard/'.Cache::get('key'))}}">Kanban Board</a>
                 </li>
                 <li class="{{ Request::segment(1) === 'upload' ? 'active' : null }}">
-                  <a href="{{url('upload/'.Cache::get('key'))}}">Upload</a>
+                  <a href="{{url('upload/'.Cache::get('key'))}}">Upload Document</a>
                 </li>
 
                 <li  class="{{ Request::segment(1) === 'dashboard' ? 'active' : null }}">
@@ -78,7 +78,7 @@
                     <a href="{{url('kanbanBoard/'.Cache::get('key'))}}">Kanban Board</a>
                   </li>
                   <li class="{{ Request::segment(1) === 'upload' ? 'active' : null }}">
-                    <a href="{{url('uploadTeacher/'.Cache::get('key'))}}">Upload</a>
+                    <a href="{{url('uploadTeacher/'.Cache::get('key'))}}">Upload Document</a>
                   </li>
                   <li class="{{ Request::segment(1) === 'progress' ? 'active' : null }}">
                     <a href="{{url('progress/'.Cache::get('key'))}}">Progress</a>
@@ -156,7 +156,7 @@
     </div> <!-- /container -->
 
     <script src="https://cdn.jsdelivr.net/lodash/4/lodash.min.js"></script>
-    <script src="js/EJ-kanban.js"></script>
+
 
   </body>
 </html>

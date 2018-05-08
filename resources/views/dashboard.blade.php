@@ -20,10 +20,18 @@
 
 @section('script')
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 @endsection
 
 @section('content')
   <div class="jumbotron far">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/home/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{$projectName}}</li>
+      </ol>
+    </nav>
       <!-- show status UCP-->
       <div class="row">
         <div class="col-sm-6">
@@ -74,7 +82,7 @@
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Task</th>
+            <th scope="col">Task Name</th>
             <th scope="col">Time Limit</th>
           </tr>
         </thead>
@@ -101,7 +109,7 @@
         <div class="card" style="width: 80rem;">
           <img class="card-img-top"  height="100px" width"100px" display= "block"  src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Smile3_no-blur.svg/2000px-Smile3_no-blur.svg.png" alt="Card image cap">
           <div class="card-body">
-            <p class="card-text">You can develop the project  within the time limit</p>
+            <p class="card-text">You can develop this project  within limited time</p>
           </div>
         </div>
       @else
@@ -109,11 +117,13 @@
         <div class="card" style="width: 80rem;">
           <img class="card-img-top"  height="100px" width"100px" display= "block"  src="http://www.pngmart.com/files/1/Sad-Emoji-PNG-Clipart.png" alt="Card image cap">
           <div class="card-body">
-            <p class="card-text">You can not  develop the project  within the time limit</p>
+            <p class="card-text">Do more, work harder!</p>
           </div>
         </div>
       @endif
-
+      <br><br>
+  <canvas id="bar-chart-horizontal" width="800" height="450"></canvas>
+  <br><br><br>
     <div class="form-group row far">
     <label  class="col-sm-4 col-form-label label label-default">
          Overview
@@ -131,7 +141,7 @@
   <br><br><br>
   <canvas id="myChart" width="80px" height="80px"></canvas>
   <br><br><br>
-  <canvas id="bar-chart-horizontal" width="800" height="450"></canvas>
+  {{-- <canvas id="bar-chart-horizontal" width="800" height="450"></canvas> --}}
 
   <!-- make grarph-->
   <script>
@@ -195,7 +205,7 @@
 new Chart(document.getElementById("pie-chart"), {
   type: 'pie',
   data: {
-    labels: ["Complete","InComplete"],
+    labels: ["Complete","Incomplete"],
     datasets: [{
       label: "Overview Status",
       backgroundColor: ["#ffff33", "#3366ff"],
@@ -213,7 +223,7 @@ new Chart(document.getElementById("pie-chart"), {
 new Chart(document.getElementById("bar-chart-horizontal"), {
     type: 'horizontalBar',
     data: {
-      labels: ["UCP should do", "UCP made", "UCP"],
+      labels: ["UCP(Estimate)", "UCP(Done)", "UCP(Total)"],
       datasets: [
         {
           label: "Population (millions)",

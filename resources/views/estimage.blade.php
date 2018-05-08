@@ -5,6 +5,8 @@
   </style>
 @endsection
 @section('script')
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 @endsection
 @section('content')
 <form  action="{{ url('estimage_updateall') }}" method="post" enctype="multipart/form-data">
@@ -20,7 +22,12 @@
     </div>
   @endif
   <div class="jumbotron far">
-
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/home/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{$projectName}}</li>
+      </ol>
+    </nav>
     @if (count($tasks) > 0)
     <div class="row far">
       <div class="col-sm-offset-2 col-sm-8">
@@ -120,7 +127,6 @@
         </table>
         <div class="row">
           <div class="col-sm-offset-4 col-sm-8">
-            <button type="button" name="button" class="btn">Cancle</button>
             <button type="submit" name="button" class="btn btn-warning">Save</button>
           </div>
         </div>

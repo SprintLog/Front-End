@@ -118,40 +118,63 @@ class ProjectController extends Controller
     public function update(Request $request,$id)
     {
 
-         // dd($request);
+        // dd($request);
         $thainame       = $request->t_project_name;
         $engname        = $request->e_project_name;
         $typeProject    = $request->typeProjectId;
-        $advisorsId     = $request->advisors;
-        $developerId_1  = $request->developerId_1;
-        $developerId_2  = $request->developerId_2;
         $abstract       = $request->abstract;
         $keyword        = $request->keyword;
 
-        $userLetureIsDefault = $request->userLetureIsDefault;
-        $userStdIsDefault_1 = $request->userStdIsDefault_1;
-        $userStdIsDefault_2  = $request->userStdIsDefault_1;
+
+        $userLetureId_IsDefault   = $request->userLetureId_IsDefault;
+        $userStdId_IsDefault      = $request->userStdId_IsDefault;
+
+
 
         // UPDATE VALUE
         DB::table("projects")
         ->where('id' , $id)
-        ->update(['thai_name' => $thainame ,
-                  'eng_name' => $engname ,
-                  'typeProjectId'=>$typeProject ,
-                  'abstack' =>$abstract ,
-                  'keywords' => $keyword]);
+        ->update(['thai_name'     => $thainame ,
+                  'eng_name'      => $engname ,
+                  'typeProjectId' => $typeProject ,
+                  'abstack'       => $abstract ,
+                  'keywords'      => $keyword]);
+
+        // name -> id
+        $devIds =[];
+        for ($i=0; $i < count($request->developer) ; $i++) {
+          $devIds[$i] = DB::table('users')
+          ->where('name',$request->developer[$i])
+          ->pluck('id')->first();;
+        }
+         // dd($devIds[0]);
+
+
+         //  updATE TABLE Match
+
+
+         DB::table('matches')
+         ->where('userId','=',$userLetureId_IsDefault)
+         ->where('projectId','=',$id)
+         ->update(['userId' =>  $devIds[0]]);
 
 
 
-        DB::table('matches')
-        ->where('userId','=',$userStdIsDefault_1)
-        ->where('projectId','=',$id)
-        ->update(['userId' =>  $developerId_1 ]);
+           DB::table('matches')
+           ->where('userId','=',$userStdId_IsDefault[$i])
+           ->where('projectId','=',$id)
+           ->update(['userId' =>  $devIds[$i+1 ]]);
 
-        DB::table('matches')
-        ->where('userId','=',$userStdIsDefault_2)
-        ->where('projectId','=',$id)
-        ->update(['userId' =>  $developerId_2 ]);
+
+          // $m = new Match;
+          // $m->userId    = $devId[$i];
+          // $m->projectId = $project->id;
+          // $m->save();
+
+
+
+
+
 
         return back()->with('success', 'Update Success');;
     }

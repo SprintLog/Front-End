@@ -18,12 +18,14 @@ class UploadController extends Controller
     public function index()
     {
         //
+
         $files = DB::table('uploads')->get();
         $posts = DB::table('posts')
             ->join('users', 'posts.userId', '=', 'users.id')
             ->select('posts.*' ,'users.name' , 'users.lastname')
             ->get();
-        return view('upload', ['files' => $files , 'posts' => $posts]);
+
+        return view('upload', ['files' => $files , 'posts' => $posts ,  ]);
         //return view('upload',['files' => Upload::get()]);
     }
 
@@ -77,7 +79,8 @@ class UploadController extends Controller
             ->select('posts.*' ,'users.name' , 'users.lastname')
             ->where('projectId' ,$id )
             ->get();
-        return view('upload', ['files' => $files , 'posts' => $posts, 'id' => $id]);
+        $projectName = DB::table('projects')->where('id' , $id)->first()->eng_name;
+        return view('upload', ['files' => $files , 'posts' => $posts, 'id' => $id , 'projectName' => $projectName]);
     }
     /**
      * Show the form for editing the specified resource.
@@ -106,9 +109,11 @@ class UploadController extends Controller
      * @param  \App\Upload  $upload
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function deleteImage($id)
     {
         //
+        $image = Images::find($id)->delete();
+        return back();
     }
     public function uploadDocument(Request $request)
     {
@@ -143,7 +148,7 @@ class UploadController extends Controller
     {
       $upload = Upload::find($request->id)->delete();
       return back();
-    } 
+    }
 
   public function uploadImage(Request $request)
   {
@@ -178,6 +183,13 @@ class UploadController extends Controller
   {
       $projectId = $request->projectId ;
       $pathToFile = '../storage/app/document/' . $projectId .'/'.$fileName;
+      return response()->file($pathToFile);
+  }
+
+  public function downloadDocument1($fileName)
+  {
+      $pathToFile = '../storage/app/document/'.$fileName;
+      echo $fileName;
       return response()->file($pathToFile);
   }
 }

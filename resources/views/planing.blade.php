@@ -21,6 +21,8 @@
 @endsection
 
 @section('script')
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
   <script type="text/javascript">
     $(function() {
@@ -70,7 +72,7 @@
               </select>
             </div>
 
-            <button type="submit" name="button">summit</button>
+            <button type="submit" name="button">submit</button>
             <div class="col-sm-3">
               <button class="btn btn-danger" data-role="remove">
                 <i class="fa fa-minus-square" aria-hidden="true"></i>
