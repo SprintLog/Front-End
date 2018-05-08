@@ -159,16 +159,12 @@ class ProjectController extends Controller
          ->update(['userId' =>  $devIds[0]]);
 
 
-         for ($i=0; $i < count($devIds); $i++) {
+
            DB::table('matches')
            ->where('userId','=',$userStdId_IsDefault[$i])
            ->where('projectId','=',$id)
            ->update(['userId' =>  $devIds[$i+1 ]]);
 
-         }
-// ﻿ＦＯＲＭＵＬＡＲ :ｃｏｕｎｔ（＄ｕｓｅｒＳｔｄＩｄ＿ＩｓＤｅｆａｕｌｔ）  ＜    ｃｏｕｎｔ（＄ＤｅｖＩｄｓ）
-// ﻿ＦＯＲＭＵＬＡＲ :ｃｏｕｎｔ（＄ｕｓｅｒＳｔｄＩｄ＿ＩｓＤｅｆａｕｌｔ）  ﻿＞    ｃｏｕｎｔ（＄ＤｅｖＩｄｓ）
-// ﻿ＦＯＲＭＵＬＡＲ :ｃｏｕｎｔ（＄ｕｓｅｒＳｔｄＩｄ＿ＩｓＤｅｆａｕｌｔ）  ＝   ｃｏｕｎｔ（＄ＤｅｖＩｄｓ）
 
           // $m = new Match;
           // $m->userId    = $devId[$i];
