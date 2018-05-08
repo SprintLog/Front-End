@@ -51,12 +51,13 @@ Route::group(['middleware' => ['auth']], function () {
   Route::resource('/dashboard', 'DashboardController');
   Route::resource('/kanbanBoard', 'KanbanBoardController');
 
-  Route::get('autocomplete-ajaxStd',
-     array('as'=>'autocomplete.ajax.std',
-     'uses'=>'AutoComplateController@ajaxDataStd'));
-
-  Route::get('autocomplete-ajaxLec',
-     array('as'=>'autocomplete.ajax.lec',
-     'uses'=>'AutoComplateController@ajaxDataLec'));
 
 });
+
+Route::get('autocomplete-ajaxStd',
+   array('as'=>'autocomplete.ajax.std',
+   'uses'=>'AutoComplateController@ajaxDataStd'));
+
+Route::get('autocomplete-ajaxLec',
+   array('as'=>'autocomplete.ajax.lec',
+   'uses'=>'AutoComplateController@ajaxDataLec'));

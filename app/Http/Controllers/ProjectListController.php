@@ -126,7 +126,7 @@ class ProjectListController extends Controller
           $ecf->topic    =  $array_topic_ecf[$i];
           $ecf->des      =  "คำอธิบาย";
           $ecf->weight   =  $array_weight_ecf[$i];
-          $ecf->rate     =  0;
+          $ecf->rate     =  1;
           $ecf->result   =  0;
           $ecf->projectId=  $pid;
           $ecf->save();
@@ -158,7 +158,7 @@ class ProjectListController extends Controller
          $tcf->topic    = $array_topic_tcf[$i];
          $tcf->des      = "คำอธิบาย";
          $tcf->weight   = $array_weight_tcf[$i];
-         $tcf->rate     =  0;
+         $tcf->rate     =  1;
          $tcf->result   =  0;
          $tcf->projectId=  $pid;
          $tcf->save();
