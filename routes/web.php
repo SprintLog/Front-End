@@ -61,3 +61,18 @@ Route::get('autocomplete-ajaxStd',
 Route::get('autocomplete-ajaxLec',
    array('as'=>'autocomplete.ajax.lec',
    'uses'=>'AutoComplateController@ajaxDataLec'));
+
+//for sub task
+Route::get('subTask/{id}', 'SubTaskController@index');
+Route::post('subTask/create', 'SubTaskController@store');
+Route::delete('subTask/{id}', 'SubTaskController@destroy');
+Route::get('subTask/completed/{id}', 'SubTaskController@completed');
+Route::post('subTask/update', 'SubTaskController@update');
+
+//showdashboard
+Route::resource('/dashboard', 'DashboardController');
+Route::resource('/kanbanBoard', 'KanbanBoardController');
+
+
+Route::get('/document/{filename}', 'UploadController@downloadDocument1');
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

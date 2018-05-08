@@ -205,7 +205,7 @@
           <input type="text" class="form-control" name="name" id="task-name" readonly>
         </div>
         <div class="form-group">
-          <label for="message-text" class="col-form-label">Comment By : Advisor </label>
+          <label for="message-text" class="col-form-label">Describe By : Advisor </label>
           <textarea class="form-control" name="desc" id="desc-text" readonly></textarea>
         </div>
     </div>
