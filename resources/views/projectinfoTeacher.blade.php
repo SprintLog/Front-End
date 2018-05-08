@@ -94,7 +94,7 @@ $("input").val()
          @for ($i=0; $i < count($userStd); $i++)
             <div id="field">
                <input   class="form-control" id="field{{$i}}"  name="developer[]"
-               type="text" data-items="8" value={{$userStd[$i]->name}}/ disabled>
+               type="text" data-items="8" value="{{$userStd[$i]->name}}" /disabled>
 
             </div>
          @endfor
