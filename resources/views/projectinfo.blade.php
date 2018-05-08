@@ -100,13 +100,13 @@
                          <input type="text" id="field" class="form-control" name="developer[]" value="{{$userStd[$i]->name}}">
 
 
-                      <button type="button" class="btn-danger">Remove</button>
+                      {{-- <button type="button" class="btn-danger">Remove</button> --}}
 
                       <input type="hidden" name="userId_IsDefault[]" value="{{$userStd[$i]->id}}">
                     </div>
                  @endfor
              </div>
-             <button type="button" class="btn">Add field</button>
+             {{-- <button type="button" class="btn">Add field</button> --}}
            </div>
          </div>
      </div>

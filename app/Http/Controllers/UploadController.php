@@ -119,14 +119,14 @@ class UploadController extends Controller
     {
         // dd($request);
         $validator = Validator::make($request->all(), [
-                    'document'   => 'required|mimes:doc,pdf,docx,zip,rar'
+                    'document'   => 'required|mimes:doc,pdf,docx,zip,rar|max:25000'
                 ]);
 
         if ($validator->fails()) {
             return redirect('upload/'.$id)
                 ->withInput()
                 ->withErrors($validator)
-                ->with('upload warning', 'please upload file');
+                ->with('upload warning', 'pleas upload file');
         }
         if (($request->hasFile('document'))) {
           try {
@@ -161,7 +161,7 @@ class UploadController extends Controller
   {
       //dd($request);
       $validator = Validator::make($request->all(), [
-                  'image'   =>  'required | mimes:jpeg,jpg,png | max:1000',
+                  'image'   =>  'required | mimes:jpeg,jpg,png | max:10240',
       ]);
 
 
@@ -184,7 +184,7 @@ class UploadController extends Controller
           dd($e);
           }
         }else {
-          return back()->with('warning', 'no file');
+          return back()->with('warning', 'please upload file ');
         }
 }
 
