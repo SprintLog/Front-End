@@ -44,7 +44,7 @@
   {{ method_field('PUT') }}
     <div class="form-group row far">
       <label  class="col-md-3 col-form-label">
-          Thai Project Name
+          Project Name (Thai)
       </label>
       <div class="col-md-7">
         <input type="text" name="t_project_name" class="form-control"  value="{{$project->thai_name}}">
@@ -53,7 +53,7 @@
 
     <div class="form-group row far">
       <label  class="col-md-3 col-form-label">
-          Eng Project Name
+          Project Name (English)
       </label>
       <div class="col-md-7">
         <input type="text" name="e_project_name"  class="form-control" value="{{$project->eng_name}}">
@@ -76,7 +76,7 @@
 
     <div class="form-group row far">
       <label  class="col-sm-3 col-form-label">
-          Advisors
+          Advisor's Name
       </label>
       <div class="col-md-5">
          <input   class="form-control" id="fieldLec"  name="developer[]"
@@ -87,7 +87,7 @@
 
     <div class="form-group row far">
       <label  class="col-sm-3 col-form-label">
-          Developer' Name
+          Developer's Name
       </label>
       <div class="col-md-5">
          {{-- <input type="text" id="field" name="" value=""> --}}
@@ -126,8 +126,7 @@
     </div>
     <div class="form group row">
       <div class="col-sm-offset-2 col-sm-4">
-        <button type="button" class="btn btn-dark btn-lg">Cancle</button> &nbsp;
-        <button type="submit" class="btn btn-info btn-lg">Save Change</button>
+        <button type="submit" class="btn btn-primary btn-lg">Save</button>
       </div>
     </div>
       {{-- <input type="hidden" name="userId" value="1"> --}}
