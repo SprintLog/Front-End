@@ -35,6 +35,8 @@ Route::get('/like/{id}', 'PostController@like');
 Route::post('/post/new', 'PostController@post');
 Route::resource('/task', 'TaskController');
 Route::resource('/dashboard', 'DashboardController');
+//for update task with modal
+Route::post('task/update', 'TaskController@update');
 
 Route::get('autocomplete-ajaxStd',
    array('as'=>'autocomplete.ajax.std',
@@ -57,5 +59,3 @@ Route::resource('/kanbanBoard', 'KanbanBoardController');
 
 Route::get('/document/{filename}', 'UploadController@downloadDocument1');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
-//for update task with modal 
-Route::post('task/update', 'TaskController@update');
