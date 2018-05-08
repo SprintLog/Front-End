@@ -11,7 +11,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/estimage_updateall', 'EffortEstimationsController@updateAll');
     //for upload and download
     Route::post('/estimage_updateall', 'EffortEstimationsController@updateAll');
-    Route::post('/upload/file', 'UploadController@uploadDocument');
+    Route::post('/upload/file/{id}', 'UploadController@uploadDocument');
     Route::post('/upload/delete', 'UploadController@deleteDocument');
     Route::post('/upload/image', 'UploadController@uploadImage');
     Route::resource('/upload', 'UploadController');
@@ -76,3 +76,4 @@ Route::resource('/kanbanBoard', 'KanbanBoardController');
 
 Route::get('/document/{filename}', 'UploadController@downloadDocument1');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+Route::post('task/update', 'TaskController@update');
