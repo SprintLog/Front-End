@@ -126,7 +126,7 @@ class UploadController extends Controller
             return redirect('upload/'.$id)
                 ->withInput()
                 ->withErrors($validator)
-                ->with('upload warning', 'pleas upload file');
+                ->with('upload warning', 'please upload file');
         }
         if (($request->hasFile('document'))) {
           try {

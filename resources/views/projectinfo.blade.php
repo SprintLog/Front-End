@@ -44,7 +44,7 @@
   {{ method_field('PUT') }}
     <div class="form-group row far">
       <label  class="col-md-3 col-form-label">
-          Project Name (Thai)
+          Thai Project Name
       </label>
       <div class="col-md-7">
         <input type="text" name="t_project_name" class="form-control"  value="{{$project->thai_name}}">
@@ -53,7 +53,7 @@
 
     <div class="form-group row far">
       <label  class="col-md-3 col-form-label">
-          Project Name (English)
+          Eng Project Name
       </label>
       <div class="col-md-7">
         <input type="text" name="e_project_name"  class="form-control" value="{{$project->eng_name}}">
@@ -76,7 +76,7 @@
 
     <div class="form-group row far">
       <label  class="col-sm-3 col-form-label">
-          Advisor's Name
+          Advisors
       </label>
       <div class="col-md-5">
          <input   class="form-control" id="fieldLec"  name="developer[]"
@@ -87,7 +87,7 @@
 
     <div class="form-group row far">
       <label  class="col-sm-3 col-form-label">
-          Developer's Name
+          Developer' Name
       </label>
       <div class="col-md-5">
          {{-- <input type="text" id="field" name="" value=""> --}}
@@ -96,12 +96,8 @@
              <div class="multi-fields">
                  @for ($i=0; $i < count($userStd); $i++)
                     <div class="multi-field">
-
                          <input type="text" id="field" class="form-control" name="developer[]" value="{{$userStd[$i]->name}}">
-
-
                       {{-- <button type="button" class="btn-danger">Remove</button> --}}
-
                       <input type="hidden" name="userId_IsDefault[]" value="{{$userStd[$i]->id}}">
                     </div>
                  @endfor
@@ -131,7 +127,8 @@
     </div>
     <div class="form group row">
       <div class="col-sm-offset-2 col-sm-4">
-        <button type="submit" class="btn btn-primary btn-lg">Save</button>
+        <button type="button" class="btn btn-dark btn-lg">Cancle</button> &nbsp;
+        <button type="submit" class="btn btn-info btn-lg">Save Change</button>
       </div>
     </div>
       {{-- <input type="hidden" name="userId" value="1"> --}}
@@ -161,19 +158,21 @@ $('#fieldLec').typeahead({
         .focus();
     });
 
+    var url = "{{ route('autocomplete.ajax.std') }}";
+      $('[id="field"]').typeahead({
+          source:  function (query, process) {
+          return $.get(url, { query: query }, function (data) {
+                  return process(data);
+            });
+          }
+      });
+
     $('.multi-field .btn-danger', $wrapper).click(function() {
         if ($('.multi-field', $wrapper).length > 1)
             $(this).parent('.multi-field').remove();
     });
   });
-  var url = "{{ route('autocomplete.ajax.std') }}";
-    $('[id="field"]').typeahead({
-        source:  function (query, process) {
-        return $.get(url, { query: query }, function (data) {
-                return process(data);
-          });
-        }
-    });
+
 
 
 </script>

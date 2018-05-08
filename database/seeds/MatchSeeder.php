@@ -54,6 +54,15 @@ class MatchSeeder extends Seeder
         ]);
 
         DB::table('matches')->insert([
+          "userId"    => 11,
+          "projectId" => 1,
+          'created_at'=> Carbon::now()->format('Y-m-d H:i:s'),
+          'updated_at'=> Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+
+
+        /* project 2 */
+        DB::table('matches')->insert([
           "userId"    => 4,
           "projectId" => 2,
           'created_at'=> Carbon::now()->format('Y-m-d H:i:s'),
@@ -66,29 +75,45 @@ class MatchSeeder extends Seeder
           'created_at'=> Carbon::now()->format('Y-m-d H:i:s'),
           'updated_at'=> Carbon::now()->format('Y-m-d H:i:s'),
         ]);
-
         DB::table('matches')->insert([
           "userId"    => 6,
           "projectId" => 2,
           'created_at'=> Carbon::now()->format('Y-m-d H:i:s'),
           'updated_at'=> Carbon::now()->format('Y-m-d H:i:s'),
         ]);
+
         DB::table('matches')->insert([
-          "userId"    => 4,
+          "userId"    => 12,
+          "projectId" => 2,
+          'created_at'=> Carbon::now()->format('Y-m-d H:i:s'),
+          'updated_at'=> Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+
+
+        /* project 3 */
+        DB::table('matches')->insert([
+          "userId"    => 7,
           "projectId" => 3,
           'created_at'=> Carbon::now()->format('Y-m-d H:i:s'),
           'updated_at'=> Carbon::now()->format('Y-m-d H:i:s'),
         ]);
 
         DB::table('matches')->insert([
-          "userId"    => 5,
+          "userId"    => 8,
           "projectId" => 3,
           'created_at'=> Carbon::now()->format('Y-m-d H:i:s'),
           'updated_at'=> Carbon::now()->format('Y-m-d H:i:s'),
         ]);
 
         DB::table('matches')->insert([
-          "userId"    => 6,
+          "userId"    => 9,
+          "projectId" => 3,
+          'created_at'=> Carbon::now()->format('Y-m-d H:i:s'),
+          'updated_at'=> Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+
+        DB::table('matches')->insert([
+          "userId"    => 13,
           "projectId" => 3,
           'created_at'=> Carbon::now()->format('Y-m-d H:i:s'),
           'updated_at'=> Carbon::now()->format('Y-m-d H:i:s'),

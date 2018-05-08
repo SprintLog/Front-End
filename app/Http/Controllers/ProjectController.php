@@ -175,37 +175,6 @@ class ProjectController extends Controller
            ->update(['userId' =>  $devIds[$i]]);
          }
 
-         $loop = count($devIds) - count($userId_IsDefault);
-         if($loop > 0)
-         {
-           for ($i=0; $i < $loop; $i++) {
-             $m = new Match;
-             $m->userId    = $devId[count($userId_IsDefault)+$i];
-             $m->projectId = $project->id;
-             $m->save();
-           }
-         }
-         else
-        {
-
-        }
-
-         /*
-          0 1
-          1 2
-          2 3
-          3 4 count = 4
-
-          0 1
-          1 2
-          2 3 count =3
-
-         */
-
-
-
-
-
 
 
         return back()->with('success', 'Update Success');;
