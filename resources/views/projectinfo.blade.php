@@ -81,7 +81,6 @@
       <div class="col-md-5">
          <input   class="form-control" id="fieldLec"  name="developer[]"
          type="text"  value="{{$userLeture->name}}"/>
-          <input type="hidden" name="userLetureId" value="{{$userLeture->id}}">
           <input type="hidden" name="userLetureId_IsDefault" value="{{$userLeture->id}}">
       </div>
     </div>
@@ -97,7 +96,7 @@
                @for ($i=0; $i < count($userStd); $i++)
                   <div class="multi-field">
                     <input type="text" id="field" name="developer[]" value="{{$userStd[$i]->name}}">
-                    <input type="hidden" name="developerId[]" value="{{$userStd[$i]->id}}">
+                    <input type="hidden" name="userStdId_IsDefault[]" value="{{$userStd[$i]->id}}">
                     <button type="button" class="btn-danger">Remove</button>
                   </div>
                @endfor
