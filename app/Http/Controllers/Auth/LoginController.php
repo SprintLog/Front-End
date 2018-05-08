@@ -32,13 +32,12 @@ class LoginController extends Controller
 
     protected function redirectTo()
      {
-       if(Auth::user()->userType == 0) {
+       if(auth()->user()->typeUser == 0) {
              return ('/home');
        }
-       else if(Auth::user()->userType == 1){
+       else{
             return ('/homeTeacher');
        }
-       
      }
 
     /**
