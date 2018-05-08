@@ -120,7 +120,7 @@
 
     <div class="form-group {{ $errors->has('body') ? ' has-error' : '' }}">
         <div class="panel panel-default">
-          <div class="panel-heading"><label class="control-label" for="numberInput"></label>Comment By Advisor</div>
+          <div class="panel-heading"><label class="control-label" for="numberInput"></label>Teacher's comment</div>
           <div class="panel-body">
             <form data-toggle="validator" action="/comment/new" method="post" enctype="multipart/form-data">
               {{ csrf_field() }}

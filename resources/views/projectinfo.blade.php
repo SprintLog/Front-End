@@ -61,8 +61,8 @@
     </div>
 
     <div class="form-group row far">
-      <label  class="col-md-3 col-form-label">
-          Type Project
+      <label  class="col-sm-3 col-form-label">
+          Project Type
       </label>
       <div class="col-md-5">
           <select class="form-control" name='typeProjectId'>
@@ -75,7 +75,7 @@
     </div>
 
     <div class="form-group row far">
-      <label  class="col-md-3 col-form-label">
+      <label  class="col-sm-3 col-form-label">
           Advisors
       </label>
       <div class="col-md-5">
@@ -86,8 +86,8 @@
     </div>
 
     <div class="form-group row far">
-      <label  class="col-md-3 col-form-label">
-          Developer
+      <label  class="col-sm-3 col-form-label">
+          Developer' Name
       </label>
       <div class="col-md-5">
          {{-- <input type="text" id="field" name="" value=""> --}}
@@ -117,15 +117,15 @@
     </div>
 
     <div class="form-group row far">
-      <label  class="col-md-3 col-form-label">
-        Keyword
+      <label  class="col-sm-3 col-form-label">
+        Keywords
       </label>
       <div class="col-md-7">
         <input type="text" class="form-control" name="keyword" value="{{$project->keywords}}">
       </div>
     </div>
     <div class="form group row">
-      <div class="col-md-offset-2 col-md-4">
+      <div class="col-sm-offset-2 col-sm-4">
         <button type="button" class="btn btn-dark btn-lg">Cancle</button> &nbsp;
         <button type="submit" class="btn btn-info btn-lg">Save Change</button>
       </div>

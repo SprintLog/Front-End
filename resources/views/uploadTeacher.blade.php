@@ -21,20 +21,25 @@
   @endif
 
   <div class="jumbotron far">
-
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/home">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{$projectName}}</li>
+      </ol>
+    </nav>
     @if (count($files) >= 0)
     <div class="form-group row far">
       <form  action="/uploadDoc/file" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
       <div class="row">
         <div class="fileinput fileinput-new" data-provides="fileinput">
-          <span>Document</span>
+          <span>Upload Document</span>
           <span class="btn btn-default btn-file">
             <input type="file" class = "form-control" name = "document">
             <input type="hidden" name = "projectId" value="{{$id}}">
           </span>
           <span class="fileinput-filename"></span>
-          <input type="submit" class = "btn btn-success " value ="Upload Document">
+          <input type="submit" class = "btn btn-success " value ="Upload">
         </div>
       </div>
 
@@ -86,7 +91,7 @@
         modal.find('#file-name').val(name)
         // modal.find('#desc-text').val(desc)
       })
-        </script> 
+        </script>
   </div>
 
     <table class="table">
@@ -138,7 +143,7 @@
     @if (count($posts) > 0)
       <div class="panel-body">
       <div class="panel panel-default">
-        <div class="panel-heading"><label class="control-label" for="numberInput"><h3>Post By Student</h3></label></div>
+        <div class="panel-heading"><label class="control-label" for="numberInput"><h3>Student's comment</h3></label></div>
     {{-- Post Timeline --}}
     @foreach ($posts as $post)
       <div class="panel panel-default">

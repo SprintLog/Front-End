@@ -9,22 +9,31 @@
 @section('script')
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+  .panel panel-default kanban-col > .panel-heading {
+      background-image: none;
+      background-color: red;
+      color: white;
+
+  }
+  </script>
 @endsection
 
 @section('content')
-
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/home/">Home</a></li>
         <li class="breadcrumb-item active" aria-current="page">{{$projectName}}</li>
       </ol>
     </nav>
+    <div>
     <div class="container-fluid" style="min-width: 1050px;">
             <div id="sortableKanbanBoards" class="row">
                 <div class="col-md-0 col-md-offset-0">
                   <div class="panel panel-primary kanban-col">
                     <div class="panel-heading">
                         TODO
+                    </div>
                         <div id="TODO" class="kanban-centered">
                       @foreach ($todos as $todo)
                         <article class="kanban-entry grab" draggable="true">
@@ -35,36 +44,13 @@
                         </div>
                         </article>
                       @endforeach
-                      {{-- <article class="kanban-entry grab" id="item0" draggable="true">
-                            <div class="kanban-entry-inner">
-                            <div class="kanban-label">
-                              <h2>qwdq</h2>
-                            </div>
-                          </div>
-                          </article>
-                          <article class="kanban-entry grab" id="item1" draggable="true">
-                              <div class="kanban-entry-inner">
-                              <div class="kanban-label"><h2>wdq</h2>
-                              </div>
-                            </div>
-                          </article>
-                          <article class="kanban-entry grab" id="item2" draggable="true">
-                                <div class="kanban-entry-inner"><div class="kanban-label">
-                                  <h2>wdqqeqe</h2></div>
-                                </div>
-                          </article>
-                          <article class="kanban-entry grab" id="item3" draggable="true">
-                                  <div class="kanban-entry-inner">
-                                  <div class="kanban-label">
-                                    <h2>wqe</h2>
-                                  </div>
-                                </div>
-                        </article> --}}
+
                       </div>
                   </div>
               </div>
+
               <div class="panel panel-primary kanban-col">
-                  <div class="panel-heading">
+                  <div class="panel-heading " style="background-color:#8e5ea2;">
                       DOING
                   </div>
                   <div class="panel-body" style="max-height: 401px;">
@@ -89,7 +75,7 @@
                   </div>
               </div>
               <div class="panel panel-primary kanban-col">
-                  <div class="panel-heading">
+                  <div class="panel-heading" style="background-color:#3cba9f;">
                       DONE
                   </div>
                   <div class="panel-body" style="max-height: 401px;">
@@ -124,11 +110,11 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th scope="col">Name</th>
+            <th scope="col">Task name</th>
             <th scope="col">Complexity</th>
             <th scope="col">Task Status</th>
-            <th scope="col">Check By Teacher</th>
-            <th scope="col">Action</th>
+            <th scope="col">Decision</th>
+            <th scope="col">Comment</th>
           </tr>
         </thead>
         <tbody>
@@ -139,7 +125,7 @@
               @if($taskList->complexity == 1)
                 Simple
               @elseif ($taskList->complexity == 2)
-                Middle
+                Medium
               @else
                 Complex
               @endif
@@ -148,24 +134,37 @@
         @for ($i=0; $i < sizeof($taskname); $i++)
         @if ($taskList->nametask == $taskname[$i] && $taskList->id == $taskId[$i])
           @if ($progressProject[$i] == 100 )
-            <button type="button " name="button" class="btn btn-success">Complete</button>
+            <font color="green"><b>Complete</b></font>
             <td>
             @if ($taskList->approved == 0 )
-               <button type="button " name="button" class="btn btn-warning">Not approved</button>
+
+              <font color="orange"><b>Non-approved</b></font>
              @elseif ($taskList->approved == 1)
-                <button type="button " name="button" class="btn btn-danger">Repair</button>
+              <font color="red"><b>Revise</b></font>
              @else
-               <button type="button " name="button" class="btn btn-success">Approved</button>
+               <font color="green"><b>Approved</b></font>
             @endif
             </td>
+            <td>
+                   <button type="button" class="btn btn-info"
+                   data-toggle="modal"
+                   data-id="{{$taskList->id}}"
+                   data-name="{{$taskList->nametask}}"
+                   data-desc="{{$taskList->desc}}"
+                   data-target="#exampleModal">
+                     View
+                   </button>
+           </td>
           @else
-            <button type="button " name="button" class="btn btn-warning">Waiting</button>
+            <font color="red"><b>Incomplete</b></font>
+            <td>
+            </td>
             <td>
             </td>
           @endif
         @endif
         @endfor
-
+{{--
       </td>
      <td>
        <button type="button" class="btn btn-info"
@@ -174,9 +173,9 @@
        data-name="{{$taskList->nametask}}"
        data-desc="{{$taskList->desc}}"
        data-target="#exampleModal">
-         Comment
+         View
        </button>
-     </td>
+     </td> --}}
     </tr>
 
     @endforeach
@@ -229,7 +228,7 @@
     // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
     // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
     var modal = $(this)
-    modal.find('.modal-title').text('Task ID : ' + id)
+    modal.find('.modal-title').text('View Decision ')
     modal.find('#task-id').val(id)
     modal.find('#task-name').val(name)
     modal.find('#desc-text').val(desc)

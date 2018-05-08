@@ -41,10 +41,11 @@ class EffortEstimationsController extends Controller
      */
     public function show($id)
     {
+      $projectName = DB::table('projects')->where('id' , $id)->first()->eng_name;
       $tcf = DB::table('tcfs')->where('projectId','=',$id)->get();
       $ecf = DB::table('ecfs')->where('projectId','=',$id)->get();
       $tasks = DB::table('tasks')->where('projectId','=',$id)->get();
-      return view('estimage', ['tcf' => $tcf , 'ecf' => $ecf , 'tasks' => $tasks]);
+      return view('estimage', ['tcf' => $tcf , 'ecf' => $ecf , 'tasks' => $tasks, 'projectName' => $projectName]);
     }
     /**
      * Show the form for editing the specified resource.
@@ -77,6 +78,7 @@ class EffortEstimationsController extends Controller
        $rateEcf = $request->rateEcf;
        $topicEcf = $request->topicEcf;
        $weightEcf = $request->weightEcf;
+
        //update Table TCf
        for ($i=0; $i < sizeof($rateTcf); $i++){
             $result = $weightTcf[$i] * $rateTcf[$i] ;
