@@ -113,8 +113,9 @@ class KanbanBoardController extends Controller
           // array_push($taskid,$progress);
         }
         $projectName = Project::where('id' , $id)->first()->eng_name ;
-        // $comment =  Comment::where()
 
+
+        // print_r($taskId);
         return view('kanbanboard',
                                 ['todos' => $todos ,
                                 'doings'=> $doings ,

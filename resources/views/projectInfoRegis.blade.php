@@ -1,7 +1,7 @@
 @extends('layouts.templateList')
 
 @section('style')
-  <link rel="stylesheet" href="{{elixir('css/bootstrap-tagsinput.css')}}">
+
   <link rel="stylesheet" href="{{elixir('css/fix-general.css')}}">
   <style media="screen">
 
@@ -15,7 +15,7 @@
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
-  <script src="{{elixir('js/bootstrap-tagsinput.js')}}"></script>
+
   <script type="text/javascript">
   $("input").val()
   </script>

@@ -41,7 +41,7 @@ class ProjectListController extends Controller
 
         $userLetureShow = DB::table("users")
         ->select('id','name','lastname')
-        ->where('typeUser','=',0)
+        ->where('typeUser','=',1)
         ->get();
 
 
@@ -122,23 +122,14 @@ class ProjectListController extends Controller
       $array_weight_ecf =  array(1.5,0.5,1,0.5,1,2,-1,-1);
 
        for ($i=0; $i < 8 ; $i++) {
-          // $ecf = new Ecf;
-          // $ecf->topic    =  $array_topic_ecf[$i];
-          // $ecf->des      =  "คำอธิบาย";
-          // $ecf->weight   =  $array_weight_ecf[$i];
-          // $ecf->rate     =  0;
-          // $ecf->result   =  0;
-          // $ecf->projectId=  $pid;
-          // $ecf->save();
-
-          DB::table('ecfs')->insert([
-            'topic'     => $array_topic_ecf[$i],
-            'des'       => "คำอธิบาย",
-            'weight'    => $array_weight_ecf[$i],
-            'rate'      =>  0,
-            'result'    =>  0,
-            'projectId' => $pid,
-          ]);
+          $ecf = new Ecf;
+          $ecf->topic    =  $array_topic_ecf[$i];
+          $ecf->des      =  "คำอธิบาย";
+          $ecf->weight   =  $array_weight_ecf[$i];
+          $ecf->rate     =  1;
+          $ecf->result   =  0;
+          $ecf->projectId=  $pid;
+          $ecf->save();
        }
 
 
@@ -163,22 +154,14 @@ class ProjectListController extends Controller
      $array_weight_tcf =  array(2,1,1,1,1,0.5,0.5,2,1,1,1,1,1);
 
       for ($i=0; $i < 13 ; $i++) {
-         // $tcf = new Tcf;
-         // $tcf->topic    = $array_topic_tcf[$i];
-         // $tcf->des      = "คำอธิบาย";
-         // $tcf->weight   = $array_weight_tcf[$i];
-         // $tcf->rate     =  0;
-         // $tcf->result   =  0;
-         // $tcf->projectId=  $pid;
-         // $tcf->save();
-         DB::table('tcfs')->insert([
-           'topic'     => $array_topic_tcf[$i],
-           'des'       => "คำอธิบาย",
-           'weight'    => $array_weight_tcf[$i],
-           'rate'      =>  0,
-           'result'    =>  0,
-           'projectId' => $pid,
-         ]);
+         $tcf = new Tcf;
+         $tcf->topic    = $array_topic_tcf[$i];
+         $tcf->des      = "คำอธิบาย";
+         $tcf->weight   = $array_weight_tcf[$i];
+         $tcf->rate     =  1;
+         $tcf->result   =  0;
+         $tcf->projectId=  $pid;
+         $tcf->save();
       }
         return redirect('/home');
     }

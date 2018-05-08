@@ -101,7 +101,7 @@
     </div> <!-- /container -->
 
     <script src="https://cdn.jsdelivr.net/lodash/4/lodash.min.js"></script>
-    <script src="js/EJ-kanban.js"></script>
+
 
   </body>
 </html>
