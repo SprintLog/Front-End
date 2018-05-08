@@ -115,12 +115,19 @@ class UploadController extends Controller
         $image = Images::find($id)->delete();
         return back();
     }
-    public function uploadDocument(Request $request)
+    public function uploadDocument(Request $request,$id)
     {
-        //dd($request);
+        // dd($request);
         $validator = Validator::make($request->all(), [
                     'document'   => 'required|mimes:doc,pdf,docx,zip,rar'
                 ]);
+
+        if ($validator->fails()) {
+            return redirect('upload/'.$id)
+                ->withInput()
+                ->withErrors($validator)
+                ->with('upload warning', 'please upload file');
+        }
         if (($request->hasFile('document'))) {
           try {
             $file =  $request->file('document');
@@ -136,12 +143,12 @@ class UploadController extends Controller
             $upload->userId = Auth::id();
             $upload->save();
             return back()->with('success', 'upload file success');
-          } catch (\Exception $e) {
-            dd($e);
+            } catch (\Exception $e)
+            {
+              dd($e);
             }
-          }else {
-            return back()->with('warning', 'no file');
           }
+
   }
 
   public function deleteDocument(Request $request)
@@ -155,7 +162,9 @@ class UploadController extends Controller
       //dd($request);
       $validator = Validator::make($request->all(), [
                   'image'   =>  'required | mimes:jpeg,jpg,png | max:1000',
-              ]);
+      ]);
+
+
       if (($request->hasFile('image'))) {
         try {
           $file =  $request->file('image');

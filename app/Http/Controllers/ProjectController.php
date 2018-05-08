@@ -118,12 +118,27 @@ class ProjectController extends Controller
     public function update(Request $request,$id)
     {
 
-         dd($request);
+          // dd($request);
+       $validator = Validator::make($request->all(), [
+           't_project_name' => 'required|nullable|string|max:25',
+           'e_project_name' => 'required|nullable|string|max:25',
+           'typeProjectId'  => 'required|nullable|string',
+           'abstract'       => 'required|nullable|string|max:255',
+           'keyword'        => 'required|nullable|string|max:255',
+       ]);
+
+       if ($validator->fails()) {
+           return redirect('project/'.$id)
+               ->withInput()
+               ->withErrors($validator)
+               ->with('warning', 'plz check input');
+       }
         $thainame       = $request->t_project_name;
         $engname        = $request->e_project_name;
         $typeProject    = $request->typeProjectId;
         $abstract       = $request->abstract;
         $keyword        = $request->keyword;
+
 
 
         $userId_IsDefault   = $request->userId_IsDefault;

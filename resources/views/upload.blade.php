@@ -22,9 +22,9 @@
       <p><h4>{{session('success')}}</h4></p>
     </div>
   @endif
-  @if (session('warning'))
+  @if (session('upload warning'))
     <div class="alert alert-warning">
-      <p><h4>{{session('warning')}}</h4></p>
+      <p><h4>{{session('upload warning')}}</h4></p>
     </div>
   @endif
 
@@ -73,7 +73,7 @@
   </table>
   @endif
   <div class="form-group row far">
-    <form  action="/upload/file" method="post" enctype="multipart/form-data">
+    <form  action="{{ url('upload/file/'.Cache::get('key')) }}" method="post" enctype="multipart/form-data">
       {{ csrf_field() }}
     <div class="row">
       <div class="fileinput fileinput-new" data-provides="fileinput">
@@ -178,7 +178,7 @@
       </table> --}}
 
       {{-- New post--}}
-        <div class="form-group {{ $errors->has('body') ? ' has-error' : '' }}">
+          <div class="form-group {{ $errors->has('body') ? ' has-error' : '' }}">
         <div class="panel panel-default">
           <div class="panel-heading"><label class="control-label" for="numberInput"></label>New Post</div>
           <div class="panel-body">
