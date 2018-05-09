@@ -32,16 +32,5 @@
              </div>
       @endforeach
 
-      <br><br><br><br>
-        <div class="row">
-          <div class="col-sm-6 col-md-12">
-              <class="badge badge-info">
-              <p align="right">
-              คู่มือการใช้งาน
-              <a href="/document/manual_std.pdf" >[นักศึกษา]</a>
-              <a href="/document/manual_adv.pdf" >[อาจารย์]</a>
-            </p>
-          </div>
-        </div>
 
 @endsection

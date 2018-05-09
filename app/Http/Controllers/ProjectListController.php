@@ -77,7 +77,7 @@ class ProjectListController extends Controller
             return redirect('projectlist/create')
                 ->withInput()
                 ->withErrors($validator)
-                ->with('warning', 'plz check input');
+                ->with('warning', 'please check input');
         }
 
         // dd($request); 2 3 16
