@@ -1,15 +1,17 @@
 ## Description
  This is a senior project . I have idea create  someting  about  Software Engineer  and  I discover  research [Use Case Points (UCP)](https://en.wikipedia.org/wiki/Use_Case_Points) so I create system send progress project for student with formula UCP estimate scope time in 1 semester
+[Click see Intro project on youtube](https://www.youtube.com/watch?v=y2E3AMBtjoM).
+However this project not completed.
 
 
-##  Role 
-### Member
+## Member
 |  ชือ   |       Role    |
 |---	                         |---            |---            |
 |  Nantipat Tullwattaba       |  planning, see document ,design UI, control architect and development |
 |     Sarawut Nawawisatkul      |     main development  (He made the most) |
 |     Sutita Saraya      |     document (she cant waite code , she noob !) |
 |    Kitsiri Chochiang      |     Advisor (help research  and planning project )|
+
 ## ＰＲＥＶＩＥＷ
 
 ![Alt text](/preview/1.png)
