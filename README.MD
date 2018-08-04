@@ -4,7 +4,7 @@
 However this project Some parts were not completed.
 
 
-|  ชือ   |       Role    |
+|  name  |       Role    |
 |------------------------------|--------------|
 |  Nantipat Tullwattaba       |  planning, see document ,design UI, control architect and development |
 |     Sarawut Nawawisatkul      |     main development  (He made the most) |
