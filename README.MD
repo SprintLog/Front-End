@@ -4,9 +4,8 @@
 However this project Some parts were not completed.
 
 
-## Member
 |  ชือ   |       Role    |
-|------------------------------|--------------|------|
+|------------------------------|--------------|
 |  Nantipat Tullwattaba       |  planning, see document ,design UI, control architect and development |
 |     Sarawut Nawawisatkul      |     main development  (He made the most) |
 |     Sutita Saraya      |     document (she cant waite code , she noob !) |
