@@ -1,5 +1,5 @@
 ## Description
- This is a senior project . I have idea create  someting  about  Software Engineer  and  I discover  research [Use Case Points (UCP)](https://en.wikipedia.org/wiki/Use_Case_Points) so I create system send progress project for student with formula UCP estimate scope time in 1 semester
+   I have got some ideas, done a research and discovered Use Case Point formular form which I have further developed a system assisting student to update their progressing project to their professors the scope of 1 semester, However this within system still under improvement.
 [Click see Intro project on youtube](https://www.youtube.com/watch?v=y2E3AMBtjoM).
 However this project Some parts were not completed.
 
